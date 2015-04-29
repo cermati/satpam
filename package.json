@@ -1,0 +1,27 @@
+{
+  "name": "satpam",
+  "version": "0.0.1",
+  "description": "Object Validator",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/sendyhalim/satpam"
+  },
+  "author": "Sendy Halim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sendyhalim/satpam/issues"
+  },
+  "homepage": "https://github.com/sendyhalim/satpam",
+  "dependencies": {
+    "lodash": "^3.7.0",
+    "validator": "^3.39.0"
+  },
+  "devDependencies": {
+    "chai": "^2.3.0",
+    "mocha": "^2.2.4"
+  }
+}
