@@ -2,6 +2,9 @@
 
 var stringValidator = require('validator');
 var _ = require('lodash');
+var required = require('./validators/required');
+var email = require('./validators/email');
+var numeric = require('./validators/numeric');
 
 /*
  * Rules should have format:
@@ -28,29 +31,15 @@ var _ = require('lodash');
 
 
 var validation = {
-  required: function(val) {
-    return !(val === undefined || val === null || val === '');
-  },
-  numeric: function(val) {
-    if (val) {
-      return stringValidator.isNumeric(val);
-    }
-
-    return true;
-  },
-  email: function(val) {
-    if (val) {
-      return stringValidator.isEmail(val);
-    }
-
-    return true;
-  }
+  required: required.validator,
+  numeric: numeric.validator,
+  email: email.validator
 };
 
 var validationMessages = {
-  email: '<%= propertyName %> must be email',
-  required: '<%= propertyName %> is required',
-  numeric: '<%= propertyName %> must be numeric'
+  required: required.message,
+  numeric: numeric.message,
+  email: email.message
 };
 
 var ValidationMessage = function ValidationMessage() {
