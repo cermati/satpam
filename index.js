@@ -5,6 +5,7 @@ var _ = require('lodash');
 var required = require('./validators/required');
 var email = require('./validators/email');
 var numeric = require('./validators/numeric');
+var image = require('./validators/image');
 
 /*
  * Rules should have format:
@@ -33,13 +34,15 @@ var numeric = require('./validators/numeric');
 var validation = {
   required: required.validator,
   numeric: numeric.validator,
-  email: email.validator
+  email: email.validator,
+  image: image.validator
 };
 
 var validationMessages = {
   required: required.message,
   numeric: numeric.message,
-  email: email.message
+  email: email.message,
+  image: image.message
 };
 
 var ValidationMessage = function ValidationMessage() {
