@@ -1,11 +1,13 @@
 "use strict";
 
 var stringValidator = require('validator');
-var _ = require('lodash');
-var required = require('./validators/required');
-var email = require('./validators/email');
-var numeric = require('./validators/numeric');
-var image = require('./validators/image');
+var _               = require('lodash');
+var required        = require('./validators/required');
+var email           = require('./validators/email');
+var numeric         = require('./validators/numeric');
+var image           = require('./validators/image');
+var alpha           = require('./validators/alpha');
+var alphanumeric    = require('./validators/alphanumeric');
 
 /*
  * Rules should have format:
@@ -35,14 +37,18 @@ var validation = {
   required: required.validator,
   numeric: numeric.validator,
   email: email.validator,
-  image: image.validator
+  image: image.validator,
+  alpha: alpha.validator,
+  alphanumeric: alphanumeric.validator
 };
 
 var validationMessages = {
   required: required.message,
   numeric: numeric.message,
   email: email.message,
-  image: image.message
+  image: image.message,
+  alpha: alpha.message,
+  alphanumeric: alphanumeric.message
 };
 
 var ValidationMessage = function ValidationMessage() {
