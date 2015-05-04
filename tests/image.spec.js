@@ -12,6 +12,7 @@ describe('Image Validator', function() {
     });
 
     expect(result.success).to.equals(false);
+    expect(result.messages.imageInput.image).to.equals('ImageInput must be an image.');
   });
 
   it('Should success on image type', function() {
