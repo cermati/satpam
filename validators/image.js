@@ -11,5 +11,5 @@ exports = module.exports = {
 
     return true;
   },
-  message: '<%= propertyName %> must be an image'
+  message: '<%= propertyName %> must be an image.'
 };

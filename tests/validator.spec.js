@@ -34,7 +34,7 @@ describe('Validator', function() {
 
       expect(result.success).to.equals(false);
       expect(err).to.have.property('name');
-      expect(err.name.required).to.equals('Name is required');
+      expect(err.name.required).to.equals('Name field is required.');
       expect(err.name).to.have.property('required');
       expect(err).to.not.have.property('officeEmail');
       expect(err).to.not.have.property('officeEmailAdditional');
@@ -141,8 +141,8 @@ describe('Validator', function() {
       expect(err.messageArray.length).to.equals(4);
       expect(err.name['must-equal:$1']).to.equals('Name must equal sendyhalim !!');
       expect(err.address['must-equal:$1']).to.equals('Address must equal dimana aja bole !!');
-      expect(err.address['required']).to.equals('Address is required');
-      expect(err.title['required']).to.equals('Title is required');
+      expect(err.address['required']).to.equals('Address field is required.');
+      expect(err.title['required']).to.equals('Title field is required.');
     });
   });
 });

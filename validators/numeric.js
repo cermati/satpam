@@ -8,5 +8,5 @@ exports = module.exports = {
 
     return true;
   },
-  message: '<%= propertyName %> must be numeric'
+  message: '<%= propertyName %> must be a number.'
 };
