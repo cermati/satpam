@@ -37,6 +37,16 @@ if (result.success === true) {
 }
 ```
 
+## Available Rules
+- alpha
+- alphanumeric
+- date
+- email
+- image
+- numeric
+- required
+- url
+
 ## Custom rules
 ```js
 validator.addCustomValidation('must-be-ironman', function(val) {
