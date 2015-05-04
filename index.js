@@ -8,6 +8,7 @@ var numeric         = require('./validators/numeric');
 var image           = require('./validators/image');
 var alpha           = require('./validators/alpha');
 var alphanumeric    = require('./validators/alphanumeric');
+var date            = require('./validators/date');
 
 /*
  * Rules should have format:
@@ -34,21 +35,23 @@ var alphanumeric    = require('./validators/alphanumeric');
 
 
 var validation = {
-  required: required.validator,
-  numeric: numeric.validator,
-  email: email.validator,
-  image: image.validator,
-  alpha: alpha.validator,
-  alphanumeric: alphanumeric.validator
+  required     : required.validator,
+  numeric      : numeric.validator,
+  email        : email.validator,
+  image        : image.validator,
+  alpha        : alpha.validator,
+  alphanumeric : alphanumeric.validator,
+  date         : date.validator
 };
 
 var validationMessages = {
-  required: required.message,
-  numeric: numeric.message,
-  email: email.message,
-  image: image.message,
-  alpha: alpha.message,
-  alphanumeric: alphanumeric.message
+  required     : required.message,
+  numeric      : numeric.message,
+  email        : email.message,
+  image        : image.message,
+  alpha        : alpha.message,
+  alphanumeric : alphanumeric.message,
+  date         : date.message
 };
 
 var ValidationMessage = function ValidationMessage() {
