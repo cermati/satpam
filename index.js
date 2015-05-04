@@ -9,6 +9,7 @@ var image           = require('./validators/image');
 var alpha           = require('./validators/alpha');
 var alphanumeric    = require('./validators/alphanumeric');
 var date            = require('./validators/date');
+var url             = require('./validators/url');
 
 /*
  * Rules should have format:
@@ -41,7 +42,8 @@ var validation = {
   image        : image.validator,
   alpha        : alpha.validator,
   alphanumeric : alphanumeric.validator,
-  date         : date.validator
+  date         : date.validator,
+  url          : url.validator
 };
 
 var validationMessages = {
@@ -51,7 +53,8 @@ var validationMessages = {
   image        : image.message,
   alpha        : alpha.message,
   alphanumeric : alphanumeric.message,
-  date         : date.message
+  date         : date.message,
+  url          : url.message
 };
 
 var ValidationMessage = function ValidationMessage() {
