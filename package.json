@@ -13,7 +13,7 @@
     "object validator"
   ],
   "author": "Sendy Halim <sendyhalim93@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/sendyhalim/satpam/issues"
   },
