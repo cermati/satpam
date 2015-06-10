@@ -32,8 +32,8 @@ if (result.success === true) {
   result.messages.phone.number === 'Phone must be numeric';
 
   // or get all messages in array form
-  result.messageArray[0] = 'OfficeEmail must be email';
-  result.messageArray[1] = 'Phone must be numeric';
+  result.messages.messageArray[0] = 'OfficeEmail must be email';
+  result.messages.messageArray[1] = 'Phone must be numeric';
 }
 ```
 
