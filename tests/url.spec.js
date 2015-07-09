@@ -12,7 +12,7 @@ describe('Url validator', function() {
     };
   };
 
-  it('Should success', function() {
+  it('should success', function() {
     var result = validator.validate(simpleRules, getTestObject());
     var err = result.messages;
 
@@ -20,7 +20,7 @@ describe('Url validator', function() {
     expect(err).to.not.have.property('website');
   });
 
-  it('Should fail', function() {
+  it('should fail', function() {
     var testObj = getTestObject();
     testObj.website = '02--09-1993';
     var result = validator.validate(simpleRules, testObj);

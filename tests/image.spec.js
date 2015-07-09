@@ -6,7 +6,7 @@ describe('Image Validator', function() {
     imageInput: ['image']
   };
 
-  it('Should fail on non image type', function() {
+  it('should fail on non image type', function() {
     var result = validator.validate(rules, {
       imageInput: 'README.md'
     });
@@ -15,7 +15,7 @@ describe('Image Validator', function() {
     expect(result.messages.imageInput.image).to.equals('Image Input must be an image.');
   });
 
-  it('Should success on image type', function() {
+  it('should success on image type', function() {
     var result = validator.validate(rules, {
       imageInput: 'tests/fixtures/dummyimg.jpeg'
     });

@@ -16,7 +16,7 @@ describe('Validator', function() {
   };
 
   describe('Test with simple rules', function() {
-    it('Should success', function() {
+    it('should success', function() {
       var result = validator.validate(simpleRules, getTestObject());
       var err = result.messages;
 
@@ -26,7 +26,7 @@ describe('Validator', function() {
       expect(err).to.not.have.property('officeEmailAdditional');
     });
 
-    it('Should fail with empty name', function() {
+    it('should fail with empty name', function() {
       var testObj = getTestObject();
       testObj.name = '';
       var result = validator.validate(simpleRules, testObj);
@@ -40,7 +40,7 @@ describe('Validator', function() {
       expect(err).to.not.have.property('officeEmailAdditional');
     });
 
-    it('Should fail with optionalEmail', function() {
+    it('should fail with optionalEmail', function() {
       var testObj = getTestObject();
       testObj.officeEmailAdditional = 'hehe';
 
@@ -72,7 +72,7 @@ describe('Validator', function() {
       phone: ['numeric']
     };
 
-    it('Should success', function() {
+    it('should success', function() {
       var result = validator.validate(rules, obj);
       var err = result.messages;
 
@@ -81,7 +81,7 @@ describe('Validator', function() {
       expect(err).to.not.have.property('phone');
     });
 
-    it('Should fail', function() {
+    it('should fail', function() {
       obj.name = 'sendy';
       var result = validator.validate(rules, obj);
       var err = result.messages;
@@ -96,7 +96,7 @@ describe('Validator', function() {
   });
 
   describe('Test with rule params', function() {
-    it('Should fail with custom validation range:0:30', function() {
+    it('should fail with custom validation range:0:30', function() {
       validator.addCustomValidation('range:$1:$2', function(val, ruleObj) {
         return val >= ruleObj.params[0] && val <= ruleObj.params[1];
       });
@@ -116,7 +116,7 @@ describe('Validator', function() {
   });
 
   describe('Test with multiple errors', function() {
-    it('Should have multiple errors', function() {
+    it('should have multiple errors', function() {
       var obj = {
         officeEmail: 'asd@gg.com'
       };
