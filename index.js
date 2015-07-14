@@ -1,15 +1,14 @@
 "use strict";
 
-var stringValidator = require('validator');
-var _               = require('lodash');
-var required        = require('./validators/required');
-var email           = require('./validators/email');
-var numeric         = require('./validators/numeric');
-var image           = require('./validators/image');
-var alpha           = require('./validators/alpha');
-var alphanumeric    = require('./validators/alphanumeric');
-var date            = require('./validators/date');
-var url             = require('./validators/url');
+var _ = require('lodash');
+var required = require('./validators/required');
+var email = require('./validators/email');
+var numeric = require('./validators/numeric');
+var image = require('./validators/image');
+var alpha = require('./validators/alpha');
+var alphanumeric = require('./validators/alphanumeric');
+var date = require('./validators/date');
+var url = require('./validators/url');
 
 /*
  * Rules should have format:
@@ -36,25 +35,25 @@ var url             = require('./validators/url');
 
 
 var validation = {
-  required     : required.validator,
-  numeric      : numeric.validator,
-  email        : email.validator,
-  image        : image.validator,
-  alpha        : alpha.validator,
-  alphanumeric : alphanumeric.validator,
-  date         : date.validator,
-  url          : url.validator
+  required: required.validator,
+  numeric: numeric.validator,
+  email: email.validator,
+  image: image.validator,
+  alpha: alpha.validator,
+  alphanumeric: alphanumeric.validator,
+  date: date.validator,
+  url: url.validator
 };
 
 var validationMessages = {
-  required     : required.message,
-  numeric      : numeric.message,
-  email        : email.message,
-  image        : image.message,
-  alpha        : alpha.message,
-  alphanumeric : alphanumeric.message,
-  date         : date.message,
-  url          : url.message
+  required: required.message,
+  numeric: numeric.message,
+  email: email.message,
+  image: image.message,
+  alpha: alpha.message,
+  alphanumeric: alphanumeric.message,
+  date: date.message,
+  url: url.message
 };
 
 var ValidationMessage = function ValidationMessage() {
@@ -79,10 +78,10 @@ function validate(rules, obj) {
   var messageObj = new ValidationMessage();
 
   // loop through the given rules
-  _.forEach(rules, function(ruleArray, propertyName) {
+  _.forEach(rules, function (ruleArray, propertyName) {
     var val = obj[propertyName];
     // ruleArray should be something like ['required', 'email']
-    ruleArray.forEach(function(ruleName) {
+    ruleArray.forEach(function (ruleName) {
       var splitted = ruleName.split(':');
       var ruleObj = {
         // full name is the generic full name of validation rule e.g range:1:3 -> range:$1:$2, required -> required
@@ -95,7 +94,7 @@ function validate(rules, obj) {
         params: splitted.slice(1)
       };
 
-      _.forEach(ruleObj.params, function(v, k) {
+      _.forEach(ruleObj.params, function (v, k) {
         ruleObj.fullName += ':$' + (k + 1).toString();
       });
 
@@ -120,10 +119,10 @@ function validate(rules, obj) {
 var validator = {
   validate: validate,
   validation: validation,
-  addCustomValidation: function(ruleName, fn) {
+  addCustomValidation: function (ruleName, fn) {
     validation[ruleName] = fn;
   },
-  setValidationMessage: function(ruleName, message) {
+  setValidationMessage: function (ruleName, message) {
     validationMessages[ruleName] = message;
   }
 };
