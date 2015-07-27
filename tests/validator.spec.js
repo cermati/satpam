@@ -1,53 +1,55 @@
+'use strict';
+
 var expect = require('chai').expect;
 var validator = require('../');
 
-describe('Validator', function() {
+describe('Validator', function () {
   var simpleRules = {
     name: ['required'],
     officeEmail: ['required', 'email'],
     officeEmailAdditional: ['email']
   };
 
-  var getTestObject = function() {
+  var getTestObject = function () {
     return {
       name: 'sendy',
       officeEmail: 'asd@gg.com'
     };
   };
 
-  describe('Test with simple rules', function() {
-    it('should success', function() {
+  describe('Test with simple rules', function () {
+    it('should success', function () {
       var result = validator.validate(simpleRules, getTestObject());
       var err = result.messages;
 
-      expect(result.success).to.equals(true);
+      expect(result.success).to.equal(true);
       expect(err).to.not.have.property('name');
       expect(err).to.not.have.property('officeEmail');
       expect(err).to.not.have.property('officeEmailAdditional');
     });
 
-    it('should fail with empty name', function() {
+    it('should fail with empty name', function () {
       var testObj = getTestObject();
       testObj.name = '';
       var result = validator.validate(simpleRules, testObj);
       var err = result.messages;
 
-      expect(result.success).to.equals(false);
+      expect(result.success).to.equal(false);
       expect(err).to.have.property('name');
-      expect(err.name.required).to.equals('Name field is required.');
+      expect(err.name.required).to.equal('Name field is required.');
       expect(err.name).to.have.property('required');
       expect(err).to.not.have.property('officeEmail');
       expect(err).to.not.have.property('officeEmailAdditional');
     });
 
-    it('should fail with optionalEmail', function() {
+    it('should fail with optionalEmail', function () {
       var testObj = getTestObject();
       testObj.officeEmailAdditional = 'hehe';
 
       var result = validator.validate(simpleRules, testObj);
       var err = result.messages;
 
-      expect(result.success).to.equals(false);
+      expect(result.success).to.equal(false);
       expect(err).to.have.property('officeEmailAdditional');
       expect(err.officeEmailAdditional).to.have.property('email');
       expect(err).to.not.have.property('name');
@@ -55,8 +57,8 @@ describe('Validator', function() {
     });
   });
 
-  describe('Test with custom rules', function() {
-    validator.addCustomValidation('must-be-ironman', function(val) {
+  describe('Test with custom rules', function () {
+    validator.addCustomValidation('must-be-ironman', function (val) {
       return val === 'ironman';
     });
 
@@ -72,32 +74,32 @@ describe('Validator', function() {
       phone: ['numeric']
     };
 
-    it('should success', function() {
+    it('should success', function () {
       var result = validator.validate(rules, obj);
       var err = result.messages;
 
-      expect(result.success).to.equals(true);
+      expect(result.success).to.equal(true);
       expect(err).to.not.have.property('name');
       expect(err).to.not.have.property('phone');
     });
 
-    it('should fail', function() {
+    it('should fail', function () {
       obj.name = 'sendy';
       var result = validator.validate(rules, obj);
       var err = result.messages;
 
-      expect(result.success).to.equals(false);
+      expect(result.success).to.equal(false);
       expect(err).to.have.property('name');
-      expect(err.name['must-be-ironman']).to.equals('Not ironman D:');
+      expect(err.name['must-be-ironman']).to.equal('Not ironman D:');
       expect(err).to.not.have.property('phone');
-      expect(err.messageArray.length).to.equals(1);
-      expect(err.messageArray[0]).to.equals('Not ironman D:');
+      expect(err.messageArray.length).to.equal(1);
+      expect(err.messageArray[0]).to.equal('Not ironman D:');
     });
   });
 
-  describe('Test with rule params', function() {
-    it('should fail with custom validation range:0:30', function() {
-      validator.addCustomValidation('range:$1:$2', function(val, ruleObj) {
+  describe('Test with rule params', function () {
+    it('should fail with custom validation range:0:30', function () {
+      validator.addCustomValidation('range:$1:$2', function (val, ruleObj) {
         return val >= ruleObj.params[0] && val <= ruleObj.params[1];
       });
 
@@ -109,14 +111,14 @@ describe('Validator', function() {
       var result = validator.validate(rules, obj);
       var err = result.messages;
 
-      expect(result.success).to.equals(false);
-      expect(err.salary['range:$1:$2']).to.equals('Salary must between 0 and 30');
-      expect(err.messageArray.length).to.equals(1);
+      expect(result.success).to.equal(false);
+      expect(err.salary['range:$1:$2']).to.equal('Salary must between 0 and 30');
+      expect(err.messageArray.length).to.equal(1);
     });
   });
 
-  describe('Test with multiple errors', function() {
-    it('should have multiple errors', function() {
+  describe('Test with multiple errors', function () {
+    it('should have multiple errors', function () {
       var obj = {
         officeEmail: 'asd@gg.com'
       };
@@ -128,7 +130,7 @@ describe('Validator', function() {
         title: ['required']
       };
 
-      validator.addCustomValidation('must-equal:$1', function(val, ruleObj) {
+      validator.addCustomValidation('must-equal:$1', function (val, ruleObj) {
         return val === ruleObj.params[0];
       });
 
@@ -137,12 +139,12 @@ describe('Validator', function() {
       var result = validator.validate(rules, obj);
       var err = result.messages;
 
-      expect(result.success).to.equals(false);
-      expect(err.messageArray.length).to.equals(4);
-      expect(err.name['must-equal:$1']).to.equals('Name must equal sendyhalim !!');
-      expect(err.address['must-equal:$1']).to.equals('Address must equal dimana aja bole !!');
-      expect(err.address['required']).to.equals('Address field is required.');
-      expect(err.title['required']).to.equals('Title field is required.');
+      expect(result.success).to.equal(false);
+      expect(err.messageArray.length).to.equal(4);
+      expect(err.name['must-equal:$1']).to.equal('Name must equal sendyhalim !!');
+      expect(err.address['must-equal:$1']).to.equal('Address must equal dimana aja bole !!');
+      expect(err.address['required']).to.equal('Address field is required.');
+      expect(err.title['required']).to.equal('Title field is required.');
     });
   });
 });

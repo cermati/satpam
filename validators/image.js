@@ -1,9 +1,11 @@
+'use strict';
+
 var readChunk = require('read-chunk');
 var imageType = require('image-type');
 var _ = require('lodash');
 
 exports = module.exports = {
-  validator: function(val) {
+  validator: function (val) {
     if (val) {
       if (_.isObject(val)) {
         val = val.path;
