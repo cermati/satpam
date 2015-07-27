@@ -46,6 +46,7 @@ if (result.success === true) {
 - numeric
 - required
 - url
+- string
 
 ## Custom rules
 ```js
