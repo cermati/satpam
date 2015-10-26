@@ -14,7 +14,9 @@ describe('NonBlank validator', function () {
     'vector  ',
     '   a  b  ',
     'newline\n',
-    ' \n wild \t \n'
+    ' \n wild \t \n',
+    1214,
+    {iAm: 'not simple string'}
   ];
 
   var rejectedInputs = [
