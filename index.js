@@ -10,6 +10,7 @@ var alphanumeric = require('./validators/alphanumeric');
 var date = require('./validators/date');
 var url = require('./validators/url');
 var string = require('./validators/string');
+var nonBlank = require('./validators/non-blank');
 
 /*
  * Rules should have format:
@@ -44,7 +45,8 @@ var validation = {
   alphanumeric: alphanumeric.validator,
   date: date.validator,
   url: url.validator,
-  string: string.validator
+  string: string.validator,
+  nonBlank: nonBlank.validator
 };
 
 var validationMessages = {
@@ -56,7 +58,8 @@ var validationMessages = {
   alphanumeric: alphanumeric.message,
   date: date.message,
   url: url.message,
-  string: string.message
+  string: string.message,
+  nonBlank: nonBlank.message
 };
 
 var ValidationMessage = function ValidationMessage() {
