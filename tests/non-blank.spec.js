@@ -22,7 +22,9 @@ describe('NonBlank validator', function () {
   var rejectedInputs = [
     '',
     '    ',
-    ' \n \n \t'
+    ' \n \n \t',
+    null,
+    undefined
   ];
 
   it('should success', function () {
