@@ -39,7 +39,7 @@ describe('MaxLength validator', function () {
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('name');
-      expect(err.name['maxLength:$1']).to.equal('Name must not exceed 5 character(s).');
+      expect(err.name['maxLength:$1']).to.equal('Name must contain at most 5 character(s).');
     });
   });
 });

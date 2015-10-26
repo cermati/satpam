@@ -10,5 +10,5 @@ exports = module.exports = {
     }
     return true;
   },
-  message: '<%= propertyName %> must not exceed <%= ruleParams[0] %> character(s).'
+  message: '<%= propertyName %> must contain at most <%= ruleParams[0] %> character(s).'
 };
