@@ -5,10 +5,15 @@ var _ = require('lodash');
 
 exports = module.exports = {
   validator: function (val, ruleObj) {
-    if (_.isString(val)) {
-      return val.length >= ruleObj.params[0]
+    var valAsString = val;
+    if (!_.isString(val)) {
+      if (val.toString) {
+        valAsString = val.toString();
+      } else {
+        valAsString = '';
+      }
     }
-    return true;
+    return valAsString.length >= ruleObj.params[0]
   },
   message: '<%= propertyName %> must contain at least <%= ruleParams[0] %> character(s).'
 };

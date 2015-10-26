@@ -13,13 +13,19 @@ describe('MaxLength validator', function () {
     'phone',
     '',
     ' woi ',
-    '4l@y.'
+    '4l@y.',
+    12345,
+    123,
+    0,
+    -1234
   ];
 
   var rejectedInputs = [
     '      ',
     'asdasd',
-    'pneumonoultramicroscopicsilicovolcanoconiosis'
+    'pneumonoultramicroscopicsilicovolcanoconiosis',
+    123456,
+    -12345
   ];
 
   it('should success', function () {
