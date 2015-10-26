@@ -11,6 +11,8 @@ var date = require('./validators/date');
 var url = require('./validators/url');
 var string = require('./validators/string');
 var nonBlank = require('./validators/non-blank');
+var minValue = require('./validators/min-value');
+var maxValue = require('./validators/max-value');
 
 /*
  * Rules should have format:
@@ -46,7 +48,9 @@ var validation = {
   date: date.validator,
   url: url.validator,
   string: string.validator,
-  nonBlank: nonBlank.validator
+  nonBlank: nonBlank.validator,
+  'maxValue:$1': maxValue.validator,
+  'minValue:$1': minValue.validator
 };
 
 var validationMessages = {
@@ -59,7 +63,9 @@ var validationMessages = {
   date: date.message,
   url: url.message,
   string: string.message,
-  nonBlank: nonBlank.message
+  nonBlank: nonBlank.message,
+  'maxValue:$1': maxValue.message,
+  'minValue:$1': minValue.message
 };
 
 var ValidationMessage = function ValidationMessage() {
@@ -96,7 +102,7 @@ function validate(rules, obj) {
         // get only the first part of full rule e.g if range:1:3 then we will get 'range'
         name: splitted[0],
 
-        // get the rule params if e.g range:0:3 -> [1, 3]
+        // get the rule params if e.g range:1:3 -> [1, 3]
         params: splitted.slice(1)
       };
 
