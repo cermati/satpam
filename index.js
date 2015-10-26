@@ -13,6 +13,8 @@ var string = require('./validators/string');
 var nonBlank = require('./validators/non-blank');
 var maxLength = require('./validators/max-length');
 var minLength = require('./validators/min-length');
+var minValue = require('./validators/min-value');
+var maxValue = require('./validators/max-value');
 
 /*
  * Rules should have format:
@@ -50,7 +52,9 @@ var validation = {
   string: string.validator,
   nonBlank: nonBlank.validator,
   'maxLength:$1': maxLength.validator,
-  'minLength:$1': minLength.validator
+  'minLength:$1': minLength.validator,
+  'maxValue:$1': maxValue.validator,
+  'minValue:$1': minValue.validator
 };
 
 var validationMessages = {
@@ -64,6 +68,8 @@ var validationMessages = {
   url: url.message,
   string: string.message,
   nonBlank: nonBlank.message,
+  'maxValue:$1': maxValue.message,
+  'minValue:$1': minValue.message,
   'maxLength:$1': maxLength.message,
   'minLength:$1': minLength.message
 };
