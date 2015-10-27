@@ -67,8 +67,6 @@ describe('MinValue validator', function () {
       var result = validator.validate(ruleWithParam, {favoriteNumber: rejectedInput});
       var err = result.messages;
 
-      console.log(err);
-
       expect(result.success).to.equal(false);
       expect(err).to.have.property('favoriteNumber');
       expect(err.favoriteNumber['minValue:$1']).to.equal('Favorite Number must be greater than or equal to 50.');
@@ -85,7 +83,6 @@ describe('MinValue validator', function () {
     rejectedInputs.forEach(function test(rejectedInput) {
       var result = validator.validate(ruleWithParam, {favoriteNumber: rejectedInput});
       var err = result.messages;
-      console.log(err);
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('favoriteNumber');

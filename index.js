@@ -16,6 +16,7 @@ var minLength = require('./validators/min-length');
 var minValue = require('./validators/min-value');
 var maxValue = require('./validators/max-value');
 var memberOf = require('./validators/member-of');
+var beginWith = require('./validators/begin-with');
 
 /*
  * Rules should have format:
@@ -56,7 +57,8 @@ var validation = {
   'minLength:$1': minLength.validator,
   'maxValue:$1': maxValue.validator,
   'minValue:$1': minValue.validator,
-  'memberOf:$1': memberOf.validator
+  'memberOf:$1': memberOf.validator,
+  'beginWith:$1': beginWith.validator
 };
 
 var validationMessages = {
@@ -74,7 +76,8 @@ var validationMessages = {
   'minValue:$1': minValue.message,
   'maxLength:$1': maxLength.message,
   'minLength:$1': minLength.message,
-  'memberOf:$1': memberOf.message
+  'memberOf:$1': memberOf.message,
+  'beginWith:$1': beginWith.message
 };
 
 var ValidationMessage = function ValidationMessage() {

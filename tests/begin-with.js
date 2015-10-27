@@ -3,11 +3,11 @@
 var expect = require('chai').expect;
 var validator = require('../');
 
-describe('MemberOf validator', function () {
+describe('BeginWith validator', function () {
   var objectRules = {
     pet: [
       {
-        name: 'memberOf', params: [['dog', 'cat', 'fish']]
+        name: 'beginWith', params: [['dog', 'cat', 'fish']]
       }
     ]
   };
@@ -15,8 +15,11 @@ describe('MemberOf validator', function () {
   it('should success for single item', function () {
     var acceptedInputs = [
       'dog',
-      'cat',
-      'fish'
+      'doge',
+      'dog kintamani',
+      'dog shiba inu',
+      'cat woman',
+      'fish erman'
     ];
 
     acceptedInputs.forEach(function test(acceptedInput) {
@@ -31,8 +34,8 @@ describe('MemberOf validator', function () {
   it('should success for array item', function () {
     var acceptedInputs = [
       [],
-      ['fish'],
-      ['dog', 'cat']
+      ['dog', 'catherine'],
+      ['dog', 'doge', 'dog kintamani', 'dog shiba inu', 'cat woman', 'fish arowana']
     ];
 
     acceptedInputs.forEach(function test(acceptedInput) {
@@ -44,19 +47,15 @@ describe('MemberOf validator', function () {
     });
   });
 
-  it('should fail for single item not in the list', function () {
-    var result = validator.validate(objectRules, {pet: 'shark'});
-    var err = result.messages;
-
-    expect(result.success).to.equal(false);
-    expect(err).to.have.property('pet');
-    expect(err.pet['memberOf:$1']).to.equal('Pet must be one of dog,cat,fish.');
-  });
-
-  it('should fail for array item which contains item not in the list', function () {
+  it('should fail for single item not beginning with string in list', function () {
     var rejectedInputs = [
-      ['dog', 'cat', 'fish', 'bear'],
-      ['shark']
+      '',
+      'd',
+      'do',
+      'dug',
+      'dug up',
+      'cow',
+      'fisx'
     ];
 
     rejectedInputs.forEach(function test(rejectedInput) {
@@ -65,14 +64,31 @@ describe('MemberOf validator', function () {
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('pet');
-      expect(err.pet['memberOf:$1']).to.equal('Pet must be one of dog,cat,fish.');
+      expect(err.pet['beginWith:$1']).to.equal('Pet must begin with one of dog,cat,fish.');
+    });
+  });
+
+  it('should fail for array item which contains item not beginning with the string in list', function () {
+    var rejectedInputs = [
+      ['doge', 'dug'],
+      ['dog kintamani', 'd'],
+      ['dog kintamani', 'do']
+    ];
+
+    rejectedInputs.forEach(function test(rejectedInput) {
+      var result = validator.validate(objectRules, {pet: rejectedInput});
+      var err = result.messages;
+
+      expect(result.success).to.equal(false);
+      expect(err).to.have.property('pet');
+      expect(err.pet['beginWith:$1']).to.equal('Pet must begin with one of dog,cat,fish.');
     });
   });
 
   it('should fail for non string or non array of strings', function () {
     var rejectedInputs = [
-      ['dog', 'cat', {wild: 'object'}],
-      ['dog', 'cat', 123],
+      ['doge', 'cat', {wild: 'object'}],
+      ['dog', 'catherine', 123],
       {wild: 'object'}
     ];
 
@@ -82,7 +98,7 @@ describe('MemberOf validator', function () {
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('pet');
-      expect(err.pet['memberOf:$1']).to.equal('Pet must be one of dog,cat,fish.');
+      expect(err.pet['beginWith:$1']).to.equal('Pet must begin with one of dog,cat,fish.');
     });
   });
 });
