@@ -69,8 +69,6 @@ describe('MaxValue validator', function () {
       var result = validator.validate(ruleWithParam, {favoriteNumber: rejectedInput});
       var err = result.messages;
 
-      console.log(err);
-
       expect(result.success).to.equal(false);
       expect(err).to.have.property('favoriteNumber');
       expect(err.favoriteNumber['maxValue:$1']).to.equal('Favorite Number must be less than or equal to 50.');
@@ -85,7 +83,6 @@ describe('MaxValue validator', function () {
     rejectedInputs.forEach(function test(rejectedInput) {
       var result = validator.validate(ruleWithParam, {favoriteNumber: rejectedInput});
       var err = result.messages;
-      console.log(err);
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('favoriteNumber');
