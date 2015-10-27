@@ -15,6 +15,7 @@ var maxLength = require('./validators/max-length');
 var minLength = require('./validators/min-length');
 var minValue = require('./validators/min-value');
 var maxValue = require('./validators/max-value');
+var memberOf = require('./validators/member-of');
 
 /*
  * Rules should have format:
@@ -54,7 +55,8 @@ var validation = {
   'maxLength:$1': maxLength.validator,
   'minLength:$1': minLength.validator,
   'maxValue:$1': maxValue.validator,
-  'minValue:$1': minValue.validator
+  'minValue:$1': minValue.validator,
+  'memberOf:$1': memberOf.validator
 };
 
 var validationMessages = {
@@ -71,7 +73,8 @@ var validationMessages = {
   'maxValue:$1': maxValue.message,
   'minValue:$1': minValue.message,
   'maxLength:$1': maxLength.message,
-  'minLength:$1': minLength.message
+  'minLength:$1': minLength.message,
+  'memberOf:$1': memberOf.message
 };
 
 var ValidationMessage = function ValidationMessage() {
@@ -82,7 +85,6 @@ function getValidationMessage(ruleObj, propertyName, val) {
   var compiled = _.template(validationMessages[ruleObj.fullName]);
 
   propertyName = _.startCase(propertyName);
-
   return compiled({
     propertyName: propertyName,
     ruleName: ruleObj.fullName,
@@ -99,18 +101,28 @@ function validate(rules, obj) {
   _.forEach(rules, function (ruleArray, propertyName) {
     var val = obj[propertyName];
     // ruleArray should be something like ['required', 'email']
-    ruleArray.forEach(function (ruleName) {
-      var splitted = ruleName.split(':');
-      var ruleObj = {
-        // full name is the generic full name of validation rule e.g range:1:3 -> range:$1:$2, required -> required
-        fullName: splitted[0],
+    ruleArray.forEach(function (rule) {
+      var ruleObj = {};
 
-        // get only the first part of full rule e.g if range:1:3 then we will get 'range'
-        name: splitted[0],
+      if (_.isString(rule)) {
+        // First variant, everything is embedded as string
+        var splitted = rule.split(':');
+        ruleObj = {
+          // full name is the generic full name of validation rule e.g range:1:3 -> range:$1:$2, required -> required
+          fullName: splitted[0],
 
-        // get the rule params if e.g range:1:3 -> [1, 3]
-        params: splitted.slice(1)
-      };
+          // get only the first part of full rule e.g if range:1:3 then we will get 'range'
+          name: splitted[0],
+
+          // get the rule params if e.g range:1:3 -> [1, 3]
+          params: splitted.slice(1)
+        };
+      } else {
+        // Second variant, it is already parsed
+        ruleObj.name = rule.name;
+        ruleObj.fullName= rule.name;
+        ruleObj.params = rule.params;
+      }
 
       _.forEach(ruleObj.params, function (v, k) {
         ruleObj.fullName += ':$' + (k + 1).toString();
