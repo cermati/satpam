@@ -5,6 +5,10 @@ var _ = require('lodash');
 
 exports = module.exports = {
   validator: function (val, ruleObj) {
+    if (_.isUndefined(val) || _.isNull(val)) {
+      return false;
+    }
+
     var valAsString = val;
     if (!_.isString(val)) {
       if (val.toString) {

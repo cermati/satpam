@@ -18,7 +18,9 @@ describe('MinLength validator', function () {
   var rejectedInputs = [
     '',
     'asd',
-    'tele'
+    'tele',
+    null,
+    undefined
   ];
 
   it('should success', function () {

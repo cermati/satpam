@@ -25,7 +25,9 @@ describe('MaxLength validator', function () {
     'asdasd',
     'pneumonoultramicroscopicsilicovolcanoconiosis',
     123456,
-    -12345
+    -12345,
+    null,
+    undefined
   ];
 
   it('should success', function () {

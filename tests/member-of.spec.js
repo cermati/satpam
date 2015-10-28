@@ -45,12 +45,20 @@ describe('MemberOf validator', function () {
   });
 
   it('should fail for single item not in the list', function () {
-    var result = validator.validate(objectRules, {pet: 'shark'});
-    var err = result.messages;
+    var rejectedInputs = [
+      'shark',
+      null,
+      undefined
+    ];
 
-    expect(result.success).to.equal(false);
-    expect(err).to.have.property('pet');
-    expect(err.pet['memberOf:$1']).to.equal('Pet must be one of dog,cat,fish.');
+    rejectedInputs.forEach(function test(rejectedInput) {
+      var result = validator.validate(objectRules, {pet: rejectedInput});
+      var err = result.messages;
+
+      expect(result.success).to.equal(false);
+      expect(err).to.have.property('pet');
+      expect(err.pet['memberOf:$1']).to.equal('Pet must be one of dog,cat,fish.');
+    });
   });
 
   it('should fail for array item which contains item not in the list', function () {

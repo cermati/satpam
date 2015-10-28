@@ -55,7 +55,9 @@ describe('BeginWith validator', function () {
       'dug',
       'dug up',
       'cow',
-      'fisx'
+      'fisx',
+      null,
+      undefined
     ];
 
     rejectedInputs.forEach(function test(rejectedInput) {

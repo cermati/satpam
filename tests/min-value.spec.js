@@ -40,19 +40,21 @@ describe('MinValue validator', function () {
     });
   });
 
-  it('should success for non number', function () {
-    var acceptedInputs = [
+  it('should fail for non number', function () {
+    var rejectedInputs = [
       '1-1-1+1',
       'asdasd',
-      {lol: 'wut'}
+      {lol: 'wut'},
+      null,
+      undefined
     ];
-
-    acceptedInputs.forEach(function test(acceptedInput) {
-      var result = validator.validate(ruleWithParam, {favoriteNumber: acceptedInput});
+    rejectedInputs.forEach(function test(rejectedInput) {
+      var result = validator.validate(ruleWithParam, {favoriteNumber: rejectedInput});
       var err = result.messages;
 
-      expect(result.success).to.equal(true);
-      expect(err).to.not.have.property('favoriteNumber');
+      expect(result.success).to.equal(false);
+      expect(err).to.have.property('favoriteNumber');
+      expect(err.favoriteNumber['minValue:$1']).to.equal('Favorite Number must be greater than or equal to 50.');
     });
   });
 
