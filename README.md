@@ -40,13 +40,19 @@ if (result.success === true) {
 ## Available Rules
 - alpha
 - alphanumeric
+- begin-with
 - date
 - email
 - image
+- max-length
+- max-value
+- min-length
+- min-value
+- non-blank
 - numeric
 - required
-- url
 - string
+- url
 
 ## Custom rules
 ```js
