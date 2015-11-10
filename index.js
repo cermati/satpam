@@ -86,8 +86,8 @@ var ValidationMessage = function ValidationMessage() {
 
 function getValidationMessage(ruleObj, propertyName, val) {
   var compiled = _.template(validationMessages[ruleObj.fullName]);
-
   propertyName = _.startCase(propertyName);
+
   return compiled({
     propertyName: propertyName,
     ruleName: ruleObj.fullName,
