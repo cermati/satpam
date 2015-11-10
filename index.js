@@ -100,7 +100,7 @@ function validate(rules, obj) {
   var result = true;
   var messageObj = new ValidationMessage();
 
-  // loop through the given rules
+  // Loop through the given rules
   _.forEach(rules, function (ruleArray, propertyName) {
     var val = obj[propertyName];
     // ruleArray should be something like ['required', 'email']
@@ -114,10 +114,10 @@ function validate(rules, obj) {
           // full name is the generic full name of validation rule e.g range:1:3 -> range:$1:$2, required -> required
           fullName: splitted[0],
 
-          // get only the first part of full rule e.g if range:1:3 then we will get 'range'
+          // Get only the first part of full rule e.g if range:1:3 then we will get 'range'
           name: splitted[0],
 
-          // get the rule params if e.g range:1:3 -> [1, 3]
+          // Get the rule params if e.g range:1:3 -> [1, 3]
           params: splitted.slice(1)
         };
       } else {
@@ -133,9 +133,11 @@ function validate(rules, obj) {
 
       if (!validation[ruleObj.fullName](val, ruleObj, propertyName, obj)) {
         result = false;
-        // set messageObj initial value
+
+        // Set messageObj initial value
         messageObj[propertyName] = messageObj[propertyName] || {};
-        // set the validation message
+
+        // Set the validation message
         var msg = getValidationMessage(ruleObj, propertyName, val);
         messageObj[propertyName][ruleObj.fullName] = msg;
         messageObj.messageArray.push(msg);
