@@ -127,9 +127,9 @@ function validate(rules, obj) {
         ruleObj.params = rule.params;
       }
 
-      _.forEach(ruleObj.params, function (v, k) {
-        ruleObj.fullName += ':$' + (k + 1).toString();
-      });
+      ruleObj.fullName = ruleObj.params.reduce(function (ruleName, val, key) {
+        return ruleName + ':$' + (key + 1).toString();
+      }, ruleObj.fullName);
 
       if (!validation[ruleObj.fullName](val, ruleObj, propertyName, obj)) {
         result = false;
