@@ -60,7 +60,7 @@ if (result.success === true) {
 
   Use object notation for defining this rule 
   [examples](https://github.com/sendyhalim/satpam/blob/master/tests/begin-with.spec.js#L10)
-- `regex:$1:$2
+- `regex:$1:$2`
 
   `$1` is the pattern, `$2` is the regex flags
   [examples](https://github.com/sendyhalim/satpam/blob/master/tests/regex.spec.js#L9)
