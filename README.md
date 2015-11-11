@@ -85,8 +85,11 @@ validator.setValidationMessage('range:$1:$2', '<%= propertyName %> must between 
 ```
 
 ## TODOs
+- Better documentation.
+- Add more validation rules.
+- Validate file types.
 
-- Add more basic validation rules
-- Validate file types
+## More examples 
+[Here](https://github.com/sendyhalim/satpam/blob/master/tests)
 
-More examples -> [Here](https://github.com/sendyhalim/satpam/blob/master/tests/validator.spec.js)
+![Read the source Luke](http://blog.codinghorror.com/content/images/uploads/2012/04/6a0120a85dcdae970b016765373659970b-800wi.jpg)
