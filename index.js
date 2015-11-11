@@ -111,10 +111,12 @@ function validate(rules, obj) {
         // First variant, everything is embedded as string
         var splitted = rule.split(':');
         ruleObj = {
-          // full name is the generic full name of validation rule e.g range:1:3 -> range:$1:$2, required -> required
+          // Property fullName is the generic full name of validation rule
+          // e.g range:1:3 -> range:$1:$2, required -> required
           fullName: _.first(splitted),
 
-          // Get only the first part of full rule e.g if range:1:3 then we will get 'range'
+          // Get only the first part of full rule e.g if range:1:3 then
+          // we will get 'range'
           name: _.first(splitted),
 
           // Get the rule params if e.g range:1:3 -> [1, 3]
