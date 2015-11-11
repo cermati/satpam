@@ -17,6 +17,7 @@ var minValue = require('./validators/min-value');
 var maxValue = require('./validators/max-value');
 var memberOf = require('./validators/member-of');
 var beginWith = require('./validators/begin-with');
+var regex = require('./validators/regex');
 
 /*
  * Rules should have format:
@@ -58,7 +59,8 @@ var validation = {
   'maxValue:$1': maxValue.validator,
   'minValue:$1': minValue.validator,
   'memberOf:$1': memberOf.validator,
-  'beginWith:$1': beginWith.validator
+  'beginWith:$1': beginWith.validator,
+  'regex:$1:$2': regex.validator
 };
 
 var validationMessages = {
@@ -77,7 +79,8 @@ var validationMessages = {
   'maxLength:$1': maxLength.message,
   'minLength:$1': minLength.message,
   'memberOf:$1': memberOf.message,
-  'beginWith:$1': beginWith.message
+  'beginWith:$1': beginWith.message,
+  'regex:$1:$2': regex.message
 };
 
 var ValidationMessage = function ValidationMessage() {
