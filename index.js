@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var _ = require('lodash');
 var required = require('./validators/required');
@@ -17,6 +17,7 @@ var minValue = require('./validators/min-value');
 var maxValue = require('./validators/max-value');
 var memberOf = require('./validators/member-of');
 var beginWith = require('./validators/begin-with');
+var regex = require('./validators/regex');
 
 /*
  * Rules should have format:
@@ -58,7 +59,8 @@ var validation = {
   'maxValue:$1': maxValue.validator,
   'minValue:$1': minValue.validator,
   'memberOf:$1': memberOf.validator,
-  'beginWith:$1': beginWith.validator
+  'beginWith:$1': beginWith.validator,
+  'regex:$1:$2': regex.validator
 };
 
 var validationMessages = {
@@ -77,7 +79,8 @@ var validationMessages = {
   'maxLength:$1': maxLength.message,
   'minLength:$1': minLength.message,
   'memberOf:$1': memberOf.message,
-  'beginWith:$1': beginWith.message
+  'beginWith:$1': beginWith.message,
+  'regex:$1:$2': regex.message
 };
 
 var ValidationMessage = function ValidationMessage() {
@@ -111,10 +114,12 @@ function validate(rules, obj) {
         // First variant, everything is embedded as string
         var splitted = rule.split(':');
         ruleObj = {
-          // full name is the generic full name of validation rule e.g range:1:3 -> range:$1:$2, required -> required
+          // Property fullName is the generic full name of validation rule
+          // e.g range:1:3 -> range:$1:$2, required -> required
           fullName: _.first(splitted),
 
-          // Get only the first part of full rule e.g if range:1:3 then we will get 'range'
+          // Get only the first part of full rule e.g if range:1:3 then
+          // we will get 'range'
           name: _.first(splitted),
 
           // Get the rule params if e.g range:1:3 -> [1, 3]
@@ -123,12 +128,12 @@ function validate(rules, obj) {
       } else {
         // Second variant, it is already parsed
         ruleObj.name = rule.name;
-        ruleObj.fullName= rule.name;
+        ruleObj.fullName = rule.name;
         ruleObj.params = rule.params;
       }
 
-      ruleObj.fullName = ruleObj.params.reduce(function (ruleName, val, key) {
-        return ruleName + ':$' + (key + 1).toString();
+      ruleObj.fullName = ruleObj.params.reduce(function (ruleName, val, index) {
+        return ruleName + ':$' + (index + 1).toString();
       }, ruleObj.fullName);
 
       if (!validation[ruleObj.fullName](val, ruleObj, propertyName, obj)) {

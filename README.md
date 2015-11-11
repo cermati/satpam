@@ -38,21 +38,23 @@ if (result.success === true) {
 ```
 
 ## Available Rules
-- alpha
-- alphanumeric
-- begin-with
-- date
+- required
+- numeric
 - email
 - image
-- max-length
-- max-value
-- min-length
-- min-value
-- non-blank
-- numeric
-- required
-- string
+- alpha
+- alphanumeric
+- date
 - url
+- string
+- nonBlank
+- maxLength:$1
+- minLength:$1
+- maxValue:$1
+- minValue:$1
+- memberOf:$1
+- beginWith:$1
+- regex:$1:$2 (`$1` is the pattern, `$2` is the regex flags)
 
 ## Custom rules
 ```js
