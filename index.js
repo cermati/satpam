@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var _ = require('lodash');
 var required = require('./validators/required');
@@ -123,7 +123,7 @@ function validate(rules, obj) {
       } else {
         // Second variant, it is already parsed
         ruleObj.name = rule.name;
-        ruleObj.fullName= rule.name;
+        ruleObj.fullName = rule.name;
         ruleObj.params = rule.params;
       }
 
