@@ -38,23 +38,32 @@ if (result.success === true) {
 ```
 
 ## Available Rules
-- required
-- numeric
-- email
-- image
-- alpha
-- alphanumeric
-- date
-- url
-- string
-- nonBlank
-- maxLength:$1
-- minLength:$1
-- maxValue:$1
-- minValue:$1
-- memberOf:$1
-- beginWith:$1
-- regex:$1:$2 (`$1` is the pattern, `$2` is the regex flags)
+- `required`
+- `numeric`
+- `email`
+- `image`
+- `alpha`
+- `alphanumeric`
+- `date`
+- `url`
+- `string`
+- `nonBlank`
+- `maxLength:<length>`
+- `minLength:<length>`
+- `maxValue:<max value>`
+- `minValue:<min value>`
+- `memberOf:$1`
+
+  Use object notation for defining this rule
+  [examples](https://github.com/sendyhalim/satpam/blob/master/tests/member-of.spec.js#L10)
+- `beginWith:$1`
+
+  Use object notation for defining this rule 
+  [examples](https://github.com/sendyhalim/satpam/blob/master/tests/begin-with.spec.js#L10)
+- `regex:$1:$2
+
+  `$1` is the pattern, `$2` is the regex flags
+  [examples](https://github.com/sendyhalim/satpam/blob/master/tests/regex.spec.js#L9)
 
 ## Custom rules
 ```js
