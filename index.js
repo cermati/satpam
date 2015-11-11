@@ -86,8 +86,8 @@ var ValidationMessage = function ValidationMessage() {
 
 function getValidationMessage(ruleObj, propertyName, val) {
   var compiled = _.template(validationMessages[ruleObj.fullName]);
-
   propertyName = _.startCase(propertyName);
+
   return compiled({
     propertyName: propertyName,
     ruleName: ruleObj.fullName,
@@ -112,10 +112,10 @@ function validate(rules, obj) {
         var splitted = rule.split(':');
         ruleObj = {
           // full name is the generic full name of validation rule e.g range:1:3 -> range:$1:$2, required -> required
-          fullName: splitted[0],
+          fullName: _.first(splitted),
 
           // Get only the first part of full rule e.g if range:1:3 then we will get 'range'
-          name: splitted[0],
+          name: _.first(splitted),
 
           // Get the rule params if e.g range:1:3 -> [1, 3]
           params: splitted.slice(1)
@@ -127,9 +127,9 @@ function validate(rules, obj) {
         ruleObj.params = rule.params;
       }
 
-      _.forEach(ruleObj.params, function (v, k) {
-        ruleObj.fullName += ':$' + (k + 1).toString();
-      });
+      ruleObj.fullName = ruleObj.params.reduce(function (ruleName, val, key) {
+        return ruleName + ':$' + (key + 1).toString();
+      }, ruleObj.fullName);
 
       if (!validation[ruleObj.fullName](val, ruleObj, propertyName, obj)) {
         result = false;
