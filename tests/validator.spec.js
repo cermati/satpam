@@ -147,4 +147,32 @@ describe('Validator', function () {
       expect(err.title['required']).to.equal('Title field is required.');
     });
   });
+
+  context('.getValidationMessage()', function () {
+    context('when validation message is customized', function () {
+      var v = new validator.create();
+
+      before('set validation mesasge', function () {
+        v.setValidationMessage('required', 'bulbazaurz');
+      });
+
+      it('should return correct validation message', function () {
+        var ruleObj = {
+          fullName: 'required'
+        };
+
+        var message = v.getValidationMessage(ruleObj, 'name', 'wut');
+        expect(message).to.equal('bulbazaurz');
+      });
+
+      it('should not affect global validation message', function () {
+        var rules = {
+          fullName: ['required']
+        };
+        var result = validator.validate(rules, {});
+
+        expect(result.messages.fullName.required).to.equal('Name field is required.');
+      });
+    });
+  });
 });
