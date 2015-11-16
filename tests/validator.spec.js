@@ -171,7 +171,7 @@ describe('Validator', function () {
         };
         var result = validator.validate(rules, {});
 
-        expect(result.messages.fullName.required).to.equal('Name field is required.');
+        expect(result.messages.fullName.required).to.equal('Full Name field is required.');
       });
     });
   });
