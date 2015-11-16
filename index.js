@@ -88,12 +88,10 @@ var ValidationMessage = function () {
 };
 
 var Validator = function () {
-
-};
-
-Validator.prototype.validation = {
-  rules: validations,
-  messages: validationMessages
+  this.validation = {
+    rules: _.cloneDeep(validations),
+    messages: _.cloneDeep(validationMessages)
+  };
 };
 
 Validator.prototype.validate = function (rules, obj) {
@@ -168,6 +166,14 @@ Validator.prototype.getValidationMessage = function (ruleObj, propertyName, val)
     ruleParams: ruleObj.params,
     value: val
   });
+};
+
+Validator.prototype.addCustomValidation = function (ruleName, fn) {
+  this.validation.rules[ruleName] = fn;
+};
+
+Validator.prototype.setValidationMessage = function (ruleName, message) {
+  this.validation.messages[ruleName] = message;
 };
 
 exports = module.exports = {
