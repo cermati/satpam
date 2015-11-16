@@ -149,8 +149,8 @@ describe('Validator', function () {
   });
 
   context('.getValidationMessage()', function () {
-    context('when validation message is customized', function () {
-      var validator = new satpam.create();
+    context('when instance validation message is customized', function () {
+      var validator = satpam.create();
 
       before('set validation message', function () {
         validator.setValidationMessage('required', 'bulbazaurz');
@@ -174,11 +174,46 @@ describe('Validator', function () {
         expect(result.messages.fullName.required).to.equal('Full Name field is required.');
       });
     });
+
+    context('when global validation message is customized', function () {
+      var validator = satpam.create();
+      before('set global validation message', function () {
+        satpam.setValidationMessage('required', 'huuu!');
+      });
+
+      it('should return correct validation message', function () {
+        var ruleObj = {
+          fullName: ['required']
+        };
+        var result = satpam.validate(ruleObj, {});
+
+        expect(result.messages.fullName.required).to.equal('huuu!');
+      });
+
+      it('should affect the newly created validator instance', function () {
+        var newValidator = satpam.create();
+        var ruleObj = {
+          fullName: 'required'
+        };
+
+        var message = newValidator.getValidationMessage(ruleObj, 'fullName', 'wut');
+        expect(message).to.equal('huuu!');
+      });
+
+      it('should not affect the old validator insance', function () {
+        var rules = {
+          fullName: ['required']
+        };
+        var result = validator.validate(rules, {});
+
+        expect(result.messages.fullName.required).to.equal('Full Name field is required.');
+      });
+    });
   });
 
   context('.addCustomValidation()', function () {
-    context('when validation rule is customized', function () {
-      var validator = new satpam.create();
+    context('when instance validation rule is customized', function () {
+      var validator = satpam.create();
 
       before('set validation rule', function () {
         validator.addCustomValidation('required', function (val) {
@@ -218,6 +253,52 @@ describe('Validator', function () {
 
         expect(result.success).to.be.true;
         expect(result.messages).to.not.have.property('fullName');
+      });
+    });
+
+    context('when global validation rule is customized', function () {
+      var oldValidator = satpam.create();
+
+      before('add global validation rule', function () {
+        satpam.addCustomValidation('wutwut', function (val) {
+          return val === 'wut?';
+        });
+
+        satpam.setValidationMessage('wutwut', 'lukeskywalker');
+      });
+
+      it('should return correct validation result', function () {
+        var ruleObj = {
+          fullName: ['wutwut']
+        };
+        var result = satpam.validate(ruleObj, {fullName: 'wut?'});
+
+        expect(result.success).to.be.true;
+        expect(result.messages).to.not.have.property('fullName');
+      });
+
+      it('should affect the newly created validator instance', function () {
+        var newValidator = satpam.create();
+        var ruleObj = {
+          fullName: ['wutwut']
+        };
+
+        var result = newValidator.validate(ruleObj, {fullName: 'wut?'});
+        expect(result.success).to.be.true;
+        expect(result.messages).to.not.have.property('fullName');
+      });
+
+      it('should not affect the old validator insance', function () {
+        var ruleObj = {
+          fullName: ['wutwut']
+        };
+
+        var validateFn = oldValidator.validate.bind(
+          oldValidator,
+          ruleObj,
+          {fullName: 'hiks'}
+        );
+        expect(validateFn).to.throw(Error);
       });
     });
   });
