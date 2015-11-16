@@ -43,7 +43,7 @@ var regex = require('./validators/regex');
  */
 
 
-var validation = {
+var validations = {
   required: required.validator,
   numeric: numeric.validator,
   email: email.validator,
@@ -87,21 +87,19 @@ var ValidationMessage = function () {
   this.messageArray = [];
 };
 
-function getValidationMessage(ruleObj, propertyName, val) {
-  var compiled = _.template(validationMessages[ruleObj.fullName]);
-  propertyName = _.startCase(propertyName);
+var Validator = function () {
 
-  return compiled({
-    propertyName: propertyName,
-    ruleName: ruleObj.fullName,
-    ruleParams: ruleObj.params,
-    value: val
-  });
-}
+};
 
-function validate(rules, obj) {
+Validator.prototype.validation = {
+  rules: validations,
+  messages: validationMessages
+};
+
+Validator.prototype.validate = function (rules, obj) {
   var result = true;
   var messageObj = new ValidationMessage();
+  var validator = this;
 
   // Loop through the given rules
   _.forEach(rules, function (ruleArray, propertyName) {
@@ -136,14 +134,18 @@ function validate(rules, obj) {
         return ruleName + ':$' + (index + 1).toString();
       }, ruleObj.fullName);
 
-      if (!validation[ruleObj.fullName](val, ruleObj, propertyName, obj)) {
+
+      var validationRuleFn = validator.validation.rules[ruleObj.fullName];
+      var validationResult = validationRuleFn(val, ruleObj, propertyName, obj);
+
+      if (!validationResult) {
         result = false;
 
         // Set messageObj initial value
         messageObj[propertyName] = messageObj[propertyName] || {};
 
         // Set the validation message
-        var msg = getValidationMessage(ruleObj, propertyName, val);
+        var msg = validator.getValidationMessage(ruleObj, propertyName, val);
         messageObj[propertyName][ruleObj.fullName] = msg;
         messageObj.messageArray.push(msg);
       }
@@ -154,18 +156,33 @@ function validate(rules, obj) {
     success: result,
     messages: messageObj
   };
-}
+};
 
-var validator = {
-  validate: validate,
-  validation: validation,
+Validator.prototype.getValidationMessage = function (ruleObj, propertyName, val) {
+  var compiled = _.template(this.validation.messages[ruleObj.fullName]);
+  propertyName = _.startCase(propertyName);
+
+  return compiled({
+    propertyName: propertyName,
+    ruleName: ruleObj.fullName,
+    ruleParams: ruleObj.params,
+    value: val
+  });
+};
+
+exports = module.exports = {
+  create: function () {
+    return new Validator();
+  },
+  validate: function (rules, obj) {
+    var validator = new Validator();
+    return validator.validate(rules, obj);
+  },
+  validations: validations,
   addCustomValidation: function (ruleName, fn) {
-    validation[ruleName] = fn;
+    validations[ruleName] = fn;
   },
   setValidationMessage: function (ruleName, message) {
     validationMessages[ruleName] = message;
   }
 };
-
-
-exports = module.exports = validator;
