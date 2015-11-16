@@ -152,7 +152,7 @@ describe('Validator', function () {
     context('when validation message is customized', function () {
       var v = new validator.create();
 
-      before('set validation mesasge', function () {
+      before('set validation message', function () {
         v.setValidationMessage('required', 'bulbazaurz');
       });
 
@@ -172,6 +172,52 @@ describe('Validator', function () {
         var result = validator.validate(rules, {});
 
         expect(result.messages.fullName.required).to.equal('Full Name field is required.');
+      });
+    });
+  });
+
+  context('.validate()', function () {
+    context('when validation rule is customized', function () {
+      var v = new validator.create();
+
+      before('set validation rule', function () {
+        v.addCustomValidation('required', function (val) {
+          return val === 'yo';
+        });
+      });
+
+      it('should not pass with the customized required rule', function () {
+        var rules = {
+          fullName: ['required']
+        };
+        var result = v.validate(rules, {
+          fullName: 'ayo'
+        });
+
+        expect(result.success).to.be.false;
+        expect(result.messages.fullName.required).to.equal('Full Name field is required.');
+      });
+
+      it('should pass with the customized required rule', function () {
+        var rules = {
+          fullName: ['required']
+        };
+        var result = validator.validate(rules, {
+          fullName: 'yo'
+        });
+
+        expect(result.success).to.be.true;
+        expect(result.messages).to.not.have.property('fullName');
+      });
+
+      it('should not affect global validation rule', function () {
+        var rules = {
+          fullName: ['required']
+        };
+        var result = validator.validate(rules, {fullName: 'hehe'});
+
+        expect(result.success).to.be.true;
+        expect(result.messages).to.not.have.property('fullName');
       });
     });
   });
