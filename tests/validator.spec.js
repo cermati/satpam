@@ -176,7 +176,7 @@ describe('Validator', function () {
     });
   });
 
-  context('.validate()', function () {
+  context('.addCustomValidation()', function () {
     context('when validation rule is customized', function () {
       var v = new validator.create();
 
