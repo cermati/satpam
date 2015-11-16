@@ -1,7 +1,7 @@
 'use strict';
 
 var expect = require('chai').expect;
-var validator = require('../');
+var satpam = require('../');
 
 describe('Validator', function () {
   var simpleRules = {
@@ -19,7 +19,7 @@ describe('Validator', function () {
 
   context('Test with simple rules', function () {
     it('should success', function () {
-      var result = validator.validate(simpleRules, getTestObject());
+      var result = satpam.validate(simpleRules, getTestObject());
       var err = result.messages;
 
       expect(result.success).to.equal(true);
@@ -31,7 +31,7 @@ describe('Validator', function () {
     it('should fail with empty name', function () {
       var testObj = getTestObject();
       testObj.name = '';
-      var result = validator.validate(simpleRules, testObj);
+      var result = satpam.validate(simpleRules, testObj);
       var err = result.messages;
 
       expect(result.success).to.equal(false);
@@ -46,7 +46,7 @@ describe('Validator', function () {
       var testObj = getTestObject();
       testObj.officeEmailAdditional = 'hehe';
 
-      var result = validator.validate(simpleRules, testObj);
+      var result = satpam.validate(simpleRules, testObj);
       var err = result.messages;
 
       expect(result.success).to.equal(false);
@@ -58,11 +58,11 @@ describe('Validator', function () {
   });
 
   context('Test with custom rules', function () {
-    validator.addCustomValidation('must-be-ironman', function (val) {
+    satpam.addCustomValidation('must-be-ironman', function (val) {
       return val === 'ironman';
     });
 
-    validator.setValidationMessage('must-be-ironman', 'Not ironman D:');
+    satpam.setValidationMessage('must-be-ironman', 'Not ironman D:');
 
     var obj = {
       name: 'ironman',
@@ -75,7 +75,7 @@ describe('Validator', function () {
     };
 
     it('should success', function () {
-      var result = validator.validate(rules, obj);
+      var result = satpam.validate(rules, obj);
       var err = result.messages;
 
       expect(result.success).to.equal(true);
@@ -85,7 +85,7 @@ describe('Validator', function () {
 
     it('should fail', function () {
       obj.name = 'sendy';
-      var result = validator.validate(rules, obj);
+      var result = satpam.validate(rules, obj);
       var err = result.messages;
 
       expect(result.success).to.equal(false);
@@ -99,16 +99,16 @@ describe('Validator', function () {
 
   context('Test with rule params', function () {
     it('should fail with custom validation range:0:30', function () {
-      validator.addCustomValidation('range:$1:$2', function (val, ruleObj) {
+      satpam.addCustomValidation('range:$1:$2', function (val, ruleObj) {
         return val >= ruleObj.params[0] && val <= ruleObj.params[1];
       });
 
-      validator.setValidationMessage('range:$1:$2', '<%= propertyName %> must between <%= ruleParams[0] %> and <%= ruleParams[1] %>');
+      satpam.setValidationMessage('range:$1:$2', '<%= propertyName %> must between <%= ruleParams[0] %> and <%= ruleParams[1] %>');
 
       var obj = { salary: 31 };
       var rules = { salary: ['range:0:30'] };
 
-      var result = validator.validate(rules, obj);
+      var result = satpam.validate(rules, obj);
       var err = result.messages;
 
       expect(result.success).to.equal(false);
@@ -130,13 +130,13 @@ describe('Validator', function () {
         title: ['required']
       };
 
-      validator.addCustomValidation('must-equal:$1', function (val, ruleObj) {
+      satpam.addCustomValidation('must-equal:$1', function (val, ruleObj) {
         return val === ruleObj.params[0];
       });
 
-      validator.setValidationMessage('must-equal:$1', '<%= propertyName %> must equal <%= ruleParams[0] %> !!');
+      satpam.setValidationMessage('must-equal:$1', '<%= propertyName %> must equal <%= ruleParams[0] %> !!');
 
-      var result = validator.validate(rules, obj);
+      var result = satpam.validate(rules, obj);
       var err = result.messages;
 
       expect(result.success).to.equal(false);
@@ -150,10 +150,10 @@ describe('Validator', function () {
 
   context('.getValidationMessage()', function () {
     context('when validation message is customized', function () {
-      var v = new validator.create();
+      var validator = new satpam.create();
 
       before('set validation message', function () {
-        v.setValidationMessage('required', 'bulbazaurz');
+        validator.setValidationMessage('required', 'bulbazaurz');
       });
 
       it('should return correct validation message', function () {
@@ -161,7 +161,7 @@ describe('Validator', function () {
           fullName: 'required'
         };
 
-        var message = v.getValidationMessage(ruleObj, 'name', 'wut');
+        var message = validator.getValidationMessage(ruleObj, 'name', 'wut');
         expect(message).to.equal('bulbazaurz');
       });
 
@@ -169,7 +169,7 @@ describe('Validator', function () {
         var rules = {
           fullName: ['required']
         };
-        var result = validator.validate(rules, {});
+        var result = satpam.validate(rules, {});
 
         expect(result.messages.fullName.required).to.equal('Full Name field is required.');
       });
@@ -178,10 +178,10 @@ describe('Validator', function () {
 
   context('.addCustomValidation()', function () {
     context('when validation rule is customized', function () {
-      var v = new validator.create();
+      var validator = new satpam.create();
 
       before('set validation rule', function () {
-        v.addCustomValidation('required', function (val) {
+        validator.addCustomValidation('required', function (val) {
           return val === 'yo';
         });
       });
@@ -190,7 +190,7 @@ describe('Validator', function () {
         var rules = {
           fullName: ['required']
         };
-        var result = v.validate(rules, {
+        var result = validator.validate(rules, {
           fullName: 'ayo'
         });
 
@@ -202,7 +202,7 @@ describe('Validator', function () {
         var rules = {
           fullName: ['required']
         };
-        var result = validator.validate(rules, {
+        var result = satpam.validate(rules, {
           fullName: 'yo'
         });
 
@@ -214,7 +214,7 @@ describe('Validator', function () {
         var rules = {
           fullName: ['required']
         };
-        var result = validator.validate(rules, {fullName: 'hehe'});
+        var result = satpam.validate(rules, {fullName: 'hehe'});
 
         expect(result.success).to.be.true;
         expect(result.messages).to.not.have.property('fullName');
