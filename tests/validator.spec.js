@@ -17,7 +17,7 @@ describe('Validator', function () {
     };
   };
 
-  describe('Test with simple rules', function () {
+  context('Test with simple rules', function () {
     it('should success', function () {
       var result = validator.validate(simpleRules, getTestObject());
       var err = result.messages;
@@ -57,7 +57,7 @@ describe('Validator', function () {
     });
   });
 
-  describe('Test with custom rules', function () {
+  context('Test with custom rules', function () {
     validator.addCustomValidation('must-be-ironman', function (val) {
       return val === 'ironman';
     });
@@ -97,7 +97,7 @@ describe('Validator', function () {
     });
   });
 
-  describe('Test with rule params', function () {
+  context('Test with rule params', function () {
     it('should fail with custom validation range:0:30', function () {
       validator.addCustomValidation('range:$1:$2', function (val, ruleObj) {
         return val >= ruleObj.params[0] && val <= ruleObj.params[1];
@@ -117,7 +117,7 @@ describe('Validator', function () {
     });
   });
 
-  describe('Test with multiple errors', function () {
+  context('Test with multiple errors', function () {
     it('should have multiple errors', function () {
       var obj = {
         officeEmail: 'asd@gg.com'
