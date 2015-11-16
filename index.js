@@ -42,8 +42,7 @@ var regex = require('./validators/regex');
  *
  */
 
-
-var validation = {
+var validations = {
   required: required.validator,
   numeric: numeric.validator,
   email: email.validator,
@@ -83,29 +82,45 @@ var validationMessages = {
   'regex:$1:$2': regex.message
 };
 
-var ValidationMessage = function ValidationMessage() {
+var ValidationMessage = function () {
   this.messageArray = [];
 };
 
-function getValidationMessage(ruleObj, propertyName, val) {
-  var compiled = _.template(validationMessages[ruleObj.fullName]);
-  propertyName = _.startCase(propertyName);
+/**
+ * Create a new validator. When it's created, it will has a cloned (deep) global
+ * validation rules and global validation messages. Any changes made to the
+ * instance's rules or messages will not affect the global validation rules
+ * and messages.
+ * @constructor
+ */
+var Validator = function () {
+  this.validation = {
+    rules: _.cloneDeep(validations),
+    messages: _.cloneDeep(validationMessages)
+  };
+};
 
-  return compiled({
-    propertyName: propertyName,
-    ruleName: ruleObj.fullName,
-    ruleParams: ruleObj.params,
-    value: val
-  });
-}
 
-function validate(rules, obj) {
+/**
+ * @example
+ * var ruleMapping = {name: ['required']};
+ * var inputObj = {name: ''};
+ * var validator = satpam.create();
+ * var result = validator.validate(ruleMapping, inputObj);
+ *
+ * @param ruleMapping - An mapping of input property to the available rules
+ *   e.g. {name: ['required', 'alpha']}
+ * @param inputObj - Input object to be validated
+ * @returns {{result: Boolean, messages: Object}}
+ */
+Validator.prototype.validate = function (ruleMapping, inputObj) {
   var result = true;
   var messageObj = new ValidationMessage();
+  var validator = this;
 
-  // Loop through the given rules
-  _.forEach(rules, function (ruleArray, propertyName) {
-    var val = obj[propertyName];
+  // Loop through the given rule mapping
+  _.forEach(ruleMapping, function (ruleArray, propertyName) {
+    var val = inputObj[propertyName];
     // ruleArray should be something like ['required', 'email']
     ruleArray.forEach(function (rule) {
       var ruleObj = {};
@@ -136,14 +151,18 @@ function validate(rules, obj) {
         return ruleName + ':$' + (index + 1).toString();
       }, ruleObj.fullName);
 
-      if (!validation[ruleObj.fullName](val, ruleObj, propertyName, obj)) {
+
+      var validationRuleFn = validator.validation.rules[ruleObj.fullName];
+      var validationResult = validationRuleFn(val, ruleObj, propertyName, inputObj);
+
+      if (!validationResult) {
         result = false;
 
         // Set messageObj initial value
         messageObj[propertyName] = messageObj[propertyName] || {};
 
         // Set the validation message
-        var msg = getValidationMessage(ruleObj, propertyName, val);
+        var msg = validator.getValidationMessage(ruleObj, propertyName, val);
         messageObj[propertyName][ruleObj.fullName] = msg;
         messageObj.messageArray.push(msg);
       }
@@ -154,18 +173,67 @@ function validate(rules, obj) {
     success: result,
     messages: messageObj
   };
-}
+};
 
-var validator = {
-  validate: validate,
-  validation: validation,
+/**
+ * @param ruleObj
+ * @param propertyName
+ * @param val
+ * @returns {String}
+ */
+Validator.prototype.getValidationMessage = function (ruleObj, propertyName, val) {
+  var compiled = _.template(this.validation.messages[ruleObj.fullName]);
+  propertyName = _.startCase(propertyName);
+
+  return compiled({
+    propertyName: propertyName,
+    ruleName: ruleObj.fullName,
+    ruleParams: ruleObj.params,
+    value: val
+  });
+};
+
+/**
+ * Add custom validation the validator instance, it will only affect the
+ * validator instance, if you want to add global validation rule then use
+ * addCustomValidation method on satpam module.
+ *   var satpam = require('satpam');
+ *   satpam.addCustomValidation(.., ..);
+ *
+ * @param ruleName
+ * @param validationFunction
+ */
+Validator.prototype.addCustomValidation = function (ruleName, validateFunction) {
+  this.validation.rules[ruleName] = validateFunction;
+};
+
+
+/**
+ * Set validation message for the given ruleName, it will only affect the
+ * validator instance(the receiver), if you want to set global validation
+ * message then use addCustomValidation method on satpam module.
+ *   var satpam = require('satpam');
+ *   satpam.setValidationMessage(.., ..);
+ * @param ruleName
+ * @param message
+ */
+Validator.prototype.setValidationMessage = function (ruleName, message) {
+  this.validation.messages[ruleName] = message;
+};
+
+exports = module.exports = {
+  create: function () {
+    return new Validator();
+  },
+  validate: function (ruleMapping, inputObj) {
+    var validator = new Validator();
+    return validator.validate(ruleMapping, inputObj);
+  },
+  validations: validations,
   addCustomValidation: function (ruleName, fn) {
-    validation[ruleName] = fn;
+    validations[ruleName] = fn;
   },
   setValidationMessage: function (ruleName, message) {
     validationMessages[ruleName] = message;
   }
 };
-
-
-exports = module.exports = validator;
