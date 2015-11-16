@@ -83,7 +83,7 @@ var validationMessages = {
   'regex:$1:$2': regex.message
 };
 
-var ValidationMessage = function ValidationMessage() {
+var ValidationMessage = function () {
   this.messageArray = [];
 };
 
