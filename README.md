@@ -1,4 +1,4 @@
-# satpam
+# Satpam
 -----
 Satpam is a wrapper for some nodejs validator libraries, I made `Satpam` so it's easy to create
 custom validator with parameters and custom validation messages.
@@ -37,6 +37,21 @@ if (result.success === true) {
 }
 ```
 
+## Satpam instance
+Satpam has `create` method to create new validator instance.
+
+- Each instance will have cloned validation rules and messages, so it's safe to add or override validation rule without affecting other validator instances or the global satpam validator.
+- The cloned validation rules and messages will be based on the current state of the global satpam validator. See [Custom Rules](#custom-rules) 
+
+
+
+```
+var satpam = require('satpam');
+var validatorOne = satpam.create();
+var validatorTwo = satpam.create();
+```
+
+
 ## Available Rules
 - `required`
 - `numeric`
@@ -66,22 +81,37 @@ if (result.success === true) {
   [examples](https://github.com/sendyhalim/satpam/blob/master/tests/regex.spec.js#L9)
 
 ## Custom rules
+Add custom rules globally, it will affect every `Validator` instance(s) that
+is created after the custom rules addition, but not the old instance(s).
+
+
 ```js
-validator.addCustomValidation('must-be-ironman', function(val) {
+var satpam = require('satpam');
+
+// oldValidator will not have `must-be-ironman` rule, because it's created
+// before we add the custom validation.
+var oldValidator = satpam.create();
+
+// The global satpam validator will always the most updated validation rules.
+// After this statement, we can do satpam.validate({name: ['must-be-ironman']}, ...);
+satpam.addCustomValidation('must-be-ironman', function(val) {
   return val === 'ironman';
 });
 
-validator.setValidationMessage('must-be-ironman', 'Not ironman D:');
+satpam.setValidationMessage('must-be-ironman', 'Not ironman D:');
 
-// with parameters
-validator.addCustomValidation('range:$1:$2', function(val, ruleObj) {
+// With parameters
+satpam.addCustomValidation('range:$1:$2', function(val, ruleObj) {
   return val >= ruleObj.params[0] && val <= ruleObj.params[1];
 });
 
-// if validation fails it will set message to:
+// If validation fails it will set message to:
 // "PropertyName must between 0 and 30"
-validator.setValidationMessage('range:$1:$2', '<%= propertyName %> must between <%= ruleParams[0] %> and <%= ruleParams[1] %>');
+satpam.setValidationMessage('range:$1:$2', '<%= propertyName %> must between <%= ruleParams[0] %> and <%= ruleParams[1] %>');
 
+// newValidator will have `must-be-ironman` rule because it's created
+// after we add the custom validation.
+var newValidator = satpam.create();
 ```
 
 ## TODOs
