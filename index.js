@@ -42,7 +42,7 @@ var regex = require('./validators/regex');
  *
  */
 
-var validations = {
+var validation = {
   required: required.validator,
   numeric: numeric.validator,
   email: email.validator,
@@ -95,7 +95,7 @@ var ValidationMessage = function () {
  */
 var Validator = function () {
   this.validation = {
-    rules: _.cloneDeep(validations),
+    rules: _.cloneDeep(validation),
     messages: _.cloneDeep(validationMessages)
   };
 };
@@ -229,9 +229,9 @@ exports = module.exports = {
     var validator = new Validator();
     return validator.validate(ruleMapping, inputObj);
   },
-  validations: validations,
+  validation: validation,
   addCustomValidation: function (ruleName, fn) {
-    validations[ruleName] = fn;
+    validation[ruleName] = fn;
   },
   setValidationMessage: function (ruleName, message) {
     validationMessages[ruleName] = message;
