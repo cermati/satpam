@@ -221,19 +221,62 @@ Validator.prototype.setValidationMessage = function (ruleName, message) {
   this.validation.messages[ruleName] = message;
 };
 
-exports = module.exports = {
-  create: function () {
-    return new Validator();
-  },
-  validate: function (ruleMapping, inputObj) {
-    var validator = new Validator();
-    return validator.validate(ruleMapping, inputObj);
-  },
-  validation: validation,
-  addCustomValidation: function (ruleName, fn) {
-    validation[ruleName] = fn;
-  },
-  setValidationMessage: function (ruleName, message) {
-    validationMessages[ruleName] = message;
-  }
+
+/**
+ * Create new Validator instance, will have validations and validation messages
+ * that is cloned from the global validations and validation messages.
+ * @returns Validator - Satpam validator instance
+ */
+exports.create = function () {
+  return new Validator();
 };
+
+/**
+ * @example
+ * var ruleMapping = {name: ['required']};
+ * var inputObj = {name: ''};
+ * var validator = satpam.create();
+ * var result = validator.validate(ruleMapping, inputObj);
+ *
+ * @param ruleMapping - An mapping of input property to the available rules
+ *   e.g. {name: ['required', 'alpha']}
+ * @param inputObj - Input object to be validated
+ * @returns {{result: Boolean, messages: Object}}
+ */
+exports.validate = function (ruleMapping, inputObj) {
+  var validator = new Validator();
+  return validator.validate(ruleMapping, inputObj);
+};
+
+/**
+ * Add custom validation the validator instance, it will only affect the
+ * validator instance, if you want to add global validation rule then use
+ * addCustomValidation method on satpam module.
+ *   var satpam = require('satpam');
+ *   satpam.addCustomValidation(.., ..);
+ *
+ * @param ruleName
+ * @param validationFunction
+ */
+exports.addCustomValidation = function (ruleName, validationFunction) {
+  validation[ruleName] = validationFunction;
+};
+
+/**
+ * Set validation message for the given ruleName, it will only affect the
+ * validator instance(the receiver), if you want to set global validation
+ * message then use addCustomValidation method on satpam module.
+ *   var satpam = require('satpam');
+ *   satpam.setValidationMessage(.., ..);
+ * @param ruleName
+ * @param message
+ */
+exports.setValidationMessage = function (ruleName, message) {
+  validationMessages[ruleName] = message;
+};
+
+/**
+ * The global validation object that contains all of the validation rules
+ * @type {object}
+ */
+exports.validation = validation;
