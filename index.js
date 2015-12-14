@@ -20,6 +20,7 @@ var beginWith = require('./validators/begin-with');
 var regex = require('./validators/regex');
 var notEqual = require('./validators/not-equal');
 var dateFormat = require('./validators/date-format');
+var dateAfter = require('./validators/date-after');
 
 /*
  * Rules should have format:
@@ -63,7 +64,8 @@ var validation = {
   'beginWith:$1': beginWith.validator,
   'regex:$1:$2': regex.validator,
   'not-equal:$1': notEqual.validator,
-  'date-format:$1': dateFormat.validator
+  'date-format:$1': dateFormat.validator,
+  'date-after:$1:$2': dateAfter.validator
 };
 
 var validationMessages = {
@@ -85,7 +87,8 @@ var validationMessages = {
   'beginWith:$1': beginWith.message,
   'regex:$1:$2': regex.message,
   'not-equal:$1': notEqual.message,
-  'date-format:$1': dateFormat.message
+  'date-format:$1': dateFormat.message,
+  'date-after:$1:$2': dateAfter.message
 };
 
 var ValidationMessage = function () {
