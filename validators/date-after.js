@@ -19,7 +19,7 @@ exports = module.exports = {
       date = moment(ruleObj.params[1], dateInputFormat);
     }
 
-    return dateInput.unix() > date.unix();
+    return dateInput.isAfter(date, 'day');
   },
   message: '<%= propertyName %> must greater than <%= ruleParams[1] %>.'
 };
