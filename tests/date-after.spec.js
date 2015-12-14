@@ -11,10 +11,10 @@ describe('Date validator', function () {
     };
 
     var getTestObject = function () {
-      var tomorrowDate = moment().add(1, 'day').format('DD/MM/YYYY');
+      var futureDate = moment().add(1, 'day').format('DD/MM/YYYY');
 
       return {
-        vacationDate: tomorrowDate,
+        vacationDate: futureDate,
       };
     };
 
@@ -44,10 +44,10 @@ describe('Date validator', function () {
     };
 
     var getTestObject = function () {
-      var tomorrowDate = moment('02-2014', 'MM-YYYY');
+      var futureDate = moment('02-2014', 'MM-YYYY');
 
       return {
-        vacationDate: tomorrowDate,
+        vacationDate: futureDate,
       };
     };
 
