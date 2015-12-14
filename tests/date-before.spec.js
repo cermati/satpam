@@ -4,7 +4,7 @@ var expect = require('chai').expect;
 var moment = require('moment');
 var validator = require('../');
 
-describe('Date validator', function () {
+describe('Date Before validator', function () {
   context('given a dateBefore rule with parameter `now`', function () {
     var simpleRules = {
       pastVacationDate: ['dateBefore:DD/MM/YYYY:now:0']
