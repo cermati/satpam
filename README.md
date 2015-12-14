@@ -61,6 +61,8 @@ var validatorTwo = satpam.create();
 - `alphanumeric`
 - `date`
 - `date-format:<format, e.g. DD-MM-YYYY>`
+- `date-after:<the date input format, e.g. DD-MM-YYYY>:<date after e.g. 'now' or 20-1-2015`
+- `date-before:<the date input format, e.g. DD-MM-YYYY>:<date after e.g. 'now' or 20-1-2015`
 - `url`
 - `string`
 - `nonBlank`
