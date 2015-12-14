@@ -66,8 +66,8 @@ var validation = {
   'regex:$1:$2': regex.validator,
   'not-equal:$1': notEqual.validator,
   'dateFormat:$1': dateFormat.validator,
-  'dateAfter:$1:$2': dateAfter.validator,
-  'dateBefore:$1:$2': dateBefore.validator
+  'dateAfter:$1:$2:$3': dateAfter.validator,
+  'dateBefore:$1:$2:$3': dateBefore.validator
 };
 
 var validationMessages = {
@@ -90,8 +90,8 @@ var validationMessages = {
   'regex:$1:$2': regex.message,
   'not-equal:$1': notEqual.message,
   'dateFormat:$1': dateFormat.message,
-  'dateAfter:$1:$2': dateAfter.message,
-  'dateBefore:$1:$2': dateBefore.message
+  'dateAfter:$1:$2:$3': dateAfter.message,
+  'dateBefore:$1:$2:$3': dateBefore.message
 };
 
 var ValidationMessage = function () {
