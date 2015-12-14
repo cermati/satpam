@@ -3,7 +3,7 @@
 var expect = require('chai').expect;
 var validator = require('../');
 
-describe('Date validator', function () {
+describe('Date Format validator', function () {
   context('given a dateFormat rule with format DD-MM-YYYY', function () {
     var simpleRules = {
       birthday: ['dateFormat:DD-MM-YYYY']
