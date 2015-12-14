@@ -1,6 +1,6 @@
 {
   "name": "satpam",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "Simple and Effective Object Validator",
   "main": "index.js",
   "scripts": {
