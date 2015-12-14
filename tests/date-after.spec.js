@@ -7,11 +7,11 @@ var validator = require('../');
 describe('Date validator', function () {
   context('given a date-after rule with parameter `now`', function () {
     var simpleRules = {
-      vacationDate: ['date-after:now']
+      vacationDate: ['date-after:DD/MM/YYYY:now']
     };
 
     var getTestObject = function () {
-      var tomorrowDate = moment().add(1, 'day').format('DD-MM-YYYY');
+      var tomorrowDate = moment().add(1, 'day').format('DD/MM/YYYY');
 
       return {
         vacationDate: tomorrowDate,
