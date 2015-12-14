@@ -23,6 +23,7 @@ exports = module.exports = {
     var dateInputFormat = ruleObj.params[0];
     var dateInput = moment(val, dateInputFormat);
     var offset = Number(ruleObj.params[2]);
+    var unit = ruleObj.params[3] || 'days';
 
     if (ruleObj.params[1].toLowerCase() === NOW) {
       date = moment();
@@ -36,12 +37,12 @@ exports = module.exports = {
       if (offset < 0) {
         offset = Math.abs(offset);
         messageObj.toString = _.constant(
-          '<%= propertyName %> must less than <%= ruleParams[1] %> minus <%= Math.abs(ruleParams[2]) %> days.'
+          '<%= propertyName %> must less than <%= ruleParams[1] %> minus <%= Math.abs(ruleParams[2]) %> <%= ruleParams[3] %>.'
         );
-        date = date.subtract(offset, 'days');
+        date = date.subtract(offset, unit);
       } else {
-        messageObj.toString = _.constant('<%= propertyName %> must less than <%= ruleParams[1] %> plus <%= ruleParams[2] %> days.');
-        date = date.add(offset, 'days');
+        messageObj.toString = _.constant('<%= propertyName %> must less than <%= ruleParams[1] %> plus <%= ruleParams[2] %> <%= ruleParams[3] %>.');
+        date = date.add(offset, unit);
       }
     }
 
