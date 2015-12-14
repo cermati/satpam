@@ -21,6 +21,7 @@ var regex = require('./validators/regex');
 var notEqual = require('./validators/not-equal');
 var dateFormat = require('./validators/date-format');
 var dateAfter = require('./validators/date-after');
+var dateBefore = require('./validators/date-before');
 
 /*
  * Rules should have format:
@@ -65,7 +66,8 @@ var validation = {
   'regex:$1:$2': regex.validator,
   'not-equal:$1': notEqual.validator,
   'date-format:$1': dateFormat.validator,
-  'date-after:$1:$2': dateAfter.validator
+  'date-after:$1:$2': dateAfter.validator,
+  'date-before:$1:$2': dateBefore.validator
 };
 
 var validationMessages = {
@@ -88,7 +90,8 @@ var validationMessages = {
   'regex:$1:$2': regex.message,
   'not-equal:$1': notEqual.message,
   'date-format:$1': dateFormat.message,
-  'date-after:$1:$2': dateAfter.message
+  'date-after:$1:$2': dateAfter.message,
+  'date-before:$1:$2': dateBefore.message
 };
 
 var ValidationMessage = function () {
