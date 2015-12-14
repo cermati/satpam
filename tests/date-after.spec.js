@@ -5,9 +5,9 @@ var moment = require('moment');
 var validator = require('../');
 
 describe('Date validator', function () {
-  context('given a date-after rule with parameter `now`', function () {
+  context('given a dateAfter rule with parameter `now`', function () {
     var simpleRules = {
-      vacationDate: ['date-after:DD/MM/YYYY:now']
+      vacationDate: ['dateAfter:DD/MM/YYYY:now']
     };
 
     var getTestObject = function () {
@@ -34,13 +34,13 @@ describe('Date validator', function () {
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('vacationDate');
-      expect(err.vacationDate['date-after:$1:$2']).to.equal('Vacation Date must greater than now.');
+      expect(err.vacationDate['dateAfter:$1:$2']).to.equal('Vacation Date must greater than now.');
     });
   });
 
-  context('given a date-after rule with parameter 01-2014', function () {
+  context('given a dateAfter rule with parameter 01-2014', function () {
     var simpleRules = {
-      vacationDate: ['date-after:MM-YYYY:01-2014']
+      vacationDate: ['dateAfter:MM-YYYY:01-2014']
     };
 
     var getTestObject = function () {
@@ -67,7 +67,7 @@ describe('Date validator', function () {
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('vacationDate');
-      expect(err.vacationDate['date-after:$1:$2']).to.equal('Vacation Date must greater than 01-2014.');
+      expect(err.vacationDate['dateAfter:$1:$2']).to.equal('Vacation Date must greater than 01-2014.');
     });
   });
 });

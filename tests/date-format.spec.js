@@ -4,9 +4,9 @@ var expect = require('chai').expect;
 var validator = require('../');
 
 describe('Date validator', function () {
-  context('given a date-format rule with format DD-MM-YYYY', function () {
+  context('given a dateFormat rule with format DD-MM-YYYY', function () {
     var simpleRules = {
-      birthday: ['date-format:DD-MM-YYYY']
+      birthday: ['dateFormat:DD-MM-YYYY']
     };
 
     var getTestObject = function () {
@@ -31,7 +31,7 @@ describe('Date validator', function () {
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('birthday');
-      expect(err.birthday['date-format:$1']).to.equal('Birthday must be in format DD-MM-YYYY.');
+      expect(err.birthday['dateFormat:$1']).to.equal('Birthday must be in format DD-MM-YYYY.');
     });
 
     it('should fail with format YYYY-DD-MM', function () {
@@ -42,7 +42,7 @@ describe('Date validator', function () {
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('birthday');
-      expect(err.birthday['date-format:$1']).to.equal('Birthday must be in format DD-MM-YYYY.');
+      expect(err.birthday['dateFormat:$1']).to.equal('Birthday must be in format DD-MM-YYYY.');
     });
 
     it('should fail with format DD-MM', function () {
@@ -53,14 +53,14 @@ describe('Date validator', function () {
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('birthday');
-      expect(err.birthday['date-format:$1']).to.equal('Birthday must be in format DD-MM-YYYY.');
+      expect(err.birthday['dateFormat:$1']).to.equal('Birthday must be in format DD-MM-YYYY.');
     });
   });
 
 
-  context('given a date-format rule with format MM/YYYY', function () {
+  context('given a dateFormat rule with format MM/YYYY', function () {
     var simpleRules = {
-      birthday: ['date-format:MM/YYYY']
+      birthday: ['dateFormat:MM/YYYY']
     };
 
     var getTestObject = function () {
@@ -85,7 +85,7 @@ describe('Date validator', function () {
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('birthday');
-      expect(err.birthday['date-format:$1']).to.equal('Birthday must be in format MM/YYYY.');
+      expect(err.birthday['dateFormat:$1']).to.equal('Birthday must be in format MM/YYYY.');
     });
 
     it('should fail with format YYYY/MM', function () {
@@ -96,7 +96,7 @@ describe('Date validator', function () {
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('birthday');
-      expect(err.birthday['date-format:$1']).to.equal('Birthday must be in format MM/YYYY.');
+      expect(err.birthday['dateFormat:$1']).to.equal('Birthday must be in format MM/YYYY.');
     });
 
     it('should fail with invalid date', function () {
@@ -107,7 +107,7 @@ describe('Date validator', function () {
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('birthday');
-      expect(err.birthday['date-format:$1']).to.equal('Birthday must be in format MM/YYYY.');
+      expect(err.birthday['dateFormat:$1']).to.equal('Birthday must be in format MM/YYYY.');
     });
   });
 });
