@@ -41,7 +41,7 @@ if (result.success === true) {
 Satpam has `create` method to create new validator instance.
 
 - Each instance will have cloned validation rules and messages, so it's safe to add or override validation rule without affecting other validator instances or the global satpam validator.
-- The cloned validation rules and messages will be based on the current state of the global satpam validator. See [Custom Rules](#custom-rules) 
+- The cloned validation rules and messages will be based on the current state of the global satpam validator. See [Custom Rules](#custom-rules)
 
 
 
@@ -60,6 +60,7 @@ var validatorTwo = satpam.create();
 - `alpha`
 - `alphanumeric`
 - `date`
+- `date-format:$1`
 - `url`
 - `string`
 - `nonBlank`
@@ -73,7 +74,7 @@ var validatorTwo = satpam.create();
   [examples](https://github.com/sendyhalim/satpam/blob/master/tests/member-of.spec.js#L10)
 - `beginWith:$1`
 
-  Use object notation for defining this rule 
+  Use object notation for defining this rule
   [examples](https://github.com/sendyhalim/satpam/blob/master/tests/begin-with.spec.js#L10)
 - `regex:$1:$2`
 
@@ -119,7 +120,7 @@ var newValidator = satpam.create();
 - Add more validation rules.
 - Validate file types.
 
-## More examples 
+## More examples
 [Here](https://github.com/sendyhalim/satpam/blob/master/tests)
 
 ![Read the source Luke](http://blog.codinghorror.com/content/images/uploads/2012/04/6a0120a85dcdae970b016765373659970b-800wi.jpg)
