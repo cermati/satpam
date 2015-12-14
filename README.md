@@ -60,7 +60,7 @@ var validatorTwo = satpam.create();
 - `alpha`
 - `alphanumeric`
 - `date`
-- `date-format:$1`
+- `date-format:<format, e.g. DD-MM-YYYY>`
 - `url`
 - `string`
 - `nonBlank`
