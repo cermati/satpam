@@ -30,7 +30,7 @@ describe('Date validator', function () {
 
     expect(result.success).to.equal(false);
     expect(err).to.have.property('birthday');
-    expect(err.birthday.date).to.equal('Date format must conform YYYY-MM-DD.');
+    expect(err.birthday['date-format:$1']).to.equal('Birthday must be in format YYYY-MM-DD.');
   });
 });
 
