@@ -71,6 +71,7 @@ var validatorTwo = satpam.create();
 - `maxValue:<max value>`
 - `minValue:<min value>`
 - `memberOf:$1`
+- `creditCard`
 
   Use object notation for defining this rule
   [examples](https://github.com/sendyhalim/satpam/blob/master/tests/member-of.spec.js#L10)
