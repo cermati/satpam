@@ -22,6 +22,7 @@ var notEqual = require('./validators/not-equal');
 var dateFormat = require('./validators/date-format');
 var dateAfter = require('./validators/date-after');
 var dateBefore = require('./validators/date-before');
+var creditCard = require('./validators/credit-card');
 
 /*
  * Rules should have format:
@@ -67,7 +68,8 @@ var validation = {
   'not-equal:$1': notEqual.validator,
   'dateFormat:$1': dateFormat.validator,
   'dateAfter:$1:$2:$3:$4': dateAfter.validator,
-  'dateBefore:$1:$2:$3:$4': dateBefore.validator
+  'dateBefore:$1:$2:$3:$4': dateBefore.validator,
+  creditCard: creditCard.validator
 };
 
 var validationMessages = {
@@ -91,7 +93,8 @@ var validationMessages = {
   'not-equal:$1': notEqual.message,
   'dateFormat:$1': dateFormat.message,
   'dateAfter:$1:$2:$3:$4': dateAfter.message,
-  'dateBefore:$1:$2:$3:$4': dateBefore.message
+  'dateBefore:$1:$2:$3:$4': dateBefore.message,
+  creditCard: creditCard.message
 };
 
 var ValidationMessage = function () {
