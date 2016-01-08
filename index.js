@@ -23,6 +23,7 @@ var dateFormat = require('./validators/date-format');
 var dateAfter = require('./validators/date-after');
 var dateBefore = require('./validators/date-before');
 var creditCard = require('./validators/credit-card');
+var requiredIf = require('./validators/required-if');
 
 /*
  * Rules should have format:
@@ -69,6 +70,7 @@ var validation = {
   'dateFormat:$1': dateFormat.validator,
   'dateAfter:$1:$2:$3:$4': dateAfter.validator,
   'dateBefore:$1:$2:$3:$4': dateBefore.validator,
+  'requiredIf:$1:$2': requiredIf.validator,
   creditCard: creditCard.validator
 };
 
@@ -94,6 +96,7 @@ var validationMessages = {
   'dateFormat:$1': dateFormat.message,
   'dateAfter:$1:$2:$3:$4': dateAfter.message,
   'dateBefore:$1:$2:$3:$4': dateBefore.message,
+  'requiredIf:$1:$2': requiredIf.message,
   creditCard: creditCard.message
 };
 
