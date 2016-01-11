@@ -71,13 +71,14 @@ var validatorTwo = satpam.create();
 - `maxValue:<max value>`
 - `minValue:<min value>`
 - `memberOf:$1`
-- `creditCard`
-- `requiredIf:$1:$2` 
+- `requiredIf:$1:$2`
   ```
   var input = {message: 'hi!'};
   // `subject` is required if message equals `hi!`
   satpam.validate({subject: 'requiredIf:message:hi!'});
   ```
+- `taxId:$1` Currently only support indonesian tax id e.g. `taxId:id`
+- `creditCard`
 
   Use object notation for defining this rule
   [examples](https://github.com/sendyhalim/satpam/blob/master/tests/member-of.spec.js#L10)
