@@ -24,6 +24,7 @@ var dateAfter = require('./validators/date-after');
 var dateBefore = require('./validators/date-before');
 var creditCard = require('./validators/credit-card');
 var requiredIf = require('./validators/required-if');
+var taxId = require('./validators/tax-id');
 
 /*
  * Rules should have format:
@@ -59,6 +60,7 @@ var validation = {
   url: url.validator,
   string: string.validator,
   nonBlank: nonBlank.validator,
+  creditCard: creditCard.validator,
   'maxLength:$1': maxLength.validator,
   'minLength:$1': minLength.validator,
   'maxValue:$1': maxValue.validator,
@@ -71,7 +73,7 @@ var validation = {
   'dateAfter:$1:$2:$3:$4': dateAfter.validator,
   'dateBefore:$1:$2:$3:$4': dateBefore.validator,
   'requiredIf:$1:$2': requiredIf.validator,
-  creditCard: creditCard.validator
+  'taxId:$1': taxId.validator
 };
 
 var validationMessages = {
@@ -85,6 +87,7 @@ var validationMessages = {
   url: url.message,
   string: string.message,
   nonBlank: nonBlank.message,
+  creditCard: creditCard.message,
   'maxValue:$1': maxValue.message,
   'minValue:$1': minValue.message,
   'maxLength:$1': maxLength.message,
@@ -97,7 +100,7 @@ var validationMessages = {
   'dateAfter:$1:$2:$3:$4': dateAfter.message,
   'dateBefore:$1:$2:$3:$4': dateBefore.message,
   'requiredIf:$1:$2': requiredIf.message,
-  creditCard: creditCard.message
+  'taxId:$1': taxId.message,
 };
 
 var ValidationMessage = function () {
