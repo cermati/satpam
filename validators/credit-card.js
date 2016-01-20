@@ -7,7 +7,6 @@
  * valid credit card numbers in Indonesia does not pass the regex test.
  * https://github.com/chriso/validator.js/blob/master/validator.js#L604
  *
- * @author Sendy Halim <sendyhalim93@gmail.com>
  * @param str
  * @returns {Boolean}
  */
