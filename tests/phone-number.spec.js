@@ -86,7 +86,7 @@ describe('Phone number validator', function () {
     });
   });
 
-  context('with invalid mobile phone number that have length 17', function () {
+  context('with invalid mobile phone number that have 16 numbers after 0', function () {
     it('should fail', function () {
       var result = validator.validate(rule, {
         phone: '08123456789123456'
