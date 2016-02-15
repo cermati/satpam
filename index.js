@@ -25,6 +25,8 @@ var dateBefore = require('./validators/date-before');
 var creditCard = require('./validators/credit-card');
 var requiredIf = require('./validators/required-if');
 var taxId = require('./validators/tax-id');
+var phoneNumber = require('./validators/phone-number');
+var mobilePhoneNumber = require('./validators/mobile-phone-number');
 
 /*
  * Rules should have format:
@@ -61,6 +63,8 @@ var validation = {
   string: string.validator,
   nonBlank: nonBlank.validator,
   creditCard: creditCard.validator,
+  phoneNumber: phoneNumber.validator,
+  mobilePhoneNumber: mobilePhoneNumber.validator,
   'maxLength:$1': maxLength.validator,
   'minLength:$1': minLength.validator,
   'maxValue:$1': maxValue.validator,
@@ -88,6 +92,8 @@ var validationMessages = {
   string: string.message,
   nonBlank: nonBlank.message,
   creditCard: creditCard.message,
+  phoneNumber: phoneNumber.message,
+  mobilePhoneNumber: mobilePhoneNumber.message,
   'maxValue:$1': maxValue.message,
   'minValue:$1': minValue.message,
   'maxLength:$1': maxLength.message,
@@ -100,7 +106,7 @@ var validationMessages = {
   'dateAfter:$1:$2:$3:$4': dateAfter.message,
   'dateBefore:$1:$2:$3:$4': dateBefore.message,
   'requiredIf:$1:$2': requiredIf.message,
-  'taxId:$1': taxId.message,
+  'taxId:$1': taxId.message
 };
 
 var ValidationMessage = function () {
