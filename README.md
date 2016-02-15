@@ -67,6 +67,8 @@ var validatorTwo = satpam.create();
 - `string`
 - `nonBlank`
 - `creditCard`
+- `phoneNumber` (Currently only supports Indonesia phone number)
+- `mobilePhoneNumber` (Currently only supports Indonesia mobile phone number)
 - `maxLength:<length>`
 - `minLength:<length>`
 - `maxValue:<max value>`
