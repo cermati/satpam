@@ -8,6 +8,16 @@ describe('Phone number validator', function () {
     phone: ['phoneNumber']
   };
 
+  context('with empty phone number', function () {
+    it('should success', function () {
+      var result = validator.validate(rule, {});
+      var err = result.messages;
+
+      expect(result.success).to.equal(true);
+      expect(err).to.not.have.property('phone');
+    });
+  });
+
   context('with valid mobile phone number that starts with 08', function () {
     it('should success', function () {
       var result = validator.validate(rule, {
