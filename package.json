@@ -20,7 +20,7 @@
   "homepage": "https://github.com/sendyhalim/satpam",
   "dependencies": {
     "image-type": "^2.0.2",
-    "lodash": "^3.7.0",
+    "lodash": "^4.0",
     "moment": "^2.10.6",
     "read-chunk": "^1.0.1",
     "validator": "^3.39.0"
