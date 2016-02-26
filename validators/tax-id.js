@@ -25,7 +25,7 @@ function validateIndonesianTaxId(value) {
 
   var firstEightDigits = digits.slice(0, 8);
 
-  if (_.any(firstEightDigits, isNaN)) {
+  if (_.some(firstEightDigits, isNaN)) {
     return false;
   }
 

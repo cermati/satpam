@@ -19,6 +19,7 @@ var memberOf = require('./validators/member-of');
 var beginWith = require('./validators/begin-with');
 var regex = require('./validators/regex');
 var notEqual = require('./validators/not-equal');
+var equal = require('./validators/equal');
 var dateFormat = require('./validators/date-format');
 var dateAfter = require('./validators/date-after');
 var dateBefore = require('./validators/date-before');
@@ -73,6 +74,7 @@ var validation = {
   'beginWith:$1': beginWith.validator,
   'regex:$1:$2': regex.validator,
   'not-equal:$1': notEqual.validator,
+  'equal:$1': equal.validator,
   'dateFormat:$1': dateFormat.validator,
   'dateAfter:$1:$2:$3:$4': dateAfter.validator,
   'dateBefore:$1:$2:$3:$4': dateBefore.validator,
@@ -102,6 +104,7 @@ var validationMessages = {
   'beginWith:$1': beginWith.message,
   'regex:$1:$2': regex.message,
   'not-equal:$1': notEqual.message,
+  'equal:$1': equal.message,
   'dateFormat:$1': dateFormat.message,
   'dateAfter:$1:$2:$3:$4': dateAfter.message,
   'dateBefore:$1:$2:$3:$4': dateBefore.message,
