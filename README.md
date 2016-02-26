@@ -74,6 +74,8 @@ var validatorTwo = satpam.create();
 - `maxValue:<max value>`
 - `minValue:<min value>`
 - `memberOf:$1`
+- `equal:$1`
+- `notEqual:$1`
 - `requiredIf:$1:$2`
 
   ```
