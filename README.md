@@ -6,6 +6,11 @@ custom validator with parameters and custom validation messages.
 [![Build Status](https://travis-ci.org/sendyhalim/satpam.svg)](https://travis-ci.org/sendyhalim/satpam)
 [![npm version](https://badge.fury.io/js/satpam.svg)](https://badge.fury.io/js/satpam)
 
+## Installation
+```
+npm install satpam --save
+```
+
 ## Quick Usage
 ```js
 import satpam from 'satpam';
@@ -138,3 +143,8 @@ const newValidator = satpam.create();
 [Here](https://github.com/sendyhalim/satpam/blob/master/test)
 
 ![Read the source Luke](http://blog.codinghorror.com/content/images/uploads/2012/04/6a0120a85dcdae970b016765373659970b-800wi.jpg)
+
+## License
+MIT
+
+![Hi-Five](https://media.giphy.com/media/JhThbOq62vwn6/giphy.gif)
