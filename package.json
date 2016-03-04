@@ -26,7 +26,11 @@
     "validator": "^3.39.0"
   },
   "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.6.4",
+    "babel-eslint": "^5.0.0",
     "chai": "^2.3.0",
+    "eslint": "^2.2.0",
     "mocha": "^2.2.4"
   }
 }
