@@ -1,78 +1,76 @@
-'use strict';
+import { expect } from 'chai';
+import validator from '../lib';
 
-var expect = require('chai').expect;
-var validator = require('../');
-
-describe('Phone number validator', function () {
-  var rule = {
+describe('Phone number validator', () => {
+  const rule = {
     phone: ['phoneNumber']
   };
 
-  context('with empty phone number', function () {
-    it('should success', function () {
-      var result = validator.validate(rule, {});
-      var err = result.messages;
+  context('with empty phone number', () => {
+    it('should success', () => {
+      const result = validator.validate(rule, {});
+      const err = result.messages;
 
       expect(result.success).to.equal(true);
       expect(err).to.not.have.property('phone');
     });
   });
 
-  context('with valid mobile phone number that starts with 08', function () {
-    it('should success', function () {
-      var result = validator.validate(rule, {
+  context('with valid mobile phone number that starts with 08', () => {
+    it('should success', () => {
+      const result = validator.validate(rule, {
         phone: '08123456789'
       });
 
-      var err = result.messages;
+      const err = result.messages;
 
       expect(result.success).to.equal(true);
       expect(err).to.not.have.property('phone');
     });
   });
 
-  context('with valid mobile phone number that starts with +628', function () {
-    it('should success', function () {
-      var result = validator.validate(rule, {
+  context('with valid mobile phone number that starts with +628', () => {
+    it('should success', () => {
+      const result = validator.validate(rule, {
         phone: '+628123456789'
       });
 
-      var err = result.messages;
+      const err = result.messages;
 
       expect(result.success).to.equal(true);
       expect(err).to.not.have.property('phone');
     });
   });
 
-  context('with valid phone number that starts with 021', function () {
-    it('should success', function () {
-      var result = validator.validate(rule, {
+  context('with valid phone number that starts with 021', () => {
+    it('should success', () => {
+      const result = validator.validate(rule, {
         phone: '+62219837121'
       });
 
-      var err = result.messages;
+      const err = result.messages;
 
       expect(result.success).to.equal(true);
       expect(err).to.not.have.property('phone');
     });
   });
 
-  context('with valid phone number that starts with +6221', function () {
-    it('should success', function () {
-      var result = validator.validate(rule, {
+  context('with valid phone number that starts with +6221', () => {
+    it('should success', () => {
+      const result = validator.validate(rule, {
         phone: '+62219837121'
       });
 
-      var err = result.messages;
+      const err = result.messages;
 
       expect(result.success).to.equal(true);
       expect(err).to.not.have.property('phone');
     });
   });
 
-  context('with invalid phone number that starts with 221', function () {
-    it('should fail', function () {
-      var result = validator.validate(rule, {
+  context('with invalid phone number that starts with 221', () => {
+    it('should fail', () => {
+      const result = validator.validate(rule, {
         phone: '2219123123'
       });
 
@@ -83,9 +81,9 @@ describe('Phone number validator', function () {
     });
   });
 
-  context('with invalid mobile phone number that starts with 812', function () {
-    it('should fail', function () {
-      var result = validator.validate(rule, {
+  context('with invalid mobile phone number that starts with 812', () => {
+    it('should fail', () => {
+      const result = validator.validate(rule, {
         phone: '8123456789'
       });
 
@@ -96,9 +94,9 @@ describe('Phone number validator', function () {
     });
   });
 
-  context('with invalid mobile phone number that have 16 numbers after 0', function () {
-    it('should fail', function () {
-      var result = validator.validate(rule, {
+  context('with invalid mobile phone number that have 16 numbers after 0', () => {
+    it('should fail', () => {
+      const result = validator.validate(rule, {
         phone: '08123456789123456'
       });
 
@@ -109,9 +107,9 @@ describe('Phone number validator', function () {
     });
   });
 
-  context('with invalid mobile phone number that have length 5', function () {
-    it('should fail', function () {
-      var result = validator.validate(rule, {
+  context('with invalid mobile phone number that have length 5', () => {
+    it('should fail', () => {
+      const result = validator.validate(rule, {
         phone: '02185'
       });
 

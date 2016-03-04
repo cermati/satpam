@@ -1,14 +1,12 @@
-'use strict';
+import { expect } from 'chai';
+import validator from '../lib';
 
-var expect = require('chai').expect;
-var validator = require('../');
-
-describe('MaxLength validator', function () {
-  var ruleWithParam = {
+describe('MaxLength validator', () => {
+  const ruleWithParam = {
     name: ['maxLength:5']
   };
 
-  var acceptedInputs = [
+  const acceptedInputs = [
     'tele',
     'phone',
     '',
@@ -20,7 +18,7 @@ describe('MaxLength validator', function () {
     -1234
   ];
 
-  var rejectedInputs = [
+  const rejectedInputs = [
     '      ',
     'asdasd',
     'pneumonoultramicroscopicsilicovolcanoconiosis',
@@ -30,20 +28,20 @@ describe('MaxLength validator', function () {
     undefined
   ];
 
-  it('should success', function () {
+  it('should success', () => {
     acceptedInputs.forEach(function test(acceptedInput) {
-      var result = validator.validate(ruleWithParam, {name: acceptedInput});
-      var err = result.messages;
+      const result = validator.validate(ruleWithParam, {name: acceptedInput});
+      const err = result.messages;
 
       expect(result.success).to.equal(true);
       expect(err).to.not.have.property('name');
     });
   });
 
-  it('should fail', function () {
+  it('should fail', () => {
     rejectedInputs.forEach(function test(rejectedInput) {
-      var result = validator.validate(ruleWithParam, {name: rejectedInput});
-      var err = result.messages;
+      const result = validator.validate(ruleWithParam, {name: rejectedInput});
+      const err = result.messages;
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('name');

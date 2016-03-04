@@ -1,36 +1,34 @@
-'use strict';
+import { expect } from 'chai';
+import moment from 'moment';
+import validator from '../lib';
 
-var expect = require('chai').expect;
-var moment = require('moment');
-var validator = require('../');
-
-describe('Date After validator', function () {
-  context('given a dateAfter rule with parameter `now`', function () {
-    var simpleRules = {
+describe('Date After validator', () => {
+  context('given a dateAfter rule with parameter `now`', () => {
+    const rules = {
       vacationDate: ['dateAfter:DD/MM/YYYY:now:0:days']
     };
 
-    var getTestObject = function () {
-      var futureDate = moment().add(1, 'day').format('DD/MM/YYYY');
+    const getTestObject = () => {
+      const futureDate = moment().add(1, 'day').format('DD/MM/YYYY');
 
       return {
-        vacationDate: futureDate,
+        vacationDate: futureDate
       };
     };
 
-    it('should success', function () {
-      var result = validator.validate(simpleRules, getTestObject());
-      var err = result.messages;
+    it('should success', () => {
+      const result = validator.validate(rules, getTestObject());
+      const err = result.messages;
 
       expect(result.success).to.equal(true);
       expect(err).to.not.have.property('vacationDate');
     });
 
-    it('should fail when input has the same date', function () {
-      var result = validator.validate(simpleRules, {
+    it('should fail when input has the same date', () => {
+      const result = validator.validate(rules, {
         vacationDate: moment().format('DD/MM/YYYY')
       });
-      var err = result.messages;
+      const err = result.messages;
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('vacationDate');
@@ -39,32 +37,32 @@ describe('Date After validator', function () {
     });
   });
 
-  context('given a dateAfter rule with parameter 01-2014', function () {
-    var simpleRules = {
+  context('given a dateAfter rule with parameter 01-2014', () => {
+    const rules = {
       vacationDate: ['dateAfter:MM-YYYY:01-2014:0:days']
     };
 
-    var getTestObject = function () {
-      var futureDate = moment('02-2014', 'MM-YYYY');
+    const getTestObject = () => {
+      const futureDate = moment('02-2014', 'MM-YYYY');
 
       return {
-        vacationDate: futureDate,
+        vacationDate: futureDate
       };
     };
 
-    it('should success', function () {
-      var result = validator.validate(simpleRules, getTestObject());
-      var err = result.messages;
+    it('should success', () => {
+      const result = validator.validate(rules, getTestObject());
+      const err = result.messages;
 
       expect(result.success).to.equal(true);
       expect(err).to.not.have.property('vacationDate');
     });
 
-    it('should fail when input has the same month', function () {
-      var result = validator.validate(simpleRules, {
+    it('should fail when input has the same month', () => {
+      const result = validator.validate(rules, {
         vacationDate: moment('01-2014', 'MM-YYYY')
       });
-      var err = result.messages;
+      const err = result.messages;
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('vacationDate');
@@ -73,32 +71,32 @@ describe('Date After validator', function () {
     });
   });
 
-  context('given a dateAfter rule with parameter `now` and -365 days', function () {
-    var simpleRules = {
+  context('given a dateAfter rule with parameter `now` and -365 days', () => {
+    const rules = {
       vacationDate: ['dateAfter:DD/MM/YYYY:now:-365:days']
     };
 
-    var getTestObject = function () {
-      var date = moment().subtract(364, 'days').format('DD/MM/YYYY');
+    const getTestObject = () => {
+      const date = moment().subtract(364, 'days').format('DD/MM/YYYY');
 
       return {
-        vacationDate: date,
+        vacationDate: date
       };
     };
 
-    it('should success', function () {
-      var result = validator.validate(simpleRules, getTestObject());
-      var err = result.messages;
+    it('should success', () => {
+      const result = validator.validate(rules, getTestObject());
+      const err = result.messages;
 
       expect(result.success).to.equal(true);
       expect(err).to.not.have.property('vacationDate');
     });
 
-    it('should fail when input has the same date', function () {
-      var result = validator.validate(simpleRules, {
+    it('should fail when input has the same date', () => {
+      const result = validator.validate(rules, {
         vacationDate: moment().subtract(365, 'days').format('DD/MM/YYYY')
       });
-      var err = result.messages;
+      const err = result.messages;
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('vacationDate');
@@ -107,32 +105,32 @@ describe('Date After validator', function () {
     });
   });
 
-  context('given a dateAfter rule with parameter `now` and 40 days', function () {
-    var simpleRules = {
+  context('given a dateAfter rule with parameter `now` and 40 days', () => {
+    const rules = {
       vacationDate: ['dateAfter:DD/MM/YYYY:now:40:days']
     };
 
-    var getTestObject = function () {
-      var date = moment().add(41, 'days').format('DD/MM/YYYY');
+    const getTestObject = () => {
+      const date = moment().add(41, 'days').format('DD/MM/YYYY');
 
       return {
-        vacationDate: date,
+        vacationDate: date
       };
     };
 
-    it('should success', function () {
-      var result = validator.validate(simpleRules, getTestObject());
-      var err = result.messages;
+    it('should success', () => {
+      const result = validator.validate(rules, getTestObject());
+      const err = result.messages;
 
       expect(result.success).to.equal(true);
       expect(err).to.not.have.property('vacationDate');
     });
 
-    it('should fail when input has the same date', function () {
-      var result = validator.validate(simpleRules, {
+    it('should fail when input has the same date', () => {
+      const result = validator.validate(rules, {
         vacationDate: moment().add(40, 'days').format('DD/MM/YYYY')
       });
-      var err = result.messages;
+      const err = result.messages;
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('vacationDate');
@@ -141,30 +139,30 @@ describe('Date After validator', function () {
     });
   });
 
-  context('given a dateAfter rule with parameter `02-09` and -10 days', function () {
-    var simpleRules = {
+  context('given a dateAfter rule with parameter `02-09` and -10 days', () => {
+    const rules = {
       vacationDate: ['dateAfter:DD-MM:02-09:-10:days']
     };
 
-    var getTestObject = function () {
+    const getTestObject = () => {
       return {
-        vacationDate: '24-08',
+        vacationDate: '24-08'
       };
     };
 
-    it('should success', function () {
-      var result = validator.validate(simpleRules, getTestObject());
-      var err = result.messages;
+    it('should success', () => {
+      const result = validator.validate(rules, getTestObject());
+      const err = result.messages;
 
       expect(result.success).to.equal(true);
       expect(err).to.not.have.property('vacationDate');
     });
 
-    it('should fail when input has the same date', function () {
-      var result = validator.validate(simpleRules, {
+    it('should fail when input has the same date', () => {
+      const result = validator.validate(rules, {
         vacationDate: '23-08'
       });
-      var err = result.messages;
+      const err = result.messages;
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('vacationDate');
@@ -173,30 +171,30 @@ describe('Date After validator', function () {
     });
   });
 
-  context('given a dateAfter rule with parameter `12-09` and 10 days', function () {
-    var simpleRules = {
+  context('given a dateAfter rule with parameter `12-09` and 10 days', () => {
+    const rules = {
       vacationDate: ['dateAfter:DD-MM:12-09:10:days']
     };
 
-    var getTestObject = function () {
+    const getTestObject = () => {
       return {
-        vacationDate: '23-09',
+        vacationDate: '23-09'
       };
     };
 
-    it('should success', function () {
-      var result = validator.validate(simpleRules, getTestObject());
-      var err = result.messages;
+    it('should success', () => {
+      const result = validator.validate(rules, getTestObject());
+      const err = result.messages;
 
       expect(result.success).to.equal(true);
       expect(err).to.not.have.property('vacationDate');
     });
 
-    it('should fail when input has the same date', function () {
-      var result = validator.validate(simpleRules, {
+    it('should fail when input has the same date', () => {
+      const result = validator.validate(rules, {
         vacationDate: '22-09'
       });
-      var err = result.messages;
+      const err = result.messages;
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('vacationDate');
@@ -205,30 +203,30 @@ describe('Date After validator', function () {
     });
   });
 
-  context('given a dateAfter rule with parameter `12-09` and 3 months', function () {
-    var simpleRules = {
+  context('given a dateAfter rule with parameter `12-09` and 3 months', () => {
+    const rules = {
       pastVacationDate: ['dateAfter:DD-MM:12-09:3:months']
     };
 
-    var getTestObject = function () {
+    const getTestObject = () => {
       return {
-        pastVacationDate: '13-12',
+        pastVacationDate: '13-12'
       };
     };
 
-    it('should success', function () {
-      var result = validator.validate(simpleRules, getTestObject());
-      var err = result.messages;
+    it('should success', () => {
+      const result = validator.validate(rules, getTestObject());
+      const err = result.messages;
 
       expect(result.success).to.equal(true);
       expect(err).to.not.have.property('pastVacationDate');
     });
 
-    it('should fail when input has the same date', function () {
-      var result = validator.validate(simpleRules, {
+    it('should fail when input has the same date', () => {
+      const result = validator.validate(rules, {
         pastVacationDate: '12-12'
       });
-      var err = result.messages;
+      const err = result.messages;
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('pastVacationDate');
@@ -237,30 +235,30 @@ describe('Date After validator', function () {
     });
   });
 
-  context('given a dateAfter rule with parameter `04-06-2015` and -4 years', function () {
-    var simpleRules = {
+  context('given a dateAfter rule with parameter `04-06-2015` and -4 years', () => {
+    const rules = {
       pastVacationDate: ['dateAfter:DD-MM-YYYY:04-06-2015:-4:years']
     };
 
-    var getTestObject = function () {
+    const getTestObject = () => {
       return {
-        pastVacationDate: '05-06-2011',
+        pastVacationDate: '05-06-2011'
       };
     };
 
-    it('should success', function () {
-      var result = validator.validate(simpleRules, getTestObject());
-      var err = result.messages;
+    it('should success', () => {
+      const result = validator.validate(rules, getTestObject());
+      const err = result.messages;
 
       expect(result.success).to.equal(true);
       expect(err).to.not.have.property('pastVacationDate');
     });
 
-    it('should fail when input has the same date', function () {
-      var result = validator.validate(simpleRules, {
+    it('should fail when input has the same date', () => {
+      const result = validator.validate(rules, {
         pastVacationDate: '04-06-2011'
       });
-      var err = result.messages;
+      const err = result.messages;
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('pastVacationDate');
@@ -269,4 +267,3 @@ describe('Date After validator', function () {
     });
   });
 });
-

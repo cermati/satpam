@@ -1,68 +1,65 @@
-'use strict';
+import { expect } from 'chai';
+import validator from '../lib';
 
-var expect = require('chai').expect;
-var validator = require('../');
-
-describe('regexp validator', function () {
-  context('given value that matches the pattern non digit', function () {
-    var rules = {
+describe('regexp validator', () => {
+  context('given value that matches the pattern non digit', () => {
+    const rules = {
       name: ['regex:\\D:g']
     };
-    var result = validator.validate(rules, {name: 'halo'});
-    var err = result.messages;
+    const result = validator.validate(rules, {name: 'halo'});
+    const err = result.messages;
 
-    it('should success', function () {
+    it('should success', () => {
       expect(result.success).to.equal(true);
       expect(err).to.not.have.property('name');
     });
   });
 
-  context('given value that does not match the pattern non digit', function () {
-    var rules = {
+  context('given value that does not match the pattern non digit', () => {
+    const rules = {
       name: ['regex:\\D:g']
     };
-    var result = validator.validate(rules, {name: '3'});
-    var err = result.messages;
+    const result = validator.validate(rules, {name: '3'});
+    const err = result.messages;
 
-    it('should fail', function () {
+    it('should fail', () => {
       expect(result.success).to.equal(false);
       expect(err).to.have.property('name');
     });
 
 
-    it('should have correct validation message', function () {
+    it('should have correct validation message', () => {
       expect(err.name['regex:$1:$2']).to.equal('Name does not conform pattern \\D.');
     });
   });
 
-  context('given value that matches the pattern "(alo){3}$"', function () {
-    var rules = {
+  context('given value that matches the pattern "(alo){3}$"', () => {
+    const rules = {
       name: ['regex:(alo){3}$:g']
     };
-    var result = validator.validate(rules, {name: 'haloaloalo'});
-    var err = result.messages;
+    const result = validator.validate(rules, {name: 'haloaloalo'});
+    const err = result.messages;
 
-    it('should fail', function () {
+    it('should fail', () => {
       expect(result.success).to.equal(true);
       expect(err).to.not.have.property('name');
     });
   });
 
-  context('given value that does not match the pattern "(alo){3}$"', function () {
-    var rules = {
+  context('given value that does not match the pattern "(alo){3}$"', () => {
+    const rules = {
       name: ['regex:(alo){3}$:g']
     };
-    var result = validator.validate(rules, {name: 'haloalo'});
-    var err = result.messages;
+    const result = validator.validate(rules, {name: 'haloalo'});
+    const err = result.messages;
 
-    it('should fail', function () {
+    it('should fail', () => {
       expect(result.success).to.equal(false);
       expect(err).to.have.property('name');
     });
 
-    it('should have correct validation message', function () {
+    it('should have correct validation message', () => {
       expect(err.name['regex:$1:$2']).to.equal('Name does not conform pattern (alo){3}$.');
     });
   });
 });
-

@@ -1,42 +1,34 @@
-'use strict';
+import { expect } from 'chai';
+import validator from '../lib';
 
-var expect = require('chai').expect;
-var validator = require('../');
-
-describe('Required if validator', function () {
-  var simpleRules = {
+describe('Required if validator', () => {
+  const simpleRules = {
     address: ['requiredIf:hasHome:Yes']
   };
 
-  var getTestObject = function () {
-    return {
+  it('should success if hasHome equals to Yes', () => {
+    const result = validator.validate(simpleRules, {
       hasHome: 'Yes',
-      address: 'somewhere over the rainbow',
-    };
-  };
-
-  it('should success if hasHome equals to Yes', function () {
-    var result = validator.validate(simpleRules, getTestObject());
-    var err = result.messages;
+      address: 'somewhere over the rainbow'
+    });
+    const err = result.messages;
 
     expect(result.success).to.equal(true);
     expect(err).to.not.have.property('name');
   });
 
-  it('should success if hasHome is undefined', function () {
-    var result = validator.validate(simpleRules, {});
-    var err = result.messages;
+  it('should success if hasHome is undefined', () => {
+    const result = validator.validate(simpleRules, {});
+    const err = result.messages;
 
     expect(result.success).to.equal(true);
     expect(err).to.not.have.property('name');
   });
 
-  it('should fail', function () {
-    var input = {
-      hasHome: 'Yes'
-    };
-    var result = validator.validate(simpleRules, input);
-    var err = result.messages;
+  it('should fail', () => {
+    const input = {hasHome: 'Yes'};
+    const result = validator.validate(simpleRules, input);
+    const err = result.messages;
 
     expect(result.success).to.equal(false);
     expect(err).to.have.property('address');

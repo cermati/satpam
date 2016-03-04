@@ -1,32 +1,22 @@
-'use strict';
+import { expect } from 'chai';
+import validator from '../lib';
 
-var expect = require('chai').expect;
-var validator = require('../');
-
-describe('String validator', function () {
-  var simpleRules = {
+describe('String validator', () => {
+  const rules = {
     someField: ['string']
   };
 
-  var getTestObject = function () {
-    return {
-      someField: 'yoyoyo',
-    };
-  };
-
-  it('should success with valid input', function () {
-    var result = validator.validate(simpleRules, getTestObject());
-    var err = result.messages;
+  it('should success with valid input', () => {
+    const result = validator.validate(rules, {someField: 'yoyoyo'});
+    const err = result.messages;
 
     expect(result.success).to.equal(true);
     expect(err).to.not.have.property('someField');
   });
 
-  it('should fail with invalid input', function () {
-    var testObj = getTestObject();
-    testObj.someField = 123;
-    var result = validator.validate(simpleRules, testObj);
-    var err = result.messages;
+  it('should fail with invalid input', () => {
+    const result = validator.validate(rules, {someField: 123});
+    const err = result.messages;
 
     expect(result.success).to.equal(false);
     expect(err).to.have.property('someField');

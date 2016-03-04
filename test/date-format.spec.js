@@ -1,55 +1,53 @@
-'use strict';
+import { expect } from 'chai';
+import validator from '../lib';
 
-var expect = require('chai').expect;
-var validator = require('../');
-
-describe('Date Format validator', function () {
-  context('given a dateFormat rule with format DD-MM-YYYY', function () {
-    var simpleRules = {
+describe('Date Format validator', () => {
+  context('given a dateFormat rule with format DD-MM-YYYY', () => {
+    const simpleRules = {
       birthday: ['dateFormat:DD-MM-YYYY']
     };
 
-    var getTestObject = function () {
+    const getTestObject = () => {
       return {
-        birthday: '02-09-1993',
+        birthday: '02-09-1993'
       };
     };
 
-    it('should success', function () {
-      var result = validator.validate(simpleRules, getTestObject());
-      var err = result.messages;
+    it('should success', () => {
+      const result = validator.validate(simpleRules, getTestObject());
+      const err = result.messages;
 
       expect(result.success).to.equal(true);
       expect(err).to.not.have.property('birthday');
     });
 
-    it('should fail with format YYYY-MM-DD', function () {
-      var testObj = getTestObject();
+    it('should fail with format YYYY-MM-DD', () => {
+      const testObj = getTestObject();
       testObj.birthday = '1993-09-02';
-      var result = validator.validate(simpleRules, testObj);
-      var err = result.messages;
+      const result = validator.validate(simpleRules, testObj);
+      const err = result.messages;
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('birthday');
       expect(err.birthday['dateFormat:$1']).to.equal('Birthday must be in format DD-MM-YYYY.');
     });
 
-    it('should fail with format YYYY-DD-MM', function () {
-      var testObj = getTestObject();
+    it('should fail with format YYYY-DD-MM', () => {
+      const testObj = getTestObject();
       testObj.birthday = '1993-02-09';
-      var result = validator.validate(simpleRules, testObj);
-      var err = result.messages;
+      const result = validator.validate(simpleRules, testObj);
+      const err = result.messages;
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('birthday');
       expect(err.birthday['dateFormat:$1']).to.equal('Birthday must be in format DD-MM-YYYY.');
     });
 
-    it('should fail with format DD-MM', function () {
-      var testObj = getTestObject();
+    it('should fail with format DD-MM', () => {
+      const testObj = getTestObject();
       testObj.birthday = '02-09';
-      var result = validator.validate(simpleRules, testObj);
-      var err = result.messages;
+      const result = validator.validate(simpleRules, testObj);
+      const err = result.messages;
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('birthday');
@@ -58,52 +56,52 @@ describe('Date Format validator', function () {
   });
 
 
-  context('given a dateFormat rule with format MM/YYYY', function () {
-    var simpleRules = {
+  context('given a dateFormat rule with format MM/YYYY', () => {
+    const simpleRules = {
       birthday: ['dateFormat:MM/YYYY']
     };
 
-    var getTestObject = function () {
+    const getTestObject = () => {
       return {
-        birthday: '09/1993',
+        birthday: '09/1993'
       };
     };
 
-    it('should success', function () {
-      var result = validator.validate(simpleRules, getTestObject());
-      var err = result.messages;
+    it('should success', () => {
+      const result = validator.validate(simpleRules, getTestObject());
+      const err = result.messages;
 
       expect(result.success).to.equal(true);
       expect(err).to.not.have.property('birthday');
     });
 
-    it('should fail with format YYYY/MM/DD', function () {
-      var testObj = getTestObject();
+    it('should fail with format YYYY/MM/DD', () => {
+      const testObj = getTestObject();
       testObj.birthday = '1993/09/02';
-      var result = validator.validate(simpleRules, testObj);
-      var err = result.messages;
+      const result = validator.validate(simpleRules, testObj);
+      const err = result.messages;
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('birthday');
       expect(err.birthday['dateFormat:$1']).to.equal('Birthday must be in format MM/YYYY.');
     });
 
-    it('should fail with format YYYY/MM', function () {
-      var testObj = getTestObject();
+    it('should fail with format YYYY/MM', () => {
+      const testObj = getTestObject();
       testObj.birthday = '2022/12';
-      var result = validator.validate(simpleRules, testObj);
-      var err = result.messages;
+      const result = validator.validate(simpleRules, testObj);
+      const err = result.messages;
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('birthday');
       expect(err.birthday['dateFormat:$1']).to.equal('Birthday must be in format MM/YYYY.');
     });
 
-    it('should fail with invalid date', function () {
-      var testObj = getTestObject();
+    it('should fail with invalid date', () => {
+      const testObj = getTestObject();
       testObj.birthday = '13/2012';
-      var result = validator.validate(simpleRules, testObj);
-      var err = result.messages;
+      const result = validator.validate(simpleRules, testObj);
+      const err = result.messages;
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('birthday');

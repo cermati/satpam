@@ -1,32 +1,22 @@
-'use strict';
+import { expect } from 'chai';
+import validator from '../lib';
 
-var expect = require('chai').expect;
-var validator = require('../');
-
-describe('Date validator', function () {
-  var simpleRules = {
+describe('Date validator', () => {
+  const rules = {
     birthday: ['date']
   };
 
-  var getTestObject = function () {
-    return {
-      birthday: '02-09-1993',
-    };
-  };
-
-  it('should success', function () {
-    var result = validator.validate(simpleRules, getTestObject());
-    var err = result.messages;
+  it('should success', () => {
+    const result = validator.validate(rules, {birthday: '02-09-1993'});
+    const err = result.messages;
 
     expect(result.success).to.equal(true);
     expect(err).to.not.have.property('birthday');
   });
 
-  it('should fail', function () {
-    var testObj = getTestObject();
-    testObj.birthday = '02--09-1993';
-    var result = validator.validate(simpleRules, testObj);
-    var err = result.messages;
+  it('should fail', () => {
+    const result = validator.validate(rules, {birthday: '02--09-1993'});
+    const err = result.messages;
 
     expect(result.success).to.equal(false);
     expect(err).to.have.property('birthday');

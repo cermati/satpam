@@ -1,52 +1,50 @@
-'use strict';
+import { expect } from 'chai';
+import validator from '../lib';
 
-var expect = require('chai').expect;
-var validator = require('../');
-
-describe('Mobile mobile phone number validator', function () {
-  var rule = {
+describe('Mobile mobile phone number validator', () => {
+  const rule = {
     phone: ['mobilePhoneNumber']
   };
 
-  context('with empty mobile phone number', function () {
-    it('should success', function () {
-      var result = validator.validate(rule, {});
-      var err = result.messages;
+  context('with empty mobile phone number', () => {
+    it('should success', () => {
+      const result = validator.validate(rule, {});
+      const err = result.messages;
 
       expect(result.success).to.equal(true);
       expect(err).to.not.have.property('phone');
     });
   });
 
-  context('with valid mobile mobile phone number that starts with 08', function () {
-    it('should success', function () {
-      var result = validator.validate(rule, {
+  context('with valid mobile mobile phone number that starts with 08', () => {
+    it('should success', () => {
+      const result = validator.validate(rule, {
         phone: '08123456789'
       });
 
-      var err = result.messages;
+      const err = result.messages;
 
       expect(result.success).to.equal(true);
       expect(err).to.not.have.property('phone');
     });
   });
 
-  context('with valid mobile mobile phone number that starts with +628', function () {
-    it('should success', function () {
-      var result = validator.validate(rule, {
+  context('with valid mobile mobile phone number that starts with +628', () => {
+    it('should success', () => {
+      const result = validator.validate(rule, {
         phone: '+628123456789'
       });
 
-      var err = result.messages;
+      const err = result.messages;
 
       expect(result.success).to.equal(true);
       expect(err).to.not.have.property('phone');
     });
   });
 
-  context('with invalid mobile mobile phone number that starts with 812', function () {
-    it('should fail', function () {
-      var result = validator.validate(rule, {
+  context('with invalid mobile mobile phone number that starts with 812', () => {
+    it('should fail', () => {
+      const result = validator.validate(rule, {
         phone: '8123456789'
       });
 
@@ -57,9 +55,9 @@ describe('Mobile mobile phone number validator', function () {
     });
   });
 
-  context('with invalid mobile mobile phone number that have 12 numbers after +628', function () {
-    it('should fail', function () {
-      var result = validator.validate(rule, {
+  context('with invalid mobile mobile phone number that have 12 numbers after +628', () => {
+    it('should fail', () => {
+      const result = validator.validate(rule, {
         phone: '+628123456789123'
       });
 
@@ -70,9 +68,9 @@ describe('Mobile mobile phone number validator', function () {
     });
   });
 
-  context('with invalid mobile mobile phone number that 5 numbers after 628', function () {
-    it('should fail', function () {
-      var result = validator.validate(rule, {
+  context('with invalid mobile mobile phone number that 5 numbers after 628', () => {
+    it('should fail', () => {
+      const result = validator.validate(rule, {
         phone: '62812345'
       });
 

@@ -1,14 +1,12 @@
-'use strict';
+import { expect } from 'chai';
+import validator from '../lib';
 
-var expect = require('chai').expect;
-var validator = require('../');
-
-describe('NonBlank validator', function () {
-  var simpleRules = {
+describe('NonBlank validator', () => {
+  const rules = {
     name: ['nonBlank']
   };
 
-  var acceptedInputs = [
+  const acceptedInputs = [
     'kardus',
     '  bar',
     'vector  ',
@@ -19,7 +17,7 @@ describe('NonBlank validator', function () {
     {iAm: 'not simple string'}
   ];
 
-  var rejectedInputs = [
+  const rejectedInputs = [
     '',
     '    ',
     ' \n \n \t',
@@ -27,20 +25,20 @@ describe('NonBlank validator', function () {
     undefined
   ];
 
-  it('should success', function () {
+  it('should success', () => {
     acceptedInputs.forEach(function test(acceptedInput) {
-      var result = validator.validate(simpleRules, {name: acceptedInput});
-      var err = result.messages;
+      const result = validator.validate(rules, {name: acceptedInput});
+      const err = result.messages;
 
       expect(result.success).to.equal(true);
       expect(err).to.not.have.property('name');
     });
   });
 
-  it('should fail', function () {
+  it('should fail', () => {
     rejectedInputs.forEach(function test(rejectedInput) {
-      var result = validator.validate(simpleRules, {name: rejectedInput});
-      var err = result.messages;
+      const result = validator.validate(rules, {name: rejectedInput});
+      const err = result.messages;
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('name');

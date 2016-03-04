@@ -1,21 +1,19 @@
-'use strict';
+import { expect } from 'chai';
+import validator from '../lib';
 
-var expect = require('chai').expect;
-var validator = require('../');
-
-describe('MinLength validator', function () {
-  var ruleWithParam = {
+describe('MinLength validator', () => {
+  const ruleWithParam = {
     name: ['minLength:5']
   };
 
-  var acceptedInputs = [
+  const acceptedInputs = [
     'abcde',
     'abcd ',
     'wololo',
     'pneumonoultramicroscopicsilicovolcanoconiosis'
   ];
 
-  var rejectedInputs = [
+  const rejectedInputs = [
     '',
     'asd',
     'tele',
@@ -23,20 +21,20 @@ describe('MinLength validator', function () {
     undefined
   ];
 
-  it('should success', function () {
+  it('should success', () => {
     acceptedInputs.forEach(function test(acceptedInput) {
-      var result = validator.validate(ruleWithParam, {name: acceptedInput});
-      var err = result.messages;
+      const result = validator.validate(ruleWithParam, {name: acceptedInput});
+      const err = result.messages;
 
       expect(result.success).to.equal(true);
       expect(err).to.not.have.property('name');
     });
   });
 
-  it('should fail', function () {
+  it('should fail', () => {
     rejectedInputs.forEach(function test(rejectedInput) {
-      var result = validator.validate(ruleWithParam, {name: rejectedInput});
-      var err = result.messages;
+      const result = validator.validate(ruleWithParam, {name: rejectedInput});
+      const err = result.messages;
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('name');

@@ -1,4 +1,4 @@
-import expect from 'chai';
+import { expect } from 'chai';
 import validator from '../lib';
 
 describe('Alpha validator', () => {
