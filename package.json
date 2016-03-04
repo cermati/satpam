@@ -4,7 +4,7 @@
   "description": "Simple and Effective Object Validator",
   "main": "index.js",
   "scripts": {
-    "compile": "babel --presets es2015,stage-0 -d lib/ src/",
+    "compile": "babel -d lib/ src/",
     "test": "./node_modules/.bin/mocha tests"
   },
   "repository": "sendyhalim/satpam",
