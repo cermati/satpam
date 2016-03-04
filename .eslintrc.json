@@ -1,0 +1,22 @@
+{
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "env": {
+    "mocha": true,
+    "node": true
+  },
+  "rules": {
+    "radix": 2,
+    "eqeqeq": 2,
+    "no-eval": 2,
+    "no-with": 2,
+    "no-console": 0,
+    "no-unused-vars": 1,
+    "yoda": [2, "never"],
+    "strict": [2, "global"],
+    "quotes": [2, "single"]
+  }
+}
