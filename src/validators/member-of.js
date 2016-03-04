@@ -1,19 +1,12 @@
-'use strict';
+import _ from 'lodash/fp';
 
-var required = require('./required');
-var _ = require('lodash');
+module.exports = {
+  validator: (val, ruleObj) => {
+    const valArray = _.isArray(val) ? val : [val];
+    const list = ruleObj.params[0];
+    const notInList = item => list.indexOf(item) === -1;
 
-exports = module.exports = {
-  validator: function (val, ruleObj) {
-    var valArray = val;
-    if (!_.isArray(val)) {
-      valArray = [val];
-    }
-
-    var list = ruleObj.params[0];
-    return !_.some(valArray, function notInList(item) {
-      return list.indexOf(item) === -1;
-    });
+    return !_.some(notInList, valArray);
   },
   message: '<%= propertyName %> must be one of <%= ruleParams[0] %>.'
 };

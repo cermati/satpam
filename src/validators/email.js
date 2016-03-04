@@ -1,14 +1,12 @@
-'use strict';
+import validator from 'validator';
 
-var stringValidator = require('validator');
-
-exports = module.exports = {
-  validator: function (val) {
+module.exports = {
+  validator: val => {
     if (val) {
-      return stringValidator.isEmail(val);
+      return validator.isEmail(val);
     }
 
     return true;
   },
-  message: '<%= propertyName %> must be email'
+  message: '<%= propertyName %> must be email.'
 };

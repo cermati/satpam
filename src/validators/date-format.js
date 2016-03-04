@@ -1,9 +1,7 @@
-'use strict';
+import moment from 'moment';
 
-var moment = require('moment');
-
-exports = module.exports = {
-  validator: function (val, ruleObj) {
+module.exports = {
+  validator: (val, ruleObj) => {
     if (!val) {
       return true;
     }
@@ -12,4 +10,3 @@ exports = module.exports = {
   },
   message: '<%= propertyName %> must be in format <%= ruleParams[0] %>.'
 };
-

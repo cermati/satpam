@@ -1,18 +1,12 @@
-'use strict';
+import _ from 'lodash/fp';
 
-var required = require('./required');
-var _ = require('lodash');
-
-exports = module.exports = {
-  validator: function (val, ruleObj) {
+module.exports = {
+  validator: (val, ruleObj) => {
     if (_.isUndefined(val) || _.isNull(val)) {
       return false;
     }
 
-    var valAsNumber = val;
-    if (!_.isNumber(val)) {
-      valAsNumber = Number(val);
-    }
+    const valAsNumber = _.isNumber(val) ? val : Number(val);
 
     if (_.isNaN(valAsNumber)) {
       return false;

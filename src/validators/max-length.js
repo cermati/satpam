@@ -1,23 +1,14 @@
-'use strict';
+import _ from 'lodash/fp';
 
-var required = require('./required');
-var _ = require('lodash');
-
-exports = module.exports = {
-  validator: function (val, ruleObj) {
+module.exports = {
+  validator: (val, ruleObj) => {
     if (_.isUndefined(val) || _.isNull(val)) {
       return false;
     }
 
-    var valAsString = val;
-    if (!_.isString(val)) {
-      if (val.toString) {
-        valAsString = val.toString();
-      } else {
-        valAsString = '';
-      }
-    }
-    return valAsString.length <= ruleObj.params[0]
+    const valAsString = _.isFunction(val.toString) ? val.toString() : '';
+
+    return valAsString.length <= ruleObj.params[0];
   },
   message: '<%= propertyName %> must contain at most <%= ruleParams[0] %> character(s).'
 };

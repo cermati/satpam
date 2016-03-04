@@ -1,11 +1,9 @@
-'use strict';
+import validator from 'validator';
 
-var stringValidator = require('validator');
-
-exports = module.exports = {
+module.exports = {
   validator: function (val) {
     if (val) {
-      return stringValidator.isNumeric(val);
+      return validator.isNumeric(val);
     }
 
     return true;

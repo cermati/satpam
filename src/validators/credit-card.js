@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Validate credit card number.
  * This is a modified version of github.com/chriso/validator.js `isCreditCard`,
@@ -10,10 +8,14 @@
  * @param str
  * @returns {Boolean}
  */
-var validateCreditCard = function (str) {
-  var sanitized = str.replace(/[^0-9]+/g, '');
-  var sum = 0, digit, tmpNum, shouldDouble;
-  for (var i = sanitized.length - 1; i >= 0; i--) {
+const validateCreditCard = str => {
+  const sanitized = str.replace(/[^0-9]+/g, '');
+  let sum = 0;
+  let digit;
+  let tmpNum;
+  let shouldDouble;
+
+  for (let i = sanitized.length - 1; i >= 0; i--) {
     digit = sanitized.substring(i, (i + 1));
     tmpNum = parseInt(digit, 10);
     if (shouldDouble) {
@@ -31,8 +33,8 @@ var validateCreditCard = function (str) {
   return !!((sum % 10) === 0 ? sanitized : false);
 };
 
-exports = module.exports = {
-  validator: function (val) {
+module.exports = {
+  validator: val => {
     if (val) {
       return validateCreditCard(val);
     }

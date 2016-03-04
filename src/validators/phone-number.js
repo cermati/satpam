@@ -1,6 +1,4 @@
-'use strict';
-
-var phoneNumberRegex = /^(0|62|\+62)[0-9]{6,15}$/;
+const phoneNumberRegex = /^(0|62|\+62)[0-9]{6,15}$/;
 
 module.exports = {
   validator: function (value) {

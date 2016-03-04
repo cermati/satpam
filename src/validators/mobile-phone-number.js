@@ -1,6 +1,4 @@
-'use strict';
-
-var mobilePhoneNumberRegex = /^(08|628|\+628)[0-9]{6,11}$/;
+const mobilePhoneNumberRegex = /^(08|628|\+628)[0-9]{6,11}$/;
 
 module.exports = {
   validator: function (value) {

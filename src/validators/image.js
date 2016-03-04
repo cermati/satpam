@@ -1,22 +1,17 @@
-'use strict';
+import readChunk from 'read-chunk';
+import imageType from 'image-type';
+import _ from 'lodash/fp';
 
-var readChunk = require('read-chunk');
-var imageType = require('image-type');
-var _ = require('lodash');
-
-exports = module.exports = {
-  validator: function (val) {
-    if (val) {
-      if (_.isObject(val)) {
-        val = val.path;
-      }
-
-      var buffer = readChunk.sync(val, 0, 12);
-
-      return imageType(buffer) !== null;
+module.exports = {
+  validator: val => {
+    if (!val) {
+      return true;
     }
 
-    return true;
+    const pathToFile = _.isObject(val) ? val.path : val;
+    const buffer = readChunk.sync(pathToFile, 0, 12);
+
+    return imageType(buffer) !== null;
   },
   message: '<%= propertyName %> must be an image.'
 };

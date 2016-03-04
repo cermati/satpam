@@ -1,26 +1,20 @@
-'use strict';
+import _ from 'lodash/fp';
 
-var required = require('./required');
-var _ = require('lodash');
-
-exports = module.exports = {
-  validator: function (val, ruleObj) {
+module.exports = {
+  validator: (val, ruleObj) => {
     if (_.isUndefined(val) || _.isNull(val)) {
       return false;
     }
 
-    var valArray = val;
-    if (!_.isArray(val)) {
-      valArray = [val];
-    }
+    const valArray = _.isArray(val) ? val : [val];
+    const prefixList = ruleObj.params[0];
 
-    var prefixList = ruleObj.params[0];
-    return !_.some(valArray, function notInList(item) {
-      var itemAsString = item.toString();
-      return !_.some(prefixList, function itemBeginWith(prefix) {
-        return _.startsWith(itemAsString, prefix);
-      });
-    });
+    return !_.some(item => {
+      const itemAsString = item.toString();
+      const itemBeginsWith = _.startsWith(_, itemAsString);
+
+      return !_.some(itemBeginsWith, prefixList);
+    }, valArray);
   },
   message: '<%= propertyName %> must begin with one of <%= ruleParams[0] %>.'
 };

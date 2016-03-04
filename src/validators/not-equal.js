@@ -1,9 +1,7 @@
-'use strict';
+import _ from 'lodash/fp';
+import equal from './equal';
 
-var _ = require('lodash/fp');
-var equal = require('./equal');
-
-exports = module.exports = {
+module.exports = {
   validator: _.negate(equal.validator),
   message: '<%= propertyName %> must not equal to <%= ruleParams[0] %>.'
 };

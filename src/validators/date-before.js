@@ -1,29 +1,27 @@
-'use strict';
+import _ from 'lodash/fp';
+import moment from 'moment';
 
-var _ = require('lodash');
-var moment = require('moment');
-var NOW = 'now';
-var message = '<%= propertyName %> must less than <%= ruleParams[1] %>.';
-var self = exports;
+const NOW = 'now';
+const message = '<%= propertyName %> must less than <%= ruleParams[1] %>.';
 
 // Use object (it will be passed as reference at index.js) to represent the message,
 // because we want to change it dynamically based on the offset parameter
 // based on the offset parameters.
-var messageObj = {
+const messageObj = {
   toString: _.constant(message)
 };
 
-exports = module.exports = {
-  validator: function (val, ruleObj) {
+module.exports = {
+  validator: (val, ruleObj) => {
     if (!val) {
       return true;
     }
 
-    var date;
-    var dateInputFormat = ruleObj.params[0];
-    var dateInput = moment(val, dateInputFormat);
-    var offset = Number(ruleObj.params[2]);
-    var unit = ruleObj.params[3] || 'days';
+    let date;
+    const dateInputFormat = ruleObj.params[0];
+    const dateInput = moment(val, dateInputFormat);
+    let offset = Number(ruleObj.params[2]);
+    const unit = ruleObj.params[3] || 'days';
 
     if (ruleObj.params[1].toLowerCase() === NOW) {
       date = moment();
@@ -50,4 +48,3 @@ exports = module.exports = {
   },
   message: messageObj
 };
-

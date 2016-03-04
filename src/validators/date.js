@@ -1,11 +1,9 @@
-'use strict';
+import validator from 'validator';
 
-var stringValidator = require('validator');
-
-exports = module.exports = {
-  validator: function (val) {
+module.exports = {
+  validator: val => {
     if (val) {
-      return stringValidator.isDate(val);
+      return validator.isDate(val);
     }
 
     return true;

@@ -1,14 +1,9 @@
-'use strict';
+import _ from 'lodash/fp';
+import required from './required';
 
-var required = require('./required');
-var _ = require('lodash');
-
-exports = module.exports = {
-  validator: function (val) {
-    var trimmedValue = val;
-    if (_.isString(val)) {
-      trimmedValue = _.trim(val);
-    }
+module.exports = {
+  validator: val => {
+    const trimmedValue = _.isString(val) ? _.trim(val) : val;
     return required.validator(trimmedValue);
   },
   message: '<%= propertyName %> field must not be completely consists of white spaces.'

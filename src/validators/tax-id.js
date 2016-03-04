@@ -1,11 +1,9 @@
-'use strict';
+import _ from 'lodash/fp';
 
-var _ = require('lodash');
-
-var STRATEGY = {
+const hasNonDigit = _.some(isNaN);
+const STRATEGY = {
   id: 'id' // Indonesia
 };
-
 
 /**
  * Check if the given value is a valid Indonesian tax identification number.
@@ -14,43 +12,42 @@ var STRATEGY = {
  * @param {String} value
  * @returns {Boolean}
  */
-function validateIndonesianTaxId(value) {
-  var digits = value.split('');
+const validateIndonesianTaxId = value => {
+  const digits = value.split('');
 
-  debugger;
   // Indonesian Tax Id must have 15 digits numbers
   if (digits.length !== 15) {
     return false;
   }
 
-  var firstEightDigits = digits.slice(0, 8);
+  const firstEightDigits = digits.slice(0, 8);
 
-  if (_.some(firstEightDigits, isNaN)) {
+  if (hasNonDigit(firstEightDigits)) {
     return false;
   }
 
-  var total = firstEightDigits.reduce(function (acc, x, index) {
-    var oneBasedIndex = index + 1;
-    var isEvenIndex = oneBasedIndex % 2 === 0;
-    var y = isEvenIndex ? (x * 2) : x;
+  const total = firstEightDigits.reduce(function (acc, x, index) {
+    const oneBasedIndex = index + 1;
+    const isEvenIndex = oneBasedIndex % 2 === 0;
+    const y = isEvenIndex ? (x * 2) : x;
 
     return acc + parseInt(y / 10, 10) + parseInt(y % 10, 10);
   }, 0);
 
-  var ninthDigit = Number(digits[8]);
-  var roundedToNearestTen = Math.ceil(total / 10) * 10;
+  const ninthDigit = Number(digits[8]);
+  const roundedToNearestTen = Math.ceil(total / 10) * 10;
 
   return (roundedToNearestTen - total) === ninthDigit;
 }
 
 module.exports = {
-  validator: function (val, ruleObj) {
+  validator: (val, ruleObj) => {
     if (!val) {
       return true;
     }
 
-    var strategy = ruleObj.params[0];
-    var stringValue = String(val);
+    const strategy = ruleObj.params[0];
+    const stringValue = String(val);
 
     switch (strategy) {
       case STRATEGY.id: return validateIndonesianTaxId(stringValue);

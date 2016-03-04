@@ -1,14 +1,12 @@
-'use strict';
+import validator from 'validator';
 
-var stringValidator = require('validator');
-
-exports = module.exports = {
-  validator: function (val) {
-    if (val) {
-      return stringValidator.isURL(val);
+module.exports = {
+  validator: val => {
+    if (!val) {
+      return true;
     }
 
-    return true;
+    return validator.isURL(val);
   },
   message: '<%= propertyName %> is not a valid url.'
 };

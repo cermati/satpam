@@ -1,14 +1,13 @@
-'use strict';
-
-var _ = require('lodash');
+import _ from 'lodash/fp';
 
 exports = module.exports = {
-  validator: function (val) {
-    if (val) {
-      return _.isString(val);
+  validator: val => {
+    // Only run validation if it's defined.
+    if (_.isUndefined(val)) {
+      return true;
     }
 
-    return true;
+    return _.isString(val);
   },
   message: '<%= propertyName %> is not a string.'
 };
