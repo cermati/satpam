@@ -5,7 +5,8 @@
   "main": "lib/index.js",
   "scripts": {
     "compile": "babel -d lib/ src/",
-    "test": "babel -d lib/ src/ && mocha --compilers js:babel-core/register"
+    "prepublish": "npm run compile",
+    "test": "npm run compile && mocha --compilers js:babel-core/register"
   },
   "repository": "sendyhalim/satpam",
   "keywords": [
