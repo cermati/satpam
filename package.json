@@ -2,7 +2,7 @@
   "name": "satpam",
   "version": "0.0.24",
   "description": "Simple and Effective Object Validator",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "compile": "babel -d lib/ src/",
     "test": "babel -d lib/ src/ && mocha --compilers js:babel-core/register"
