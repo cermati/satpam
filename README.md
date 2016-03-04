@@ -7,22 +7,22 @@ custom validator with parameters and custom validation messages.
 
 ## Quick Usage
 ```js
-var satpam = require('satpam');
-var rules = {
-  name        : ['required']
-  officeEmail : ['email'],
-  phone       : ['required', 'numeric']
+import satpam from 'satpam';
+
+const rules = {
+  name: ['required']
+  officeEmail: ['email'],
+  phone: ['required', 'numeric']
 };
 
-
-var input = {
+const input = {
   name: 'Sendy',
   title: 'Lord',
   officeEmail: 'invalid email',
   phone: 'hi there123'
 };
 
-var result = satpam.validate(rules, input);
+const result = satpam.validate(rules, input);
 
 if (result.success === true) {
   // valid
@@ -46,9 +46,10 @@ Satpam has `create` method to create new validator instance.
 
 
 ```
-var satpam = require('satpam');
-var validatorOne = satpam.create();
-var validatorTwo = satpam.create();
+import satpam from 'satpam';
+
+const validatorOne = satpam.create();
+const validatorTwo = satpam.create();
 ```
 
 
@@ -86,15 +87,15 @@ var validatorTwo = satpam.create();
 - `taxId:$1` Currently only support indonesian tax id e.g. `taxId:id`
 
   Use object notation for defining this rule
-  [examples](https://github.com/sendyhalim/satpam/blob/master/tests/member-of.spec.js#L10)
+  [examples](https://github.com/sendyhalim/satpam/blob/master/test/member-of.spec.js#L10)
 - `beginWith:$1`
 
   Use object notation for defining this rule
-  [examples](https://github.com/sendyhalim/satpam/blob/master/tests/begin-with.spec.js#L10)
+  [examples](https://github.com/sendyhalim/satpam/blob/master/test/begin-with.spec.js#L10)
 - `regex:$1:$2`
 
   `$1` is the pattern, `$2` is the regex flags
-  [examples](https://github.com/sendyhalim/satpam/blob/master/tests/regex.spec.js#L9)
+  [examples](https://github.com/sendyhalim/satpam/blob/master/test/regex.spec.js#L9)
 
 ## Custom rules
 Add custom rules globally, it will affect every `Validator` instance(s) that
@@ -102,22 +103,19 @@ is created after the custom rules addition, but not the old instance(s).
 
 
 ```js
-var satpam = require('satpam');
+import satpam from 'satpam';
 
 // oldValidator will not have `must-be-ironman` rule, because it's created
 // before we add the custom validation.
-var oldValidator = satpam.create();
+const oldValidator = satpam.create();
 
 // The global satpam validator will always the most updated validation rules.
 // After this statement, we can do satpam.validate({name: ['must-be-ironman']}, ...);
-satpam.addCustomValidation('must-be-ironman', function(val) {
-  return val === 'ironman';
-});
-
+satpam.addCustomValidation('must-be-ironman', val => val === 'ironman');
 satpam.setValidationMessage('must-be-ironman', 'Not ironman D:');
 
 // With parameters
-satpam.addCustomValidation('range:$1:$2', function(val, ruleObj) {
+satpam.addCustomValidation('range:$1:$2', (val, ruleObj) => {
   return val >= ruleObj.params[0] && val <= ruleObj.params[1];
 });
 
@@ -127,7 +125,7 @@ satpam.setValidationMessage('range:$1:$2', '<%= propertyName %> must between <%=
 
 // newValidator will have `must-be-ironman` rule because it's created
 // after we add the custom validation.
-var newValidator = satpam.create();
+const newValidator = satpam.create();
 ```
 
 ## TODOs
@@ -136,6 +134,6 @@ var newValidator = satpam.create();
 - Validate file types.
 
 ## More examples
-[Here](https://github.com/sendyhalim/satpam/blob/master/tests)
+[Here](https://github.com/sendyhalim/satpam/blob/master/test)
 
 ![Read the source Luke](http://blog.codinghorror.com/content/images/uploads/2012/04/6a0120a85dcdae970b016765373659970b-800wi.jpg)
