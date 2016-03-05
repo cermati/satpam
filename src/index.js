@@ -158,7 +158,7 @@ class Validator {
         let ruleObj = {};
 
         if (_.isString(rule)) {
-          // First letiant, everything is embedded as string
+          // First variant, everything is embedded as string
           const splitted = rule.split(':');
           ruleObj = {
             // Property fullName is the generic full name of validation rule
