@@ -132,7 +132,12 @@ class Validator {
     };
   }
 
-  createRuleObject(rule) {
+  /**
+   * Create a rule object based on the given rule.
+   * @param rule {Object|String}
+   * @returns {{name: String, fullName: String, params: Array<String>}}
+   */
+  _createRuleObject(rule) {
     let ruleObj = {};
 
     if (_.isString(rule)) {
@@ -159,6 +164,7 @@ class Validator {
     return ruleObj;
   }
 
+
   /**
    * @example
    * let ruleMapping = {name: ['required']};
@@ -182,7 +188,7 @@ class Validator {
 
       // Rule array should be something like ['required', 'email']
       ruleArray.forEach(rule => {
-        const ruleObj = this.createRuleObject(rule);
+        const ruleObj = this._createRuleObject(rule);
         const validationRuleFn = validator.validation.rules[ruleObj.fullName];
         const validationResult = validationRuleFn(val, ruleObj, propertyName, inputObj);
 

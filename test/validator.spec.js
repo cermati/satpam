@@ -8,7 +8,7 @@ describe('Validator', () => {
     context('when the given rule is an object', () => {
       context('and it has no rule parameters', () => {
         it('should create valid ruleObj', () => {
-          const ruleObj = validator.createRuleObject({
+          const ruleObj = validator._createRuleObject({
             name: 'wut'
           });
 
@@ -22,7 +22,7 @@ describe('Validator', () => {
 
       context('and it has one rule parameter', () => {
         it('should create valid ruleObj', () => {
-          const ruleObj = validator.createRuleObject({
+          const ruleObj = validator._createRuleObject({
             name: 'this',
             params: ['is smelll']
           });
@@ -37,7 +37,7 @@ describe('Validator', () => {
 
       context('and it has two rule parameters', () => {
         it('should create valid ruleObj', () => {
-          const ruleObj = validator.createRuleObject({
+          const ruleObj = validator._createRuleObject({
             name: 'woosah',
             params: ['rocky', 'balboa']
           });
@@ -54,7 +54,7 @@ describe('Validator', () => {
     context('when the given rule is a string', () => {
       context('and it has no rule parameters', () => {
         it('should create valid ruleObj', () => {
-          const ruleObj = validator.createRuleObject('minions');
+          const ruleObj = validator._createRuleObject('minions');
 
           expect(ruleObj).to.deep.equal({
             name: 'minions',
@@ -66,7 +66,7 @@ describe('Validator', () => {
 
       context('and it has one rule parameter', () => {
         it('should create valid ruleObj', () => {
-          const ruleObj = validator.createRuleObject('minions:banana');
+          const ruleObj = validator._createRuleObject('minions:banana');
 
           expect(ruleObj).to.deep.equal({
             name: 'minions',
@@ -78,7 +78,7 @@ describe('Validator', () => {
 
       context('and it has two rule parameters', () => {
         it('should create valid ruleObj', () => {
-          const ruleObj = validator.createRuleObject('minions:banana:hulala');
+          const ruleObj = validator._createRuleObject('minions:banana:hulala');
 
           expect(ruleObj).to.deep.equal({
             name: 'minions',
