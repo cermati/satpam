@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _ from 'lodash/fp';
 
 import required from './validators/required';
 import email from './validators/email';
@@ -28,7 +28,7 @@ import taxId from './validators/tax-id';
 import phoneNumber from './validators/phone-number';
 import mobilePhoneNumber from './validators/mobile-phone-number';
 
-/*
+/**
  * Rules should have format:
  * {
  *   name        : ['required']
@@ -48,7 +48,6 @@ import mobilePhoneNumber from './validators/mobile-phone-number';
  *     number: 'Phone must be numeric'
  *   }
  * }
- *
  */
 
 let validation = {
@@ -133,11 +132,44 @@ class Validator {
   }
 
   /**
+   * Create a rule object based on the given rule.
+   * @param rule {Object|String}
+   * @returns {{name: String, fullName: String, params: Array<String>}}
+   */
+  _createRuleObject(rule) {
+    let ruleObj = {};
+
+    if (_.isString(rule)) {
+      // First variant, everything is embedded as string
+      const splitted = rule.split(':');
+
+      // Get only the first part of full rule e.g if range:1:3 then
+      // we will get 'range'
+      ruleObj.name = _.first(splitted);
+      // Get the rule params if e.g range:1:3 -> [1, 3]
+      ruleObj.params = splitted.slice(1);
+    } else {
+      // Second variant, it is already parsed (Object)
+      ruleObj.name = rule.name;
+      ruleObj.params = rule.params || [];
+    }
+
+    // Property fullName is the generic full name of validation rule
+    // e.g range:1:3 -> range:$1:$2, required -> required
+    ruleObj.fullName = ruleObj.params.reduce((ruleName, val, index) => {
+      return ruleName + ':$' + (index + 1).toString();
+    }, ruleObj.name);
+
+    return ruleObj;
+  }
+
+
+  /**
    * @example
-   * let ruleMapping = {name: ['required']};
-   * let inputObj = {name: ''};
-   * let validator = satpam.create();
-   * let result = validator.validate(ruleMapping, inputObj);
+   *   const ruleMapping = {name: ['required']};
+   *   const inputObj = {name: ''};
+   *   const validator = satpam.create();
+   *   const result = validator.validate(ruleMapping, inputObj);
    *
    * @param ruleMapping - An mapping of input property to the available rules
    *   e.g. {name: ['required', 'alpha']}
@@ -150,40 +182,12 @@ class Validator {
     let messageObj = new ValidationMessage();
 
     // Loop through the given rule mapping
-    _.forEach(ruleMapping, function (ruleArray, propertyName) {
+    _.forEach((ruleArray, propertyName) => {
       const val = inputObj[propertyName];
 
       // Rule array should be something like ['required', 'email']
-      ruleArray.forEach(function (rule) {
-        let ruleObj = {};
-
-        if (_.isString(rule)) {
-          // First letiant, everything is embedded as string
-          const splitted = rule.split(':');
-          ruleObj = {
-            // Property fullName is the generic full name of validation rule
-            // e.g range:1:3 -> range:$1:$2, required -> required
-            fullName: _.first(splitted),
-
-            // Get only the first part of full rule e.g if range:1:3 then
-            // we will get 'range'
-            name: _.first(splitted),
-
-            // Get the rule params if e.g range:1:3 -> [1, 3]
-            params: splitted.slice(1)
-          };
-        } else {
-          // Second letiant, it is already parsed
-          ruleObj.name = rule.name;
-          ruleObj.fullName = rule.name;
-          ruleObj.params = rule.params;
-        }
-
-        ruleObj.fullName = ruleObj.params.reduce(function (ruleName, val, index) {
-          return ruleName + ':$' + (index + 1).toString();
-        }, ruleObj.fullName);
-
-
+      ruleArray.forEach(rule => {
+        const ruleObj = this._createRuleObject(rule);
         const validationRuleFn = validator.validation.rules[ruleObj.fullName];
         const validationResult = validationRuleFn(val, ruleObj, propertyName, inputObj);
 
@@ -199,7 +203,7 @@ class Validator {
           messageObj.messageArray.push(msg);
         }
       });
-    });
+    }, ruleMapping);
 
     return {
       success: result,
@@ -231,6 +235,8 @@ class Validator {
    * Add custom validation the validator instance, it will only affect the
    * validator instance, if you want to add global validation rule then use
    * addCustomValidation method on satpam module.
+   *
+   * @example
    *   import satpam from 'satpam';
    *   satpam.addCustomValidation(.., ..);
    *
@@ -245,8 +251,11 @@ class Validator {
    * Set validation message for the given ruleName, it will only affect the
    * validator instance(the receiver), if you want to set global validation
    * message then use addCustomValidation method on satpam module.
+   *
+   * @example
    *   import satpam from 'satpam';
    *   satpam.setValidationMessage(.., ..);
+   *
    * @param ruleName
    * @param message
    */
@@ -264,10 +273,10 @@ exports.create = () => new Validator();
 
 /**
  * @example
- * let ruleMapping = {name: ['required']};
- * let inputObj = {name: ''};
- * let validator = satpam.create();
- * let result = validator.validate(ruleMapping, inputObj);
+ *   const ruleMapping = {name: ['required']};
+ *   const inputObj = {name: ''};
+ *   const validator = satpam.create();
+ *   const result = validator.validate(ruleMapping, inputObj);
  *
  * @param ruleMapping - An mapping of input property to the available rules
  *   e.g. {name: ['required', 'alpha']}
@@ -283,6 +292,8 @@ exports.validate = (ruleMapping, inputObj) => {
  * Add custom validation the validator instance, it will only affect the
  * validator instance, if you want to add global validation rule then use
  * addCustomValidation method on satpam module.
+ *
+ * @example
  *   import satpam from 'satpam';
  *   satpam.addCustomValidation(.., ..);
  *
@@ -297,8 +308,11 @@ exports.addCustomValidation = (ruleName, validationFunction) => {
  * Set validation message for the given ruleName, it will only affect the
  * validator instance(the receiver), if you want to set global validation
  * message then use addCustomValidation method on satpam module.
+ *
+ * @example
  *   import satpam from 'satpam';
  *   satpam.setValidationMessage(.., ..);
+ *
  * @param ruleName
  * @param message
  */

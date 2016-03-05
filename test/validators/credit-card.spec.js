@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import validator from '../lib';
+import validator from '../../lib';
 
 describe('Credit card validator', () => {
   const validCardNumber = '4111111111111111';

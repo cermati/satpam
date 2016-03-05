@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import validator from '../lib';
+import validator from '../../lib';
 
 describe('regexp validator', () => {
   context('given value that matches the pattern non digit', () => {
