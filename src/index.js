@@ -138,14 +138,12 @@ class Validator {
     if (_.isString(rule)) {
       // First variant, everything is embedded as string
       const splitted = rule.split(':');
-      ruleObj = {
-        // Get only the first part of full rule e.g if range:1:3 then
-        // we will get 'range'
-        name: _.first(splitted),
 
-        // Get the rule params if e.g range:1:3 -> [1, 3]
-        params: splitted.slice(1)
-      };
+      // Get only the first part of full rule e.g if range:1:3 then
+      // we will get 'range'
+      ruleObj.name = _.first(splitted);
+      // Get the rule params if e.g range:1:3 -> [1, 3]
+      ruleObj.params = splitted.slice(1);
     } else {
       // Second variant, it is already parsed (Object)
       ruleObj.name = rule.name;
