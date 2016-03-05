@@ -147,7 +147,7 @@ class Validator {
     } else {
       // Second variant, it is already parsed (Object)
       ruleObj.name = rule.name;
-      ruleObj.params = rule.params;
+      ruleObj.params = rule.params || [];
     }
 
     // Property fullName is the generic full name of validation rule
