@@ -28,7 +28,7 @@ import taxId from './validators/tax-id';
 import phoneNumber from './validators/phone-number';
 import mobilePhoneNumber from './validators/mobile-phone-number';
 
-/*
+/**
  * Rules should have format:
  * {
  *   name        : ['required']
@@ -48,7 +48,6 @@ import mobilePhoneNumber from './validators/mobile-phone-number';
  *     number: 'Phone must be numeric'
  *   }
  * }
- *
  */
 
 let validation = {
@@ -167,10 +166,10 @@ class Validator {
 
   /**
    * @example
-   * let ruleMapping = {name: ['required']};
-   * let inputObj = {name: ''};
-   * let validator = satpam.create();
-   * let result = validator.validate(ruleMapping, inputObj);
+   *   const ruleMapping = {name: ['required']};
+   *   const inputObj = {name: ''};
+   *   const validator = satpam.create();
+   *   const result = validator.validate(ruleMapping, inputObj);
    *
    * @param ruleMapping - An mapping of input property to the available rules
    *   e.g. {name: ['required', 'alpha']}
@@ -236,6 +235,8 @@ class Validator {
    * Add custom validation the validator instance, it will only affect the
    * validator instance, if you want to add global validation rule then use
    * addCustomValidation method on satpam module.
+   *
+   * @example
    *   import satpam from 'satpam';
    *   satpam.addCustomValidation(.., ..);
    *
@@ -250,8 +251,11 @@ class Validator {
    * Set validation message for the given ruleName, it will only affect the
    * validator instance(the receiver), if you want to set global validation
    * message then use addCustomValidation method on satpam module.
+   *
+   * @example
    *   import satpam from 'satpam';
    *   satpam.setValidationMessage(.., ..);
+   *
    * @param ruleName
    * @param message
    */
@@ -269,10 +273,10 @@ exports.create = () => new Validator();
 
 /**
  * @example
- * let ruleMapping = {name: ['required']};
- * let inputObj = {name: ''};
- * let validator = satpam.create();
- * let result = validator.validate(ruleMapping, inputObj);
+ *   const ruleMapping = {name: ['required']};
+ *   const inputObj = {name: ''};
+ *   const validator = satpam.create();
+ *   const result = validator.validate(ruleMapping, inputObj);
  *
  * @param ruleMapping - An mapping of input property to the available rules
  *   e.g. {name: ['required', 'alpha']}
@@ -288,6 +292,8 @@ exports.validate = (ruleMapping, inputObj) => {
  * Add custom validation the validator instance, it will only affect the
  * validator instance, if you want to add global validation rule then use
  * addCustomValidation method on satpam module.
+ *
+ * @example
  *   import satpam from 'satpam';
  *   satpam.addCustomValidation(.., ..);
  *
@@ -302,8 +308,11 @@ exports.addCustomValidation = (ruleName, validationFunction) => {
  * Set validation message for the given ruleName, it will only affect the
  * validator instance(the receiver), if you want to set global validation
  * message then use addCustomValidation method on satpam module.
+ *
+ * @example
  *   import satpam from 'satpam';
  *   satpam.setValidationMessage(.., ..);
+ *
  * @param ruleName
  * @param message
  */
