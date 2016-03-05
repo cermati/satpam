@@ -132,6 +132,35 @@ class Validator {
     };
   }
 
+  createRuleObject(rule) {
+    let ruleObj = {};
+
+    if (_.isString(rule)) {
+      // First variant, everything is embedded as string
+      const splitted = rule.split(':');
+      ruleObj = {
+        // Get only the first part of full rule e.g if range:1:3 then
+        // we will get 'range'
+        name: _.first(splitted),
+
+        // Get the rule params if e.g range:1:3 -> [1, 3]
+        params: splitted.slice(1)
+      };
+    } else {
+      // Second variant, it is already parsed (Object)
+      ruleObj.name = rule.name;
+      ruleObj.params = rule.params;
+    }
+
+    // Property fullName is the generic full name of validation rule
+    // e.g range:1:3 -> range:$1:$2, required -> required
+    ruleObj.fullName = ruleObj.params.reduce((ruleName, val, index) => {
+      return ruleName + ':$' + (index + 1).toString();
+    }, ruleObj.name);
+
+    return ruleObj;
+  }
+
   /**
    * @example
    * let ruleMapping = {name: ['required']};
@@ -150,40 +179,12 @@ class Validator {
     let messageObj = new ValidationMessage();
 
     // Loop through the given rule mapping
-    _.forEach(ruleMapping, function (ruleArray, propertyName) {
+    _.forEach(ruleMapping, (ruleArray, propertyName) => {
       const val = inputObj[propertyName];
 
       // Rule array should be something like ['required', 'email']
-      ruleArray.forEach(function (rule) {
-        let ruleObj = {};
-
-        if (_.isString(rule)) {
-          // First variant, everything is embedded as string
-          const splitted = rule.split(':');
-          ruleObj = {
-            // Property fullName is the generic full name of validation rule
-            // e.g range:1:3 -> range:$1:$2, required -> required
-            fullName: _.first(splitted),
-
-            // Get only the first part of full rule e.g if range:1:3 then
-            // we will get 'range'
-            name: _.first(splitted),
-
-            // Get the rule params if e.g range:1:3 -> [1, 3]
-            params: splitted.slice(1)
-          };
-        } else {
-          // Second letiant, it is already parsed
-          ruleObj.name = rule.name;
-          ruleObj.fullName = rule.name;
-          ruleObj.params = rule.params;
-        }
-
-        ruleObj.fullName = ruleObj.params.reduce(function (ruleName, val, index) {
-          return ruleName + ':$' + (index + 1).toString();
-        }, ruleObj.fullName);
-
-
+      ruleArray.forEach(rule => {
+        const ruleObj = this.createRuleObject(rule);
         const validationRuleFn = validator.validation.rules[ruleObj.fullName];
         const validationResult = validationRuleFn(val, ruleObj, propertyName, inputObj);
 
