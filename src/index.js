@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _ from 'lodash/fp';
 
 import required from './validators/required';
 import email from './validators/email';
@@ -182,7 +182,7 @@ class Validator {
     let messageObj = new ValidationMessage();
 
     // Loop through the given rule mapping
-    _.forEach(ruleMapping, (ruleArray, propertyName) => {
+    _.forEach((ruleArray, propertyName) => {
       const val = inputObj[propertyName];
 
       // Rule array should be something like ['required', 'email']
@@ -203,7 +203,7 @@ class Validator {
           messageObj.messageArray.push(msg);
         }
       });
-    });
+    }, ruleMapping);
 
     return {
       success: result,
