@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import moment from 'moment';
-import validator from '../lib';
+import validator from '../../lib';
 
 describe('Date After validator', () => {
   context('given a dateAfter rule with parameter `now`', () => {

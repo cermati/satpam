@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import validator from '../lib';
+import validator from '../../lib';
 
 describe('Date Format validator', () => {
   context('given a dateFormat rule with format DD-MM-YYYY', () => {

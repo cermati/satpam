@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import validator from '../lib';
+import validator from '../../lib';
 
 describe('MaxValue validator', () => {
   const ruleWithParam = {

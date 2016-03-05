@@ -1,13 +1,13 @@
 import { expect } from 'chai';
-import validator from '../lib';
+import validator from '../../lib';
 
-describe('String validator', () => {
+describe('Not equal validator', () => {
   const rules = {
-    someField: ['string']
+    someField: ['not-equal:ya-shall-nat-pazz']
   };
 
   it('should success with valid input', () => {
-    const result = validator.validate(rules, {someField: 'yoyoyo'});
+    const result = validator.validate(rules, {someField: 'pazz'});
     const err = result.messages;
 
     expect(result.success).to.equal(true);
@@ -15,11 +15,12 @@ describe('String validator', () => {
   });
 
   it('should fail with invalid input', () => {
-    const result = validator.validate(rules, {someField: 123});
+    const result = validator.validate(rules, {someField: 'ya-shall-nat-pazz'});
     const err = result.messages;
 
     expect(result.success).to.equal(false);
     expect(err).to.have.property('someField');
-    expect(err.someField.string).to.equal('Some Field is not a string.');
+    expect(err.someField['not-equal:$1'])
+      .to.equal('Some Field must not equal to ya-shall-nat-pazz.');
   });
 });

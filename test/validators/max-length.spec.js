@@ -1,22 +1,29 @@
 import { expect } from 'chai';
-import validator from '../lib';
+import validator from '../../lib';
 
-describe('MinLength validator', () => {
+describe('MaxLength validator', () => {
   const ruleWithParam = {
-    name: ['minLength:5']
+    name: ['maxLength:5']
   };
 
   const acceptedInputs = [
-    'abcde',
-    'abcd ',
-    'wololo',
-    'pneumonoultramicroscopicsilicovolcanoconiosis'
+    'tele',
+    'phone',
+    '',
+    ' woi ',
+    '4l@y.',
+    12345,
+    123,
+    0,
+    -1234
   ];
 
   const rejectedInputs = [
-    '',
-    'asd',
-    'tele',
+    '      ',
+    'asdasd',
+    'pneumonoultramicroscopicsilicovolcanoconiosis',
+    123456,
+    -12345,
     null,
     undefined
   ];
@@ -38,7 +45,7 @@ describe('MinLength validator', () => {
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('name');
-      expect(err.name['minLength:$1']).to.equal('Name must contain at least 5 character(s).');
+      expect(err.name['maxLength:$1']).to.equal('Name must contain at most 5 character(s).');
     });
   });
 });
