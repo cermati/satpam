@@ -1,4 +1,8 @@
+# Ignored directories
 node_modules/
 .idea/
 lib/
+
+# Ignored files
 npm-debug.log
+.DS_Store
