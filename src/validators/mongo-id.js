@@ -12,5 +12,5 @@ module.exports = {
 
     return regex.test(val.toString());
   },
-  message: '<%= propertyName %> field is not a valid Object ID.'
+  message: '<%= propertyName %> field is not a valid Mongo ID.'
 };

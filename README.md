@@ -74,7 +74,7 @@ const validatorTwo = satpam.create();
 - `string`
 - `nonBlank`
 - `creditCard`
-- `objectId` Check if the given string is a valid mongodb object id
+- `MongoId` Check if the given string is a valid mongodb object id
 - `phoneNumber` (Currently only supports Indonesia phone number)
 - `mobilePhoneNumber` (Currently only supports Indonesia mobile phone number)
 - `maxLength:<length>`

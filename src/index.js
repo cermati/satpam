@@ -27,7 +27,7 @@ import requiredIf from './validators/required-if';
 import taxId from './validators/tax-id';
 import phoneNumber from './validators/phone-number';
 import mobilePhoneNumber from './validators/mobile-phone-number';
-import objectId from './validators/object-id';
+import mongoId from './validators/mongo-id';
 
 let validation = {
   required: required.validator,
@@ -41,7 +41,7 @@ let validation = {
   string: string.validator,
   nonBlank: nonBlank.validator,
   creditCard: creditCard.validator,
-  objectId: objectId.validator,
+  mongoId: mongoId.validator,
   phoneNumber: phoneNumber.validator,
   mobilePhoneNumber: mobilePhoneNumber.validator,
   'maxLength:$1': maxLength.validator,
@@ -72,7 +72,7 @@ let validationMessages = {
   string: string.message,
   nonBlank: nonBlank.message,
   creditCard: creditCard.message,
-  objectId: objectId.message,
+  mongoId: mongoId.message,
   phoneNumber: phoneNumber.message,
   mobilePhoneNumber: mobilePhoneNumber.message,
   'maxValue:$1': maxValue.message,

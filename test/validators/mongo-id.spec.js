@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import validator from '../../lib';
 
-describe('Object ID validator', () => {
+describe('Mongo ID validator', () => {
   const rules = {
-    id: ['objectId']
+    id: ['mongoId']
   };
 
   it('should success if id is falsy', () => {
@@ -34,6 +34,6 @@ describe('Object ID validator', () => {
 
     expect(result.success).to.equal(false);
     expect(err).to.have.property('id');
-    expect(err.id.objectId).to.equal('Id field is not a valid Object ID.');
+    expect(err.id.mongoId).to.equal('Id field is not a valid Mongo ID.');
   });
 });
