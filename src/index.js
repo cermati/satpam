@@ -27,28 +27,7 @@ import requiredIf from './validators/required-if';
 import taxId from './validators/tax-id';
 import phoneNumber from './validators/phone-number';
 import mobilePhoneNumber from './validators/mobile-phone-number';
-
-/**
- * Rules should have format:
- * {
- *   name        : ['required']
- *   officeEmail : ['email'],
- *   phone       : ['required', 'numeric']
- * }
- *
- * Example input:
- * { name: 'Sendy', title: 'Lord', officeEmail: 'invalid email', phone: 'hi there123'}
- *
- * messageObj will be like this
- * {
- *   officeEmail: {
- *     email: 'OfficeEmail must be email'
- *   }
- *   phone: {
- *     number: 'Phone must be numeric'
- *   }
- * }
- */
+import objectId from './validators/object-id';
 
 let validation = {
   required: required.validator,
@@ -62,6 +41,7 @@ let validation = {
   string: string.validator,
   nonBlank: nonBlank.validator,
   creditCard: creditCard.validator,
+  objectId: objectId.validator,
   phoneNumber: phoneNumber.validator,
   mobilePhoneNumber: mobilePhoneNumber.validator,
   'maxLength:$1': maxLength.validator,
@@ -92,6 +72,7 @@ let validationMessages = {
   string: string.message,
   nonBlank: nonBlank.message,
   creditCard: creditCard.message,
+  objectId: objectId.message,
   phoneNumber: phoneNumber.message,
   mobilePhoneNumber: mobilePhoneNumber.message,
   'maxValue:$1': maxValue.message,
