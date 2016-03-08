@@ -27,6 +27,7 @@ import requiredIf from './validators/required-if';
 import taxId from './validators/tax-id';
 import phoneNumber from './validators/phone-number';
 import mobilePhoneNumber from './validators/mobile-phone-number';
+import objectId from './validators/object-id';
 
 /**
  * Rules should have format:
@@ -64,6 +65,7 @@ let validation = {
   creditCard: creditCard.validator,
   phoneNumber: phoneNumber.validator,
   mobilePhoneNumber: mobilePhoneNumber.validator,
+  objectId: objectId.validator,
   'maxLength:$1': maxLength.validator,
   'minLength:$1': minLength.validator,
   'maxValue:$1': maxValue.validator,
@@ -94,6 +96,7 @@ let validationMessages = {
   creditCard: creditCard.message,
   phoneNumber: phoneNumber.message,
   mobilePhoneNumber: mobilePhoneNumber.message,
+  objectId: objectId.message,
   'maxValue:$1': maxValue.message,
   'minValue:$1': minValue.message,
   'maxLength:$1': maxLength.message,
