@@ -29,28 +29,6 @@ import phoneNumber from './validators/phone-number';
 import mobilePhoneNumber from './validators/mobile-phone-number';
 import objectId from './validators/object-id';
 
-/**
- * Rules should have format:
- * {
- *   name        : ['required']
- *   officeEmail : ['email'],
- *   phone       : ['required', 'numeric']
- * }
- *
- * Example input:
- * { name: 'Sendy', title: 'Lord', officeEmail: 'invalid email', phone: 'hi there123'}
- *
- * messageObj will be like this
- * {
- *   officeEmail: {
- *     email: 'OfficeEmail must be email'
- *   }
- *   phone: {
- *     number: 'Phone must be numeric'
- *   }
- * }
- */
-
 let validation = {
   required: required.validator,
   numeric: numeric.validator,
