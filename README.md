@@ -6,10 +6,12 @@ custom validator with parameters and custom validation messages.
 [![Build Status](https://travis-ci.org/sendyhalim/satpam.svg)](https://travis-ci.org/sendyhalim/satpam)
 [![npm version](https://badge.fury.io/js/satpam.svg)](https://badge.fury.io/js/satpam)
 
+
 ## Installation
 ```
 npm install satpam --save
 ```
+
 
 ## Quick Usage
 ```js
@@ -42,6 +44,7 @@ if (result.success === true) {
   result.messages.messageArray[1] = 'Phone must be numeric';
 }
 ```
+
 
 ## Satpam instance
 Satpam has `create` method to create new validator instance.
@@ -104,7 +107,8 @@ const validatorTwo = satpam.create();
   `$1` is the pattern, `$2` is the regex flags
   [examples](https://github.com/sendyhalim/satpam/blob/master/test/regex.spec.js#L9)
 
-## Custom rules
+
+## Custom Validation Rules
 Add custom rules globally, it will affect every `Validator` instance(s) that
 is created after the custom rules addition, but not the old instance(s).
 
@@ -135,15 +139,59 @@ satpam.setValidationMessage('range:$1:$2', '<%= propertyName %> must between <%=
 const newValidator = satpam.create();
 ```
 
+
+## Custom Validation Messages
+Setting validation messages is easy:
+
+```
+satpam.setValidationMessage('minLength:$1', '<%= propertyName %> must have length more than <%= ruleParams[0] %>');
+```
+
+You can also pass a `Function` instead of a `String`
+
+```
+/**
+ * @example
+ * import satpam from 'satpam';
+ *
+ * const rules = {name: ['minLength:10']};
+ * const input = {name: 'wubwub'};
+ * satpam.validate(rules, input);
+ *
+ * expect(ruleObj.name).to.equal('minLength');
+ * expect(ruleObj.fullName).to.equal('minLength:$1');
+ * expect(ruleObj.params).to.deep.equal([10]);
+ * expect(propertyName).to.equal('name');
+ * expect(value).to.equal('wubwub');
+ *
+ * @param ruleObj
+ * @param ruleObj.name - The validation rule name
+ *   e.g. `minLength:10` will have name minLength
+ * @param ruleObj.fullName - Validation rule fullname
+ *   e.g. `minLength:10` will have fullName `minLength:$1`
+ * @param ruleObj.params - The rule parameters
+ *   e.g. `minlength:10` will have params `[10]`
+ * @param propertyName
+ * @param value
+ */
+const message = (ruleObj, propertyName, value) => {
+  ...
+};
+satpam.setValidationMessage('minLength:$1', message);
+```
+
+
 ## TODOs
 - Better documentation.
 - Add more validation rules.
 - Validate file types.
 
-## More examples
+
+## More Examples
 [Here](https://github.com/sendyhalim/satpam/blob/master/test)
 
 ![Read the source Luke](http://blog.codinghorror.com/content/images/uploads/2012/04/6a0120a85dcdae970b016765373659970b-800wi.jpg)
+
 
 ## License
 MIT
