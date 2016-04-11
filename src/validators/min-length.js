@@ -2,7 +2,7 @@ import _ from 'lodash/fp';
 
 const validate = (val, ruleObj) => {
   if (_.isUndefined(val) || _.isNull(val)) {
-    return false;
+    return true;
   }
 
   const valAsString = _.isFunction(val.toString) ? val.toString() : '';

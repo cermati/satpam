@@ -15,7 +15,9 @@ describe('MaxLength validator', () => {
     12345,
     123,
     0,
-    -1234
+    -1234,
+    null,
+    undefined
   ];
 
   const rejectedInputs = [
@@ -23,9 +25,7 @@ describe('MaxLength validator', () => {
     'asdasd',
     'pneumonoultramicroscopicsilicovolcanoconiosis',
     123456,
-    -12345,
-    null,
-    undefined
+    -12345
   ];
 
   it('should success', () => {

@@ -10,15 +10,15 @@ describe('MinLength validator', () => {
     'abcde',
     'abcd ',
     'wololo',
-    'pneumonoultramicroscopicsilicovolcanoconiosis'
+    'pneumonoultramicroscopicsilicovolcanoconiosis',
+    null,
+    undefined
   ];
 
   const rejectedInputs = [
     '',
     'asd',
-    'tele',
-    null,
-    undefined
+    'tele'
   ];
 
   it('should success', () => {
