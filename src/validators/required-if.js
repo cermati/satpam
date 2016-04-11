@@ -1,14 +1,15 @@
 import required from './required';
 
-module.exports = {
-  validator: (val, ruleObj, propertyName, inputObj) => {
-    const targetProperty = ruleObj.params[0];
+const validate = (val, ruleObj, propertyName, inputObj) => {
+  const targetProperty = ruleObj.params[0];
 
-    if (inputObj[targetProperty] === ruleObj.params[1]) {
-      return required.validator(val);
-    }
+  if (inputObj[targetProperty] === ruleObj.params[1]) {
+    return required.validate(val);
+  }
 
-    return true;
-  },
-  message: required.message
+  return true;
 };
+
+const message = required.message;
+
+export default {validate, message};

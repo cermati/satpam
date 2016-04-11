@@ -1,7 +1,8 @@
 import _ from 'lodash/fp';
 import equal from './equal';
 
-module.exports = {
-  validator: _.negate(equal.validator),
-  message: '<%= propertyName %> must not equal to <%= ruleParams[0] %>.'
-};
+const validate = _.negate(equal.validate);
+
+const message = '<%= propertyName %> must not equal to <%= ruleParams[0] %>.';
+
+export default {validate, message};

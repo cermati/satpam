@@ -1,18 +1,19 @@
 import _ from 'lodash/fp';
 
-module.exports = {
-  validator: (val, ruleObj) => {
-    if (_.isUndefined(val) || _.isNull(val)) {
-      return false;
-    }
+const validate = (val, ruleObj) => {
+  if (_.isUndefined(val) || _.isNull(val)) {
+    return false;
+  }
 
-    const valAsNumber = _.isNumber(val) ? val : Number(val);
+  const valAsNumber = _.isNumber(val) ? val : Number(val);
 
-    if (_.isNaN(valAsNumber)) {
-      return false;
-    }
+  if (_.isNaN(valAsNumber)) {
+    return false;
+  }
 
-    return valAsNumber >= Number(ruleObj.params[0]);
-  },
-  message: '<%= propertyName %> must be greater than or equal to <%= ruleParams[0] %>.'
+  return valAsNumber >= Number(ruleObj.params[0]);
 };
+
+const message = '<%= propertyName %> must be greater than or equal to <%= ruleParams[0] %>.';
+
+export default {validate, message};

@@ -1,12 +1,13 @@
 import validator from 'validator';
 
-module.exports = {
-  validator: val => {
-    if (!val) {
-      return true;
-    }
+const validate = val => {
+  if (!val) {
+    return true;
+  }
 
-    return validator.isURL(val);
-  },
-  message: '<%= propertyName %> is not a valid url.'
+  return validator.isURL(val);
 };
+
+const message = '<%= propertyName %> is not a valid url.';
+
+export default {validate, message};
