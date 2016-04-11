@@ -53,8 +53,7 @@ Satpam has `create` method to create new validator instance.
 - The cloned validation rules and messages will be based on the current state of the global satpam validator. See [Custom Rules](#custom-rules)
 
 
-
-```
+```js
 import satpam from 'satpam';
 
 const validatorOne = satpam.create();
@@ -89,7 +88,7 @@ const validatorTwo = satpam.create();
 - `notEqual:$1`
 - `requiredIf:$1:$2`
 
-  ```
+  ```js
   var input = {message: 'hi!'};
   // `subject` is required if message equals `hi!`
   satpam.validate({subject: 'requiredIf:message:hi!'});
@@ -143,13 +142,16 @@ const newValidator = satpam.create();
 ## Custom Validation Messages
 Setting validation messages is easy:
 
-```
-satpam.setValidationMessage('minLength:$1', '<%= propertyName %> must have length more than <%= ruleParams[0] %>');
+```js
+satpam.setValidationMessage(
+  'minLength:$1',
+  '<%= propertyName %> must have length more than <%= ruleParams[0] %>'
+);
 ```
 
 You can also pass a `Function` instead of a `String`
 
-```
+```js
 /**
  * @example
  * import satpam from 'satpam';
