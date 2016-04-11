@@ -33,13 +33,14 @@ const validateCreditCard = str => {
   return !!((sum % 10) === 0 ? sanitized : false);
 };
 
-module.exports = {
-  validator: val => {
-    if (val) {
-      return validateCreditCard(val);
-    }
+const validate = val => {
+  if (val) {
+    return validateCreditCard(val);
+  }
 
-    return true;
-  },
-  message: '<%= propertyName %> is not a valid credit card number.'
+  return true;
 };
+
+const message = '<%= propertyName %> is not a valid credit card number.';
+
+export default {validate, message};

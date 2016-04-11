@@ -40,24 +40,25 @@ const validateIndonesianTaxId = value => {
   return (roundedToNearestTen - total) === ninthDigit;
 }
 
-module.exports = {
-  validator: (val, ruleObj) => {
-    if (!val) {
-      return true;
-    }
+const validate = (val, ruleObj) => {
+  if (!val) {
+    return true;
+  }
 
-    const strategy = ruleObj.params[0];
-    const stringValue = String(val);
+  const strategy = ruleObj.params[0];
+  const stringValue = String(val);
 
-    switch (strategy) {
-      case STRATEGY.id: return validateIndonesianTaxId(stringValue);
+  switch (strategy) {
+  case STRATEGY.id: return validateIndonesianTaxId(stringValue);
 
-      default:
-        throw new Error(
-          'Could not found tax id validation strategy for the given strategy: %s',
-          strategy
-        );
-      }
-  },
-  message: '<%= propertyName %> is not a valid tax identification number.'
+  default:
+    throw new Error(
+      'Could not found tax id validation strategy for the given strategy: %s',
+      strategy
+    );
+  }
 };
+
+const message = '<%= propertyName %> is not a valid tax identification number.';
+
+export default {validate, message};

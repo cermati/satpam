@@ -1,4 +1,7 @@
-module.exports = {
-  validator: val => !(val === undefined || val === null || val === ''),
-  message: '<%= propertyName %> field is required.'
+const validate = val => {
+  return !(val === undefined || val === null || val === '');
 };
+
+const message = '<%= propertyName %> field is required.';
+
+export default {validate, message};
