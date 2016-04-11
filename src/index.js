@@ -200,7 +200,9 @@ class Validator {
    * @returns {String}
    */
   getValidationMessage(ruleObj, propertyName, val) {
-    const compiled = _.template(this.validation.messages[ruleObj.fullName]);
+    const message = this.validation.messages[ruleObj.fullName];
+    const messageTemplate = _.isFunction(message) ? message(ruleObj, propertyName, val) : message;
+    const compiled = _.template(messageTemplate);
     propertyName = _.startCase(propertyName);
 
     return compiled({
