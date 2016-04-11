@@ -98,7 +98,7 @@ class ValidationMessage {
 }
 
 /**
- * Create a new validator. When it's created, it will has a cloned (deep) global
+ * Create a new validator. When it's created, it will have a deep cloned global
  * validation rules and global validation messages. Any changes made to the
  * instance's rules or messages will not affect the global validation rules
  * and messages.
