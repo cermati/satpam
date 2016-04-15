@@ -15,4 +15,4 @@ function InvalidValidationRuleParameter(message) {
 InvalidValidationRuleParameter.prototype = Object.create(Error.prototype);
 InvalidValidationRuleParameter.prototype.constructor = InvalidValidationRuleParameter;
 
-exports.InvalidValidationRuleParameter = InvalidValidationRuleParameter;
+export {InvalidValidationRuleParameter};
