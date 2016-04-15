@@ -1,5 +1,3 @@
-import _ from 'lodash/fp';
-
 /**
  * A class that represents an invalid validation rule pareameter
  *
