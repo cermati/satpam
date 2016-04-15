@@ -22,7 +22,7 @@ describe ('MinimumAge validator', () => {
 
     it('should not set validation message', () => {
       expect(result.messages.messageArray).to.be.empty;
-      expect(result.messages).to.not.have.property('minimumAge:$1:$2');
+      expect(result.messages).to.not.have.property('birthDate');
     });
   });
 
