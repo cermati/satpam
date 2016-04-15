@@ -25,6 +25,7 @@
     "lodash": "^4.0",
     "moment": "^2.10.6",
     "read-chunk": "^1.0.1",
+    "sprintf-js": "^1.0.3",
     "validator": "^3.39.0"
   },
   "devDependencies": {
