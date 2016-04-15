@@ -86,7 +86,8 @@ const validatorTwo = satpam.create();
 - `memberOf:$1`
 - `equal:$1`
 - `notEqual:$1`
-- `requiredIf:$1:$2`
+- `requiredIf:<fieldName>:<value>`
+- `minimumAge:<age>:<dateFormat>`
 
   ```js
   var input = {message: 'hi!'};
@@ -106,6 +107,10 @@ const validatorTwo = satpam.create();
   `$1` is the pattern, `$2` is the regex flags
   [examples](https://github.com/sendyhalim/satpam/blob/master/test/regex.spec.js#L9)
 
+
+
+## Complete Examples
+[Complete Examples](https://github.com/sendyhalim/satpam/blob/master/test/validators)
 
 ## Custom Validation Rules
 Add custom rules globally, it will affect every `Validator` instance(s) that
@@ -187,12 +192,6 @@ satpam.setValidationMessage('minLength:$1', message);
 - Better documentation.
 - Add more validation rules.
 - Validate file types.
-
-
-## More Examples
-[Here](https://github.com/sendyhalim/satpam/blob/master/test)
-
-![Read the source Luke](http://blog.codinghorror.com/content/images/uploads/2012/04/6a0120a85dcdae970b016765373659970b-800wi.jpg)
 
 
 ## License

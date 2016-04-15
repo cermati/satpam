@@ -28,6 +28,7 @@ import taxId from './validators/tax-id';
 import phoneNumber from './validators/phone-number';
 import mobilePhoneNumber from './validators/mobile-phone-number';
 import mongoId from './validators/mongo-id';
+import minimumAge from './validators/minimum-age';
 
 let validation = {
   required: required.validate,
@@ -57,7 +58,8 @@ let validation = {
   'dateAfter:$1:$2:$3:$4': dateAfter.validate,
   'dateBefore:$1:$2:$3:$4': dateBefore.validate,
   'requiredIf:$1:$2': requiredIf.validate,
-  'taxId:$1': taxId.validate
+  'taxId:$1': taxId.validate,
+  'minimumAge:$1:$2': minimumAge.validate
 };
 
 let validationMessages = {
@@ -88,7 +90,8 @@ let validationMessages = {
   'dateAfter:$1:$2:$3:$4': dateAfter.message,
   'dateBefore:$1:$2:$3:$4': dateBefore.message,
   'requiredIf:$1:$2': requiredIf.message,
-  'taxId:$1': taxId.message
+  'taxId:$1': taxId.message,
+  'minimumAge:$1:$2': minimumAge.message
 };
 
 class ValidationMessage {
