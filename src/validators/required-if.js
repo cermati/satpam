@@ -3,6 +3,7 @@ import required from './required';
 
 class And {
   constructor(mappings) {
+    this.type = 'and';
     this.mappings = mappings;
   }
 
@@ -17,6 +18,7 @@ class And {
 
 class Or {
   constructor(mappings) {
+    this.type = 'or';
     this.mappings = mappings;
   }
 
@@ -29,11 +31,22 @@ class Or {
   }
 }
 
+const isAnd = structure => {
+  return structure instanceof And || structure.type === 'and';
+};
+
+const isOr = structure => {
+  return structure instanceof Or || structure.type === 'or';
+};
+
+const shouldUseSatisfied = structure => {
+  return isAnd(structure) || isOr(structure);
+};
+
 const validate = (val, ruleObj, propertyName, inputObj) => {
   const targetProperty = ruleObj.params[0];
 
-  if ((targetProperty instanceof And && targetProperty.satisifed(inputObj)) ||
-      (targetProperty instanceof Or && targetProperty.satisfied(inputObj)) ||
+  if ((shouldUseSatisfied(targetProperty) && targetProperty.satisfied(inputObj)) ||
       (inputObj[targetProperty] === ruleObj.params[1])) {
     return required.validate(val);
   }
