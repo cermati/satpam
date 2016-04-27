@@ -19,6 +19,17 @@ class Conjunction {
       return inputValue === mappingValue;
     };
   }
+
+  static shouldConvertToConjunction(obj) {
+    return !Conjunction.isConjunction(obj) &&
+      _.isObject(obj) &&
+      _.has('type', obj) &&
+      _.has('mappings', obj);
+  }
+
+  static isConjunction(obj) {
+    return obj instanceof Conjunction;
+  }
 }
 
 class And extends Conjunction {
@@ -47,17 +58,6 @@ const objectIsOrConjunction = _.flowRight(
   _.property('type')
 );
 
-const isConjunctionInstance = structure => {
-  return (structure instanceof And) || (structure instanceof Or);
-};
-
-const shouldConvertToConjunction = obj => {
-  return !isConjunctionInstance(obj) &&
-    _.isObject(obj) &&
-    _.has('type', obj) &&
-    _.has('mappings', obj);
-};
-
 const conjunction = obj => {
   if (objectIsOrConjunction(obj)) {
     return new Or(obj.mappings);
@@ -68,9 +68,9 @@ const conjunction = obj => {
 
 const validate = (val, ruleObj, propertyName, inputObj) => {
   const params = ruleObj.params;
-  const targetProperty = shouldConvertToConjunction(params[0]) ? conjunction(params[0]) : params[0];
+  const targetProperty = Conjunction.shouldConvertToConjunction(params[0]) ? conjunction(params[0]) : params[0];
 
-  if ((isConjunctionInstance(targetProperty) && targetProperty.satisfied(inputObj))) {
+  if ((Conjunction.isConjunction(targetProperty) && targetProperty.satisfied(inputObj))) {
     return required.validate(val);
   }
 
