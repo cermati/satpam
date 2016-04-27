@@ -1,4 +1,4 @@
-import _ from 'lodahs/fp';
+import _ from 'lodash/fp';
 import required from './required';
 
 class And {
