@@ -31,23 +31,40 @@ class Or {
   }
 }
 
-const isAnd = structure => {
-  return structure instanceof And || structure.type === 'and';
+const objectIsAndConjunction = _.flowRight(
+  _.eq('and'),
+  _.property('type')
+);
+
+const objectIsOrConjunction = _.flowRight(
+  _.eq('or'),
+  _.property('type')
+);
+
+const isConjunctionInstance = structure => {
+  return (structure instanceof And) || (structure instanceof Or);
 };
 
-const isOr = structure => {
-  return structure instanceof Or || structure.type === 'or';
+const shouldConvertToConjunction = obj => {
+  return !isConjunctionInstance(obj) &&
+    _.isObject(obj) &&
+    _.has('type', obj) &&
+    _.has('mappings', obj);
 };
 
-const shouldUseSatisfied = structure => {
-  return isAnd(structure) || isOr(structure);
+const conjunction = obj => {
+  if (objectIsOrConjunction(obj)) {
+    return new Or(obj.mappings);
+  } else {
+    return new And(obj.mappings);
+  }
 };
 
 const validate = (val, ruleObj, propertyName, inputObj) => {
   const params = ruleObj.params;
-  const targetProperty = params[0];
+  const targetProperty = shouldConvertToConjunction(params[0]) ? conjunction(params[0]) : params[0];
 
-  if ((shouldUseSatisfied(targetProperty) && targetProperty.satisfied(inputObj))) {
+  if ((isConjunctionInstance(targetProperty) && targetProperty.satisfied(inputObj))) {
     return required.validate(val);
   }
 
