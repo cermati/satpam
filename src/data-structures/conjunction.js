@@ -11,12 +11,13 @@ class Conjunction {
       const inputValue = _.get(mappingKey, inputObj);
 
       // Nested conjunction
-      if (_.isObject(mappingValue) &&
-          Conjunction.shouldConvertToConjunction(mappingValue)) {
+      if (Conjunction.isConjunction(mappingValue)) {
+        return mappingValue.satisfied(inputValue);
+      } else if (Conjunction.shouldConvertToConjunction(mappingValue)) {
         return create(mappingValue).satisfied(inputValue);
+      } else {
+        return inputValue === mappingValue;
       }
-
-      return inputValue === mappingValue;
     };
   }
 
