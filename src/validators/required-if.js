@@ -1,31 +1,37 @@
 import _ from 'lodash/fp';
 import required from './required';
 
-class And {
-  constructor(mappings) {
-    this.type = 'and';
-    this.mappings = mappings;
-  }
-
-  satisfied(inputObj) {
-    const equalInput = mappingKey => {
-      return _.get(mappingKey, inputObj) === _.get(mappingKey, this.mappings);
-    };
-
-    return _.every(equalInput, _.keys(this.mappings));
-  }
-}
-
-class Or {
+class Conjunction {
   constructor(mappings) {
     this.type = 'or';
     this.mappings = mappings;
   }
 
-  satisfied(inputObj) {
-    const equalInput = mappingKey => {
-      return _.get(mappingKey, inputObj) === _.get(mappingKey, this.mappings);
+  createEqualInputChecker(inputObj) {
+    return mappingKey => {
+      const mappingValue = _.get(mappingKey, this.mappings);
+      const inputValue = _.get(mappingKey, inputObj);
+
+      if (_.isArray(mappingValue)) {
+        return mappingValue.indexOf(inputValue) > -1;
+      }
+
+      return inputValue === mappingValue;
     };
+  }
+}
+
+class And extends Conjunction {
+  satisfied(inputObj) {
+    const equalInput = this.createEqualInputChecker(inputObj);
+
+    return _.every(equalInput, _.keys(this.mappings));
+  }
+}
+
+class Or extends Conjunction {
+  satisfied(inputObj) {
+    const equalInput = this.createEqualInputChecker(inputObj);
 
     return _.some(equalInput, _.keys(this.mappings));
   }
