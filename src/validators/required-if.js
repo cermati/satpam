@@ -44,14 +44,16 @@ const shouldUseSatisfied = structure => {
 };
 
 const validate = (val, ruleObj, propertyName, inputObj) => {
-  const targetProperty = ruleObj.params[0];
+  const params = ruleObj.params;
+  const targetProperty = params[0];
 
   if ((shouldUseSatisfied(targetProperty) && targetProperty.satisfied(inputObj))) {
     return required.validate(val);
   }
 
   if (!_.isUndefined(inputObj[targetProperty]) &&
-      inputObj[targetProperty] === ruleObj.params[1]) {
+      !_.isUndefined(params[1]) &&
+      inputObj[targetProperty] === params[1]) {
     return required.validate(val);
   }
 
