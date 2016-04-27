@@ -1,5 +1,8 @@
 import _ from 'lodash/fp';
 
+const AND = 'and';
+const OR = 'or';
+
 class Conjunction {
   constructor(mappings) {
     this.mappings = mappings;
@@ -36,7 +39,7 @@ class Conjunction {
 class And extends Conjunction {
   constructor(mappings) {
     super(mappings);
-    this.type = 'and';
+    this.type = AND;
   }
 
   satisfied(inputObj) {
@@ -49,7 +52,7 @@ class And extends Conjunction {
 class Or extends Conjunction {
   constructor(mappings) {
     super(mappings);
-    this.type = 'or';
+    this.type = OR;
   }
 
   satisfied(inputObj) {
@@ -60,12 +63,12 @@ class Or extends Conjunction {
 }
 
 const objectIsAndConjunction = _.flowRight(
-  _.eq('and'),
+  _.eq(AND),
   _.property('type')
 );
 
 const objectIsOrConjunction = _.flowRight(
-  _.eq('or'),
+  _.eq(OR),
   _.property('type')
 );
 
