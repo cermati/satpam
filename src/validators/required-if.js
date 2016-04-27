@@ -43,4 +43,4 @@ const validate = (val, ruleObj, propertyName, inputObj) => {
 
 const message = required.message;
 
-export default {validate, message};
+export default {validate, message, And, Or};
