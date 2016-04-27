@@ -39,36 +39,79 @@ describe('Required if validator', () => {
       });
     });
 
-    context('when given Or parameter', () => {
-      const or = new requiredIf.Or({
-        hasHome: 'yes',
-        hasApartment: 'yo'
-      });
+    context('when given `Or` structure as parameter', () => {
+      const testWithOr = or => {
+        const rules = {
+          address: [{
+            fullName: 'requiredIf:$1:$2',
+            params: [or]
+          }]
+        };
 
-      const rules = {
-        address: [{
-          fullName: 'requiredIf:$1:$2',
-          params: [or]
-        }]
+        context('with satisfied parameter', () => {
+          it('should success with valid input', () => {
+            const result = validator.validate(rules, {
+              hasHome: 'yes',
+              address: 'wut'
+            });
+            const err = result.messages;
+
+            expect(result.success).to.equal(true);
+            expect(err).to.not.have.property('address');
+          });
+
+          it('should fail with invalid input', () => {
+            const result = validator.validate(rules, {
+              hasHome: 'yes'
+            });
+            const err = result.messages;
+
+            expect(result.success).to.equal(false);
+            expect(err.address).to.have.property('requiredIf:$1:$2')
+              .that.equals('Address field is required.');
+          });
+        });
+
+        context('with unsatisfied parameter', () => {
+          it('should success with different input dependency value', () => {
+            const result = validator.validate(rules, {
+              hasHome: 'yess'
+            });
+            const err = result.messages;
+
+            expect(result.success).to.equal(true);
+            expect(err).to.not.have.property('address');
+          });
+
+          it('should success with empty input', () => {
+            const result = validator.validate(rules, {});
+            const err = result.messages;
+
+            expect(result.success).to.equal(true);
+            expect(err).to.not.have.property('address');
+          });
+        });
       };
 
-      it('should success with 1 satisfied parameter', () => {
-        const result = validator.validate(rules, {
+      context('and it\'s an `Or` instance', () => {
+        const or = new requiredIf.Or({
           hasHome: 'yes',
-          address: 'wut'
+          hasApartment: 'yo'
         });
-        const err = result.messages;
 
-        expect(result.success).to.equal(true);
-        expect(err).to.not.have.property('address');
+        testWithOr(or);
       });
 
-      it('should success when all parameters are not satisfied', () => {
-        const result = validator.validate(rules, {});
-        const err = result.messages;
+      context('and it\'s an object with type equals to or', () => {
+        const or = {
+          type: 'or',
+          mappings: {
+            hasHome: 'yes',
+            hasApartment: 'yo'
+          }
+        };
 
-        expect(result.success).to.equal(true);
-        expect(err).to.not.have.property('address');
+        testWithOr(or);
       });
     });
   });
