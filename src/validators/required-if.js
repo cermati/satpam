@@ -8,11 +8,11 @@ class And {
   }
 
   satisfied(inputObj) {
-    const equalInput = mapping => {
-      return _.get(mapping.key, inputObj) === mapping.value;
+    const equalInput = mappingKey => {
+      return _.get(mappingKey, inputObj) === _.get(mappingKey, this.mappings);
     };
 
-    return _.every(equalInput, this.mappings);
+    return _.every(equalInput, _.keys(this.mappings));
   }
 }
 
