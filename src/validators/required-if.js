@@ -8,7 +8,7 @@ class And {
   }
 
   satisfied(inputObj) {
-    const equalInput = function (mapping) {
+    const equalInput = mapping => {
       return _.get(mapping.key, inputObj) === mapping.value;
     };
 
@@ -23,11 +23,11 @@ class Or {
   }
 
   satisfied(inputObj) {
-    const equalInput = function (mapping) {
-      return _.get(mapping.key, inputObj) === mapping.value;
+    const equalInput = mappingKey => {
+      return _.get(mappingKey, inputObj) === _.get(mappingKey, this.mappings);
     };
 
-    return _.some(equalInput, this.mappings);
+    return _.some(equalInput, _.keys(this.mappings));
   }
 }
 
@@ -46,8 +46,12 @@ const shouldUseSatisfied = structure => {
 const validate = (val, ruleObj, propertyName, inputObj) => {
   const targetProperty = ruleObj.params[0];
 
-  if ((shouldUseSatisfied(targetProperty) && targetProperty.satisfied(inputObj)) ||
-      (inputObj[targetProperty] === ruleObj.params[1])) {
+  if ((shouldUseSatisfied(targetProperty) && targetProperty.satisfied(inputObj))) {
+    return required.validate(val);
+  }
+
+  if (!_.isUndefined(inputObj[targetProperty]) &&
+      inputObj[targetProperty] === ruleObj.params[1]) {
     return required.validate(val);
   }
 
