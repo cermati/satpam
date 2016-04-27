@@ -2,7 +2,6 @@ import _ from 'lodash/fp';
 
 class Conjunction {
   constructor(mappings) {
-    this.type = 'or';
     this.mappings = mappings;
   }
 
@@ -32,6 +31,11 @@ class Conjunction {
 }
 
 class And extends Conjunction {
+  constructor(mappings) {
+    super(mappings);
+    this.type = 'and';
+  }
+
   satisfied(inputObj) {
     const equalInput = this.createEqualInputChecker(inputObj);
 
@@ -40,6 +44,11 @@ class And extends Conjunction {
 }
 
 class Or extends Conjunction {
+  constructor(mappings) {
+    super(mappings);
+    this.type = 'or';
+  }
+
   satisfied(inputObj) {
     const equalInput = this.createEqualInputChecker(inputObj);
 
