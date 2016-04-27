@@ -10,8 +10,9 @@ class Conjunction {
       const mappingValue = _.get(mappingKey, this.mappings);
       const inputValue = _.get(mappingKey, inputObj);
 
-      if (_.isArray(mappingValue)) {
-        return mappingValue.indexOf(inputValue) > -1;
+      // Nested conjunction
+      if (_.isObject(mappingValue)) {
+        return create(mappingValue).satisfied(inputValue);
       }
 
       return inputValue === mappingValue;
