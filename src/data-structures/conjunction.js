@@ -11,7 +11,8 @@ class Conjunction {
       const inputValue = _.get(mappingKey, inputObj);
 
       // Nested conjunction
-      if (_.isObject(mappingValue)) {
+      if (_.isObject(mappingValue) &&
+          Conjunction.shouldConvertToConjunction(mappingValue)) {
         return create(mappingValue).satisfied(inputValue);
       }
 
