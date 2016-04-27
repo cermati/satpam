@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import validator from '../../lib';
 import requiredIf from '../../lib/validators/required-if';
-
+import conjunction from '../../lib/data-structures/conjunction';
 
 describe('Required if validator', () => {
   context('with validator wrapper', () => {
@@ -42,7 +42,7 @@ describe('Required if validator', () => {
 
     context('when given `Or` structure as parameter', () => {
       context('and it\'s an `Or` instance', () => {
-        const or = new requiredIf.Or({
+        const or = new conjunction.Or({
           hasHome: 'yes',
           hasApartment: 'yo'
         });
@@ -65,7 +65,7 @@ describe('Required if validator', () => {
 
     context('when given `And` structure as parameter', () => {
       context('and it\'s an `And` instance', () => {
-        const and = new requiredIf.And({
+        const and = new conjunction.And({
           hasHome: 'yes',
           hasApartment: 'yo'
         });
