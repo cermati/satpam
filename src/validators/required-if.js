@@ -4,9 +4,9 @@ import conjunction from '../data-structures/conjunction';
 
 const validate = (val, ruleObj, propertyName, inputObj) => {
   const params = ruleObj.params;
-  const targetProperty = conjunction.Conjunction.shouldConvertToConjunction(params[0]) ?
-          conjunction.create(params[0]) :
-          params[0];
+  const targetProperty = conjunction.Conjunction.shouldCreateConjunction(params[0]) ?
+    conjunction.create(params[0]) :
+    params[0];
 
   if (conjunction.Conjunction.isConjunction(targetProperty) &&
       targetProperty.satisfied(inputObj)) {
