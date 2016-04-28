@@ -33,7 +33,7 @@ describe('`Or` Conjunction', () => {
           expect(result).to.be.true;
         });
 
-        it('should not be satisfied when all of the inputs are not matched', () => {
+        it('should not be satisfied when all of the inputs do not match', () => {
           const result = or.satisfied({
             tywin: 'lanniser',
             day: 'liht',
@@ -47,7 +47,7 @@ describe('`Or` Conjunction', () => {
       context('and the given mappings value is an array', () => {
         const or = new conjunction.Or({name: ['hi', 'there']});
 
-        it('should be satisfied when one of the value is matched', () => {
+        it('should be satisfied when one of the input matches', () => {
           const result = or.satisfied({name: 'there'});
 
           expect(result).to.be.true;
@@ -122,13 +122,13 @@ describe('`Or` Conjunction', () => {
             }
           });
 
-          it('should be satisfied when one of the inner mappings is satisfied', () => {
+          it('should be satisfied when the input matches one of the inner mappings', () => {
             const result = or.satisfied({lannister: 'approves'});
 
             expect(result).to.be.true;
           });
 
-          it('should not be satisfied when none of the inner mappings is satisfied', () => {
+          it('should not be satisfied when the input does not match any of the inner mappings', () => {
             const result = or.satisfied({lannister: 'approve'});
 
             expect(result).to.be.false;
@@ -173,13 +173,13 @@ describe('`Or` Conjunction', () => {
             }
           });
 
-          it('should be satisfied when one of the inner mappings is satisfied', () => {
+          it('should be satisfied when the input matches one of the inner mappings', () => {
             const result = or.satisfied({ye: 'teur'});
 
             expect(result).to.be.true;
           });
 
-          it('should not be satisfied when none of the inner mappings is satisfied', () => {
+          it('should not be satisfied when the input does not match any of the inner mappings', () => {
             const result = or.satisfied({lannister: 'approve'});
 
             expect(result).to.be.false;
