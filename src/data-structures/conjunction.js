@@ -17,7 +17,9 @@ class Conjunction {
       if (Conjunction.isConjunction(mappingValue)) {
         return mappingValue.satisfied(inputValue);
       } else if (Conjunction.shouldConvertToConjunction(mappingValue)) {
-        return create(mappingValue).satisfied(inputValue);
+        return create(mappingValue).satisfied(inputObj);
+      } else if (_.isArray(mappingValue)) {
+        return mappingValue.indexOf(inputValue) > -1;
       } else {
         return inputValue === mappingValue;
       }
