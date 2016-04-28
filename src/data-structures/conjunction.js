@@ -75,8 +75,11 @@ const objectIsOrConjunction = _.flowRight(
 const create = obj => {
   if (objectIsOrConjunction(obj)) {
     return new Or(obj.mappings);
-  } else {
+  } else if (objectIsAndConjunction(obj)) {
     return new And(obj.mappings);
+  } else {
+    var message = 'Cannot create conjunction based on ' + obj;
+    throw new Error(message);
   }
 };
 
