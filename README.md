@@ -87,6 +87,10 @@ const validatorTwo = satpam.create();
 - `equal:$1`
 - `notEqual:$1`
 - `requiredIf:<fieldName>:<value>`
+  For more complex example please see
+  - [`requiredIf` examples](https://github.com/sendyhalim/satpam/blob/master/test/validators/required-if.spec.js#L147)
+  - [`conjunction` examples](https://github.com/sendyhalim/satpam/blob/master/test/data-structures/conjunction)
+
 - `minimumAge:<age>:<dateFormat>`
 
   ```js
@@ -97,15 +101,15 @@ const validatorTwo = satpam.create();
 - `taxId:$1` Currently only support indonesian tax id e.g. `taxId:id`
 
   Use object notation for defining this rule
-  [examples](https://github.com/sendyhalim/satpam/blob/master/test/member-of.spec.js#L10)
+  [examples](https://github.com/sendyhalim/satpam/blob/master/test/validators/member-of.spec.js#L5)
 - `beginWith:$1`
 
   Use object notation for defining this rule
-  [examples](https://github.com/sendyhalim/satpam/blob/master/test/begin-with.spec.js#L10)
+  [examples](https://github.com/sendyhalim/satpam/blob/master/test/validators/begin-with.spec.js#L5)
 - `regex:$1:$2`
 
   `$1` is the pattern, `$2` is the regex flags
-  [examples](https://github.com/sendyhalim/satpam/blob/master/test/regex.spec.js#L9)
+  [examples](https://github.com/sendyhalim/satpam/blob/master/test/validators/regex.spec.js#L6)
 
 
 
