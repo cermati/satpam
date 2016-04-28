@@ -135,14 +135,17 @@ class Validator {
     } else {
       // Second variant, it is already parsed (Object)
       ruleObj.name = rule.name;
+      ruleObj.fullName = rule.fullName;
       ruleObj.params = rule.params || [];
     }
 
-    // Property fullName is the generic full name of validation rule
-    // e.g range:1:3 -> range:$1:$2, required -> required
-    ruleObj.fullName = ruleObj.params.reduce((ruleName, val, index) => {
-      return ruleName + ':$' + (index + 1).toString();
-    }, ruleObj.name);
+    if (!ruleObj.fullName) {
+      // Property fullName is the generic full name of validation rule
+      // e.g range:1:3 -> range:$1:$2, required -> required
+      ruleObj.fullName = ruleObj.params.reduce((ruleName, val, index) => {
+        return ruleName + ':$' + (index + 1).toString();
+      }, ruleObj.name);
+    }
 
     return ruleObj;
   }
