@@ -101,16 +101,36 @@ class Or extends Conjunction {
   }
 }
 
+/**
+ * Check if the given object is an object-like `And` conjunction.
+ * @param {Object} obj
+ * @param {String} obj.type
+ * @returns {Boolean}
+ */
 const objectIsAndConjunction = _.flowRight(
   _.eq(AND),
   _.property('type')
 );
 
+
+/**
+ * Check if the given object is an object-like `Or` conjunction.
+ * @param {Object} obj
+ * @param {String} obj.type
+ * @returns {Boolean}
+ */
 const objectIsOrConjunction = _.flowRight(
   _.eq(OR),
   _.property('type')
 );
 
+/**
+ * Create an instance of `Conjunction` based on the object `type` property.
+ * @param {Object} obj
+ * @param {String} obj.type
+ * @param {Object} obj.mappings
+ * @returns {Conjunction}
+ */
 const create = obj => {
   if (objectIsOrConjunction(obj)) {
     return new Or(obj.mappings);
