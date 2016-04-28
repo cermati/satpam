@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import conjunction from '../../../src/data-structures/conjunction';
+import conjunction from '../../../lib/data-structures/conjunction';
 
 describe('`Or` Conjunction', () => {
   describe('.satisfied()', () => {
