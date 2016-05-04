@@ -89,7 +89,7 @@ const validatorTwo = satpam.create();
 - `requiredIf:<fieldName>:<value>`
   For more complex example please see
   - [`requiredIf` examples](https://github.com/sendyhalim/satpam/blob/master/test/validators/required-if.spec.js#L147)
-  - [`conjunction` examples](https://github.com/sendyhalim/satpam/blob/master/test/data-structures/conjunction)
+  - [`noes` examples](https://github.com/sendyhalim/noes)
 
 - `minimumAge:<age>:<dateFormat>`
 
