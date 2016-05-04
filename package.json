@@ -4,9 +4,9 @@
   "description": "Simple and Effective Object Validator",
   "main": "lib/index.js",
   "scripts": {
-    "compile": "babel -d lib/ src/",
+    "compile": "rm -rf ./lib && babel -d lib/ src/",
     "prepublish": "npm run compile",
-    "test": "rm -rf ./lib && npm run compile && mocha test --recursive --compilers js:babel-core/register",
+    "test": "npm run compile && mocha test --recursive --compilers js:babel-core/register",
     "test-individual": "npm run compile && mocha --compilers js:babel-core/register"
   },
   "repository": "sendyhalim/satpam",
