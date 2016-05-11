@@ -1,6 +1,6 @@
 {
   "name": "satpam",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Simple and Effective Object Validator",
   "main": "lib/index.js",
   "scripts": {
@@ -23,7 +23,7 @@
   "homepage": "https://github.com/sendyhalim/satpam",
   "dependencies": {
     "image-type": "^2.0.2",
-    "lodash": "^4.0",
+    "lodash": "~4.11.0",
     "moment": "^2.10.6",
     "noes": "^0.0.2",
     "read-chunk": "^1.0.1",
