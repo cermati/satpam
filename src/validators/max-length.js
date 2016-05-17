@@ -7,7 +7,7 @@ const validate = (val, ruleObj) => {
 
   const valAsString = _.isFunction(val.toString) ? val.toString() : '';
 
-  return valAsString.length <= ruleObj.params[0];
+  return valAsString.length <= Number(ruleObj.params[0]);
 };
 
 const message = '<%= propertyName %> must contain at most <%= ruleParams[0] %> character(s).';

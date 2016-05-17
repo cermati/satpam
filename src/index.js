@@ -10,6 +10,7 @@ import date from './validators/date';
 import url from './validators/url';
 import string from './validators/string';
 import nonBlank from './validators/non-blank';
+import length from './validators/length';
 import maxLength from './validators/max-length';
 import minLength from './validators/min-length';
 import minValue from './validators/min-value';
@@ -45,6 +46,7 @@ let validation = {
   mongoId: mongoId.validate,
   phoneNumber: phoneNumber.validate,
   mobilePhoneNumber: mobilePhoneNumber.validate,
+  'length:$1': length.validate,
   'maxLength:$1': maxLength.validate,
   'minLength:$1': minLength.validate,
   'maxValue:$1': maxValue.validate,
@@ -77,6 +79,7 @@ let validationMessages = {
   mongoId: mongoId.message,
   phoneNumber: phoneNumber.message,
   mobilePhoneNumber: mobilePhoneNumber.message,
+  'length:$1': length.message,
   'maxValue:$1': maxValue.message,
   'minValue:$1': minValue.message,
   'maxLength:$1': maxLength.message,

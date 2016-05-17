@@ -79,6 +79,7 @@ const validatorTwo = satpam.create();
 - `mongoId` Check if the given string is a valid mongodb object id
 - `phoneNumber` (Currently only supports Indonesia phone number)
 - `mobilePhoneNumber` (Currently only supports Indonesia mobile phone number)
+- `length:<length>`
 - `maxLength:<length>`
 - `minLength:<length>`
 - `maxValue:<max value>`
