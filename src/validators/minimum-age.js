@@ -1,4 +1,4 @@
-import _ from 'lodash/fp';
+import R from 'ramda';
 import moment from 'moment';
 
 import {InvalidValidationRuleParameter} from '../data-structures/errors';
@@ -21,7 +21,7 @@ const message = 'Minimum age is <%= ruleParams[0] %> years old.';
 const validate = (dateString, ruleObj) => {
   const minimumAge = Number(ruleObj.params[0]);
 
-  if (!_.isNumber(minimumAge)) {
+  if (!R.is(Number, minimumAge)) {
     throw new InvalidValidationRuleParameter(minimumAge);
   }
 

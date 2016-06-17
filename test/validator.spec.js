@@ -1,3 +1,4 @@
+import R from 'ramda';
 import { expect } from 'chai';
 import satpam from '../lib';
 
@@ -230,26 +231,53 @@ describe('Validator', () => {
 
     context('.getValidationMessage()', () => {
       context('when instance validation message is customized', () => {
-        const validator = satpam.create();
+        context('and the validation messsage is a string literal', () => {
+          const validator = satpam.create();
 
-        before('set validation message', () => {
-          validator.setValidationMessage('required', 'bulbazaurz');
+          before('set validation message', () => {
+            validator.setValidationMessage('required', 'bulbazaurz');
+          });
+
+          it('should return correct validation message', () => {
+            const ruleObj = {
+              fullName: 'required'
+            };
+
+            const message = validator.getValidationMessage(ruleObj, 'name', 'wut');
+            expect(message).to.equal('bulbazaurz');
+          });
+
+          it('should not affect global validation message', () => {
+            const rules = {fullName: ['required']};
+            const result = satpam.validate(rules, {});
+
+            expect(result.messages.fullName.required).to.equal('Full Name field is required.');
+          });
         });
 
-        it('should return correct validation message', () => {
-          const ruleObj = {
-            fullName: 'required'
-          };
+        context('and the validation messsage is a function literal', () => {
+          const validator = satpam.create();
 
-          const message = validator.getValidationMessage(ruleObj, 'name', 'wut');
-          expect(message).to.equal('bulbazaurz');
-        });
+          before('set validation message', () => {
+            validator.setValidationMessage('required', R.always('it is required!'));
+          });
 
-        it('should not affect global validation message', () => {
-          const rules = {fullName: ['required']};
-          const result = satpam.validate(rules, {});
+          it('should return correct validation message', () => {
+            const ruleObj = {
+              fullName: 'required'
+            };
 
-          expect(result.messages.fullName.required).to.equal('Full Name field is required.');
+            const message = validator.getValidationMessage(ruleObj, 'name', 'wut');
+
+            expect(message).to.equal('it is required!');
+          });
+
+          it('should not affect global validation message', () => {
+            const rules = {fullName: ['required']};
+            const result = satpam.validate(rules, {});
+
+            expect(result.messages.fullName.required).to.equal('Full Name field is required.');
+          });
         });
       });
 

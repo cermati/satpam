@@ -1,11 +1,11 @@
-import _ from 'lodash/fp';
+import R from 'ramda';
 
 const validate = (val, ruleObj) => {
-  if (_.isUndefined(val) || _.isNull(val)) {
+  if (R.isNil(val)) {
     return true;
   }
 
-  const valAsString = _.isFunction(val.toString) ? val.toString() : '';
+  const valAsString = R.is(Function, val.toString) ? val.toString() : '';
 
   return valAsString.length <= Number(ruleObj.params[0]);
 };

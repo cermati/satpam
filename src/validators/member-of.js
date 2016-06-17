@@ -1,11 +1,11 @@
-import _ from 'lodash/fp';
+import R from 'ramda';
 
 const validate = (val, ruleObj) => {
-  const valArray = _.isArray(val) ? val : [val];
+  const valArray = R.is(Array, val) ? val : [val];
   const list = ruleObj.params[0];
   const notInList = item => list.indexOf(item) === -1;
 
-  return !_.some(notInList, valArray);
+  return R.none(notInList, valArray);
 };
 
 const message = '<%= propertyName %> must be one of <%= ruleParams[0] %>.';

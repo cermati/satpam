@@ -1,4 +1,5 @@
-import _ from 'lodash/fp';
+import R from 'ramda';
+import _ from 'lodash';
 
 import required from './validators/required';
 import email from './validators/email';
@@ -113,8 +114,8 @@ class ValidationMessage {
 class Validator {
   constructor() {
     this.validation = {
-      rules: _.cloneDeep(validation),
-      messages: _.cloneDeep(validationMessages)
+      rules: R.clone(validation),
+      messages: R.clone(validationMessages)
     };
   }
 
@@ -126,13 +127,13 @@ class Validator {
   _createRuleObject(rule) {
     let ruleObj = {};
 
-    if (_.isString(rule)) {
+    if (R.is(String, rule)) {
       // First variant, everything is embedded as string
       const splitted = rule.split(':');
 
       // Get only the first part of full rule e.g if range:1:3 then
       // we will get 'range'
-      ruleObj.name = _.first(splitted);
+      ruleObj.name = R.head(splitted);
       // Get the rule params if e.g range:1:3 -> [1, 3]
       ruleObj.params = splitted.slice(1);
     } else {
@@ -172,7 +173,8 @@ class Validator {
     let messageObj = new ValidationMessage();
 
     // Loop through the given rule mapping
-    _.forEach((ruleArray, propertyName) => {
+    R.keys(ruleMapping).forEach(propertyName => {
+      const ruleArray = ruleMapping[propertyName];
       const val = inputObj[propertyName];
 
       // Rule array should be something like ['required', 'email']
@@ -193,7 +195,7 @@ class Validator {
           messageObj.messageArray.push(msg);
         }
       });
-    }, ruleMapping);
+    });
 
     return {
       success: result,
@@ -210,7 +212,7 @@ class Validator {
    */
   getValidationMessage(ruleObj, propertyName, val) {
     const message = this.validation.messages[ruleObj.fullName];
-    const messageTemplate = _.isFunction(message) ? message(ruleObj, propertyName, val) : message;
+    const messageTemplate = R.is(Function, message) ? message(ruleObj, propertyName, val) : message;
     const compiled = _.template(messageTemplate);
     propertyName = _.startCase(propertyName);
 
