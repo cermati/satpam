@@ -23,6 +23,7 @@
   "homepage": "https://github.com/sendyhalim/satpam",
   "dependencies": {
     "image-type": "^2.0.2",
+    "lodash": "^4.13.1",
     "moment": "^2.10.6",
     "noes": "^0.0.2",
     "ramda": "^0.21.0",
