@@ -1,7 +1,7 @@
-import _ from 'lodash/fp';
+import R from 'ramda';
 import equal from './equal';
 
-const validate = _.negate(equal.validate);
+const validate = R.complement(equal.validate);
 
 const message = '<%= propertyName %> must not equal to <%= ruleParams[0] %>.';
 

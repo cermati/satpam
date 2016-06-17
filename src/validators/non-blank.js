@@ -1,8 +1,8 @@
-import _ from 'lodash/fp';
+import R from 'ramda';
 import required from './required';
 
 const validate = val => {
-  const trimmedValue = _.isString(val) ? _.trim(val) : val;
+  const trimmedValue = R.is(String, val) ? R.trim(val) : val;
 
   return required.validate(trimmedValue);
 };

@@ -1,13 +1,13 @@
-import _ from 'lodash/fp';
+import R from 'ramda';
 
 const validate = (val, ruleObj) => {
-  if (_.isUndefined(val) || _.isNull(val)) {
+  if (R.isNil(val)) {
     return false;
   }
 
-  const valAsNumber = _.isNumber(val) ? val : Number(val);
+  const valAsNumber = R.is(Number, val) ? val : Number(val);
 
-  if (_.isNaN(valAsNumber)) {
+  if (isNaN(valAsNumber)) {
     return false;
   }
 

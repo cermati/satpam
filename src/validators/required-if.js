@@ -1,5 +1,5 @@
 import noes from 'noes';
-import _ from 'lodash/fp';
+import R from 'ramda';
 import required from './required';
 
 const validate = (val, ruleObj, propertyName, inputObj) => {
@@ -13,8 +13,8 @@ const validate = (val, ruleObj, propertyName, inputObj) => {
     return required.validate(val);
   }
 
-  if (!_.isUndefined(inputObj[targetProperty]) &&
-      !_.isUndefined(params[1]) &&
+  if (!R.isNil(inputObj[targetProperty]) &&
+      !R.isNil(params[1]) &&
       inputObj[targetProperty] === params[1]) {
     return required.validate(val);
   }

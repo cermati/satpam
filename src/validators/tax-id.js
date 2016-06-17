@@ -1,6 +1,6 @@
-import _ from 'lodash/fp';
+import R from 'ramda';
 
-const hasNonDigit = _.some(isNaN);
+const hasNonDigit = R.any(isNaN);
 const STRATEGY = {
   id: 'id' // Indonesia
 };

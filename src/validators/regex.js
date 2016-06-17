@@ -1,7 +1,7 @@
-import _ from 'lodash/fp';
+import R from 'ramda';
 
 const validate = (val, ruleObj) => {
-  if (!_.isString(val)) {
+  if (!R.is(String, val)) {
     return false;
   }
 

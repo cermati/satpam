@@ -1,18 +1,21 @@
-import _ from 'lodash/fp';
+import R from 'ramda';
 
 const validate = (val, ruleObj) => {
-  if (_.isUndefined(val) || _.isNull(val)) {
+  if (R.isNil(val)) {
     return false;
   }
 
-  const valArray = _.isArray(val) ? val : [val];
+  const valArray = R.is(Array, val) ? val : [val];
   const prefixList = ruleObj.params[0];
 
-  return !_.some(item => {
+  return R.all(item => {
     const itemAsString = item.toString();
-    const itemBeginsWith = _.startsWith(_, itemAsString);
+    const itemBeginsWith = R.compose(
+      R.equals(0),
+      R.indexOf(R.__, itemAsString)
+    );
 
-    return !_.some(itemBeginsWith, prefixList);
+    return R.any(itemBeginsWith, prefixList);
   }, valArray);
 };
 

@@ -1,4 +1,4 @@
-import _ from 'lodash/fp';
+import R from 'ramda';
 import moment from 'moment';
 
 const NOW = 'now';
@@ -27,17 +27,17 @@ const validate = (val, ruleObj) => {
   }
 
   // Always start with a defaultMessage
-  message.toString = _.constant(defaultMessage);
+  message.toString = R.always(defaultMessage);
 
   if (offset) {
     if (offset < 0) {
       offset = Math.abs(offset);
-      message.toString = _.constant(
+      message.toString = R.always(
         '<%= propertyName %> must greater than <%= ruleParams[1] %> minus <%= Math.abs(ruleParams[2]) %> <%= ruleParams[3] %>.'
       );
       date = date.subtract(offset, unit);
     } else {
-      message.toString = _.constant('<%= propertyName %> must greater than <%= ruleParams[1] %> plus <%= ruleParams[2] %> <%= ruleParams[3] %>.');
+      message.toString = R.always('<%= propertyName %> must greater than <%= ruleParams[1] %> plus <%= ruleParams[2] %> <%= ruleParams[3] %>.');
       date = date.add(offset, unit);
     }
   }

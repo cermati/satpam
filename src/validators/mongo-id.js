@@ -1,5 +1,3 @@
-import _ from 'lodash/fp';
-
 // A regex to check whether the given string is a valid object id
 // https://github.com/Automattic/mongoose/issues/1959
 const regex = /^[a-fA-F0-9]{24}$/;
