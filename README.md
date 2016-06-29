@@ -88,17 +88,17 @@ const validatorTwo = satpam.create();
 - `equal:$1`
 - `notEqual:$1`
 - `requiredIf:<fieldName>:<value>`
-  For more complex example please see
-  - [`requiredIf` examples](https://github.com/sendyhalim/satpam/blob/master/test/validators/required-if.spec.js#L147)
-  - [`noes` examples](https://github.com/sendyhalim/noes)
-
-- `minimumAge:<age>:<dateFormat>`
-
   ```js
   var input = {message: 'hi!'};
   // `subject` is required if message equals `hi!`
   satpam.validate({subject: 'requiredIf:message:hi!'});
   ```
+
+  For more complex example please see
+  - [`requiredIf` examples](https://github.com/sendyhalim/satpam/blob/master/test/validators/required-if.spec.js#L147)
+  - [`noes` examples](https://github.com/sendyhalim/noes)
+
+- `minimumAge:<age>:<dateFormat>`
 - `taxId:$1` Currently only support indonesian tax id e.g. `taxId:id`
 
   Use object notation for defining this rule
