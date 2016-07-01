@@ -44,9 +44,7 @@ describe('MemberOf validator', () => {
 
   it('should fail for single item not in the list', () => {
     const rejectedInputs = [
-      'shark',
-      null,
-      undefined
+      'shark'
     ];
 
     rejectedInputs.forEach(function test(rejectedInput) {

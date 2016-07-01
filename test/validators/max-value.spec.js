@@ -46,9 +46,7 @@ describe('MaxValue validator', () => {
     const rejectedInputs = [
       '1-1-1+1',
       'asdasd',
-      {lol: 'wut'},
-      null,
-      undefined
+      {lol: 'wut'}
     ];
 
     rejectedInputs.forEach(function test(rejectedInput) {

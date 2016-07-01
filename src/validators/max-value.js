@@ -2,7 +2,7 @@ import R from 'ramda';
 
 const validate = (val, ruleObj) => {
   if (R.isNil(val)) {
-    return false;
+    return true;
   }
 
   const valAsNumber = R.is(Number, val) ? val : Number(val);
