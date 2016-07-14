@@ -180,8 +180,14 @@ class Validator {
       // Rule array should be something like ['required', 'email']
       ruleArray.forEach(rule => {
         const ruleObj = this._createRuleObject(rule);
-        const validationRuleFn = validator.validation.rules[ruleObj.fullName];
-        const validationResult = validationRuleFn(val, ruleObj, propertyName, inputObj);
+        const validate = validator.validation.rules[ruleObj.fullName];
+
+        if (!R.is(Function, validate)) {
+          const ruleObjString = JSON.stringify(ruleObj);
+          throw new Error(`${ruleObj.fullName} is not a valid satpam validation rule. Rule object: ${ruleObjString}`);
+        }
+
+        const validationResult = validate(val, ruleObj, propertyName, inputObj);
 
         if (!validationResult) {
           result = false;
