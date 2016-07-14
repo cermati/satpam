@@ -229,164 +229,178 @@ describe('Validator', () => {
       });
     });
 
-    context('.getValidationMessage()', () => {
-      context('when instance validation message is customized', () => {
-        context('and the validation messsage is a string literal', () => {
-          const validator = satpam.create();
+    context('when given invalid validation rule', () => {
+      it('should throw error', () => {
+        const rules = {
+          test: ['invalid-rule']
+        };
 
-          before('set validation message', () => {
-            validator.setValidationMessage('required', 'bulbazaurz');
-          });
+        const validate = () => {
+          satpam.validate(rules, {});
+        };
 
-          it('should return correct validation message', () => {
-            const ruleObj = {
-              fullName: 'required'
-            };
-
-            const message = validator.getValidationMessage(ruleObj, 'name', 'wut');
-            expect(message).to.equal('bulbazaurz');
-          });
-
-          it('should not affect global validation message', () => {
-            const rules = {fullName: ['required']};
-            const result = satpam.validate(rules, {});
-
-            expect(result.messages.fullName.required).to.equal('Full Name field is required.');
-          });
-        });
-
-        context('and the validation messsage is a function literal', () => {
-          const validator = satpam.create();
-
-          before('set validation message', () => {
-            validator.setValidationMessage('required', R.always('it is required!'));
-          });
-
-          it('should return correct validation message', () => {
-            const ruleObj = {
-              fullName: 'required'
-            };
-
-            const message = validator.getValidationMessage(ruleObj, 'name', 'wut');
-
-            expect(message).to.equal('it is required!');
-          });
-
-          it('should not affect global validation message', () => {
-            const rules = {fullName: ['required']};
-            const result = satpam.validate(rules, {});
-
-            expect(result.messages.fullName.required).to.equal('Full Name field is required.');
-          });
-        });
+        expect(validate).to.throw(Error);
       });
+    });
+  });
 
-      context('when global validation message is customized', () => {
+  context('.getValidationMessage()', () => {
+    context('when instance validation message is customized', () => {
+      context('and the validation messsage is a string literal', () => {
         const validator = satpam.create();
 
-        before('set global validation message', () => {
-          satpam.setValidationMessage('required', 'huuu!');
+        before('set validation message', () => {
+          validator.setValidationMessage('required', 'bulbazaurz');
         });
 
         it('should return correct validation message', () => {
-          const ruleObj = {fullName: ['required']};
-          const result = satpam.validate(ruleObj, {});
+          const ruleObj = {
+            fullName: 'required'
+          };
 
-          expect(result.messages.fullName.required).to.equal('huuu!');
+          const message = validator.getValidationMessage(ruleObj, 'name', 'wut');
+          expect(message).to.equal('bulbazaurz');
         });
 
-        it('should affect the newly created validator instance', () => {
-          const newValidator = satpam.create();
-          const ruleObj = {fullName: 'required'};
-
-          const message = newValidator.getValidationMessage(ruleObj, 'fullName', 'wut');
-          expect(message).to.equal('huuu!');
-        });
-
-        it('should not affect the old validator insance', () => {
+        it('should not affect global validation message', () => {
           const rules = {fullName: ['required']};
-          const result = validator.validate(rules, {});
+          const result = satpam.validate(rules, {});
+
+          expect(result.messages.fullName.required).to.equal('Full Name field is required.');
+        });
+      });
+
+      context('and the validation messsage is a function literal', () => {
+        const validator = satpam.create();
+
+        before('set validation message', () => {
+          validator.setValidationMessage('required', R.always('it is required!'));
+        });
+
+        it('should return correct validation message', () => {
+          const ruleObj = {
+            fullName: 'required'
+          };
+
+          const message = validator.getValidationMessage(ruleObj, 'name', 'wut');
+
+          expect(message).to.equal('it is required!');
+        });
+
+        it('should not affect global validation message', () => {
+          const rules = {fullName: ['required']};
+          const result = satpam.validate(rules, {});
 
           expect(result.messages.fullName.required).to.equal('Full Name field is required.');
         });
       });
     });
 
-    context('.addCustomValidation()', () => {
-      context('when instance validation rule is customized', () => {
-        const validator = satpam.create();
+    context('when global validation message is customized', () => {
+      const validator = satpam.create();
 
-        before('set validation rule', () => {
-          validator.addCustomValidation('required', function (val) {
-            return val === 'yo';
-          });
-        });
+      before('set global validation message', () => {
+        satpam.setValidationMessage('required', 'huuu!');
+      });
 
-        it('should not pass with the customized required rule', () => {
-          const rules = {fullName: ['required']};
-          const result = validator.validate(rules, {fullName: 'ayo'});
+      it('should return correct validation message', () => {
+        const ruleObj = {fullName: ['required']};
+        const result = satpam.validate(ruleObj, {});
 
-          expect(result.success).to.be.false;
-          expect(result.messages.fullName.required).to.equal('Full Name field is required.');
-        });
+        expect(result.messages.fullName.required).to.equal('huuu!');
+      });
 
-        it('should pass with the customized required rule', () => {
-          const rules = {fullName: ['required']};
-          const result = satpam.validate(rules, {
-            fullName: 'yo'
-          });
+      it('should affect the newly created validator instance', () => {
+        const newValidator = satpam.create();
+        const ruleObj = {fullName: 'required'};
 
-          expect(result.success).to.be.true;
-          expect(result.messages).to.not.have.property('fullName');
-        });
+        const message = newValidator.getValidationMessage(ruleObj, 'fullName', 'wut');
+        expect(message).to.equal('huuu!');
+      });
 
-        it('should not affect global validation rule', () => {
-          const rules = {fullName: ['required']};
-          const result = satpam.validate(rules, {fullName: 'hehe'});
+      it('should not affect the old validator insance', () => {
+        const rules = {fullName: ['required']};
+        const result = validator.validate(rules, {});
 
-          expect(result.success).to.be.true;
-          expect(result.messages).to.not.have.property('fullName');
+        expect(result.messages.fullName.required).to.equal('Full Name field is required.');
+      });
+    });
+  });
+
+  context('.addCustomValidation()', () => {
+    context('when instance validation rule is customized', () => {
+      const validator = satpam.create();
+
+      before('set validation rule', () => {
+        validator.addCustomValidation('required', function (val) {
+          return val === 'yo';
         });
       });
 
-      context('when global validation rule is customized', () => {
-        const oldValidator = satpam.create();
+      it('should not pass with the customized required rule', () => {
+        const rules = {fullName: ['required']};
+        const result = validator.validate(rules, {fullName: 'ayo'});
 
-        before('add global validation rule', () => {
-          satpam.addCustomValidation('wutwut', function (val) {
-            return val === 'wut?';
-          });
+        expect(result.success).to.be.false;
+        expect(result.messages.fullName.required).to.equal('Full Name field is required.');
+      });
 
-          satpam.setValidationMessage('wutwut', 'lukeskywalker');
+      it('should pass with the customized required rule', () => {
+        const rules = {fullName: ['required']};
+        const result = satpam.validate(rules, {
+          fullName: 'yo'
         });
 
-        it('should return correct validation result', () => {
-          const ruleObj = {fullName: ['wutwut']};
-          const result = satpam.validate(ruleObj, {fullName: 'wut?'});
+        expect(result.success).to.be.true;
+        expect(result.messages).to.not.have.property('fullName');
+      });
 
-          expect(result.success).to.be.true;
-          expect(result.messages).to.not.have.property('fullName');
+      it('should not affect global validation rule', () => {
+        const rules = {fullName: ['required']};
+        const result = satpam.validate(rules, {fullName: 'hehe'});
+
+        expect(result.success).to.be.true;
+        expect(result.messages).to.not.have.property('fullName');
+      });
+    });
+
+    context('when global validation rule is customized', () => {
+      const oldValidator = satpam.create();
+
+      before('add global validation rule', () => {
+        satpam.addCustomValidation('wutwut', function (val) {
+          return val === 'wut?';
         });
 
-        it('should affect the newly created validator instance', () => {
-          const newValidator = satpam.create();
-          const ruleObj = {fullName: ['wutwut']};
-          const result = newValidator.validate(ruleObj, {fullName: 'wut?'});
+        satpam.setValidationMessage('wutwut', 'lukeskywalker');
+      });
 
-          expect(result.success).to.be.true;
-          expect(result.messages).to.not.have.property('fullName');
-        });
+      it('should return correct validation result', () => {
+        const ruleObj = {fullName: ['wutwut']};
+        const result = satpam.validate(ruleObj, {fullName: 'wut?'});
 
-        it('should not affect the old validator insance', () => {
-          const ruleObj = {fullName: ['wutwut']};
-          const validateFn = oldValidator.validate.bind(
-            oldValidator,
-            ruleObj,
-            {fullName: 'hiks'}
-          );
+        expect(result.success).to.be.true;
+        expect(result.messages).to.not.have.property('fullName');
+      });
 
-          expect(validateFn).to.throw(Error);
-        });
+      it('should affect the newly created validator instance', () => {
+        const newValidator = satpam.create();
+        const ruleObj = {fullName: ['wutwut']};
+        const result = newValidator.validate(ruleObj, {fullName: 'wut?'});
+
+        expect(result.success).to.be.true;
+        expect(result.messages).to.not.have.property('fullName');
+      });
+
+      it('should not affect the old validator insance', () => {
+        const ruleObj = {fullName: ['wutwut']};
+        const validateFn = oldValidator.validate.bind(
+          oldValidator,
+          ruleObj,
+          {fullName: 'hiks'}
+        );
+
+        expect(validateFn).to.throw(Error);
       });
     });
   });
