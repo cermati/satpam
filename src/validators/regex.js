@@ -1,6 +1,10 @@
 import R from 'ramda';
 
 const validate = (val, ruleObj) => {
+  if (R.isNil(val)) {
+    return true;
+  }
+
   if (!R.is(String, val)) {
     return false;
   }

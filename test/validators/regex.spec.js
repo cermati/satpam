@@ -2,6 +2,32 @@ import { expect } from 'chai';
 import validator from '../../lib';
 
 describe('regexp validator', () => {
+  context('given null value', () => {
+    const rules = {
+      name: ['regex:42:g']
+    };
+    const result = validator.validate(rules, {name: null});
+    const err = result.messages;
+
+    it('should success', () => {
+      expect(result.success).to.equal(true);
+    expect(err).to.not.have.property('name');
+    });
+  });
+
+  context('given undefined value', () => {
+    const rules = {
+      name: ['regex:42:g']
+    };
+    const result = validator.validate(rules, {name: undefined});
+    const err = result.messages;
+
+    it('should success', () => {
+      expect(result.success).to.equal(true);
+    expect(err).to.not.have.property('name');
+    });
+  });
+
   context('given value that matches the pattern non digit', () => {
     const rules = {
       name: ['regex:\\D:g']
