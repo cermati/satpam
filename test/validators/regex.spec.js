@@ -19,7 +19,7 @@ describe('regexp validator', () => {
     const rules = {
       name: ['regex:42:g']
     };
-    const result = validator.validate(rules, {name: undefined});
+    const result = validator.validate(rules, {});
     const err = result.messages;
 
     it('should success', () => {
