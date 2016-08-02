@@ -179,9 +179,7 @@ class Validator {
     R.keys(ruleMapping).forEach(propertyName => {
       const ruleArray = ruleMapping[propertyName];
       const val = inputObj[propertyName];
-
-      // Rule array should be something like ['required', 'email']
-      ruleArray.forEach(rule => {
+      const _validate = rule => {
         const ruleObj = this._createRuleObject(rule);
         const validate = validator.validation.rules[ruleObj.fullName];
 
@@ -193,8 +191,6 @@ class Validator {
         const validationResult = validate(val, ruleObj, propertyName, inputObj);
 
         if (!validationResult) {
-          result = false;
-
           // Set messageObj initial value
           messageObj[propertyName] = messageObj[propertyName] || {};
 
@@ -202,6 +198,24 @@ class Validator {
           const msg = validator.getValidationMessage(ruleObj, propertyName, val);
           messageObj[propertyName][ruleObj.fullName] = msg;
           messageObj.messageArray.push(msg);
+        }
+
+        return validationResult;
+      };
+
+      // Rule array should be something like ['required', 'email']
+      ruleArray.forEach(rule => {
+        // We will validate and return true if any of the rule passes
+        if (R.is(Array, rule)) {
+          const results = rule.map(_validate);
+          // If none of the results is true then it
+          if (!R.any(results)) {
+            result = false
+          }
+        } else {
+          if(!_validate(rule)) {
+            result = false;
+          }
         }
       });
     });
