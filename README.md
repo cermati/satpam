@@ -149,6 +149,18 @@ satpam.setValidationMessage('range:$1:$2', '<%= propertyName %> must between <%=
 const newValidator = satpam.create();
 ```
 
+## Optional validation rules
+
+Sometimes you want the validation to pass if any of the validation rules is satisfied, to do this,
+you need to wrap the validation rules in an array.
+
+```
+var rules = {
+  // It will pass if document is passed and either a pdf or an image
+  document: ['required', ['fileType:pdf', 'image']]
+}
+```
+
 
 ## Custom Validation Messages
 Setting validation messages is easy:
