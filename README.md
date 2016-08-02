@@ -80,6 +80,7 @@ const validatorTwo = satpam.create();
 - `phoneNumber` (Currently only supports Indonesia phone number)
 - `mobilePhoneNumber` (Currently only supports Indonesia mobile phone number)
 - `length:<length>`
+- `fileType:<extension>` Please check [file-type](https://github.com/sindresorhus/file-type)
 - `maxLength:<length>`
 - `minLength:<length>`
 - `maxValue:<max value>`
@@ -146,6 +147,18 @@ satpam.setValidationMessage('range:$1:$2', '<%= propertyName %> must between <%=
 // newValidator will have `must-be-ironman` rule because it's created
 // after we add the custom validation.
 const newValidator = satpam.create();
+```
+
+## Optional validation rules
+
+Sometimes you want the validation to pass if any of the validation rules is satisfied, to do this,
+you need to wrap the validation rules in an array.
+
+```js
+const rules = {
+  // It will pass if document is passed and either a pdf or an image
+  document: ['required', ['fileType:pdf', 'image']]
+};
 ```
 
 

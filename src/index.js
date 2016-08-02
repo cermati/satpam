@@ -31,6 +31,7 @@ import phoneNumber from './validators/phone-number';
 import mobilePhoneNumber from './validators/mobile-phone-number';
 import mongoId from './validators/mongo-id';
 import minimumAge from './validators/minimum-age';
+import fileType from './validators/file-type';
 
 let validation = {
   required: required.validate,
@@ -47,6 +48,7 @@ let validation = {
   mongoId: mongoId.validate,
   phoneNumber: phoneNumber.validate,
   mobilePhoneNumber: mobilePhoneNumber.validate,
+  'fileType:$1': fileType.validate,
   'length:$1': length.validate,
   'maxLength:$1': maxLength.validate,
   'minLength:$1': minLength.validate,
@@ -80,6 +82,7 @@ let validationMessages = {
   mongoId: mongoId.message,
   phoneNumber: phoneNumber.message,
   mobilePhoneNumber: mobilePhoneNumber.message,
+  'fileType:$1': fileType.message,
   'length:$1': length.message,
   'maxValue:$1': maxValue.message,
   'minValue:$1': minValue.message,
@@ -176,9 +179,14 @@ class Validator {
     R.keys(ruleMapping).forEach(propertyName => {
       const ruleArray = ruleMapping[propertyName];
       const val = inputObj[propertyName];
+      const setValidationMessage = (ruleName, message) => {
+        // Set messageObj initial value
+        messageObj[propertyName] = messageObj[propertyName] || {};
+        messageObj[propertyName][ruleName] = message;
+        messageObj.messageArray.push(message);
+      };
 
-      // Rule array should be something like ['required', 'email']
-      ruleArray.forEach(rule => {
+      const _validate = rule => {
         const ruleObj = this._createRuleObject(rule);
         const validate = validator.validation.rules[ruleObj.fullName];
 
@@ -190,15 +198,41 @@ class Validator {
         const validationResult = validate(val, ruleObj, propertyName, inputObj);
 
         if (!validationResult) {
-          result = false;
+          return {
+            success: false,
+            ruleName: ruleObj.fullName,
+            message: validator.getValidationMessage(ruleObj, propertyName, val)
+          }
+        }
 
-          // Set messageObj initial value
-          messageObj[propertyName] = messageObj[propertyName] || {};
+        return {
+          success: true,
+          ruleName: ruleObj.fullName,
+          message: ''
+        };
+      };
 
-          // Set the validation message
-          const msg = validator.getValidationMessage(ruleObj, propertyName, val);
-          messageObj[propertyName][ruleObj.fullName] = msg;
-          messageObj.messageArray.push(msg);
+      // Rule array should be something like ['required', 'email']
+      ruleArray.forEach(rule => {
+        // We will validate and return true if any of the rule passes
+        if (R.is(Array, rule)) {
+          const resultObjects = rule.map(_validate);
+          const overallResult = R.any(R.prop('success'), resultObjects);
+
+          // If none of the results is true then it
+          if (!overallResult) {
+            result = false;
+            resultObjects.forEach(resultObj => {
+              setValidationMessage(resultObj.ruleName, resultObj.message);
+            });
+          }
+        } else {
+          const resultObj = _validate(rule);
+
+          if (!resultObj.success) {
+            result = false;
+            setValidationMessage(resultObj.ruleName, resultObj.message);
+          }
         }
       });
     });
