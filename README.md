@@ -80,6 +80,7 @@ const validatorTwo = satpam.create();
 - `phoneNumber` (Currently only supports Indonesia phone number)
 - `mobilePhoneNumber` (Currently only supports Indonesia mobile phone number)
 - `length:<length>`
+- `fileType:<extension>` Please check [file-type](https://github.com/sindresorhus/file-type)
 - `maxLength:<length>`
 - `minLength:<length>`
 - `maxValue:<max value>`
