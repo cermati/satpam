@@ -152,5 +152,64 @@ describe('Validator.validate()', () => {
       expect(validate).to.throw(Error);
     });
   });
+
+  context('when given optional validation rules', () => {
+    const rules = {
+      number: [['numeric', 'length:5'], 'required']
+    };
+
+    it('should fail with empty input', () => {
+      const result = satpam.validate(rules, {});
+      const err = result.messages;
+
+      expect(result.success).to.be.false;
+      expect(err.number.required).to.equal('Number field is required.');
+    });
+
+    it('should fail if input length is not 5 and input is not numeric', () => {
+      const result = satpam.validate(rules, {
+        number: 'testyo'
+      });
+
+      const err = result.messages;
+
+      expect(result.success).to.be.false;
+      expect(err.number.numeric).to.equal('Number must be a number.');
+      expect(err.number['length:$1']).to.equal('Number must have length of 5 character(s).');
+    });
+
+    it('should success if the first rule of optional rules is satisfied', () => {
+      const result = satpam.validate(rules, {
+        number: '1234'
+      });
+
+      const err = result.messages;
+
+      expect(result.success).to.be.true;
+      expect(err.messageArray).to.be.empty;
+    });
+
+    it('should success if the second rule of optional rules is satisfied', () => {
+      const result = satpam.validate(rules, {
+        number: 'tests'
+      });
+
+      const err = result.messages;
+
+      expect(result.success).to.be.true;
+      expect(err.messageArray).to.be.empty;
+    });
+
+    it('should success if all the rules are satisfied', () => {
+      const result = satpam.validate(rules, {
+        number: '12345'
+      });
+
+      const err = result.messages;
+
+      expect(result.success).to.be.true;
+      expect(err.messageArray).to.be.empty;
+    });
+  });
 });
 

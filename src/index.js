@@ -179,6 +179,13 @@ class Validator {
     R.keys(ruleMapping).forEach(propertyName => {
       const ruleArray = ruleMapping[propertyName];
       const val = inputObj[propertyName];
+      const setValidationMessage = (ruleName, message) => {
+        // Set messageObj initial value
+        messageObj[propertyName] = messageObj[propertyName] || {};
+        messageObj[propertyName][ruleName] = message;
+        messageObj.messageArray.push(message);
+      };
+
       const _validate = rule => {
         const ruleObj = this._createRuleObject(rule);
         const validate = validator.validation.rules[ruleObj.fullName];
@@ -191,30 +198,40 @@ class Validator {
         const validationResult = validate(val, ruleObj, propertyName, inputObj);
 
         if (!validationResult) {
-          // Set messageObj initial value
-          messageObj[propertyName] = messageObj[propertyName] || {};
-
-          // Set the validation message
-          const msg = validator.getValidationMessage(ruleObj, propertyName, val);
-          messageObj[propertyName][ruleObj.fullName] = msg;
-          messageObj.messageArray.push(msg);
+          return {
+            success: false,
+            ruleName: ruleObj.fullName,
+            message: validator.getValidationMessage(ruleObj, propertyName, val)
+          }
         }
 
-        return validationResult;
+        return {
+          success: true,
+          ruleName: ruleObj.fullName,
+          message: ''
+        };
       };
 
       // Rule array should be something like ['required', 'email']
       ruleArray.forEach(rule => {
         // We will validate and return true if any of the rule passes
         if (R.is(Array, rule)) {
-          const results = rule.map(_validate);
+          const resultObjects = rule.map(_validate);
+          const overallResult = R.any(R.prop('success'), resultObjects);
+
           // If none of the results is true then it
-          if (!R.any(results)) {
-            result = false
+          if (!overallResult) {
+            result = false;
+            resultObjects.forEach(resultObj => {
+              setValidationMessage(resultObj.ruleName, resultObj.message);
+            });
           }
         } else {
-          if(!_validate(rule)) {
+          const resultObj = _validate(rule);
+
+          if (!resultObj.success) {
             result = false;
+            setValidationMessage(resultObj.ruleName, resultObj.message);
           }
         }
       });
