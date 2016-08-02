@@ -154,11 +154,11 @@ const newValidator = satpam.create();
 Sometimes you want the validation to pass if any of the validation rules is satisfied, to do this,
 you need to wrap the validation rules in an array.
 
-```
-var rules = {
+```js
+const rules = {
   // It will pass if document is passed and either a pdf or an image
   document: ['required', ['fileType:pdf', 'image']]
-}
+};
 ```
 
 
