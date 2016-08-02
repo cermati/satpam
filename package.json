@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/sendyhalim/satpam",
   "dependencies": {
+    "file-type": "^3.8.0",
     "image-type": "^2.0.2",
     "lodash": "^4.13.1",
     "moment": "^2.10.6",

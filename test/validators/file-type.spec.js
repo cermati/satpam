@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import validator from '../../lib';
 
-describe('Pdf Validator', () => {
+describe('FileType Validator', () => {
   const rules = {
-    pdfInput: ['pdf']
+    pdfInput: ['fileType:pdf']
   };
 
   it('should fail on non pdf type', () => {
@@ -12,7 +12,7 @@ describe('Pdf Validator', () => {
     });
 
     expect(result.success).to.equal(false);
-    expect(result.messages.pdfInput.pdf).to.equal('pdf Input must be an pdf.');
+    expect(result.messages.pdfInput['fileType:$1']).to.equal('Pdf Input must be a(n) pdf.');
   });
 
   it('should success on pdf type', () => {
@@ -29,7 +29,7 @@ describe('Pdf Validator', () => {
     });
 
     expect(result.success).to.equal(false);
-    expect(result.messages.pdfInput.pdf).to.equal('pdf Input must be an pdf.');
+    expect(result.messages.pdfInput['fileType:$1']).to.equal('Pdf Input must be a(n) pdf.');
   });
 
   it('should success on pdf type (object input)', () => {
