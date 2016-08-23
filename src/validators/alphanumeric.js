@@ -1,4 +1,4 @@
-var alphanumericRegex = /^[0-9A-Z]+$/i;
+const alphanumericRegex = /^[0-9A-Z]+$/i;
 
 const validate = val => {
   if (val) {

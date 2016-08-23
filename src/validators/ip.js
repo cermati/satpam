@@ -7,7 +7,7 @@
  */
 function isIPv4(val) {
   // It will accept anything with three dots (.) and numeric digits
-  var ipv4Regex = /^(\d+)\.(\d+)\.(\d+)\.(\d+)$/;
+  const ipv4Regex = /^(\d+)\.(\d+)\.(\d+)\.(\d+)$/;
   if (!ipv4Regex.test(val)) {
     return false;
   }
@@ -26,7 +26,7 @@ function isIPv4(val) {
  * @returns {Boolean}
  */
 function isIPv6(val) {
-  var ipv6Block = /^[0-9A-F]{1,4}$/i;
+  const ipv6Block = /^[0-9A-F]{1,4}$/i;
   var blocks = val.split(':');
   var foundOmissionBlock = false; // marker to indicate ::
 

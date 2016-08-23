@@ -1,4 +1,4 @@
-var numericRegex = /^[-+]?[0-9]+$/;
+const numericRegex = /^[-+]?[0-9]+$/;
 
 const validate = val => {
   if (val) {
