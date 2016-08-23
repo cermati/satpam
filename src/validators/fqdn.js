@@ -20,6 +20,8 @@ const validate = val => {
       return false;
     }
   }
+
+  return true;
 };
 
 const message = '<%= propertyName %> is not a valid FQDN.';

@@ -15,9 +15,10 @@ const validate = val => {
   }
 
   // Check length
-  if (!val || val.length >= 2083 || /\s/.test(val)) {
+  if (val.length >= 2083 || /\s/.test(val)) {
     return false;
   }
+
   // Check for mailto: (it's email address not an url!)
   if (val.indexOf('mailto:') === 0) {
     return false;
