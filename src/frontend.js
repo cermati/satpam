@@ -8,6 +8,8 @@ import alpha from './validators/alpha';
 import alphanumeric from './validators/alphanumeric';
 import date from './validators/date';
 import url from './validators/url';
+import ip from './validators/ip';
+import fqdn from './validators/fqdn';
 import string from './validators/string';
 import nonBlank from './validators/non-blank';
 import length from './validators/length';
@@ -39,6 +41,8 @@ let validation = {
   alphanumeric: alphanumeric.validate,
   date: date.validate,
   url: url.validate,
+  ip: ip.validate,
+  fqdn: fqdn.validate,
   string: string.validate,
   nonBlank: nonBlank.validate,
   creditCard: creditCard.validate,
@@ -71,6 +75,8 @@ let validationMessages = {
   alphanumeric: alphanumeric.message,
   date: date.message,
   url: url.message,
+  ip: ip.message,
+  fqdn: fqdn.message,
   string: string.message,
   nonBlank: nonBlank.message,
   creditCard: creditCard.message,
@@ -144,7 +150,7 @@ class Validator {
       // Property fullName is the generic full name of validation rule
       // e.g range:1:3 -> range:$1:$2, required -> required
       ruleObj.fullName = ruleObj.params.reduce((ruleName, val, index) => {
-        return ruleName + ':$' + (index + 1).toString();
+            return ruleName + ':$' + (index + 1).toString();
       }, ruleObj.name);
     }
 
@@ -171,8 +177,8 @@ class Validator {
 
     // Loop through the given rule mapping
     R.keys(ruleMapping).forEach(propertyName => {
-      const ruleArray = ruleMapping[propertyName];
-      const val = inputObj[propertyName];
+        const ruleArray = ruleMapping[propertyName];
+        const val = inputObj[propertyName];
 
       // Rule array should be something like ['required', 'email']
       ruleArray.forEach(rule => {
@@ -323,4 +329,5 @@ exports.setValidationMessage = (ruleName, message) => {
  */
 exports.validation = validation;
 
+// Expose satpam to window object, so it can be used in client side (browser)
 window.satpam = exports;
