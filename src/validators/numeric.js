@@ -1,8 +1,8 @@
-import validator from 'validator';
+const numericRegex = /^[-+]?[0-9]+$/;
 
 const validate = val => {
   if (val) {
-    return validator.isNumeric(val);
+    return numericRegex.test(val);
   }
 
   return true;
