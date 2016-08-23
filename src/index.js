@@ -9,6 +9,8 @@ import alpha from './validators/alpha';
 import alphanumeric from './validators/alphanumeric';
 import date from './validators/date';
 import url from './validators/url';
+import ip from './validators/ip';
+import fqdn from './validators/fqdn';
 import string from './validators/string';
 import nonBlank from './validators/non-blank';
 import length from './validators/length';
@@ -42,6 +44,8 @@ let validation = {
   alphanumeric: alphanumeric.validate,
   date: date.validate,
   url: url.validate,
+  ip: ip.validate,
+  fqdn: fqdn.validate,
   string: string.validate,
   nonBlank: nonBlank.validate,
   creditCard: creditCard.validate,
@@ -76,6 +80,8 @@ let validationMessages = {
   alphanumeric: alphanumeric.message,
   date: date.message,
   url: url.message,
+  ip: ip.message,
+  fqdn: fqdn.message,
   string: string.message,
   nonBlank: nonBlank.message,
   creditCard: creditCard.message,
