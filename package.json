@@ -22,14 +22,14 @@
   },
   "homepage": "https://github.com/sendyhalim/satpam",
   "dependencies": {
-    "file-type": "^3.8.0",
+    "file-type": "~3.8.0",
     "image-type": "^2.0.2",
-    "lodash": "^4.13.1",
-    "moment": "^2.10.6",
-    "noes": "^0.0.2",
+    "lodash": "~4.0.0",
+    "moment": "~2.8.1",
+    "noes": "~0.0.6",
     "ramda": "^0.21.0",
     "read-chunk": "^1.0.1",
-    "sprintf-js": "^1.0.3"
+    "sprintf-js": "~1.0.3"
   },
   "devDependencies": {
     "babel": "^6.5.2",
