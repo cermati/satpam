@@ -1,8 +1,8 @@
-import validator from 'validator';
+var alphanumericRegex = /^[0-9A-Z]+$/i;
 
 const validate = val => {
   if (val) {
-    return validator.isAlphanumeric(val);
+    return alphanumericRegex.test(val);
   }
 
   return true;

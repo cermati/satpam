@@ -1,8 +1,8 @@
-import validator from 'validator';
+var alphaRegex = /^[A-Z]+$/i;
 
 const validate = val => {
   if (val) {
-    return validator.isAlpha(val);
+    return alphaRegex.test(val);
   }
 
   return true;

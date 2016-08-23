@@ -1,8 +1,8 @@
-import validator from 'validator';
+import moment from 'moment';
 
 const validate = val => {
   if (val) {
-    return validator.isDate(val);
+    return moment(val).isValid();
   }
 
   return true;
