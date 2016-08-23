@@ -105,7 +105,7 @@ class ValidationMessage {
   constructor() {
     this.messageArray = [];
   }
-  }
+}
 
   /**
    * Create a new validator. When it's created, it will have a deep cloned global

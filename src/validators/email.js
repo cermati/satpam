@@ -10,29 +10,29 @@ var emailUserUtf8Regex = /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD
 import fqdn from './fqdn';
 
 const validate = val => {
-  if (val) {
-    if (/\s/.test(val)) {
-      return false;
-    }
-
-    var parts = val.split('@');
-    var domain = parts.pop();
-    var user = parts.join('@');
-
-    var lowerDomain = domain.toLowerCase();
-    // Google mail ignore dot in email user, so foo.bar will be same as foobar
-    // Read: http://webapps.stackexchange.com/questions/14668/why-does-google-not-consider-dot-in-usernames-of-gmail-addresses
-    if (lowerDomain === 'gmail.com' || lowerDomain === 'googlemail.com') {
-      user = user.replace(/\./g, '').toLowerCase();
-    }
-    if (!fqdn.validate(domain)) {
-      return false;
-    }
-
-    return emailUserUtf8Regex.test(user);
+  if (!val) {
+    return true;
   }
 
-  return true;
+  if (/\s/.test(val)) {
+    return false;
+  }
+
+  var parts = val.split('@');
+  var domain = parts.pop();
+  var user = parts.join('@');
+
+  var lowerDomain = domain.toLowerCase();
+  // Google mail ignore dot in email user, so foo.bar will be same as foobar
+  // Read: http://webapps.stackexchange.com/questions/14668/why-does-google-not-consider-dot-in-usernames-of-gmail-addresses
+  if (lowerDomain === 'gmail.com' || lowerDomain === 'googlemail.com') {
+    user = user.replace(/\./g, '').toLowerCase();
+  }
+  if (!fqdn.validate(domain)) {
+    return false;
+  }
+
+  return emailUserUtf8Regex.test(user);
 };
 
 const message = '<%= propertyName %> must be email.';
