@@ -359,3 +359,6 @@ exports.setValidationMessage = (ruleName, message) => {
  * @type {object}
  */
 exports.validation = validation;
+
+// Expose satpam to window object so it can be used in client side (browser environment)
+window.satpam = exports;
