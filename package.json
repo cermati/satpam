@@ -29,8 +29,7 @@
     "noes": "^0.0.2",
     "ramda": "^0.21.0",
     "read-chunk": "^1.0.1",
-    "sprintf-js": "^1.0.3",
-    "validator": "^3.39.0"
+    "sprintf-js": "^1.0.3"
   },
   "devDependencies": {
     "babel": "^6.5.2",
