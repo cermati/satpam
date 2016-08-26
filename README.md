@@ -3,7 +3,7 @@
 Satpam is a wrapper for some nodejs validator libraries, I made `Satpam` so it's easy to create
 custom validator with parameters and custom validation messages.
 
-[![Build Status](https://travis-ci.org/sendyhalim/satpam.svg)](https://travis-ci.org/sendyhalim/satpam)
+[![Build Status](https://travis-ci.org/cermati/satpam.svg)](https://travis-ci.org/cermati/satpam)
 [![npm version](https://badge.fury.io/js/satpam.svg)](https://badge.fury.io/js/satpam)
 
 
@@ -96,27 +96,27 @@ const validatorTwo = satpam.create();
   ```
 
   For more complex example please see
-  - [`requiredIf` examples](https://github.com/sendyhalim/satpam/blob/master/test/validators/required-if.spec.js#L147)
+  - [`requiredIf` examples](https://github.com/cermati/satpam/blob/master/test/validators/required-if.spec.js#L147)
   - [`noes` examples](https://github.com/sendyhalim/noes)
 
 - `minimumAge:<age>:<dateFormat>`
 - `taxId:$1` Currently only support indonesian tax id e.g. `taxId:id`
 
   Use object notation for defining this rule
-  [examples](https://github.com/sendyhalim/satpam/blob/master/test/validators/member-of.spec.js#L5)
+  [examples](https://github.com/cermati/satpam/blob/master/test/validators/member-of.spec.js#L5)
 - `beginWith:$1`
 
   Use object notation for defining this rule
-  [examples](https://github.com/sendyhalim/satpam/blob/master/test/validators/begin-with.spec.js#L5)
+  [examples](https://github.com/cermati/satpam/blob/master/test/validators/begin-with.spec.js#L5)
 - `regex:$1:$2`
 
   `$1` is the pattern, `$2` is the regex flags
-  [examples](https://github.com/sendyhalim/satpam/blob/master/test/validators/regex.spec.js#L6)
+  [examples](https://github.com/cermati/satpam/blob/master/test/validators/regex.spec.js#L6)
 
 
 
 ## Complete Examples
-[Complete Examples](https://github.com/sendyhalim/satpam/blob/master/test/validators)
+[Complete Examples](https://github.com/cermati/satpam/blob/master/test/validators)
 
 ## Custom Validation Rules
 Add custom rules globally, it will affect every `Validator` instance(s) that
