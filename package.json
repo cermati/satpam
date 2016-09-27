@@ -24,7 +24,7 @@
   "dependencies": {
     "file-type": "~3.8.0",
     "image-type": "^2.0.2",
-    "lodash": "~4.0.0",
+    "lodash": "~4.11.2",
     "moment": "~2.8.1",
     "noes": "~0.0.6",
     "ramda": "^0.21.0",
