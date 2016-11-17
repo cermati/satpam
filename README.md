@@ -18,7 +18,7 @@ npm install satpam --save
 import satpam from 'satpam';
 
 const rules = {
-  name: ['required']
+  name: ['required'],
   officeEmail: ['email'],
   phone: ['required', 'numeric']
 };
