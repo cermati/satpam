@@ -26,6 +26,16 @@ describe('Numeric validator', () => {
     });
   });
 
+  context('with floating number presented with string', () => {
+    it('should success', () => {
+      const result = validator.validate(rules, {income: '123.40'});
+      const err = result.messages;
+
+      expect(result.success).to.equal(true);
+      expect(err).to.not.have.property('income');
+    });
+  });
+
   context('with invalid number', () => {
     it('should fail', () => {
       const testObj = {income: '123a'};
