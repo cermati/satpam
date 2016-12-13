@@ -1,8 +1,6 @@
-const numericRegex = /^[-+]?[0-9]+$/;
-
 const validate = val => {
   if (val) {
-    return numericRegex.test(val);
+    return !isNaN(Number(val));
   }
 
   return true;
