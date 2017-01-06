@@ -1,6 +1,6 @@
 {
   "name": "satpam",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Simple and Effective Object Validator",
   "main": "lib/index.js",
   "scripts": {
@@ -26,7 +26,7 @@
     "image-type": "^2.0.2",
     "lodash": "~4.0.0",
     "moment": "~2.8.1",
-    "noes": "~0.0.6",
+    "noes": "~1.0.1",
     "ramda": "^0.21.0",
     "read-chunk": "^1.0.1",
     "sprintf-js": "~1.0.3"
