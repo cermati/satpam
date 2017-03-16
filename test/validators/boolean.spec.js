@@ -6,6 +6,16 @@ describe('Boolean validator', () => {
     paid: ['boolean']
   };
 
+  context('when value is not passed', () => {
+    it('should success', () => {
+      const result = validator.validate(rules, {});
+      const err = result.messages;
+
+      expect(result.success).to.equal(true);
+      expect(err).to.not.have.property('paid');
+    });
+  });
+
   context('when given false', () => {
     it('should success', () => {
       const result = validator.validate(rules, {paid: false});
