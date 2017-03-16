@@ -68,6 +68,7 @@ const validatorTwo = satpam.create();
 - `image`
 - `alpha`
 - `alphanumeric`
+- `boolean`
 - `date`
 - `dateFormat:<format, e.g. DD-MM-YYYY>`
 - `dateAfter:<the date input format, e.g. DD-MM-YYYY>:<date after e.g. 'now' or 20-1-2015>:<offset>:<unit of time e.g. 'days'>`

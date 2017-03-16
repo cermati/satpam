@@ -34,6 +34,7 @@ import mobilePhoneNumber from './validators/mobile-phone-number';
 import mongoId from './validators/mongo-id';
 import minimumAge from './validators/minimum-age';
 import fileType from './validators/file-type';
+import boolean from './validators/boolean';
 
 let validation = {
   required: required.validate,
@@ -52,6 +53,7 @@ let validation = {
   mongoId: mongoId.validate,
   phoneNumber: phoneNumber.validate,
   mobilePhoneNumber: mobilePhoneNumber.validate,
+  boolean: boolean.validate,
   'fileType:$1': fileType.validate,
   'length:$1': length.validate,
   'maxLength:$1': maxLength.validate,
@@ -88,6 +90,7 @@ let validationMessages = {
   mongoId: mongoId.message,
   phoneNumber: phoneNumber.message,
   mobilePhoneNumber: mobilePhoneNumber.message,
+  boolean: boolean.message,
   'fileType:$1': fileType.message,
   'length:$1': length.message,
   'maxValue:$1': maxValue.message,
