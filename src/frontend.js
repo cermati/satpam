@@ -1,5 +1,8 @@
 import R from 'ramda';
-import _ from 'lodash';
+import {
+  template as _template,
+  startCase as _startCase
+} from 'lodash';
 
 import required from './validators/required';
 import email from './validators/email';
@@ -253,8 +256,8 @@ class ValidationMessage {
 getValidationMessage(ruleObj, propertyName, val) {
   const message = this.validation.messages[ruleObj.fullName];
   const messageTemplate = R.is(Function, message) ? message(ruleObj, propertyName, val) : message;
-  const compiled = _.template(messageTemplate);
-  propertyName = _.startCase(propertyName);
+  const compiled = _template(messageTemplate);
+  propertyName = _startCase(propertyName);
 
   return compiled({
     propertyName: propertyName,
