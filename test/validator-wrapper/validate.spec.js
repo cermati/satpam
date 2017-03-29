@@ -246,5 +246,53 @@ describe('Validator.validate()', () => {
       expect(err.office).to.not.have.property('emailOptional');
     });
   });
+
+  context('when given 2 level nested validation rules', () => {
+    const rules = {
+      name: ['required'],
+      nested: {
+        office: {
+          email: ['required', 'email'],
+          emailOptional: ['email']
+        }
+      }
+    };
+
+    it('should fail', () => {
+      const result = satpam.validate(rules, {
+        name: 'sendy',
+        office: {}
+      });
+      const err = result.messages;
+
+      expect(result.success).to.be.false;
+      expect(err).to.deep.equal({
+        nested: {
+          office: {
+            email: {
+              required: 'Email field is required.'
+            }
+          }
+        }
+      });
+    });
+
+    it('should success', () => {
+      const result = satpam.validate(rules, {
+        name: 'sendy',
+        nested: {
+          office: {
+            email: 'asd@gg.com'
+          }
+        }
+      });
+      const err = result.messages;
+
+      expect(result.success).to.be.true;
+      expect(err).to.not.have.property('name');
+      expect(err.nested.office).to.not.have.property('email');
+      expect(err.nested.office).to.not.have.property('emailOptional');
+    });
+  });
 });
 
