@@ -10,10 +10,6 @@ describe('Validator.setValidationMessage()', () => {
     validator.setValidationMessage('minLength:$1', 'yo watt');
     const result = validator.validate(rule, {name: 'a'});
 
-    it('should return correct validation message array', () => {
-      expect(result.messages.messageArray).to.deep.equal(['yo watt']);
-    });
-
     it('should return correct validation message', () => {
       expect(result.messages.name['minLength:$1']).to.equal('yo watt');
     });
@@ -36,10 +32,6 @@ describe('Validator.setValidationMessage()', () => {
 
     const result = validator.validate(rule, {name: 'wubwub'});
     const expected = 'name: minLength, fullName: minLength:$1, params: 20, propertyName: name, value: wubwub';
-
-    it('should return correct validation message array', () => {
-      expect(result.messages.messageArray).to.deep.equal([expected]);
-    });
 
     it('should return correct validation message', () => {
       expect(result.messages.name['minLength:$1']).to.equal(expected);

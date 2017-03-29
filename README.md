@@ -38,10 +38,6 @@ if (result.success === true) {
   // invalid
   result.messages.officeEmail.email === 'OfficeEmail must be email';
   result.messages.phone.number === 'Phone must be numeric';
-
-  // or get all messages in array form
-  result.messages.messageArray[0] = 'OfficeEmail must be email';
-  result.messages.messageArray[1] = 'Phone must be numeric';
 }
 ```
 

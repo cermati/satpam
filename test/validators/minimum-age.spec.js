@@ -21,7 +21,6 @@ describe ('MinimumAge validator', () => {
     });
 
     it('should not set validation message', () => {
-      expect(result.messages.messageArray).to.be.empty;
       expect(result.messages).to.not.have.property('birthDate');
     });
   });
@@ -41,10 +40,6 @@ describe ('MinimumAge validator', () => {
     });
 
     it('should set validation message', () => {
-      expect(result.messages.messageArray).to.deep.equal([
-        'Minimum age is 21 years old.'
-      ]);
-
       expect(result.messages.birthDate).to.have.property('minimumAge:$1:$2')
         .that.equals('Minimum age is 21 years old.');
     });

@@ -102,9 +102,7 @@ let validationMessages = {
 };
 
 class ValidationMessage {
-  constructor() {
-    this.messageArray = [];
-  }
+  constructor() { }
 }
 
   /**

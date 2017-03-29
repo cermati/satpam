@@ -111,9 +111,7 @@ let validationMessages = {
 };
 
 class ValidationMessage {
-  constructor() {
-    this.messageArray = [];
-  }
+  constructor() { }
 }
 
 /**
@@ -187,12 +185,11 @@ class Validator {
     // Loop through the given rule mapping
     R.keys(ruleMapping).forEach(propertyName => {
       const ruleArray = ruleMapping[propertyName];
-      const val = inputObj[propertyName];
+      const val = _.get(inputObj, propertyName);
       const setValidationMessage = (ruleName, message) => {
         // Set messageObj initial value
         messageObj[propertyName] = messageObj[propertyName] || {};
         messageObj[propertyName][ruleName] = message;
-        messageObj.messageArray.push(message);
       };
 
       const _validate = rule => {
@@ -223,7 +220,7 @@ class Validator {
 
       // Nested rule
       if (!_.isArray(ruleArray)) {
-        const nestedResult = this.validate(ruleArray, inputObj[propertyName]);
+        const nestedResult = this.validate(ruleArray, _.get(inputObj, propertyName));
         result = nestedResult.success && result;
 
         // Merge the result
