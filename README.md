@@ -19,15 +19,21 @@ import satpam from 'satpam';
 
 const rules = {
   name: ['required'],
-  officeEmail: ['email'],
-  phone: ['required', 'numeric']
+  phone: ['required', 'numeric'],
+  email: ['required', 'email']
+  office: {
+    secondaryEmail: ['email'],
+  }
 };
 
 const input = {
   name: 'Sendy',
   title: 'Lord',
-  officeEmail: 'invalid email',
-  phone: 'hi there123'
+  phone: 'hi there123',
+  email: 'test@example.com',
+  office: {
+    secondaryEmail: 'invalid email',
+  }
 };
 
 const result = satpam.validate(rules, input);
@@ -36,8 +42,8 @@ if (result.success === true) {
   // valid
 } else {
   // invalid
-  result.messages.officeEmail.email === 'OfficeEmail must be email';
-  result.messages.phone.number === 'Phone must be numeric';
+  result.messages.office.secondaryEmail.email === 'Secondary Email must be email.';
+  result.messages.phone.number === 'Phone must be numeric.';
 }
 ```
 
