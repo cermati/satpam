@@ -102,55 +102,53 @@ let validationMessages = {
 };
 
 class ValidationMessage {
-  constructor() {
-    this.messageArray = [];
-  }
+  constructor() { }
 }
 
+/**
+ * Create a new validator. When it's created, it will have a deep cloned global
+ * validation rules and global validation messages. Any changes made to the
+ * instance's rules or messages will not affect the global validation rules
+ * and messages.
+ * @constructor
+ */
+class Validator {
+  constructor() {
+    this.validation = {
+      rules: R.clone(validation),
+      messages: R.clone(validationMessages)
+    };
+  }
+
   /**
-   * Create a new validator. When it's created, it will have a deep cloned global
-   * validation rules and global validation messages. Any changes made to the
-   * instance's rules or messages will not affect the global validation rules
-   * and messages.
-   * @constructor
+   * Create a rule object based on the given rule.
+   * @param rule {Object|String}
+   * @returns {{name: String, fullName: String, params: Array<String>}}
    */
-  class Validator {
-    constructor() {
-      this.validation = {
-        rules: R.clone(validation),
-        messages: R.clone(validationMessages)
-      };
+  _createRuleObject(rule) {
+    let ruleObj = {};
+
+    if (R.is(String, rule)) {
+      // First variant, everything is embedded as string
+      const splitted = rule.split(':');
+
+      // Get only the first part of full rule e.g if range:1:3 then
+      // we will get 'range'
+      ruleObj.name = R.head(splitted);
+      // Get the rule params if e.g range:1:3 -> [1, 3]
+      ruleObj.params = splitted.slice(1);
+    } else {
+      // Second variant, it is already parsed (Object)
+      ruleObj.name = rule.name;
+      ruleObj.fullName = rule.fullName;
+      ruleObj.params = rule.params || [];
     }
 
-    /**
-     * Create a rule object based on the given rule.
-     * @param rule {Object|String}
-     * @returns {{name: String, fullName: String, params: Array<String>}}
-     */
-    _createRuleObject(rule) {
-      let ruleObj = {};
-
-      if (R.is(String, rule)) {
-        // First variant, everything is embedded as string
-        const splitted = rule.split(':');
-
-        // Get only the first part of full rule e.g if range:1:3 then
-        // we will get 'range'
-        ruleObj.name = R.head(splitted);
-        // Get the rule params if e.g range:1:3 -> [1, 3]
-        ruleObj.params = splitted.slice(1);
-      } else {
-        // Second variant, it is already parsed (Object)
-        ruleObj.name = rule.name;
-        ruleObj.fullName = rule.fullName;
-        ruleObj.params = rule.params || [];
-      }
-
-      if (!ruleObj.fullName) {
-        // Property fullName is the generic full name of validation rule
-        // e.g range:1:3 -> range:$1:$2, required -> required
-        ruleObj.fullName = ruleObj.params.reduce((ruleName, val, index) => {
-            return ruleName + ':$' + (index + 1).toString();
+    if (!ruleObj.fullName) {
+      // Property fullName is the generic full name of validation rule
+      // e.g range:1:3 -> range:$1:$2, required -> required
+      ruleObj.fullName = ruleObj.params.reduce((ruleName, val, index) => {
+        return ruleName + ':$' + (index + 1).toString();
       }, ruleObj.name);
     }
 
@@ -178,124 +176,132 @@ class ValidationMessage {
     // Loop through the given rule mapping
     R.keys(ruleMapping).forEach(propertyName => {
       const ruleArray = ruleMapping[propertyName];
-      const val = inputObj[propertyName];
+      const val = _.get(inputObj, propertyName);
       const setValidationMessage = (ruleName, message) => {
-      // Set messageObj initial value
-      messageObj[propertyName] = messageObj[propertyName] || {};
-      messageObj[propertyName][ruleName] = message;
-      messageObj.messageArray.push(message);
-    };
-
-    const _validate = rule => {
-      const ruleObj = this._createRuleObject(rule);
-      const validate = validator.validation.rules[ruleObj.fullName];
-
-      if (!R.is(Function, validate)) {
-        const ruleObjString = JSON.stringify(ruleObj);
-        throw new Error(`${ruleObj.fullName} is not a valid satpam validation rule. Rule object: ${ruleObjString}`);
-      }
-
-      const validationResult = validate(val, ruleObj, propertyName, inputObj);
-
-      if (!validationResult) {
-        return {
-          success: false,
-          ruleName: ruleObj.fullName,
-          message: validator.getValidationMessage(ruleObj, propertyName, val)
-        }
-      }
-
-      return {
-        success: true,
-        ruleName: ruleObj.fullName,
-        message: ''
+        // Set messageObj initial value
+        messageObj[propertyName] = messageObj[propertyName] || {};
+        messageObj[propertyName][ruleName] = message;
       };
-    };
 
-    // Rule array should be something like ['required', 'email']
-    ruleArray.forEach(rule => {
-      // We will validate and return true if any of the rule passes
-      if (R.is(Array, rule)) {
-        const resultObjects = rule.map(_validate);
-        const overallResult = R.any(R.prop('success'), resultObjects);
+      const _validate = rule => {
+        const ruleObj = this._createRuleObject(rule);
+        const validate = validator.validation.rules[ruleObj.fullName];
 
-        // If none of the results is true then it
-        if (!overallResult) {
-          result = false;
-            resultObjects.forEach(resultObj => {
-              setValidationMessage(resultObj.ruleName, resultObj.message);
-          });
+        if (!R.is(Function, validate)) {
+          const ruleObjString = JSON.stringify(ruleObj);
+          throw new Error(`${ruleObj.fullName} is not a valid satpam validation rule. Rule object: ${ruleObjString}`);
         }
+
+        const validationResult = validate(val, ruleObj, propertyName, inputObj);
+
+        if (!validationResult) {
+          return {
+            success: false,
+            ruleName: ruleObj.fullName,
+            message: validator.getValidationMessage(ruleObj, propertyName, val)
+          }
+        }
+
+        return {
+          success: true,
+          ruleName: ruleObj.fullName,
+          message: ''
+        };
+      };
+
+      // Nested rule
+      if (!_.isArray(ruleArray)) {
+        const nestedResult = this.validate(ruleArray, _.get(inputObj, propertyName));
+        result = nestedResult.success && result;
+
+        // Merge the result
+        messageObj[propertyName] = nestedResult.messages;
       } else {
-        const resultObj = _validate(rule);
+        // Rule array should be something like ['required', 'email']
+        ruleArray.forEach(rule => {
+          // We will validate and return true if any of the rule passes
+          if (R.is(Array, rule)) {
+            const resultObjects = rule.map(_validate);
+            const overallResult = R.any(R.prop('success'), resultObjects);
 
-        if (!resultObj.success) {
-          result = false;
-          setValidationMessage(resultObj.ruleName, resultObj.message);
-        }
+            // If none of the results is true then it
+            if (!overallResult) {
+              result = false;
+              resultObjects.forEach(resultObj => {
+                setValidationMessage(resultObj.ruleName, resultObj.message);
+              });
+            }
+          } else {
+            const resultObj = _validate(rule);
+
+            if (!resultObj.success) {
+              result = false;
+              setValidationMessage(resultObj.ruleName, resultObj.message);
+            }
+          }
+        });
+
       }
     });
-  });
 
-  return {
-    success: result,
-    messages: messageObj
-  };
-}
+    return {
+      success: result,
+      messages: messageObj
+    };
+  }
 
+  /**
+   * @param ruleObj
+   * @param propertyName
+   * @param val
+   * @returns {String}
+   */
+  getValidationMessage(ruleObj, propertyName, val) {
+    const message = this.validation.messages[ruleObj.fullName];
+    const messageTemplate = R.is(Function, message) ? message(ruleObj, propertyName, val) : message;
+    const compiled = _.template(messageTemplate);
+    propertyName = _.startCase(propertyName);
 
-/**
- * @param ruleObj
- * @param propertyName
- * @param val
- * @returns {String}
- */
-getValidationMessage(ruleObj, propertyName, val) {
-  const message = this.validation.messages[ruleObj.fullName];
-  const messageTemplate = R.is(Function, message) ? message(ruleObj, propertyName, val) : message;
-  const compiled = _.template(messageTemplate);
-  propertyName = _.startCase(propertyName);
-
-  return compiled({
-    propertyName: propertyName,
-    ruleName: ruleObj.fullName,
-    ruleParams: ruleObj.params,
-    value: val
-  });
-}
+    return compiled({
+      propertyName: propertyName,
+      ruleName: ruleObj.fullName,
+      ruleParams: ruleObj.params,
+      value: val
+    });
+  }
 
 
-/**
- * Add custom validation the validator instance, it will only affect the
- * validator instance, if you want to add global validation rule then use
- * addCustomValidation method on satpam module.
- *
- * @example
- *   import satpam from 'satpam';
- *   satpam.addCustomValidation(.., ..);
- *
- * @param ruleName
- * @param validationFunction
- */
-addCustomValidation(ruleName, validateFunction) {
-  this.validation.rules[ruleName] = validateFunction;
-}
+  /**
+   * Add custom validation the validator instance, it will only affect the
+   * validator instance, if you want to add global validation rule then use
+   * addCustomValidation method on satpam module.
+   *
+   * @example
+   *   import satpam from 'satpam';
+   *   satpam.addCustomValidation(.., ..);
+   *
+   * @param ruleName
+   * @param validationFunction
+   */
+  addCustomValidation(ruleName, validateFunction) {
+    this.validation.rules[ruleName] = validateFunction;
+  }
 
-/**
- * Set validation message for the given ruleName, it will only affect the
- * validator instance(the receiver), if you want to set global validation
- * message then use addCustomValidation method on satpam module.
- *
- * @example
- *   import satpam from 'satpam';
- *   satpam.setValidationMessage(.., ..);
- *
- * @param ruleName
- * @param message
- */
-setValidationMessage(ruleName, message) {
-  this.validation.messages[ruleName] = message;
-}
+  /**
+   * Set validation message for the given ruleName, it will only affect the
+   * validator instance(the receiver), if you want to set global validation
+   * message then use addCustomValidation method on satpam module.
+   *
+   * @example
+   *   import satpam from 'satpam';
+   *   satpam.setValidationMessage(.., ..);
+   *
+   * @param ruleName
+   * @param message
+   */
+  setValidationMessage(ruleName, message) {
+    this.validation.messages[ruleName] = message;
+  }
 }
 
 /**

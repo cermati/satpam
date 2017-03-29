@@ -87,8 +87,6 @@ describe('Validator.validate()', () => {
       expect(err).to.have.property('name');
       expect(err.name['must-be-ironman']).to.equal('Not ironman D:');
       expect(err).to.not.have.property('phone');
-      expect(err.messageArray.length).to.equal(1);
-      expect(err.messageArray[0]).to.equal('Not ironman D:');
     });
   });
 
@@ -106,7 +104,6 @@ describe('Validator.validate()', () => {
 
       expect(result.success).to.equal(false);
       expect(err.salary['range:$1:$2']).to.equal('Salary must between 0 and 30');
-      expect(err.messageArray.length).to.equal(1);
     });
   });
 
@@ -131,7 +128,6 @@ describe('Validator.validate()', () => {
       const err = result.messages;
 
       expect(result.success).to.equal(false);
-      expect(err.messageArray.length).to.equal(4);
       expect(err.name['must-equal:$1']).to.equal('Name must equal sendyhalim !!');
       expect(err.address['must-equal:$1']).to.equal('Address must equal dimana aja bole !!');
       expect(err.address['required']).to.equal('Address field is required.');
@@ -186,7 +182,6 @@ describe('Validator.validate()', () => {
       const err = result.messages;
 
       expect(result.success).to.be.true;
-      expect(err.messageArray).to.be.empty;
     });
 
     it('should success if the second rule of optional rules is satisfied', () => {
@@ -197,7 +192,6 @@ describe('Validator.validate()', () => {
       const err = result.messages;
 
       expect(result.success).to.be.true;
-      expect(err.messageArray).to.be.empty;
     });
 
     it('should success if all the rules are satisfied', () => {
@@ -208,7 +202,96 @@ describe('Validator.validate()', () => {
       const err = result.messages;
 
       expect(result.success).to.be.true;
-      expect(err.messageArray).to.be.empty;
+    });
+  });
+
+  context('when given nested validation rules', () => {
+    const rules = {
+      name: ['required'],
+      office: {
+        email: ['required', 'email'],
+        emailOptional: ['email']
+      }
+    };
+
+    it('should fail', () => {
+      const result = satpam.validate(rules, {
+        name: 'sendy',
+        office: {}
+      });
+      const err = result.messages;
+
+      expect(result.success).to.be.false;
+      expect(err).to.deep.equal({
+        office: {
+          email: {
+            required: 'Email field is required.'
+          }
+        }
+      });
+    });
+
+    it('should success', () => {
+      const result = satpam.validate(rules, {
+        name: 'sendy',
+        office: {
+          email: 'asd@gg.com'
+        }
+      });
+      const err = result.messages;
+
+      expect(result.success).to.be.true;
+      expect(err).to.not.have.property('name');
+      expect(err.office).to.not.have.property('email');
+      expect(err.office).to.not.have.property('emailOptional');
+    });
+  });
+
+  context('when given 2 level nested validation rules', () => {
+    const rules = {
+      name: ['required'],
+      nested: {
+        office: {
+          email: ['required', 'email'],
+          emailOptional: ['email']
+        }
+      }
+    };
+
+    it('should fail', () => {
+      const result = satpam.validate(rules, {
+        name: 'sendy',
+        office: {}
+      });
+      const err = result.messages;
+
+      expect(result.success).to.be.false;
+      expect(err).to.deep.equal({
+        nested: {
+          office: {
+            email: {
+              required: 'Email field is required.'
+            }
+          }
+        }
+      });
+    });
+
+    it('should success', () => {
+      const result = satpam.validate(rules, {
+        name: 'sendy',
+        nested: {
+          office: {
+            email: 'asd@gg.com'
+          }
+        }
+      });
+      const err = result.messages;
+
+      expect(result.success).to.be.true;
+      expect(err).to.not.have.property('name');
+      expect(err.nested.office).to.not.have.property('email');
+      expect(err.nested.office).to.not.have.property('emailOptional');
     });
   });
 });

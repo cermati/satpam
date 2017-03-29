@@ -111,9 +111,7 @@ let validationMessages = {
 };
 
 class ValidationMessage {
-  constructor() {
-    this.messageArray = [];
-  }
+  constructor() { }
 }
 
 /**
@@ -187,12 +185,11 @@ class Validator {
     // Loop through the given rule mapping
     R.keys(ruleMapping).forEach(propertyName => {
       const ruleArray = ruleMapping[propertyName];
-      const val = inputObj[propertyName];
+      const val = _.get(inputObj, propertyName);
       const setValidationMessage = (ruleName, message) => {
         // Set messageObj initial value
         messageObj[propertyName] = messageObj[propertyName] || {};
         messageObj[propertyName][ruleName] = message;
-        messageObj.messageArray.push(message);
       };
 
       const _validate = rule => {
@@ -221,29 +218,39 @@ class Validator {
         };
       };
 
-      // Rule array should be something like ['required', 'email']
-      ruleArray.forEach(rule => {
-        // We will validate and return true if any of the rule passes
-        if (R.is(Array, rule)) {
-          const resultObjects = rule.map(_validate);
-          const overallResult = R.any(R.prop('success'), resultObjects);
+      // Nested rule
+      if (!_.isArray(ruleArray)) {
+        const nestedResult = this.validate(ruleArray, _.get(inputObj, propertyName));
+        result = nestedResult.success && result;
 
-          // If none of the results is true then it
-          if (!overallResult) {
-            result = false;
-            resultObjects.forEach(resultObj => {
+        // Merge the result
+        messageObj[propertyName] = nestedResult.messages;
+      } else {
+        // Rule array should be something like ['required', 'email']
+        ruleArray.forEach(rule => {
+          // We will validate and return true if any of the rule passes
+          if (R.is(Array, rule)) {
+            const resultObjects = rule.map(_validate);
+            const overallResult = R.any(R.prop('success'), resultObjects);
+
+            // If none of the results is true then it
+            if (!overallResult) {
+              result = false;
+              resultObjects.forEach(resultObj => {
+                setValidationMessage(resultObj.ruleName, resultObj.message);
+              });
+            }
+          } else {
+            const resultObj = _validate(rule);
+
+            if (!resultObj.success) {
+              result = false;
               setValidationMessage(resultObj.ruleName, resultObj.message);
-            });
+            }
           }
-        } else {
-          const resultObj = _validate(rule);
+        });
 
-          if (!resultObj.success) {
-            result = false;
-            setValidationMessage(resultObj.ruleName, resultObj.message);
-          }
-        }
-      });
+      }
     });
 
     return {
