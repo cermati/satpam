@@ -164,6 +164,26 @@ const rules = {
 };
 ```
 
+There's also a case when you only want to run a validation rule only if a specific condition is fulfilled.
+
+```js
+const shouldValidateName = (ruleObj, inputObj) => {
+  return inputObj.livesInJakarta;
+};
+
+const rules = {
+  // Only require zip code if `livesInJakarta` is truthy
+  zipCode: [
+    {name: 'required', shouldValidate: shouldValidateZipCode)
+  ]
+};
+
+satpam.validate(rules, {}); // {success: true}
+satpam.validate(rules, {
+  livesInJakarta: true
+}); // Will fail
+```
+
 
 ## Custom Validation Messages
 Setting validation messages is easy:
