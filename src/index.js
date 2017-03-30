@@ -132,10 +132,12 @@ class Validator {
   /**
    * Create a rule object based on the given rule.
    * @param rule {Object|String}
-   * @returns {{name: String, fullName: String, params: Array<String>}}
+   * @returns {{name: String, fullName: String, params: Array<String>, shouldValidate: Function}}
    */
   _createRuleObject(rule) {
-    let ruleObj = {};
+    let ruleObj = {
+      shouldValidate: R.always(true)
+    };
 
     if (R.is(String, rule)) {
       // First variant, everything is embedded as string
@@ -151,6 +153,7 @@ class Validator {
       ruleObj.name = rule.name;
       ruleObj.fullName = rule.fullName;
       ruleObj.params = rule.params || [];
+      ruleObj.shouldValidate = rule.shouldValidate;
     }
 
     if (!ruleObj.fullName) {
@@ -195,6 +198,14 @@ class Validator {
       const _validate = rule => {
         const ruleObj = this._createRuleObject(rule);
         const validate = validator.validation.rules[ruleObj.fullName];
+
+        if (!ruleObj.shouldValidate(ruleObj, inputObj)) {
+          return {
+            success: true,
+            ruleName: ruleObj.fullName,
+            message: ''
+          };
+        }
 
         if (!R.is(Function, validate)) {
           const ruleObjString = JSON.stringify(ruleObj);
