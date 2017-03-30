@@ -11,11 +11,11 @@ describe('Validator._createRuleObject()', () => {
           name: 'wut'
         });
 
-        expect(ruleObj).to.deep.equal({
-          name: 'wut',
-          fullName: 'wut',
-          params: []
-        });
+        expect(ruleObj.name).to.equal('wut');
+        expect(ruleObj.fullName).to.equal('wut');
+        expect(ruleObj.params).to.deep.equal([]);
+        expect(ruleObj.shouldValidate).to.be.a.function;
+        expect(ruleObj.shouldValidate()).to.be.true;
       });
     });
 
@@ -26,11 +26,11 @@ describe('Validator._createRuleObject()', () => {
           params: ['is smelll']
         });
 
-        expect(ruleObj).to.deep.equal({
-          name: 'this',
-          fullName: 'this:$1',
-          params: ['is smelll']
-        });
+        expect(ruleObj.name).to.equal('this');
+        expect(ruleObj.fullName).to.equal('this:$1');
+        expect(ruleObj.params).to.deep.equal(['is smelll']);
+        expect(ruleObj.shouldValidate).to.be.a.function;
+        expect(ruleObj.shouldValidate()).to.be.true;
       });
     });
 
@@ -41,11 +41,11 @@ describe('Validator._createRuleObject()', () => {
           params: ['rocky', 'balboa']
         });
 
-        expect(ruleObj).to.deep.equal({
-          name: 'woosah',
-          fullName: 'woosah:$1:$2',
-          params: ['rocky', 'balboa']
-        });
+        expect(ruleObj.name).to.equal('woosah');
+        expect(ruleObj.fullName).to.equal('woosah:$1:$2');
+        expect(ruleObj.params).to.deep.equal(['rocky', 'balboa']);
+        expect(ruleObj.shouldValidate).to.be.a.function;
+        expect(ruleObj.shouldValidate()).to.be.true;
       });
     });
   });
@@ -55,11 +55,12 @@ describe('Validator._createRuleObject()', () => {
       it('should create valid ruleObj', () => {
         const ruleObj = validator._createRuleObject('minions');
 
-        expect(ruleObj).to.deep.equal({
-          name: 'minions',
-          fullName: 'minions',
-          params: []
-        });
+
+        expect(ruleObj.name).to.equal('minions');
+        expect(ruleObj.fullName).to.equal('minions');
+        expect(ruleObj.params).to.deep.equal([]);
+        expect(ruleObj.shouldValidate).to.be.a.function;
+        expect(ruleObj.shouldValidate()).to.be.true;
       });
     });
 
@@ -67,11 +68,11 @@ describe('Validator._createRuleObject()', () => {
       it('should create valid ruleObj', () => {
         const ruleObj = validator._createRuleObject('minions:banana');
 
-        expect(ruleObj).to.deep.equal({
-          name: 'minions',
-          fullName: 'minions:$1',
-          params: ['banana']
-        });
+        expect(ruleObj.name).to.equal('minions');
+        expect(ruleObj.fullName).to.equal('minions:$1');
+        expect(ruleObj.params).to.deep.equal(['banana']);
+        expect(ruleObj.shouldValidate).to.be.a.function;
+        expect(ruleObj.shouldValidate()).to.be.true;
       });
     });
 
@@ -79,11 +80,11 @@ describe('Validator._createRuleObject()', () => {
       it('should create valid ruleObj', () => {
         const ruleObj = validator._createRuleObject('minions:banana:hulala');
 
-        expect(ruleObj).to.deep.equal({
-          name: 'minions',
-          fullName: 'minions:$1:$2',
-          params: ['banana', 'hulala']
-        });
+        expect(ruleObj.name).to.equal('minions');
+        expect(ruleObj.fullName).to.equal('minions:$1:$2');
+        expect(ruleObj.params).to.deep.equal(['banana', 'hulala']);
+        expect(ruleObj.shouldValidate).to.be.a.function;
+        expect(ruleObj.shouldValidate()).to.be.true;
       });
     });
   });

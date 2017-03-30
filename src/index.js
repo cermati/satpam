@@ -132,7 +132,7 @@ class Validator {
   /**
    * Create a rule object based on the given rule.
    * @param rule {Object|String}
-   * @returns {{name: String, fullName: String, params: Array<String>}}
+   * @returns {{name: String, fullName: String, params: Array<String>, shouldValidate: Function}}
    */
   _createRuleObject(rule) {
     let ruleObj = {};
@@ -151,7 +151,10 @@ class Validator {
       ruleObj.name = rule.name;
       ruleObj.fullName = rule.fullName;
       ruleObj.params = rule.params || [];
+      ruleObj.shouldValidate = rule.shouldValidate;
     }
+
+    ruleObj.shouldValidate = ruleObj.shouldValidate || R.always(true);
 
     if (!ruleObj.fullName) {
       // Property fullName is the generic full name of validation rule
@@ -164,20 +167,20 @@ class Validator {
     return ruleObj;
   }
 
-
   /**
-   * @example
-   *   const ruleMapping = {name: ['required']};
-   *   const inputObj = {name: ''};
-   *   const validator = satpam.create();
-   *   const result = validator.validate(ruleMapping, inputObj);
+   * This function is for validating the `inputObj` based on the given `ruleMapping`.
+   * We need this function because `_validate` function will be called recursively
+   * if there's a nested rule mappings, there's a case when we need the `rootInputObj`.
+   * That's why we're separating the public API `validate` with this function which contains
+   * all the heavy logic of coordinating validation rules.
    *
    * @param ruleMapping - An mapping of input property to the available rules
    *   e.g. {name: ['required', 'alpha']}
    * @param inputObj - Input object to be validated
+   * @param rootInputObj - The root input object to be validated started from the top "tree" of input object.
    * @returns {{result: Boolean, messages: Object}}
    */
-  validate(ruleMapping, inputObj) {
+  _validate(ruleMapping, inputObj, rootInputObj) {
     const validator = this;
     let result = true;
     let messageObj = new ValidationMessage();
@@ -195,6 +198,14 @@ class Validator {
       const _validate = rule => {
         const ruleObj = this._createRuleObject(rule);
         const validate = validator.validation.rules[ruleObj.fullName];
+
+        if (!ruleObj.shouldValidate(ruleObj, rootInputObj)) {
+          return {
+            success: true,
+            ruleName: ruleObj.fullName,
+            message: ''
+          };
+        }
 
         if (!R.is(Function, validate)) {
           const ruleObjString = JSON.stringify(ruleObj);
@@ -220,11 +231,17 @@ class Validator {
 
       // Nested rule
       if (!_.isArray(ruleArray)) {
-        const nestedResult = this.validate(ruleArray, _.get(inputObj, propertyName));
+        const nestedResult = this._validate(
+          ruleArray,
+          _.get(inputObj, propertyName),
+          rootInputObj
+        );
         result = nestedResult.success && result;
 
-        // Merge the result
-        messageObj[propertyName] = nestedResult.messages;
+        if (!nestedResult.success) {
+          // Merge the result
+          messageObj[propertyName] = nestedResult.messages;
+        }
       } else {
         // Rule array should be something like ['required', 'email']
         ruleArray.forEach(rule => {
@@ -259,6 +276,21 @@ class Validator {
     };
   }
 
+  /**
+   * @example
+   *   const ruleMapping = {name: ['required']};
+   *   const inputObj = {name: ''};
+   *   const validator = satpam.create();
+   *   const result = validator.validate(ruleMapping, inputObj);
+   *
+   * @param ruleMapping - An mapping of input property to the available rules
+   *   e.g. {name: ['required', 'alpha']}
+   * @param inputObj - Input object to be validated
+   * @returns {{result: Boolean, messages: Object}}
+   */
+  validate(ruleMapping, inputObj) {
+    return this._validate(ruleMapping, inputObj, inputObj);
+  }
 
   /**
    * @param ruleObj
@@ -279,7 +311,6 @@ class Validator {
       value: val
     });
   }
-
 
   /**
    * Add custom validation the validator instance, it will only affect the

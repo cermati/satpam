@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import _ from 'lodash';
 import satpam from '../../lib';
 
 describe('Validator.validate()', () => {
@@ -242,8 +243,8 @@ describe('Validator.validate()', () => {
 
       expect(result.success).to.be.true;
       expect(err).to.not.have.property('name');
-      expect(err.office).to.not.have.property('email');
-      expect(err.office).to.not.have.property('emailOptional');
+      expect(err).to.not.have.deep.property('office.email');
+      expect(err).to.not.have.deep.property('office.emailOptional');
     });
   });
 
@@ -290,8 +291,56 @@ describe('Validator.validate()', () => {
 
       expect(result.success).to.be.true;
       expect(err).to.not.have.property('name');
-      expect(err.nested.office).to.not.have.property('email');
-      expect(err.nested.office).to.not.have.property('emailOptional');
+      expect(err).to.not.have.deep.property('nested.office.email');
+      expect(err).to.not.have.property('nested.office.emailOptional');
+    });
+  });
+
+  context('when `shouldValidate` is passed', () => {
+    const officeEmailRequiredIf = (ruleObj, inputObj) => {
+      return inputObj.pleaseValidateOfficeEmail;
+    };
+
+    const rules = {
+      name: ['required'],
+      nested: {
+        office: {
+          email: [
+            {name: 'required', shouldValidate: officeEmailRequiredIf},
+            'email'
+          ],
+          emailOptional: ['email']
+        }
+      }
+    };
+
+    it('should not validate email property', () => {
+      const result = satpam.validate(rules, {
+        pleaseValidateOfficeEmail: false,
+        name: 'sendy',
+        office: {}
+      });
+      const err = result.messages;
+
+      expect(result.success).to.be.true;
+      expect(err).to.deep.equal({});
+    });
+
+    it('should success', () => {
+      const result = satpam.validate(rules, {
+        name: 'sendy',
+        nested: {
+          office: {
+            email: 'asd@gg.com'
+          }
+        }
+      });
+      const err = result.messages;
+
+      expect(result.success).to.be.true;
+      expect(err).to.not.have.property('name');
+      expect(err).to.not.have.deep.property('nested.office.email');
+      expect(err).to.not.have.property('nested.office.emailOptional');
     });
   });
 });
