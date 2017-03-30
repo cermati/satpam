@@ -135,9 +135,7 @@ class Validator {
    * @returns {{name: String, fullName: String, params: Array<String>, shouldValidate: Function}}
    */
   _createRuleObject(rule) {
-    let ruleObj = {
-      shouldValidate: R.always(true)
-    };
+    let ruleObj = {};
 
     if (R.is(String, rule)) {
       // First variant, everything is embedded as string
@@ -155,6 +153,8 @@ class Validator {
       ruleObj.params = rule.params || [];
       ruleObj.shouldValidate = rule.shouldValidate;
     }
+
+    ruleObj.shouldValidate = ruleObj.shouldValidate || R.always(true);
 
     if (!ruleObj.fullName) {
       // Property fullName is the generic full name of validation rule
