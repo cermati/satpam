@@ -115,6 +115,30 @@ class ValidationMessage {
 }
 
 /**
+ * A custom implementation of lodash clone deep.
+ * We're using this because current version of lodash's cloneDeep does not
+ * clone Function. It's fixed in lodash 4.17.* as far as I know, but we'll use this
+ * until we upgrade lodash :beers:
+ *
+ * @author Sendy Halim <sendy@cermati.com>
+ * @param {Object} obj
+ * @returns {Object}
+ */
+const cloneDeep = obj => {
+  const newObj = {};
+
+  _.forEach(obj, (value, key) => {
+    if (_.isObject(value) && !_.isFunction(value)) {
+      newObj[key] = cloneDeep(value);
+    }
+
+    newObj[key] = value;
+  });
+
+  return newObj;
+};
+
+/**
  * Create a new validator. When it's created, it will have a deep cloned global
  * validation rules and global validation messages. Any changes made to the
  * instance's rules or messages will not affect the global validation rules
@@ -125,7 +149,7 @@ class Validator {
   constructor() {
     this.validation = {
       rules: R.clone(validation),
-      messages: R.clone(validationMessages)
+      messages: cloneDeep(validationMessages)
     };
   }
 
