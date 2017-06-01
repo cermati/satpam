@@ -1,7 +1,6 @@
 # Satpam
 -----
-Satpam is a wrapper for some nodejs validator libraries, I made `Satpam` so it's easy to create
-custom validator with parameters and custom validation messages.
+Satpam is a javascript simple and effective object validation library.
 
 [![Build Status](https://travis-ci.org/cermati/satpam.svg)](https://travis-ci.org/cermati/satpam)
 [![npm version](https://badge.fury.io/js/satpam.svg)](https://badge.fury.io/js/satpam)
@@ -15,7 +14,7 @@ npm install satpam --save
 
 ## Quick Usage
 ```js
-import satpam from 'satpam';
+const satpam = require('satpam');
 
 const rules = {
   name: ['required'],
@@ -48,20 +47,19 @@ if (result.success === true) {
 ```
 
 
-## Satpam instance
-Satpam has `create` method to create new validator instance.
+## Isolated Satpam Instance
+Satpam `create` method will return an isolated `Satpam` instance based on current state of satpam validation rules and messages. The instance won't be affected when you setting up a custom validation rules or messages.
 
 - Each instance will have cloned validation rules and messages, so it's safe to add or override validation rule without affecting other validator instances or the global satpam validator.
 - The cloned validation rules and messages will be based on the current state of the global satpam validator. See [Custom Rules](#custom-rules)
 
 
 ```js
-import satpam from 'satpam';
+const satpam = require('satpam');
 
 const validatorOne = satpam.create();
 const validatorTwo = satpam.create();
 ```
-
 
 ## Available Rules
 - `required`
@@ -119,21 +117,22 @@ const validatorTwo = satpam.create();
 
 
 ## Complete Examples
-[Complete Examples](https://github.com/cermati/satpam/blob/master/test/validators)
+To see complete example usage, please see the [unit tests](https://github.com/cermati/satpam/blob/master/test/validators)
 
 ## Custom Validation Rules
-Add custom rules globally, it will affect every `Validator` instance(s) that
+Add custom validation rule(s) globally. Note that
+everytime you add a custom validation rule it will affect every `Satpam` instance(s) that
 is created after the custom rules addition, but not the old instance(s).
 
 
 ```js
-import satpam from 'satpam';
+const satpam = require('satpam');
 
 // oldValidator will not have `must-be-ironman` rule, because it's created
 // before we add the custom validation.
 const oldValidator = satpam.create();
 
-// The global satpam validator will always the most updated validation rules.
+// The global satpam validator will has updated validation rules.
 // After this statement, we can do satpam.validate({name: ['must-be-ironman']}, ...);
 satpam.addCustomValidation('must-be-ironman', val => val === 'ironman');
 satpam.setValidationMessage('must-be-ironman', 'Not ironman D:');
@@ -152,10 +151,9 @@ satpam.setValidationMessage('range:$1:$2', '<%= propertyName %> must between <%=
 const newValidator = satpam.create();
 ```
 
-## Optional validation rules
-
-Sometimes you want the validation to pass if any of the validation rules is satisfied, to do this,
-you need to wrap the validation rules in an array.
+## Optional Validation
+Sometimes you want the validation to pass if any of the validation rule is satisfied,
+we can do this by supplying the validation rules in an array.
 
 ```js
 const rules = {
@@ -164,6 +162,8 @@ const rules = {
 };
 ```
 
+
+## Running Validation Based On Some Conditions
 There's also a case when you only want to run a validation rule only if a specific condition is fulfilled.
 
 ```js
@@ -186,7 +186,7 @@ satpam.validate(rules, {
 
 
 ## Custom Validation Messages
-Setting validation messages is easy:
+You can override each validation rule's message
 
 ```js
 satpam.setValidationMessage(
@@ -200,7 +200,7 @@ You can also pass a `Function` instead of a `String`
 ```js
 /**
  * @example
- * import satpam from 'satpam';
+ * const satpam = require('satpam');
  *
  * const rules = {name: ['minLength:10']};
  * const input = {name: 'wubwub'};
@@ -212,15 +212,15 @@ You can also pass a `Function` instead of a `String`
  * expect(propertyName).to.equal('name');
  * expect(value).to.equal('wubwub');
  *
- * @param ruleObj
- * @param ruleObj.name - The validation rule name
+ * @param {Object} ruleObj
+ * @param {String} ruleObj.name - The validation rule name
  *   e.g. `minLength:10` will have name minLength
- * @param ruleObj.fullName - Validation rule fullname
+ * @param {String} ruleObj.fullName - Validation rule fullname
  *   e.g. `minLength:10` will have fullName `minLength:$1`
- * @param ruleObj.params - The rule parameters
+ * @param {Array} ruleObj.params - The rule parameters
  *   e.g. `minlength:10` will have params `[10]`
- * @param propertyName
- * @param value
+ * @param {String} propertyName
+ * @param {*} value
  */
 const message = (ruleObj, propertyName, value) => {
   ...
@@ -228,14 +228,8 @@ const message = (ruleObj, propertyName, value) => {
 satpam.setValidationMessage('minLength:$1', message);
 ```
 
-
-## TODOs
-- Better documentation.
-- Add more validation rules.
-- Validate file types.
-
-
 ## License
 MIT
 
 ![Hi-Five](https://media.giphy.com/media/JhThbOq62vwn6/giphy.gif)
+
