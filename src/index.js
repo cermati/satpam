@@ -109,7 +109,7 @@ let validationMessages = {
   'dateBefore:$1:$2:$3:$4': dateBefore.message,
   'requiredIf:$1:$2': requiredIf.message,
   'taxId:$1': taxId.message,
-  'minimumAge:$1:$2': minimumAge.message
+  'minimumAge:$1:$2': minimumAge.message,
   'between:$1:$2': between.message
 };
 
