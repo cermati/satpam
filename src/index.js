@@ -35,6 +35,7 @@ import mongoId from './validators/mongo-id';
 import minimumAge from './validators/minimum-age';
 import fileType from './validators/file-type';
 import boolean from './validators/boolean';
+import between from './validators/between';
 
 let validation = {
   required: required.validate,
@@ -70,7 +71,8 @@ let validation = {
   'dateBefore:$1:$2:$3:$4': dateBefore.validate,
   'requiredIf:$1:$2': requiredIf.validate,
   'taxId:$1': taxId.validate,
-  'minimumAge:$1:$2': minimumAge.validate
+  'minimumAge:$1:$2': minimumAge.validate,
+  'between:$1:$2': between.validate
 };
 
 let validationMessages = {
@@ -107,7 +109,8 @@ let validationMessages = {
   'dateBefore:$1:$2:$3:$4': dateBefore.message,
   'requiredIf:$1:$2': requiredIf.message,
   'taxId:$1': taxId.message,
-  'minimumAge:$1:$2': minimumAge.message
+  'minimumAge:$1:$2': minimumAge.message,
+  'between:$1:$2': between.message
 };
 
 class ValidationMessage {
