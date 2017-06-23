@@ -1,5 +1,6 @@
 import R from 'ramda';
 import _ from 'lodash';
+import noes from 'noes';
 
 import required from './validators/required';
 import email from './validators/email';
@@ -159,7 +160,7 @@ class Validator {
   /**
    * Create a rule object based on the given rule.
    * @param rule {Object|String}
-   * @returns {{name: String, fullName: String, params: Array<String>, shouldValidate: Function}}
+   * @returns {{name: String, fullName: String, params: Array<String>, shouldValidate: Function|ConjunctionObject}}
    */
   _createRuleObject(rule) {
     let ruleObj = {};
@@ -178,7 +179,14 @@ class Validator {
       ruleObj.name = rule.name;
       ruleObj.fullName = rule.fullName;
       ruleObj.params = rule.params || [];
-      ruleObj.shouldValidate = rule.shouldValidate;
+
+      if (R.is(Object, rule.shouldValidate) && noes.Conjunction.shouldCreateConjunction(rule.shouldValidate)) {
+        ruleObj.shouldValidate = (ruleObj, rootInputObj) => {
+          return noes.create(rule.shouldValidate).satisfied(rootInputObj);
+        };
+      } else {
+        ruleObj.shouldValidate = rule.shouldValidate;
+      }
     }
 
     ruleObj.shouldValidate = ruleObj.shouldValidate || R.always(true);
