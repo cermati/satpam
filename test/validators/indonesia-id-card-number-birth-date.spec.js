@@ -22,12 +22,11 @@ describe('Indonesia id card nmber birth date validator', () => {
 
     const err = result.messages;
 
-    expect(result.success).to.equal(false);
-    expect(err.idCard).to.have.property('indonesiaIdCardNumberBirthDate:$1:$2')
-      .that.equals('Id Card birth date number sequence does not match the given birth date.');
+    expect(result.success).to.equal(true);
+    expect(err).to.not.have.property('idCard');
   });
 
-  it('should success when given invalid id card that does not match birth date', () => {
+  it('should fail when given invalid id card that does not match birth date', () => {
     const result = validator.validate(rules, {
       idCard: '0123450209933456',
       birthDate: '02-10-93'

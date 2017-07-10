@@ -12,7 +12,7 @@ const validate = (value, ruleObj, propertyName, inputObj)  => {
   const birthDateFromIdCard = String(value).substr(6, 6);
   const birthDateInputKey = ruleObj.params[0];
   const birthDateInputFormat = ruleObj.params[1];
-  const birthDateValue = moment(inputObj[birthDateInputKey], birthDateInputFormat).format('DDMMYYYY');
+  const birthDateValue = moment(inputObj[birthDateInputKey], birthDateInputFormat).format('DDMMYY');
 
   return birthDateValue === birthDateFromIdCard;
 };
