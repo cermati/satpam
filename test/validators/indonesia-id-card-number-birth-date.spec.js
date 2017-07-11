@@ -17,7 +17,7 @@ describe('Indonesia id card nmber birth date validator', () => {
   it('should success when given valid id card', () => {
     const result = validator.validate(rules, {
       idCard: '0123450209933456',
-      birthDate: '02-09-93'
+      birthDate: '02-09-1993'
     });
 
     const err = result.messages;
@@ -29,7 +29,7 @@ describe('Indonesia id card nmber birth date validator', () => {
   it('should fail when given invalid id card that does not match birth date', () => {
     const result = validator.validate(rules, {
       idCard: '0123450209933456',
-      birthDate: '02-10-93'
+      birthDate: '02-10-1993'
     });
 
     const err = result.messages;
