@@ -69,7 +69,7 @@ let validation = {
   mongoId: mongoId.validate,
   nonBlank: nonBlank.validate,
   numeric: numeric.validate,
-  phoneNumber: phonteNumber.validate,
+  phoneNumber: phoneNumber.validate,
   required: required.validate,
   string: string.validate,
   url: url.validate,
