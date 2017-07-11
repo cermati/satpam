@@ -88,5 +88,35 @@ describe('Validator._createRuleObject()', () => {
       });
     });
   });
+
+  context('when shouldValidate property is passed', () => {
+    context('and it\'s a conjunction object', () => {
+      it('should create shouldValidate function', () => {
+        const ruleObj = validator._createRuleObject({
+          name: 'woosah',
+          params: ['rocky', 'balboa'],
+          shouldValidate: {
+            type: 'and',
+            mappings: {
+              foo: {
+                '!==': 'validate-me'
+              }
+            }
+          }
+        });
+
+        expect(ruleObj.name).to.equal('woosah');
+        expect(ruleObj.fullName).to.equal('woosah:$1:$2');
+        expect(ruleObj.params).to.deep.equal(['rocky', 'balboa']);
+        expect(ruleObj.shouldValidate).to.be.a.function;
+        expect(ruleObj.shouldValidate(ruleObj, {
+          foo: 'validate-me'
+        })).to.be.false;
+        expect(ruleObj.shouldValidate(ruleObj, {
+          foo: 'validate-mee'
+        })).to.be.true;
+      });
+    });
+  });
 });
 
