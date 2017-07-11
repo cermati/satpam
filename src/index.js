@@ -37,6 +37,7 @@ import fileType from './validators/file-type';
 import boolean from './validators/boolean';
 import between from './validators/between';
 import indonesiaIdCardNumberBirthDate from './validators/indonesia-id-card-number-birth-date';
+import indonesiaIdCardNumberGender from './validators/indonesia-id-card-number-gender';
 
 let validation = {
   'beginWith:$1': beginWith.validate,
@@ -47,6 +48,7 @@ let validation = {
   'equal:$1': equal.validate,
   'fileType:$1': fileType.validate,
   'indonesiaIdCardNumberBirthDate:$1:$2': indonesiaIdCardNumberBirthDate.validate,
+  'indonesiaIdCardNumberGender:$1:$2:$3': indonesiaIdCardNumberGender.validate,
   'length:$1': length.validate,
   'maxLength:$1': maxLength.validate,
   'maxValue:$1': maxValue.validate,
@@ -86,6 +88,7 @@ let validationMessages = {
   'equal:$1': equal.message,
   'fileType:$1': fileType.message,
   'indonesiaIdCardNumberBirthDate:$1:$2': indonesiaIdCardNumberBirthDate.message,
+  'indonesiaIdCardNumberGender:$1:$2:$3': indonesiaIdCardNumberGender.message,
   'length:$1': length.message,
   'maxLength:$1': maxLength.message,
   'maxValue:$1': maxValue.message,
