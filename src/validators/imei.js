@@ -18,7 +18,7 @@ const validate = value => {
   let factor = 2;
   let checkDigit, multipliedDigit;
 
-  for (var i = 13, li = 0; i >= li; i--) {
+  for (let i = 13, li = 0; i >= li; i--) {
     multipliedDigit = parseInt(value.charAt(i), 10) * factor;
     sum += (multipliedDigit >= 10 ? ((multipliedDigit % 10) + 1) : multipliedDigit);
     (factor === 1 ? factor++ : factor--);
