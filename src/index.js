@@ -32,6 +32,7 @@ import mobilePhoneNumber from './validators/mobile-phone-number';
 import mongoId from './validators/mongo-id';
 import nonBlank from './validators/non-blank';
 import notEqual from './validators/not-equal';
+import notMemberOf from './validators/not-member-of';
 import numeric from './validators/numeric';
 import phoneNumber from './validators/phone-number';
 import regex from './validators/regex';
@@ -59,6 +60,7 @@ let validation = {
   'minValue:$1': minValue.validate,
   'minimumAge:$1:$2': minimumAge.validate,
   'not-equal:$1': notEqual.validate,
+  'not-memberOf:$1': notMemberOf.validate,
   'regex:$1:$2': regex.validate,
   'requiredIf:$1:$2': requiredIf.validate,
   'taxId:$1': taxId.validate,
@@ -100,6 +102,7 @@ let validationMessages = {
   'minValue:$1': minValue.message,
   'minimumAge:$1:$2': minimumAge.message,
   'not-equal:$1': notEqual.message,
+  'not-memberOf:$1': notMemberOf.message,
   'regex:$1:$2': regex.message,
   'requiredIf:$1:$2': requiredIf.message,
   'taxId:$1': taxId.message,
