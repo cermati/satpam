@@ -18,6 +18,7 @@ import equal from './validators/equal';
 import fileType from './validators/file-type';
 import fqdn from './validators/fqdn';
 import image from './validators/image';
+import imei from './validators/imei';
 import indonesiaIdCardNumberBirthDate from './validators/indonesia-id-card-number-birth-date';
 import indonesiaIdCardNumberGender from './validators/indonesia-id-card-number-gender';
 import ip from './validators/ip';
@@ -73,6 +74,7 @@ let validation = {
   emptyString: emptyString.validate,
   fqdn: fqdn.validate,
   image: image.validate,
+  imei: imei.validate,
   ip: ip.validate,
   mobilePhoneNumber: mobilePhoneNumber.validate,
   mongoId: mongoId.validate,
@@ -115,6 +117,7 @@ let validationMessages = {
   emptyString: emptyString.message,
   fqdn: fqdn.message,
   image: image.message,
+  imei: imei.message,
   ip: ip.message,
   mobilePhoneNumber: mobilePhoneNumber.message,
   mongoId: mongoId.message,

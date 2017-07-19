@@ -18,6 +18,7 @@ import fqdn from './validators/fqdn';
 import indonesiaIdCardNumberBirthDate from './validators/indonesia-id-card-number-birth-date';
 import indonesiaIdCardNumberGender from './validators/indonesia-id-card-number-gender';
 import ip from './validators/ip';
+import imei from './validators/imei';
 import length from './validators/length';
 import maxLength from './validators/max-length';
 import maxValue from './validators/max-value';
@@ -69,6 +70,7 @@ let validation = {
   emptyString: emptyString.validate,
   fqdn: fqdn.validate,
   ip: ip.validate,
+  imei: imei.validate,
   mobilePhoneNumber: mobilePhoneNumber.validate,
   mongoId: mongoId.validate,
   nonBlank: nonBlank.validate,
@@ -109,6 +111,7 @@ let validationMessages = {
   emptyString: emptyString.message,
   fqdn: fqdn.message,
   ip: ip.message,
+  imei: imei.message,
   mobilePhoneNumber: mobilePhoneNumber.message,
   mongoId: mongoId.message,
   nonBlank: nonBlank.message,

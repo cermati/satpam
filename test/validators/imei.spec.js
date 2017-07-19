@@ -20,6 +20,6 @@ describe('IMEI validator', () => {
 
     expect(result.success).to.equal(false);
     expect(err).to.have.property('imeiNumber');
-    expect(err.imeiNumber.creditCard).to.equal('Imei Number is not a valid credit card number.');
+    expect(err.imeiNumber.imei).to.equal('Imei Number is not a valid IMEI.');
   });
 });
