@@ -1,41 +1,42 @@
 import R from 'ramda';
 import _ from 'lodash';
 
-import required from './validators/required';
-import email from './validators/email';
-import numeric from './validators/numeric';
 import alpha from './validators/alpha';
 import alphanumeric from './validators/alphanumeric';
-import date from './validators/date';
-import url from './validators/url';
-import ip from './validators/ip';
-import fqdn from './validators/fqdn';
-import string from './validators/string';
-import nonBlank from './validators/non-blank';
-import length from './validators/length';
-import maxLength from './validators/max-length';
-import minLength from './validators/min-length';
-import minValue from './validators/min-value';
-import maxValue from './validators/max-value';
-import memberOf from './validators/member-of';
 import beginWith from './validators/begin-with';
-import regex from './validators/regex';
-import notEqual from './validators/not-equal';
-import equal from './validators/equal';
-import dateFormat from './validators/date-format';
+import between from './validators/between';
+import boolean from './validators/boolean';
+import creditCard from './validators/credit-card';
+import date from './validators/date';
 import dateAfter from './validators/date-after';
 import dateBefore from './validators/date-before';
-import creditCard from './validators/credit-card';
-import requiredIf from './validators/required-if';
-import taxId from './validators/tax-id';
-import phoneNumber from './validators/phone-number';
-import mobilePhoneNumber from './validators/mobile-phone-number';
-import mongoId from './validators/mongo-id';
-import minimumAge from './validators/minimum-age';
-import boolean from './validators/boolean';
-import between from './validators/between';
+import dateFormat from './validators/date-format';
+import email from './validators/email';
+import emptyString from './validators/empty-string';
+import equal from './validators/equal';
+import fqdn from './validators/fqdn';
 import indonesiaIdCardNumberBirthDate from './validators/indonesia-id-card-number-birth-date';
 import indonesiaIdCardNumberGender from './validators/indonesia-id-card-number-gender';
+import ip from './validators/ip';
+import length from './validators/length';
+import maxLength from './validators/max-length';
+import maxValue from './validators/max-value';
+import memberOf from './validators/member-of';
+import minLength from './validators/min-length';
+import minValue from './validators/min-value';
+import minimumAge from './validators/minimum-age';
+import mobilePhoneNumber from './validators/mobile-phone-number';
+import mongoId from './validators/mongo-id';
+import nonBlank from './validators/non-blank';
+import notEqual from './validators/not-equal';
+import numeric from './validators/numeric';
+import phoneNumber from './validators/phone-number';
+import regex from './validators/regex';
+import required from './validators/required';
+import requiredIf from './validators/required-if';
+import string from './validators/string';
+import taxId from './validators/tax-id';
+import url from './validators/url';
 
 let validation = {
   'beginWith:$1': beginWith.validate,
@@ -63,6 +64,7 @@ let validation = {
   creditCard: creditCard.validate,
   date: date.validate,
   email: email.validate,
+  emptyString: emptyString.validate,
   fqdn: fqdn.validate,
   ip: ip.validate,
   mobilePhoneNumber: mobilePhoneNumber.validate,
@@ -101,6 +103,7 @@ let validationMessages = {
   creditCard: creditCard.message,
   date: date.message,
   email: email.message,
+  emptyString: emptyString.message,
   fqdn: fqdn.message,
   ip: ip.message,
   mobilePhoneNumber: mobilePhoneNumber.message,
