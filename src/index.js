@@ -42,6 +42,7 @@ import requiredIf from './validators/required-if';
 import string from './validators/string';
 import taxId from './validators/tax-id';
 import url from './validators/url';
+import uuid from './validators/uuid';
 
 let validation = {
   'beginWith:$1': beginWith.validate,
@@ -83,7 +84,8 @@ let validation = {
   phoneNumber: phoneNumber.validate,
   required: required.validate,
   string: string.validate,
-  url: url.validate
+  url: url.validate,
+  'uuid:$1': uuid.validate
 };
 
 let validationMessages = {
@@ -126,7 +128,8 @@ let validationMessages = {
   phoneNumber: phoneNumber.message,
   required: required.message,
   string: string.message,
-  url: url.message
+  url: url.message,
+  'uuid:$1': uuid.message
 };
 
 class ValidationMessage {
