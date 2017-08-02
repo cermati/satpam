@@ -113,7 +113,10 @@ const validatorTwo = satpam.create();
 
   `$1` is the pattern, `$2` is the regex flags
   [examples](https://github.com/cermati/satpam/blob/master/test/validators/regex.spec.js#L6)
+- `uuid:$1`
 
+  `$1` is the version, available options v1, v3, v4, v5, all
+  [examples](https://github.com/cermati/satpam/blob/master/test/validators/uuid.spec.js#L6)
 
 
 ## Complete Examples
