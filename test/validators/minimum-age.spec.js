@@ -27,9 +27,9 @@ describe ('MinimumAge validator', () => {
 
   context('given invalid age', () => {
     const birthDate = moment()
-            .subtract(21, 'years')
-            .add(1, 'day')
-            .format('DD/MM/YYYY');
+      .subtract(21, 'years')
+      .add(2, 'day')
+      .format('DD/MM/YYYY');
 
     const result = validator.validate(rules, {
       birthDate: birthDate
