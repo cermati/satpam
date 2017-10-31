@@ -23,7 +23,7 @@ const prefixMap = {
   '0828': true, // Ceria	Sampoerna Telekom
   '0831': true, // Axis	AXIS Telekom Indonesia
   '0832': true, // Axis	AXIS Telekom Indonesia
-  '0832': true, // Axis	AXIS Telekom Indonesia
+  '0833': true, // Axis	AXIS Telekom Indonesia
   '0838': true, // Axis	AXIS Telekom Indonesia
   '0851': true, // Nomor untu k Kartu AS (pengganti Flexi)
   '0852': true, // Kartu As	Telkomsel
@@ -46,6 +46,7 @@ const prefixMap = {
   '0887': true, // smartfren	Smartfren Telecom
   '0888': true, // smartfren	Smartfren Telecom
   '0889': true, // smartfren	Smartfren Telecom
+  '0894': true, // 3	Hutchison Charoen Pokphand Telecom
   '0895': true, // 3	Hutchison Charoen Pokphand Telecom
   '0896': true, // 3	Hutchison Charoen Pokphand Telecom
   '0897': true, // 3	Hutchison Charoen Pokphand Telecom
@@ -53,12 +54,16 @@ const prefixMap = {
   '0899': true // 3	Hutchison Charoen Pokphand Telecom
 };
 
+const normalizeMobilePhoneNumber = mobilePhoneNumber => {
+  return _.replace(mobilePhoneNumber, /^(08|628|\+628|8)/, '08');
+};
+
 const validate = value => {
   if (!value) {
     return true;
   }
 
-  const prefix = _.toString(value).substr(0, 4);
+  const prefix = _.toString(normalizeMobilePhoneNumber(value)).substr(0, 4);
 
   return prefixMap[prefix] && mobilePhoneNumberRegex.test(value);
 };
