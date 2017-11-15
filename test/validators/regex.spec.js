@@ -56,4 +56,3 @@ describe('Regex validator', () => {
     expect(err).to.have.property('str');
   });
 });
-
