@@ -32,6 +32,7 @@ import nonBlank from './validators/non-blank';
 import notEqual from './validators/not-equal';
 import notMemberOf from './validators/not-member-of'
 import numeric from './validators/numeric';
+import pattern from './validators/pattern';
 import phoneNumber from './validators/phone-number';
 import regex from './validators/regex';
 import required from './validators/required';
@@ -58,7 +59,7 @@ let validation = {
   'minimumAge:$1:$2': minimumAge.validate,
   'not-equal:$1': notEqual.validate,
   'not-memberOf:$1': notMemberOf.validate,
-  'regex:$1:$2': regex.validate,
+  'pattern:$1:$2': pattern.validate,
   'requiredIf:$1:$2': requiredIf.validate,
   'taxId:$1': taxId.validate,
   alpha: alpha.validate,
@@ -76,6 +77,7 @@ let validation = {
   nonBlank: nonBlank.validate,
   numeric: numeric.validate,
   phoneNumber: phoneNumber.validate,
+  regex: regex.validate,
   required: required.validate,
   string: string.validate,
   url: url.validate,
@@ -99,7 +101,7 @@ let validationMessages = {
   'minimumAge:$1:$2': minimumAge.message,
   'not-equal:$1': notEqual.message,
   'not-memberOf:$1': notMemberOf.message,
-  'regex:$1:$2': regex.message,
+  'pattern:$1:$2': pattern.message,
   'requiredIf:$1:$2': requiredIf.message,
   'taxId:$1': taxId.message,
   alpha: alpha.message,
@@ -117,6 +119,7 @@ let validationMessages = {
   nonBlank: nonBlank.message,
   numeric: numeric.message,
   phoneNumber: phoneNumber.message,
+  regex: regex.message,
   required: required.message,
   string: string.message,
   url: url.message,

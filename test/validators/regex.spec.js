@@ -1,91 +1,59 @@
 import { expect } from 'chai';
 import validator from '../../lib';
 
-describe('regexp validator', () => {
-  context('given null value', () => {
-    const rules = {
-      name: ['regex:42:g']
-    };
-    const result = validator.validate(rules, {name: null});
-    const err = result.messages;
+describe('Regex validator', () => {
+  const rules = {
+    str: ['regex']
+  };
 
-    it('should success', () => {
-      expect(result.success).to.equal(true);
-    expect(err).to.not.have.property('name');
+  it ('should success if str is a null', () => {
+    const result = validator.validate(rules, {
+      str: null
     });
+    const err = result.messages;
+    
+    expect(result.success).to.equal(true);
+    expect(err).to.not.have.property('str');
   });
 
-  context('given undefined value', () => {
-    const rules = {
-      name: ['regex:42:g']
-    };
-    const result = validator.validate(rules, {});
+  it('should success if str is an empty string', () => {
+    const result = validator.validate(rules, {
+      str: ''
+    });
     const err = result.messages;
 
-    it('should success', () => {
-      expect(result.success).to.equal(true);
-    expect(err).to.not.have.property('name');
-    });
+    expect(result.success).to.equal(true);
+    expect(err).to.not.have.property('str');
   });
 
-  context('given value that matches the pattern non digit', () => {
-    const rules = {
-      name: ['regex:\\D:g']
-    };
-    const result = validator.validate(rules, {name: 'halo'});
-    const err = result.messages;
-
-    it('should success', () => {
-      expect(result.success).to.equal(true);
-      expect(err).to.not.have.property('name');
+  it ('should success if str is a numeric', () => {
+    const result = validator.validate(rules, {
+      str: 1238
     });
+    const err = result.messages;
+    
+    expect(result.success).to.equal(true);
+    expect(err).to.not.have.property('str');
   });
 
-  context('given value that does not match the pattern non digit', () => {
-    const rules = {
-      name: ['regex:\\D:g']
-    };
-    const result = validator.validate(rules, {name: '3'});
+  it ('should success if str is a valid regex', () => {
+    const result = validator.validate(rules, {
+      str: '/ab+c/'
+    });
     const err = result.messages;
-
-    it('should fail', () => {
-      expect(result.success).to.equal(false);
-      expect(err).to.have.property('name');
-    });
-
-
-    it('should have correct validation message', () => {
-      expect(err.name['regex:$1:$2']).to.equal('Name does not conform pattern \\D.');
-    });
+    
+    expect(result.success).to.equal(true);
+    expect(err).to.not.have.property('str');
   });
 
-  context('given value that matches the pattern "(alo){3}$"', () => {
-    const rules = {
-      name: ['regex:(alo){3}$:g']
-    };
-    const result = validator.validate(rules, {name: 'haloaloalo'});
+  it ('should fail if str is not a valid regex', () => {
+    const result = validator.validate(rules, {
+      str: '/(^'
+    });
     const err = result.messages;
-
-    it('should fail', () => {
-      expect(result.success).to.equal(true);
-      expect(err).to.not.have.property('name');
-    });
-  });
-
-  context('given value that does not match the pattern "(alo){3}$"', () => {
-    const rules = {
-      name: ['regex:(alo){3}$:g']
-    };
-    const result = validator.validate(rules, {name: 'haloalo'});
-    const err = result.messages;
-
-    it('should fail', () => {
-      expect(result.success).to.equal(false);
-      expect(err).to.have.property('name');
-    });
-
-    it('should have correct validation message', () => {
-      expect(err.name['regex:$1:$2']).to.equal('Name does not conform pattern (alo){3}$.');
-    });
+    
+    expect(result.success).to.equal(false);
+    expect(err).to.have.property('str');
   });
 });
+
