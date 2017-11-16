@@ -1,4 +1,10 @@
+import _ from 'lodash';
+
 const validate = val => {
+  if (_.isNil(val)) {
+    return true;
+  }
+
   try {
     new RegExp(val);
     return true;
@@ -7,6 +13,6 @@ const validate = val => {
   }
 };
 
-const message = '<%= propertyName %> must be a regex.';
+const message = '<%= propertyName %> is not a valid regex string.';
 
 export default {validate, message};
