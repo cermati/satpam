@@ -109,10 +109,10 @@ const validatorTwo = satpam.create();
 
   Use object notation for defining this rule
   [examples](https://github.com/cermati/satpam/blob/master/test/validators/begin-with.spec.js#L5)
-- `regex:$1:$2`
+- `pattern:$1:$2`
 
   `$1` is the pattern, `$2` is the regex flags
-  [examples](https://github.com/cermati/satpam/blob/master/test/validators/regex.spec.js#L6)
+  [examples](https://github.com/cermati/satpam/blob/master/test/validators/pattern.spec.js#L6)
 - `uuid:$1`
 
   `$1` is the version, available options v1, v3, v4, v5, all
