@@ -6,6 +6,14 @@ describe('MinValue validator', () => {
     favoriteNumber: ['minValue:50']
   };
 
+  it('should success when input key is not defined', () => {
+    const result = validator.validate(ruleWithParam, {});
+    const err = result.messages;
+
+    expect(result.success).to.equal(true);
+    expect(err).to.not.have.property('favoriteNumber');
+  });
+
   it('should success for number type greater or equal to limit', () => {
     const acceptedInputs = [
       50,
@@ -42,10 +50,9 @@ describe('MinValue validator', () => {
     const rejectedInputs = [
       '1-1-1+1',
       'asdasd',
-      {lol: 'wut'},
-      null,
-      undefined
+      {lol: 'wut'}
     ];
+
     rejectedInputs.forEach(function test(rejectedInput) {
       const result = validator.validate(ruleWithParam, {favoriteNumber: rejectedInput});
       const err = result.messages;
