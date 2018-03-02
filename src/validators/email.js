@@ -28,7 +28,7 @@ const validate = val => {
   if (lowerDomain === 'gmail.com' || lowerDomain === 'googlemail.com') {
     user = user.replace(/\./g, '').toLowerCase();
   }
-  if (!fqdn.validate(domain)) {
+  if (!domain || !fqdn.validate(domain)) {
     return false;
   }
 
