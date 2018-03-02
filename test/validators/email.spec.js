@@ -32,6 +32,19 @@ describe('email validator', () => {
     });
   });
 
+  context('given empty string value', () => {
+    const input = {
+      email: ''
+    };
+    const result = validator.validate(rules, input);
+    const err = result.messages;
+
+    it('should success', () => {
+      expect(result.success).to.equal(true);
+      expect(err).to.not.have.property('email');
+    });
+  });
+
   context('given invalid value (garbage)', () => {
     const input = {
       email: '#@%^%#$@#$@#.com'
