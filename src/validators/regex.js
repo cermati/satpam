@@ -1,7 +1,7 @@
-import _ from 'lodash';
+import isNil from 'lodash/isNil';
 
 const validate = val => {
-  if (_.isNil(val)) {
+  if (isNil(val)) {
     return true;
   }
 

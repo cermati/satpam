@@ -1,5 +1,9 @@
 import R from 'ramda';
-import _ from 'lodash';
+import get from 'lodash/get';
+import isArray from 'lodash/isArray';
+import template from 'lodash/template';
+import startCase from 'lodash/startCase';
+
 
 import alpha from './validators/alpha';
 import alphanumeric from './validators/alphanumeric';
@@ -203,7 +207,7 @@ class Validator {
     // Loop through the given rule mapping
     R.keys(ruleMapping).forEach(propertyName => {
       const ruleArray = ruleMapping[propertyName];
-      const val = _.get(inputObj, propertyName);
+      const val = get(inputObj, propertyName);
       const setValidationMessage = (ruleName, message) => {
         // Set messageObj initial value
         messageObj[propertyName] = messageObj[propertyName] || {};
@@ -245,10 +249,10 @@ class Validator {
       };
 
       // Nested rule
-      if (!_.isArray(ruleArray)) {
+      if (!isArray(ruleArray)) {
         const nestedResult = this._validate(
           ruleArray,
-          _.get(inputObj, propertyName),
+          get(inputObj, propertyName),
           rootInputObj
         );
         result = nestedResult.success && result;
@@ -316,8 +320,8 @@ class Validator {
   getValidationMessage(ruleObj, propertyName, val) {
     const message = this.validation.messages[ruleObj.fullName];
     const messageTemplate = R.is(Function, message) ? message(ruleObj, propertyName, val) : message;
-    const compiled = _.template(messageTemplate);
-    propertyName = _.startCase(propertyName);
+    const compiled = template(messageTemplate);
+    propertyName = startCase(propertyName);
 
     return compiled({
       propertyName: propertyName,

@@ -1,5 +1,12 @@
 import R from 'ramda';
-import _ from 'lodash';
+import isObject from 'lodash/isObject';
+import isFunction from 'lodash/isFunction';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import isArray from 'lodash/isArray';
+import template from 'lodash/template';
+import startCase from 'lodash/startCase';
+
 import noes from 'noes';
 
 import alpha from './validators/alpha';
@@ -152,8 +159,8 @@ class ValidationMessage {
 const cloneDeep = obj => {
   const newObj = {};
 
-  _.forEach(obj, (value, key) => {
-    if (_.isObject(value) && !_.isFunction(value)) {
+  forEach(obj, (value, key) => {
+    if (isObject(value) && !isFunction(value)) {
       newObj[key] = cloneDeep(value);
     }
 
@@ -244,7 +251,7 @@ class Validator {
     // Loop through the given rule mapping
     R.keys(ruleMapping).forEach(propertyName => {
       const ruleArray = ruleMapping[propertyName];
-      const val = _.get(inputObj, propertyName);
+      const val = get(inputObj, propertyName);
       const setValidationMessage = (ruleName, message) => {
         // Set messageObj initial value
         messageObj[propertyName] = messageObj[propertyName] || {};
@@ -286,10 +293,10 @@ class Validator {
       };
 
       // Nested rule
-      if (!_.isArray(ruleArray)) {
+      if (!isArray(ruleArray)) {
         const nestedResult = this._validate(
           ruleArray,
-          _.get(inputObj, propertyName),
+          get(inputObj, propertyName),
           rootInputObj
         );
         result = nestedResult.success && result;
@@ -357,8 +364,8 @@ class Validator {
   getValidationMessage(ruleObj, propertyName, val) {
     const message = this.validation.messages[ruleObj.fullName];
     const messageTemplate = R.is(Function, message) ? message(ruleObj, propertyName, val) : message;
-    const compiled = _.template(messageTemplate);
-    propertyName = _.startCase(propertyName);
+    const compiled = template(messageTemplate);
+    propertyName = startCase(propertyName);
 
     return compiled({
       propertyName: propertyName,
