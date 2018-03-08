@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import replace from 'lodash/replace';
+import toString from 'lodash/toString';
 
 const mobilePhoneNumberRegex = /^(08|628|\+628)[0-9]{6,11}$/;
 
@@ -55,7 +56,7 @@ const prefixMap = {
 };
 
 const normalizeMobilePhoneNumber = mobilePhoneNumber => {
-  return _.replace(mobilePhoneNumber, /^(08|628|\+628|8)/, '08');
+  return replace(mobilePhoneNumber, /^(08|628|\+628|8)/, '08');
 };
 
 const validate = value => {
@@ -63,7 +64,7 @@ const validate = value => {
     return true;
   }
 
-  const prefix = _.toString(normalizeMobilePhoneNumber(value)).substr(0, 4);
+  const prefix = toString(normalizeMobilePhoneNumber(value)).substr(0, 4);
 
   return prefixMap[prefix] && mobilePhoneNumberRegex.test(value);
 };
