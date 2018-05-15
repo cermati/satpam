@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import validator from '../../lib';
 
-describe('Indonesia id card nmber birth date validator', () => {
+describe('Indonesia id card number birth date validator', () => {
   const rules = {
     idCard: ['indonesiaIdCardNumberBirthDate:birthDate:DD-MM-YYYY']
   };

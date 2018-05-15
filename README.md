@@ -117,6 +117,18 @@ const validatorTwo = satpam.create();
 
   `$1` is the version, available options v1, v3, v4, v5, all
   [examples](https://github.com/cermati/satpam/blob/master/test/validators/uuid.spec.js#L6)
+- `indonesiaIdCardNumberBirthDate:$1:$2`
+
+  `$1` is the Birth Date's key, $2 is the date format used
+  [examples](https://github.com/cermati/satpam/blob/master/test/validators/indonesia-id-card-number-birth-date.spec.js#L6)
+- `indonesiaIdCardNumberGender:$1:$2:$3`
+
+  `$1` is the Gender's key, $2 is the value for male, $3 is the value for female
+  [examples](https://github.com/cermati/satpam/blob/master/test/validators/indonesia-id-card-number-gender.spec.js#L6)
+- `indonesiaIdCardNumberProvince:$1`
+
+  `$1` is the Province's Key
+  [examples](https://github.com/cermati/satpam/blob/master/test/validators/indonesia-id-card-number-province.spec.js#L6)
 
 
 ## Complete Examples

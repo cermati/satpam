@@ -28,6 +28,7 @@ import image from './validators/image';
 import imei from './validators/imei';
 import indonesiaIdCardNumberBirthDate from './validators/indonesia-id-card-number-birth-date';
 import indonesiaIdCardNumberGender from './validators/indonesia-id-card-number-gender';
+import indonesiaIdCardNumberProvince from './validators/indonesia-id-card-number-province';
 import ip from './validators/ip';
 import length from './validators/length';
 import maxLength from './validators/max-length';
@@ -62,6 +63,7 @@ let validation = {
   'fileType:$1': fileType.validate,
   'indonesiaIdCardNumberBirthDate:$1:$2': indonesiaIdCardNumberBirthDate.validate,
   'indonesiaIdCardNumberGender:$1:$2:$3': indonesiaIdCardNumberGender.validate,
+  'indonesiaIdCardNumberProvince:$1': indonesiaIdCardNumberProvince.validate,
   'length:$1': length.validate,
   'maxLength:$1': maxLength.validate,
   'maxValue:$1': maxValue.validate,
@@ -107,6 +109,7 @@ let validationMessages = {
   'fileType:$1': fileType.message,
   'indonesiaIdCardNumberBirthDate:$1:$2': indonesiaIdCardNumberBirthDate.message,
   'indonesiaIdCardNumberGender:$1:$2:$3': indonesiaIdCardNumberGender.message,
+  'indonesiaIdCardNumberProvince:$1': indonesiaIdCardNumberProvince.message,
   'length:$1': length.message,
   'maxLength:$1': maxLength.message,
   'maxValue:$1': maxValue.message,
