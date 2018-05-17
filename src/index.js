@@ -29,6 +29,7 @@ import imei from './validators/imei';
 import indonesiaIdCardNumberBirthDate from './validators/indonesia-id-card-number-birth-date';
 import indonesiaIdCardNumberGender from './validators/indonesia-id-card-number-gender';
 import indonesiaIdCardNumberProvince from './validators/indonesia-id-card-number-province';
+import indonesiaIdCardNumberValidProvince from './validators/indonesia-id-card-number-valid-province';
 import ip from './validators/ip';
 import length from './validators/length';
 import maxLength from './validators/max-length';
@@ -64,6 +65,7 @@ let validation = {
   'indonesiaIdCardNumberBirthDate:$1:$2': indonesiaIdCardNumberBirthDate.validate,
   'indonesiaIdCardNumberGender:$1:$2:$3': indonesiaIdCardNumberGender.validate,
   'indonesiaIdCardNumberProvince:$1': indonesiaIdCardNumberProvince.validate,
+  'indonesiaIdCardNumberValidProvince': indonesiaIdCardNumberValidProvince.validate,
   'length:$1': length.validate,
   'maxLength:$1': maxLength.validate,
   'maxValue:$1': maxValue.validate,
@@ -110,6 +112,7 @@ let validationMessages = {
   'indonesiaIdCardNumberBirthDate:$1:$2': indonesiaIdCardNumberBirthDate.message,
   'indonesiaIdCardNumberGender:$1:$2:$3': indonesiaIdCardNumberGender.message,
   'indonesiaIdCardNumberProvince:$1': indonesiaIdCardNumberProvince.message,
+  'indonesiaIdCardNumberValidProvince': indonesiaIdCardNumberValidProvince.message,
   'length:$1': length.message,
   'maxLength:$1': maxLength.message,
   'maxValue:$1': maxValue.message,
