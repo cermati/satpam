@@ -35,7 +35,7 @@ const provinceCodeMapping = {
   92: true // 'PAPUA BARAT'
 };
 
-const validate = (value, ruleObj, propertyName, inputObj)  => {
+const validate = (value)  => {
   // Do not validate if input value is falsy.
   if (!value) {
     return true;
