@@ -424,10 +424,10 @@ class Validator {
    */
   setValidationLocale(locale) {
     try {
-      const locale = require(`./locale/${R.toLower(locale)}`);
+      const localeMapping = require(`./locale/${R.toLower(locale)}`);
 
-      for (const key of R.keys(locale)) {
-        this.setValidationMessage(key, locale[key]);
+      for (const key of R.keys(localeMapping)) {
+        this.setValidationMessage(key, localeMapping[key]);
       }
     } catch (error) {
       throw new Error('Locale not found.');
