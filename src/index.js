@@ -412,6 +412,28 @@ class Validator {
   setValidationMessage(ruleName, message) {
     this.validation.messages[ruleName] = message;
   }
+
+  /**
+   * Set validation message using locale file
+   *
+   * @example
+   *   import satpam from 'satpam';
+   *   satpam.setValidationLocale(..);
+   *
+   * @param locale
+   */
+  setValidationLocale(locale) {
+    try {
+      const localeMapping = require(`./locale/${R.toLower(locale)}`);
+
+      for (const key of R.keys(localeMapping)) {
+        this.setValidationMessage(key, localeMapping[key]);
+      }
+    } catch (error) {
+      throw new Error('Locale not found.');
+    }
+  }
+
 }
 
 /**
