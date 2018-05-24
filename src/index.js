@@ -493,6 +493,27 @@ exports.setValidationMessage = (ruleName, message) => {
 };
 
 /**
+ * Set validation message locale
+ *
+ * @example
+ *   import satpam from 'satpam';
+ *   satpam.setValidationLocale(..);
+ *
+ * @param locale
+ */
+exports.setValidationLocale = (locale) => {
+  try {
+    const localeMapping = require(`./locale/${R.toLower(locale)}`);
+
+    for (const key of R.keys(localeMapping)) {
+      validationMessages[key] = localeMapping[key];
+    }
+  } catch (error) {
+    throw new Error('Locale not found.');
+  }
+};
+
+/**
  * The global validation object that contains all of the validation rules
  * @type {object}
  */
