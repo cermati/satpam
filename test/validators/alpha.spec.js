@@ -14,6 +14,14 @@ describe('Alpha validator', () => {
     expect(err).to.not.have.property('name');
   });
 
+  it('should success (with space)', () => {
+    const result = validator.validate(rules, {name: 'sendy halim'});
+    const err = result.messages;
+
+    expect(result.success).to.equal(true);
+    expect(err).to.not.have.property('name');
+  });
+
   it('should fail', () => {
     const testObj = {name: 'sendy2 hehe'};
     const result = validator.validate(rules, testObj);

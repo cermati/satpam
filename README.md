@@ -129,6 +129,9 @@ const validatorTwo = satpam.create();
 
   `$1` is the Province's Key
   [examples](https://github.com/cermati/satpam/blob/master/test/validators/indonesia-id-card-number-province.spec.js#L6)
+- `indonesiaIdCardNumberValidProvince`
+
+  [examples](https://github.com/cermati/satpam/blob/master/test/validators/indonesia-id-card-number-valid-province.spec.js#L6)
 
 
 ## Complete Examples
