@@ -1,4 +1,4 @@
-const alphaRegex = /^[A-Z]+$/i;
+const alphaRegex = /^[A-Z ]+$/i;
 
 const validate = val => {
   if (val) {
