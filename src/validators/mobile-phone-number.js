@@ -1,7 +1,7 @@
 import replace from 'lodash/replace';
 import toString from 'lodash/toString';
 
-const mobilePhoneNumberRegex = /^(08|628|\+628)[0-9]{6,11}$/;
+const mobilePhoneNumberRegex = /^(08|628|\+628)[0-9]{8,12}$/;
 
 /**
  * Sources

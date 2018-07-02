@@ -55,10 +55,10 @@ describe('mobile phone number validator', () => {
     });
   });
 
-  context('with invalid mobile phone number that have 12 numbers after +628', () => {
+  context('with invalid mobile phone number that have 13 numbers after +628', () => {
     it('should fail', () => {
       const result = validator.validate(rule, {
-        phone: '+628123456789123'
+        phone: '+6281234567891234'
       });
 
       expect(result.success).to.equal(false);
