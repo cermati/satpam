@@ -53,6 +53,7 @@ import string from './validators/string';
 import taxId from './validators/tax-id';
 import url from './validators/url';
 import uuid from './validators/uuid';
+import multipleOf from './validators/multiple-of';
 
 let validation = {
   'beginWith:$1': beginWith.validate,
@@ -78,6 +79,7 @@ let validation = {
   'pattern:$1:$2': pattern.validate,
   'requiredIf:$1:$2': requiredIf.validate,
   'taxId:$1': taxId.validate,
+  'multipleOf:$1': multipleOf.validate,
   alpha: alpha.validate,
   alphanumeric: alphanumeric.validate,
   boolean: boolean.validate,
@@ -125,6 +127,7 @@ let validationMessages = {
   'pattern:$1:$2': pattern.message,
   'requiredIf:$1:$2': requiredIf.message,
   'taxId:$1': taxId.message,
+  'multipleOf:$1': multipleOf.message,
   alpha: alpha.message,
   alphanumeric: alphanumeric.message,
   boolean: boolean.message,

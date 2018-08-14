@@ -28,6 +28,7 @@ module.exports = {
   'minValue:$1': 'Input tidak boleh kurang dari <%= ruleParams[0] %>.',
   'mobilePhoneNumber': 'Nomor handphone tidak valid.',
   'mongoId': '<%= propertyName %> tidak valid.',
+  'multipleOf:$1': '<%= propertyName %> harus merupakan kelipatan <%= rulaParams[0] %>.',
   'nonBlank': 'Input ini wajib diisi.',
   'not-equal:$1': 'Input tidak boleh sama dengan <%= rulaParams[0] %>.',
   'not-memberOf:$1': 'Input tidak boleh bagian dari <%= rulaParams[0] %>.',
