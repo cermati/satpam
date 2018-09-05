@@ -55,6 +55,7 @@ import url from './validators/url';
 import uuid from './validators/uuid';
 import multipleOf from './validators/multiple-of';
 import containsDigit from './validators/contains-digit';
+import containsUpperCase from './validators/contains-upper-case';
 import containsLowerCase from './validators/contains-lower-case';
 
 let validation = {
@@ -85,8 +86,9 @@ let validation = {
   alpha: alpha.validate,
   alphanumeric: alphanumeric.validate,
   boolean: boolean.validate,
-  containsLowerCase: containsLowerCase.validate,
   containsDigit: containsDigit.validate,
+  containsUpperCase: containsUpperCase.validate,
+  containsLowerCase: containsLowerCase.validate,
   creditCard: creditCard.validate,
   date: date.validate,
   email: email.validate,
@@ -136,6 +138,7 @@ let validationMessages = {
   alphanumeric: alphanumeric.message,
   boolean: boolean.message,
   containsDigit: containsDigit.message,
+  containsUpperCase: containsUpperCase.message,
   containsLowerCase: containsLowerCase.message,
   creditCard: creditCard.message,
   date: date.message,
