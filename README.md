@@ -69,6 +69,10 @@ const validatorTwo = satpam.create();
 - `alpha`
 - `alphanumeric`
 - `boolean`
+- `creditCard`
+- `containsDigit`
+- `containsLowerCase`
+- `containsUpperCase`
 - `date`
 - `dateFormat:<format, e.g. DD-MM-YYYY>`
 - `dateAfter:<the date input format, e.g. DD-MM-YYYY>:<date after e.g. 'now' or 20-1-2015>:<offset>:<unit of time e.g. 'days'>`
@@ -76,7 +80,6 @@ const validatorTwo = satpam.create();
 - `url`
 - `string`
 - `nonBlank`
-- `creditCard`
 - `mongoId` Check if the given string is a valid mongodb object id
 - `phoneNumber` (Currently only supports Indonesia phone number)
 - `mobilePhoneNumber` (Currently only supports Indonesia mobile phone number)
