@@ -4,6 +4,7 @@ module.exports = {
   'beginWith:$1': 'Input tidak valid.',
   'between:$1:$2:': 'Input antara <%= ruleParams[0] %> dan <% ruleParams[1] %>.',
   'boolean': 'Input harus boolean.',
+  'containsAlphabet': 'Input harus mengandung setidaknya 1 huruf.',
   'containsDigit': 'Input harus mengandung setidaknya 1 angka.',
   'containsLowerCase': 'Input harus mengandung setidaknya 1 huruf kecil.',
   'containsUpperCase': 'Input harus mengandung setidaknya 1 huruf besar.',
