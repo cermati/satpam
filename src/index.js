@@ -54,6 +54,7 @@ import taxId from './validators/tax-id';
 import url from './validators/url';
 import uuid from './validators/uuid';
 import multipleOf from './validators/multiple-of';
+import containsAlphabet from './validators/contains-alphabet';
 import containsDigit from './validators/contains-digit';
 import containsLowerCase from './validators/contains-lower-case';
 import containsUpperCase from './validators/contains-upper-case';
@@ -86,6 +87,7 @@ let validation = {
   alpha: alpha.validate,
   alphanumeric: alphanumeric.validate,
   boolean: boolean.validate,
+  containsAlphabet: containsAlphabet.validate,
   containsDigit: containsDigit.validate,
   containsLowerCase: containsLowerCase.validate,
   containsUpperCase: containsUpperCase.validate,
@@ -137,6 +139,7 @@ let validationMessages = {
   alpha: alpha.message,
   alphanumeric: alphanumeric.message,
   boolean: boolean.message,
+  containsAlphabet: containsAlphabet.message,
   containsDigit: containsDigit.message,
   containsLowerCase: containsLowerCase.message,
   containsUpperCase: containsUpperCase.message,
