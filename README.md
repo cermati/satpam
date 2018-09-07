@@ -70,6 +70,7 @@ const validatorTwo = satpam.create();
 - `alphanumeric`
 - `boolean`
 - `creditCard`
+- `containsAlphabet`
 - `containsDigit`
 - `containsLowerCase`
 - `containsUpperCase`
