@@ -7,6 +7,10 @@ const validate = val => {
     return true;
   }
 
+  if (R.is(Buffer, val)) {
+    return imageType(val.slice(0, 12)) !== null;
+  }
+
   const pathToFile = R.is(Object, val) ? val.path : val;
   const buffer = readChunk.sync(pathToFile, 0, 12);
 
