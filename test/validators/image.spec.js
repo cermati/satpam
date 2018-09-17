@@ -1,6 +1,7 @@
 import { expect } from 'chai';
-import validator from '../../lib';
 import fs from 'fs';
+
+import validator from '../../lib';
 
 describe('Image Validator', () => {
   const rules = {
