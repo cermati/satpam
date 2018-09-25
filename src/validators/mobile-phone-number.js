@@ -22,17 +22,9 @@ const prefixMap = {
   '0821': true, // SimPATI Freedom Telkomsel
   '0822': true, // SimPATI (Kartu Facebook) Telkomsel
   '0823': true, // Kartu As
-  '0828': true, // Ceria Sampoerna Telekom
-  '0830': true, // Axis AXIS Telekom Indonesia
   '0831': true, // Axis AXIS Telekom Indonesia
   '0832': true, // Axis AXIS Telekom Indonesia
-  '0833': true, // Axis AXIS Telekom Indonesia
-  '0834': true, // Axis AXIS Telekom Indonesia
-  '0835': true, // Axis AXIS Telekom Indonesia
-  '0836': true, // Axis AXIS Telekom Indonesia
-  '0837': true, // Axis AXIS Telekom Indonesia
   '0838': true, // Axis AXIS Telekom Indonesia
-  '0839': true, // Axis AXIS Telekom Indonesia
   '0851': true, // Nomor untuk Kartu AS (pengganti Flexi)
   '0852': true, // Kartu As Telkomsel
   '0853': true, // Kartu As (Kartu Prima) Telkomsel
@@ -41,29 +33,19 @@ const prefixMap = {
   '0857': true, // IM3 Indosat
   '0858': true, // Mentari Indosat
   '0859': true, // XL Prabayar, XL Pascabayar XL Axiata
-  '0868': true, // ByRU PSN/ACeS
   '0877': true, // XL Prabayar, Hauraa XL Axiata
   '0878': true, // XL Prabayar XL Axiata
-  '0879': true, // XL Prabayar XL Axiata
   '0881': true, // smartfren Smartfren Telecom
   '0882': true, // smartfren Smartfren Telecom
-  '0883': true, // Smartfren Smartfren Telecom
-  '0884': true, // Smartfren Smartfren Telecom
   '0885': true, // Smartfren Smartfren Telecom
-  '0886': true, // Smartfren Smartfren Telecom
   '0887': true, // smartfren Smartfren Telecom
   '0888': true, // smartfren Smartfren Telecom
   '0889': true, // smartfren Smartfren Telecom
-  '0890': true, // 3 Hutchison Charoen Pokphand Telecom
-  '0891': true, // 3 Hutchison Charoen Pokphand Telecom
-  '0892': true, // 3 Hutchison Charoen Pokphand Telecom
-  '0893': true, // 3 Hutchison Charoen Pokphand Telecom
-  '0894': true, // 3 Hutchison Charoen Pokphand Telecom
   '0895': true, // 3 Hutchison Charoen Pokphand Telecom
   '0896': true, // 3 Hutchison Charoen Pokphand Telecom
   '0897': true, // 3 Hutchison Charoen Pokphand Telecom
   '0898': true, // 3 Hutchison Charoen Pokphand Telecom
-  '0899': true, // 3 Hutchison Charoen Pokphand Telecom
+  '0899': true // 3 Hutchison Charoen Pokphand Telecom
 };
 
 const normalizeMobilePhoneNumber = mobilePhoneNumber => {
