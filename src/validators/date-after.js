@@ -1,4 +1,4 @@
-import R from 'ramda';
+import always from 'ramda/src/always';
 import moment from 'moment';
 
 const NOW = 'now';
@@ -27,17 +27,17 @@ const validate = (val, ruleObj) => {
   }
 
   // Always start with a defaultMessage
-  message.toString = R.always(defaultMessage);
+  message.toString = always(defaultMessage);
 
   if (offset) {
     if (offset < 0) {
       offset = Math.abs(offset);
-      message.toString = R.always(
+      message.toString = always(
         '<%= propertyName %> must greater than <%= ruleParams[1] %> minus <%= Math.abs(ruleParams[2]) %> <%= ruleParams[3] %>.'
       );
       date = date.subtract(offset, unit);
     } else {
-      message.toString = R.always('<%= propertyName %> must greater than <%= ruleParams[1] %> plus <%= ruleParams[2] %> <%= ruleParams[3] %>.');
+      message.toString = always('<%= propertyName %> must greater than <%= ruleParams[1] %> plus <%= ruleParams[2] %> <%= ruleParams[3] %>.');
       date = date.add(offset, unit);
     }
   }

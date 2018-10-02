@@ -1,9 +1,15 @@
-import R from 'ramda';
+import always from 'ramda/src/always';
+import any from 'ramda/src/any';
+import clone from 'ramda/src/clone';
+import head from 'ramda/src/head';
+import is from 'ramda/src/is';
+import keys from 'ramda/src/keys';
+import prop from 'ramda/src/prop';
+
 import get from 'lodash/get';
 import isArray from 'lodash/isArray';
 import template from 'lodash/template';
 import startCase from 'lodash/startCase';
-
 
 import alpha from './validators/alpha';
 import alphanumeric from './validators/alphanumeric';
@@ -143,8 +149,8 @@ class ValidationMessage {
 class Validator {
   constructor() {
     this.validation = {
-      rules: R.clone(validation),
-      messages: R.clone(validationMessages)
+      rules: clone(validation),
+      messages: clone(validationMessages)
     };
   }
 
@@ -156,13 +162,13 @@ class Validator {
   _createRuleObject(rule) {
     let ruleObj = {};
 
-    if (R.is(String, rule)) {
+    if (is(String, rule)) {
       // First variant, everything is embedded as string
       const splitted = rule.split(':');
 
       // Get only the first part of full rule e.g if range:1:3 then
       // we will get 'range'
-      ruleObj.name = R.head(splitted);
+      ruleObj.name = head(splitted);
       // Get the rule params if e.g range:1:3 -> [1, 3]
       ruleObj.params = splitted.slice(1);
     } else {
@@ -173,7 +179,7 @@ class Validator {
       ruleObj.shouldValidate = rule.shouldValidate;
     }
 
-    ruleObj.shouldValidate = ruleObj.shouldValidate || R.always(true);
+    ruleObj.shouldValidate = ruleObj.shouldValidate || always(true);
 
     if (!ruleObj.fullName) {
       // Property fullName is the generic full name of validation rule
@@ -205,7 +211,7 @@ class Validator {
     let messageObj = new ValidationMessage();
 
     // Loop through the given rule mapping
-    R.keys(ruleMapping).forEach(propertyName => {
+    keys(ruleMapping).forEach(propertyName => {
       const ruleArray = ruleMapping[propertyName];
       const val = get(inputObj, propertyName);
       const setValidationMessage = (ruleName, message) => {
@@ -226,7 +232,7 @@ class Validator {
           };
         }
 
-        if (!R.is(Function, validate)) {
+        if (!is(Function, validate)) {
           const ruleObjString = JSON.stringify(ruleObj);
           throw new Error(`${ruleObj.fullName} is not a valid satpam validation rule. Rule object: ${ruleObjString}`);
         }
@@ -265,9 +271,9 @@ class Validator {
         // Rule array should be something like ['required', 'email']
         ruleArray.forEach(rule => {
           // We will validate and return true if any of the rule passes
-          if (R.is(Array, rule)) {
+          if (is(Array, rule)) {
             const resultObjects = rule.map(_validate);
-            const overallResult = R.any(R.prop('success'), resultObjects);
+            const overallResult = any(prop('success'), resultObjects);
 
             // If none of the results is true then it
             if (!overallResult) {
@@ -319,7 +325,7 @@ class Validator {
    */
   getValidationMessage(ruleObj, propertyName, val) {
     const message = this.validation.messages[ruleObj.fullName];
-    const messageTemplate = R.is(Function, message) ? message(ruleObj, propertyName, val) : message;
+    const messageTemplate = is(Function, message) ? message(ruleObj, propertyName, val) : message;
     const compiled = template(messageTemplate);
     propertyName = startCase(propertyName);
 

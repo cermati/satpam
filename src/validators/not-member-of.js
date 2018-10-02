@@ -1,15 +1,17 @@
-import R from 'ramda';
+import is from 'ramda/src/is';
+import isNil from 'ramda/src/isNil';
+import none from 'ramda/src/none';
 
 const validate = (val, ruleObj) => {
-  if (R.isNil(val)) {
+  if (isNil(val)) {
     return true;
   }
 
-  const valArray = R.is(Array, val) ? val : [val];
+  const valArray = is(Array, val) ? val : [val];
   const list = ruleObj.params[0];
-  const inList = item => !(R.is(String, item)) | list.indexOf(item) != -1;
+  const inList = item => !(is(String, item)) | list.indexOf(item) !== -1;
 
-  return R.none(inList, valArray);
+  return none(inList, valArray);
 };
 
 const message = '<%= propertyName %> must not be one of <%= ruleParams[0] %>.';

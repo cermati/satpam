@@ -1,11 +1,12 @@
-import R from 'ramda';
+import is from 'ramda/src/is';
+import isNil from 'ramda/src/isNil';
 
 const validate = (val, ruleObj) => {
-  if (R.isNil(val)) {
+  if (isNil(val)) {
     return true;
   }
 
-  if (!R.is(String, val)) {
+  if (!is(String, val)) {
     return false;
   }
 
