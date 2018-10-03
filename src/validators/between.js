@@ -1,4 +1,5 @@
-import R from 'ramda';
+import is from 'ramda/src/is';
+import isNil from 'ramda/src/isNil';
 
 /**
  * Check if the given value is between minimum value and maximum value
@@ -10,11 +11,11 @@ import R from 'ramda';
  * @returns {Boolean}
  */
 const validate = (val, ruleObj) => {
-  if (R.isNil(val)) {
+  if (isNil(val)) {
     return false;
   }
 
-  const valAsNumber = R.is(Number, val) ? val : Number(val);
+  const valAsNumber = is(Number, val) ? val : Number(val);
 
   if (isNaN(valAsNumber)) {
     return false;

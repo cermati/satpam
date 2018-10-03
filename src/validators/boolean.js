@@ -1,5 +1,3 @@
-const R = require('ramda');
-
 const validate = val => {
   const type = typeof(val);
 

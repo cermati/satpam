@@ -1,8 +1,9 @@
-import R from 'ramda';
+import is from 'ramda/src/is';
+import trim from 'ramda/src/trim';
 import required from './required';
 
 const validate = val => {
-  const trimmedValue = R.is(String, val) ? R.trim(val) : val;
+  const trimmedValue = is(String, val) ? trim(val) : val;
 
   return required.validate(trimmedValue);
 };

@@ -1,6 +1,6 @@
-import R from 'ramda';
+import equals from 'ramda/src/equals';
 
-const validate = R.equals('');
+const validate = equals('');
 
 const message = '<%= propertyName %> field must be an empty string.';
 

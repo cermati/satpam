@@ -1,6 +1,6 @@
-import R from 'ramda';
+import any from 'ramda/src/any';
 
-const hasNonDigit = R.any(isNaN);
+const hasNonDigit = any(isNaN);
 const STRATEGY = {
   id: 'id' // Indonesia
 };

@@ -1,21 +1,28 @@
-import R from 'ramda';
+import __ from 'ramda/src/__';
+import all from 'ramda/src/all';
+import any from 'ramda/src/any';
+import compose from 'ramda/src/compose';
+import equals from 'ramda/src/equals';
+import indexOf from 'ramda/src/indexOf';
+import is from 'ramda/src/is';
+import isNil from 'ramda/src/isNil';
 
 const validate = (val, ruleObj) => {
-  if (R.isNil(val)) {
+  if (isNil(val)) {
     return false;
   }
 
-  const valArray = R.is(Array, val) ? val : [val];
+  const valArray = is(Array, val) ? val : [val];
   const prefixList = ruleObj.params[0];
 
-  return R.all(item => {
+  return all(item => {
     const itemAsString = item.toString();
-    const itemBeginsWith = R.compose(
-      R.equals(0),
-      R.indexOf(R.__, itemAsString)
+    const itemBeginsWith = compose(
+      equals(0),
+      indexOf(__, itemAsString)
     );
 
-    return R.any(itemBeginsWith, prefixList);
+    return any(itemBeginsWith, prefixList);
   }, valArray);
 };
 
