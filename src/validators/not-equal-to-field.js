@@ -1,5 +1,5 @@
 import complement from 'ramda/src/complement';
-import equalToField from './not-equal-to-field';
+import equalToField from './equal-to-field';
 
 const validate = complement(equalToField.validate);
 
