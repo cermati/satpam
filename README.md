@@ -92,7 +92,17 @@ const validatorTwo = satpam.create();
 - `minValue:<min value>`
 - `memberOf:$1`
 - `equal:$1`
+- `equal-to-field:$1`
+
+  Use object notation for defining this rule
+  [examples](https://github.com/cermati/satpam/blob/master/test/validators/equal-to-field.spec.js#L5)
+
 - `notEqual:$1`
+- `not-equal-to-field:$1`
+
+  Use object notation for defining this rule
+  [examples](https://github.com/cermati/satpam/blob/master/test/validators/not-equal-to-field.spec.js#L5)
+
 - `requiredIf:<fieldName>:<value>`
   ```js
   var input = {message: 'hi!'};
