@@ -24,6 +24,7 @@ import dateFormat from './validators/date-format';
 import email from './validators/email';
 import emptyString from './validators/empty-string';
 import equal from './validators/equal';
+import equalToField from './validators/equal-to-field';
 import fqdn from './validators/fqdn';
 import indonesiaIdCardNumberBirthDate from './validators/indonesia-id-card-number-birth-date';
 import indonesiaIdCardNumberGender from './validators/indonesia-id-card-number-gender';
@@ -40,7 +41,8 @@ import mobilePhoneNumber from './validators/mobile-phone-number';
 import mongoId from './validators/mongo-id';
 import nonBlank from './validators/non-blank';
 import notEqual from './validators/not-equal';
-import notMemberOf from './validators/not-member-of'
+import notEqualToField from './validators/not-equal-to-field';
+import notMemberOf from './validators/not-member-of';
 import numeric from './validators/numeric';
 import pattern from './validators/pattern';
 import phoneNumber from './validators/phone-number';
@@ -58,6 +60,7 @@ let validation = {
   'dateBefore:$1:$2:$3:$4': dateBefore.validate,
   'dateFormat:$1': dateFormat.validate,
   'equal:$1': equal.validate,
+  'equal-to-field:$1': equalToField.validate,
   'indonesiaIdCardNumberBirthDate:$1:$2': indonesiaIdCardNumberBirthDate.validate,
   'indonesiaIdCardNumberGender:$1:$2:$3': indonesiaIdCardNumberGender.validate,
   'length:$1': length.validate,
@@ -68,6 +71,7 @@ let validation = {
   'minValue:$1': minValue.validate,
   'minimumAge:$1:$2': minimumAge.validate,
   'not-equal:$1': notEqual.validate,
+  'not-equal-to-field:$1': notEqualToField.validate,
   'not-memberOf:$1': notMemberOf.validate,
   'pattern:$1:$2': pattern.validate,
   'requiredIf:$1:$2': requiredIf.validate,
@@ -100,6 +104,7 @@ let validationMessages = {
   'dateBefore:$1:$2:$3:$4': dateBefore.message,
   'dateFormat:$1': dateFormat.message,
   'equal:$1': equal.message,
+  'equal-to-field:$1': equalToField.message,
   'indonesiaIdCardNumberBirthDate:$1:$2': indonesiaIdCardNumberBirthDate.message,
   'indonesiaIdCardNumberGender:$1:$2:$3': indonesiaIdCardNumberGender.message,
   'length:$1': length.message,
@@ -110,6 +115,7 @@ let validationMessages = {
   'minValue:$1': minValue.message,
   'minimumAge:$1:$2': minimumAge.message,
   'not-equal:$1': notEqual.message,
+  'not-equal-to-field:$1': notEqualToField.message,
   'not-memberOf:$1': notMemberOf.message,
   'pattern:$1:$2': pattern.message,
   'requiredIf:$1:$2': requiredIf.message,
