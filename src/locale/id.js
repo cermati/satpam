@@ -46,6 +46,7 @@ module.exports = {
   'requiredIf:$1:$2': 'Input ini wajib diisi.',
   'samePassword': 'Confirm Password tidak sama dengan Password.',
   'string': 'Input harus berupa string.',
+  'object': 'Input harus berupa object.',
   'taxId:$1': 'Nomor NPWP tidak valid.',
   'url': 'Format link tidak valid.',
   'uuid:$1': 'Input harus berupa UUID.',
