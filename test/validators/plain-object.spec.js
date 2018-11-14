@@ -6,6 +6,22 @@ describe('Plain object validator', () => {
     abTestingExperiment: ['plainObject']
   };
 
+  it('should success when given null', () => {
+    const result = validator.validate(rules, {abTestingExperiment: null});
+    const err = result.messages;
+
+    expect(result.success).to.equal(true);
+    expect(err).to.not.have.property('abTestingExperiment');
+  });
+
+  it('should success when given undefined', () => {
+    const result = validator.validate(rules, {});
+    const err = result.messages;
+
+    expect(result.success).to.equal(true);
+    expect(err).to.not.have.property('abTestingExperiment');
+  });
+
   it('should success when given empty object', () => {
     const result = validator.validate(rules, {abTestingExperiment: {}});
     const err = result.messages;
