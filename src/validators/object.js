@@ -1,7 +1,7 @@
-const _ = require('lodash');
+import isNil from 'ramda/src/isNil';
 
 const validate = val => {
-  if (_.isNil(val)) {
+  if (isNil(val)) {
     return true;
   }
 
