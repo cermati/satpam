@@ -60,6 +60,7 @@ import containsAlphabet from './validators/contains-alphabet';
 import containsDigit from './validators/contains-digit';
 import containsLowerCase from './validators/contains-lower-case';
 import containsUpperCase from './validators/contains-upper-case';
+import object from './validators/object';
 
 let validation = {
   'beginWith:$1': beginWith.validate,
@@ -107,6 +108,7 @@ let validation = {
   mongoId: mongoId.validate,
   nonBlank: nonBlank.validate,
   numeric: numeric.validate,
+  object: object.validate,
   phoneNumber: phoneNumber.validate,
   regex: regex.validate,
   required: required.validate,
@@ -161,6 +163,7 @@ let validationMessages = {
   mongoId: mongoId.message,
   nonBlank: nonBlank.message,
   numeric: numeric.message,
+  object: object.message,
   phoneNumber: phoneNumber.message,
   regex: regex.message,
   required: required.message,
