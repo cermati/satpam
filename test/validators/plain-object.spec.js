@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import validator from '../../lib';
 
-describe('Object validator', () => {
+describe('Plain object validator', () => {
   const rules = {
-    abTestingExperiment: ['object']
+    abTestingExperiment: ['plainObject']
   };
 
   it('should success when given empty object', () => {
@@ -28,7 +28,7 @@ describe('Object validator', () => {
 
     expect(result.success).to.equal(false);
     expect(err).to.have.property('abTestingExperiment');
-    expect(err.abTestingExperiment.object).to.equal('Ab Testing Experiment is not an object.');
+    expect(err.abTestingExperiment.plainObject).to.equal('Ab Testing Experiment is not a plain object.');
   });
 
   it('should fail when given a string', () => {
@@ -37,6 +37,22 @@ describe('Object validator', () => {
 
     expect(result.success).to.equal(false);
     expect(err).to.have.property('abTestingExperiment');
-    expect(err.abTestingExperiment.object).to.equal('Ab Testing Experiment is not an object.');
+    expect(err.abTestingExperiment.plainObject).to.equal('Ab Testing Experiment is not a plain object.');
+  });
+
+
+  it('should fail when given an user defined class instance', () => {
+    function Pet(name, gender) {
+      this.name = name;
+      this.gender = gender
+    }
+
+    const myPet = new Pet('petname', 'MALE');
+    const result = validator.validate(rules, {abTestingExperiment: myPet});
+    const err = result.messages;
+
+    expect(result.success).to.equal(false);
+    expect(err).to.have.property('abTestingExperiment');
+    expect(err.abTestingExperiment.plainObject).to.equal('Ab Testing Experiment is not a plain object.');
   });
 });

@@ -80,7 +80,7 @@ const validatorTwo = satpam.create();
 - `dateBefore:<the date input format, e.g. DD-MM-YYYY>:<date after e.g. 'now' or 20-1-2015>:<offset>:<unit of time e.g. 'days'>`
 - `url`
 - `string`
-- `object` Check if the given value is an object (passing string, array, or anything will return to false)
+- `plainObject` Check if the given value is a plani object (passing string, array, or anything will return to false)
 - `nonBlank`
 - `mongoId` Check if the given string is a valid mongodb object id
 - `phoneNumber` (Currently only supports Indonesia phone number)
