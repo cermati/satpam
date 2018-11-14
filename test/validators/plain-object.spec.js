@@ -44,7 +44,7 @@ describe('Plain object validator', () => {
   it('should fail when given an user defined class instance', () => {
     function Pet(name, gender) {
       this.name = name;
-      this.gender = gender
+      this.gender = gender;
     }
 
     const myPet = new Pet('petname', 'MALE');
