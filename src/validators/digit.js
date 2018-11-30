@@ -11,7 +11,7 @@ const validate = val  => {
     return false;
   }
 
-  const regexp = new RegExp(/^\d*$/, 'g');
+  const regexp = new RegExp(/^\d*$/g);
   const stringVal = typeof val === 'string' ? val : toString(val);
 
   return regexp.test(stringVal);
