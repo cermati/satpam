@@ -19,6 +19,7 @@ import date from './validators/date';
 import dateAfter from './validators/date-after';
 import dateBefore from './validators/date-before';
 import dateFormat from './validators/date-format';
+import digit from './validators/digit';
 import email from './validators/email';
 import emptyString from './validators/empty-string';
 import equal from './validators/equal';
@@ -98,6 +99,7 @@ let validation = {
   containsUpperCase: containsUpperCase.validate,
   creditCard: creditCard.validate,
   date: date.validate,
+  digit: digit.validate,
   email: email.validate,
   emptyString: emptyString.validate,
   fqdn: fqdn.validate,
@@ -153,6 +155,7 @@ let validationMessages = {
   containsUpperCase: containsUpperCase.message,
   creditCard: creditCard.message,
   date: date.message,
+  digit: digit.message,
   email: email.message,
   emptyString: emptyString.message,
   fqdn: fqdn.message,
