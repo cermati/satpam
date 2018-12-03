@@ -1,18 +1,20 @@
 import isNil from 'ramda/src/isNil';
 import isEmpty from 'ramda/src/isEmpty';
 
+const regexp = /^\d*$/;
+
 const validate = val  => {
   if (isNil(val)) {
     return true;
   }
 
-  if (isEmpty(val)){
+  const stringVal = String(val);
+
+  if (isEmpty(stringVal)){
     return false;
   }
 
-  const regexp = /^\d*$/g;
-
-  return regexp.test(String(val));
+  return regexp.test(stringVal);
 };
 
 const message = '<%= propertyName %> must be a digit.';
