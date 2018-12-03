@@ -6,6 +6,26 @@ describe('Digit validator', () => {
     count: ['digit']
   };
 
+  context('with nil value', () => {
+    it('should success', () => {
+      const result = validator.validate(rules, {count: null});
+      const err = result.messages;
+
+      expect(result.success).to.equal(true);
+      expect(err).to.not.have.property('count');
+    });
+  });
+
+  context('with empty value', () => {
+    it('should fail', () => {
+      const result = validator.validate(rules, {count: ''});
+      const err = result.messages;
+
+      expect(result.success).to.equal(false);
+      expect(err).have.property('count');
+    });
+  });
+
   context('with integer', () => {
     it('should success', () => {
       const result = validator.validate(rules, {count: 123});
