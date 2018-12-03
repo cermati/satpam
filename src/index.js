@@ -31,6 +31,7 @@ import indonesiaIdCardNumberBirthDate from './validators/indonesia-id-card-numbe
 import indonesiaIdCardNumberGender from './validators/indonesia-id-card-number-gender';
 import indonesiaIdCardNumberProvince from './validators/indonesia-id-card-number-province';
 import indonesiaIdCardNumberValidProvince from './validators/indonesia-id-card-number-valid-province';
+import integer from './validators/integer';
 import ip from './validators/ip';
 import length from './validators/length';
 import maxLength from './validators/max-length';
@@ -103,6 +104,7 @@ let validation = {
   fqdn: fqdn.validate,
   image: image.validate,
   imei: imei.validate,
+  integer: integer.validate,
   ip: ip.validate,
   mobilePhoneNumber: mobilePhoneNumber.validate,
   mongoId: mongoId.validate,
@@ -158,6 +160,7 @@ let validationMessages = {
   fqdn: fqdn.message,
   image: image.message,
   imei: imei.message,
+  integer: integer.message,
   ip: ip.message,
   mobilePhoneNumber: mobilePhoneNumber.message,
   mongoId: mongoId.message,

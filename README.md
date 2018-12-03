@@ -64,6 +64,7 @@ const validatorTwo = satpam.create();
 ## Available Rules
 - `required`
 - `numeric`
+- `integer`
 - `email`
 - `image`
 - `alpha`
