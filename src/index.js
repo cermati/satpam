@@ -19,7 +19,6 @@ import date from './validators/date';
 import dateAfter from './validators/date-after';
 import dateBefore from './validators/date-before';
 import dateFormat from './validators/date-format';
-import digit from './validators/digit';
 import email from './validators/email';
 import emptyString from './validators/empty-string';
 import equal from './validators/equal';
@@ -32,6 +31,7 @@ import indonesiaIdCardNumberBirthDate from './validators/indonesia-id-card-numbe
 import indonesiaIdCardNumberGender from './validators/indonesia-id-card-number-gender';
 import indonesiaIdCardNumberProvince from './validators/indonesia-id-card-number-province';
 import indonesiaIdCardNumberValidProvince from './validators/indonesia-id-card-number-valid-province';
+import integer from './validators/integer';
 import ip from './validators/ip';
 import length from './validators/length';
 import maxLength from './validators/max-length';
@@ -99,12 +99,12 @@ let validation = {
   containsUpperCase: containsUpperCase.validate,
   creditCard: creditCard.validate,
   date: date.validate,
-  digit: digit.validate,
   email: email.validate,
   emptyString: emptyString.validate,
   fqdn: fqdn.validate,
   image: image.validate,
   imei: imei.validate,
+  integer: integer.validate,
   ip: ip.validate,
   mobilePhoneNumber: mobilePhoneNumber.validate,
   mongoId: mongoId.validate,
@@ -155,12 +155,12 @@ let validationMessages = {
   containsUpperCase: containsUpperCase.message,
   creditCard: creditCard.message,
   date: date.message,
-  digit: digit.message,
   email: email.message,
   emptyString: emptyString.message,
   fqdn: fqdn.message,
   image: image.message,
   imei: imei.message,
+  integer: integer.message,
   ip: ip.message,
   mobilePhoneNumber: mobilePhoneNumber.message,
   mongoId: mongoId.message,

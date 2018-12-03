@@ -21,7 +21,6 @@ import date from './validators/date';
 import dateAfter from './validators/date-after';
 import dateBefore from './validators/date-before';
 import dateFormat from './validators/date-format';
-import digit from './validators/digit';
 import email from './validators/email';
 import emptyString from './validators/empty-string';
 import equal from './validators/equal';
@@ -31,6 +30,7 @@ import indonesiaIdCardNumberBirthDate from './validators/indonesia-id-card-numbe
 import indonesiaIdCardNumberGender from './validators/indonesia-id-card-number-gender';
 import ip from './validators/ip';
 import imei from './validators/imei';
+import integer from './validators/integer';
 import length from './validators/length';
 import maxLength from './validators/max-length';
 import maxValue from './validators/max-value';
@@ -82,12 +82,12 @@ let validation = {
   boolean: boolean.validate,
   creditCard: creditCard.validate,
   date: date.validate,
-  digit: digit.validate,
   email: email.validate,
   emptyString: emptyString.validate,
   fqdn: fqdn.validate,
   ip: ip.validate,
   imei: imei.validate,
+  integer: integer.validate,
   mobilePhoneNumber: mobilePhoneNumber.validate,
   mongoId: mongoId.validate,
   nonBlank: nonBlank.validate,
@@ -127,12 +127,12 @@ let validationMessages = {
   boolean: boolean.message,
   creditCard: creditCard.message,
   date: date.message,
-  digit: digit.message,
   email: email.message,
   emptyString: emptyString.message,
   fqdn: fqdn.message,
   ip: ip.message,
   imei: imei.message,
+  integer: integer.message,
   mobilePhoneNumber: mobilePhoneNumber.message,
   mongoId: mongoId.message,
   nonBlank: nonBlank.message,
