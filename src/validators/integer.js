@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import isNil from 'ramda/src/isNil';
 import isEmpty from 'ramda/src/isEmpty';
 
@@ -13,7 +14,7 @@ const validate = val => {
     return false;
   }
 
-  return Number.isInteger(numberVal);
+  return _.isInteger(numberVal);
 };
 
 const message = '<%= propertyName %> must be an integer.';
