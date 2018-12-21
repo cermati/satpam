@@ -42,9 +42,7 @@ const validate = (val, ruleObj) => {
     }
   }
 
-  date = date.subtract(1, 'day'); // Subtract 1 day to handle today
-
-  return dateInput.isAfter(date, 'day');
+  return dateInput.isSameOrAfter(date, 'day');
 };
 
 export default {validate, message};
