@@ -1,6 +1,7 @@
 module.exports = {
   'alpha': 'Input harus berupa huruf.',
   'alphanumeric': 'Input harus berupa huruf atau angka.',
+  'array': 'Input harus berupa array.',
   'beginWith:$1': 'Input tidak valid.',
   'between:$1:$2:': 'Input antara <%= ruleParams[0] %> dan <% ruleParams[1] %>.',
   'boolean': 'Input harus boolean.',

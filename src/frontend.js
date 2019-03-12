@@ -13,6 +13,7 @@ import startCase from 'lodash/startCase';
 
 import alpha from './validators/alpha';
 import alphanumeric from './validators/alphanumeric';
+import array from './validators/array';
 import beginWith from './validators/begin-with';
 import between from './validators/between';
 import boolean from './validators/boolean';
@@ -83,6 +84,7 @@ let validation = {
   'taxId:$1': taxId.validate,
   alpha: alpha.validate,
   alphanumeric: alphanumeric.validate,
+  array: array.validate,
   boolean: boolean.validate,
   creditCard: creditCard.validate,
   date: date.validate,
@@ -130,6 +132,7 @@ let validationMessages = {
   'taxId:$1': taxId.message,
   alpha: alpha.message,
   alphanumeric: alphanumeric.message,
+  array: array.message,
   boolean: boolean.message,
   creditCard: creditCard.message,
   date: date.message,

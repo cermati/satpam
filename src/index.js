@@ -11,6 +11,7 @@ import noes from 'noes';
 
 import alpha from './validators/alpha';
 import alphanumeric from './validators/alphanumeric';
+import array from './validators/array';
 import beginWith from './validators/begin-with';
 import between from './validators/between';
 import boolean from './validators/boolean';
@@ -96,6 +97,7 @@ let validation = {
   'multipleOf:$1': multipleOf.validate,
   alpha: alpha.validate,
   alphanumeric: alphanumeric.validate,
+  array: array.validate,
   boolean: boolean.validate,
   containsAlphabet: containsAlphabet.validate,
   containsDigit: containsDigit.validate,
@@ -154,6 +156,7 @@ let validationMessages = {
   'multipleOf:$1': multipleOf.message,
   alpha: alpha.message,
   alphanumeric: alphanumeric.message,
+  array: array.message,
   boolean: boolean.message,
   containsAlphabet: containsAlphabet.message,
   containsDigit: containsDigit.message,
