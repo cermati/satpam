@@ -14,6 +14,22 @@ describe('String validator', () => {
     expect(err).to.not.have.property('someField');
   });
 
+  it('should success with null input', () => {
+    const result = validator.validate(rules, {someField: null});
+    const err = result.messages;
+
+    expect(result.success).to.equal(true);
+    expect(err).to.not.have.property('someField');
+  });
+
+  it('should success with undefined input', () => {
+    const result = validator.validate(rules, {someField: undefined});
+    const err = result.messages;
+
+    expect(result.success).to.equal(true);
+    expect(err).to.not.have.property('someField');
+  });
+
   it('should fail with invalid input', () => {
     const result = validator.validate(rules, {someField: 123});
     const err = result.messages;
