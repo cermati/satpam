@@ -31,6 +31,7 @@ import equalToField from './validators/equal-to-field';
 import fqdn from './validators/fqdn';
 import indonesiaIdCardNumberBirthDate from './validators/indonesia-id-card-number-birth-date';
 import indonesiaIdCardNumberGender from './validators/indonesia-id-card-number-gender';
+import indonesianName from './validators/indonesian-name';
 import ip from './validators/ip';
 import imei from './validators/imei';
 import integer from './validators/integer';
@@ -69,6 +70,7 @@ let validation = {
   'equal-to-field:$1': equalToField.validate,
   'indonesiaIdCardNumberBirthDate:$1:$2': indonesiaIdCardNumberBirthDate.validate,
   'indonesiaIdCardNumberGender:$1:$2:$3': indonesiaIdCardNumberGender.validate,
+  'indonesianName': indonesianName.validate,
   'length:$1': length.validate,
   'maxLength:$1': maxLength.validate,
   'maxValue:$1': maxValue.validate,
@@ -117,6 +119,7 @@ let validationMessages = {
   'equal-to-field:$1': equalToField.message,
   'indonesiaIdCardNumberBirthDate:$1:$2': indonesiaIdCardNumberBirthDate.message,
   'indonesiaIdCardNumberGender:$1:$2:$3': indonesiaIdCardNumberGender.message,
+  'indonesianName': indonesianName.message,
   'length:$1': length.message,
   'maxLength:$1': maxLength.message,
   'maxValue:$1': maxValue.message,
