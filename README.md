@@ -148,6 +148,9 @@ const validatorTwo = satpam.create();
 - `indonesiaIdCardNumberValidProvince`
 
   [examples](https://github.com/cermati/satpam/blob/master/test/validators/indonesia-id-card-number-valid-province.spec.js#L6)
+- `indonesianName`
+
+  [examples](https://github.com/cermati/satpam/blob/master/test/validators/indonesian-name.spec.js#L6)
 
 
 ## Complete Examples

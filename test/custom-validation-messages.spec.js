@@ -20,14 +20,7 @@ describe('Validator.setValidationMessage()', () => {
     const rule = {name: ['minLength:20']};
 
     validator.setValidationMessage('minLength:$1', (ruleObj, propertyName, value) => {
-      return util.format(
-        'name: %s, fullName: %s, params: %s, propertyName: %s, value: %s',
-        ruleObj.name,
-        ruleObj.fullName,
-        ruleObj.params,
-        propertyName,
-        value
-      );
+      return `name: ${ruleObj.name}, fullName: ${ruleObj.fullName}, params: ${ruleObj.params}, propertyName: ${propertyName}, value: ${value}`;
     });
 
     const result = validator.validate(rule, {name: 'wubwub'});
