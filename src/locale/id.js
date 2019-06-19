@@ -54,5 +54,6 @@ module.exports = {
   'taxId:$1': 'Nomor NPWP tidak valid.',
   'url': 'Format link tidak valid.',
   'uuid:$1': 'Input harus berupa UUID.',
-  'validZipCode': 'Kode Pos tidak valid.'
+  'validZipCode': 'Kode Pos tidak valid.',
+  'address': 'Alamat tidak valid.'
 };
