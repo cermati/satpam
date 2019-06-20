@@ -14,8 +14,16 @@ describe('Contains alphabet validator', () => {
     expect(err).to.not.have.property('someField');
   });
 
+  it('should success with empty string', () => {
+    const result = validator.validate(rules, { someField: '' });
+    const err = result.messages;
+
+    expect(result.success).to.equal(true);
+    expect(err).to.not.have.property('someField');
+  });
+
   it('should success with valid input', () => {
-    const result = validator.validate(rules, {someField: '42I23'});
+    const result = validator.validate(rules, { someField: '42I23' });
     const err = result.messages;
 
     expect(result.success).to.equal(true);
@@ -23,7 +31,7 @@ describe('Contains alphabet validator', () => {
   });
 
   it('should fail with invalid input', () => {
-    const result = validator.validate(rules, {someField: '42423'});
+    const result = validator.validate(rules, { someField: '42423' });
     const err = result.messages;
 
     expect(result.success).to.equal(false);

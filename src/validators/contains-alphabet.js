@@ -1,15 +1,11 @@
-import R from 'ramda';
+const regex = /[a-zA-Z]{1,}/;
 
 const validate = val => {
-  if (R.isNil(val)) {
-    return true;
+  if (val) {
+    return regex.test(val);
   }
 
-  if (!R.is(String, val)) {
-    return false;
-  }
-
-  return /[a-zA-Z]{1,}/.test(val);
+  return true;
 };
 
 const message = '<%= propertyName %> must contain at least 1 alphabet.';
