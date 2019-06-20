@@ -17,12 +17,12 @@ describe('Address validator', () => {
   });
 
   context('address with line separator', () => {
-    it('should fail', () => {
+    it('should success', () => {
       const result = validator.validate(rules, {address: 'Jl. Tomang Raya No.38, RT.5/RW.1, Jati Pulo, Palmerah, \n West Jakarta City, Jakarta 11430'});
       const err = result.messages;
 
-      expect(result.success).to.equal(false);
-      expect(err).to.have.property('address');
+      expect(result.success).to.equal(true);
+      expect(err).to.not.have.property('address');
     });
   });
 
