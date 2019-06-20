@@ -66,6 +66,7 @@ import containsDigit from './validators/contains-digit';
 import containsLowerCase from './validators/contains-lower-case';
 import containsUpperCase from './validators/contains-upper-case';
 import plainObject from './validators/plain-object';
+import address from './validators/address';
 
 let validation = {
   'beginWith:$1': beginWith.validate,
@@ -124,6 +125,7 @@ let validation = {
   required: required.validate,
   string: string.validate,
   url: url.validate,
+  address: address.validate,
   'uuid:$1': uuid.validate
 };
 
@@ -184,6 +186,7 @@ let validationMessages = {
   required: required.message,
   string: string.message,
   url: url.message,
+  address: address.message,
   'uuid:$1': uuid.message
 };
 

@@ -151,6 +151,10 @@ const validatorTwo = satpam.create();
 - `indonesianName`
 
   [examples](https://github.com/cermati/satpam/blob/master/test/validators/indonesian-name.spec.js#L6)
+  
+- `address`
+
+  [examples](https://github.com/cermati/satpam/blob/master/test/validators/address.spec.js#L6)
 
 
 ## Complete Examples
