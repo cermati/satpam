@@ -57,7 +57,6 @@ import requiredIf from './validators/required-if';
 import string from './validators/string';
 import taxId from './validators/tax-id';
 import url from './validators/url';
-import address from './validators/address';
 
 let validation = {
   'beginWith:$1': beginWith.validate,
@@ -106,7 +105,6 @@ let validation = {
   required: required.validate,
   string: string.validate,
   url: url.validate,
-  address: address.validate
 };
 
 let validationMessages = {
@@ -156,7 +154,6 @@ let validationMessages = {
   required: required.message,
   string: string.message,
   url: url.message,
-  address: address.message
 };
 
 class ValidationMessage {
