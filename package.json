@@ -1,6 +1,6 @@
 {
   "name": "satpam",
-  "version": "2.13.0",
+  "version": "2.14.0",
   "description": "Simple and Effective Object Validator",
   "main": "lib/index.js",
   "scripts": {
@@ -24,8 +24,8 @@
   "dependencies": {
     "file-type": "~3.8.0",
     "image-type": "^2.0.2",
-    "lodash": "~4.3.0",
-    "moment": "~2.23.0",
+    "lodash": "^4.3.0",
+    "moment": "^2.23.0",
     "noes": "~1.1.1",
     "ramda": "^0.25.0",
     "read-chunk": "^1.0.1",
