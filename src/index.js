@@ -1,4 +1,5 @@
 import R from 'ramda';
+import moment from 'moment';
 import isObject from 'lodash/isObject';
 import isFunction from 'lodash/isFunction';
 import forEach from 'lodash/forEach';
@@ -68,8 +69,6 @@ import containsDigit from './validators/contains-digit';
 import containsLowerCase from './validators/contains-lower-case';
 import containsUpperCase from './validators/contains-upper-case';
 import plainObject from './validators/plain-object';
-
-import moment from 'moment';
 
 let validation = {
   'beginWith:$1': beginWith.validate,
