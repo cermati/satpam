@@ -9,7 +9,7 @@ describe('Time After validator', () => {
     };
 
     const getTestObject = () => {
-      const futureTime = moment().add(1, 'second').utcOffset(0);
+      const futureTime = moment().add(1, 'seconds');
 
       return {
         vacationTime: futureTime
@@ -26,7 +26,7 @@ describe('Time After validator', () => {
 
     it('should fail when input has the same time or slightly older time', () => {
       const result = validator.validate(rules, {
-        vacationTime: moment().utcOffset(0)
+        vacationTime: moment()
       });
       const err = result.messages;
 
@@ -43,7 +43,7 @@ describe('Time After validator', () => {
     };
 
     const getTestObject = () => {
-      const futureTime = moment('2019-06-03 15:22:02').utcOffset(0);
+      const futureTime = moment('2019-06-03T08:22:02Z');
 
       return {
         vacationTime: futureTime
@@ -60,14 +60,14 @@ describe('Time After validator', () => {
 
     it('should fail when input has the same time', () => {
       const result = validator.validate(rules, {
-        vacationTime: moment('2019-06-03 15:22:01').utcOffset(0)
+        vacationTime: moment('2019-06-03T08:22:01Z')
       });
       const err = result.messages;
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('vacationTime');
       expect(err.vacationTime).to.have.property('timeAfter:$1:$2:$3')
-        .that.equals('Vacation Time must be greater than 2019-06-03 15:22:01.');
+        .that.equals('Vacation Time must be greater than 2019-06-03 15:22:01+07:00.');
     });
   });
 
@@ -77,7 +77,7 @@ describe('Time After validator', () => {
     };
 
     const getTestObject = () => {
-      const time = moment().subtract(30, 'minute').add(1, 'second').utcOffset(0);
+      const time = moment().subtract(30, 'minutes').add(1, 'seconds');
 
       return {
         vacationTime: time
@@ -94,7 +94,7 @@ describe('Time After validator', () => {
 
     it('should fail when input has the same time or slightly older time', () => {
       const result = validator.validate(rules, {
-        vacationTime: moment().subtract(30, 'minute').utcOffset(0)
+        vacationTime: moment().subtract(30, 'minutes')
       });
       const err = result.messages;
 
@@ -111,7 +111,7 @@ describe('Time After validator', () => {
     };
 
     const getTestObject = () => {
-      const time = moment().add(31, 'seconds').utcOffset(0);
+      const time = moment().add(31, 'seconds');
 
       return {
         vacationTime: time
@@ -128,7 +128,7 @@ describe('Time After validator', () => {
 
     it('should fail when input has the same time or slightly older time', () => {
       const result = validator.validate(rules, {
-        vacationTime: moment().add(30, 'seconds').utcOffset(0)
+        vacationTime: moment().add(30, 'seconds')
       });
       const err = result.messages;
 
@@ -146,7 +146,7 @@ describe('Time After validator', () => {
 
     const getTestObject = () => {
       return {
-        vacationTime: moment('2019-06-03 15:12:02').utcOffset(0)
+        vacationTime: moment('2019-06-03T08:12:02Z')
       };
     };
 
@@ -160,14 +160,14 @@ describe('Time After validator', () => {
 
     it('should fail when input has the same time', () => {
       const result = validator.validate(rules, {
-        vacationTime: moment('2019-06-03 15:12:01').utcOffset(0)
+        vacationTime: moment('2019-06-03T08:12:01Z')
       });
       const err = result.messages;
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('vacationTime');
       expect(err.vacationTime).to.have.property('timeAfter:$1:$2:$3')
-        .that.equals('Vacation Time must be greater than 2019-06-03 15:22:01 minus 10 minutes.');
+        .that.equals('Vacation Time must be greater than 2019-06-03 15:22:01+07:00 minus 10 minutes.');
     });
   });
 
@@ -178,7 +178,7 @@ describe('Time After validator', () => {
 
     const getTestObject = () => {
       return {
-        vacationTime: moment('2019-06-03 15:22:12').utcOffset(0)
+        vacationTime: moment('2019-06-03T08:22:12Z')
       };
     };
 
@@ -192,14 +192,14 @@ describe('Time After validator', () => {
 
     it('should fail when input has the same time', () => {
       const result = validator.validate(rules, {
-        vacationTime: moment('2019-06-03 15:22:11').utcOffset(0)
+        vacationTime: moment('2019-06-03T08:22:11Z')
       });
       const err = result.messages;
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('vacationTime');
       expect(err.vacationTime).to.have.property('timeAfter:$1:$2:$3')
-        .that.equals('Vacation Time must be greater than 2019-06-03 15:22:01 plus 10 seconds.');
+        .that.equals('Vacation Time must be greater than 2019-06-03 15:22:01+07:00 plus 10 seconds.');
     });
   });
 
@@ -210,7 +210,7 @@ describe('Time After validator', () => {
 
     const getTestObject = () => {
       return {
-        pastVacationTime: moment('2019-06-03 20:22:02').utcOffset(0)
+        pastVacationTime: moment('2019-06-03T13:22:02Z')
       };
     };
 
@@ -224,14 +224,14 @@ describe('Time After validator', () => {
 
     it('should fail when input has the same time', () => {
       const result = validator.validate(rules, {
-        pastVacationTime: moment('2019-06-03 20:22:01').utcOffset(0)
+        pastVacationTime: moment('2019-06-03T13:22:01Z')
       });
       const err = result.messages;
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('pastVacationTime');
       expect(err.pastVacationTime).to.have.property('timeAfter:$1:$2:$3')
-        .that.equals('Past Vacation Time must be greater than 2019-06-03 15:22:01 plus 5 hours.');
+        .that.equals('Past Vacation Time must be greater than 2019-06-03 15:22:01+07:00 plus 5 hours.');
     });
   });
 
@@ -242,7 +242,7 @@ describe('Time After validator', () => {
 
     const getTestObject = () => {
       return {
-        pastVacationTime: moment('2015-06-03 15:22:02').utcOffset(0)
+        pastVacationTime: moment('2015-06-03T08:22:02Z')
       };
     };
 
@@ -256,14 +256,14 @@ describe('Time After validator', () => {
 
     it('should fail when input has the same time', () => {
       const result = validator.validate(rules, {
-        pastVacationTime: moment('2015-06-03 15:22:01').utcOffset(0)
+        pastVacationTime: moment('2015-06-03T08:22:01Z')
       });
       const err = result.messages;
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('pastVacationTime');
       expect(err.pastVacationTime).to.have.property('timeAfter:$1:$2:$3')
-        .that.equals('Past Vacation Time must be greater than 2019-06-03 15:22:01 minus 4 years.');
+        .that.equals('Past Vacation Time must be greater than 2019-06-03 15:22:01+07:00 minus 4 years.');
     });
   });
 });

@@ -2,7 +2,7 @@ import always from 'ramda/src/always';
 import moment from 'moment';
 import _ from 'lodash';
 
-const NOW = 'now';
+const NOW = 'NOW';
 let messages;
 
 // Use object (it will be passed as reference at index.js) to represent the message,
@@ -16,20 +16,20 @@ const validate = (val, ruleObj) => {
 
   messages = ['<%= propertyName %> must be greater than or equal to']
 
-  const timeInput = moment(val).locale('id').utcOffset(0);
+  const timeInput = moment(val);
   let offset = Number(ruleObj.params[1]);
   const unit = ruleObj.params[2];
 
   let time;
 
-  if (ruleObj.params[0].toLowerCase() === NOW) {
-    time = moment().locale('id').utcOffset(0);
+  if (ruleObj.params[0].toUpperCase() === NOW) {
+    time = moment();
 
     messages.push(' now');
   } else {
-    time = moment.unix(ruleObj.params[0]).locale('id').utcOffset(0);
+    time = moment.unix(ruleObj.params[0]);
 
-    messages.push(' <%= moment.unix(ruleParams[0]).locale(\'id\').utcOffset(7).format(\'YYYY-MM-DD HH:mm:ss\') %>');
+    messages.push(' <%= moment.unix(ruleParams[0]).locale(\'id\').utcOffset(7).format(\'YYYY-MM-DD HH:mm:ssZ\') %>');
   }
 
   if (offset) {
