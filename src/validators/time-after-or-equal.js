@@ -29,7 +29,7 @@ const validate = (val, ruleObj) => {
   } else {
     time = moment.unix(ruleObj.params[0]);
 
-    messages.push(' <%= moment.unix(ruleParams[0]).locale(\'id\').utcOffset(7).format(\'YYYY-MM-DD HH:mm:ssZ\') %>');
+    messages.push(` ${moment.unix(ruleObj.params[0]).locale('id').utcOffset(7).format('YYYY-MM-DD HH:mm:ssZ')}`);
   }
 
   if (offset) {

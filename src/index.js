@@ -1,5 +1,4 @@
 import R from 'ramda';
-import moment from 'moment';
 import isObject from 'lodash/isObject';
 import isFunction from 'lodash/isFunction';
 import forEach from 'lodash/forEach';
@@ -424,8 +423,7 @@ class Validator {
       propertyName: propertyName,
       ruleName: ruleObj.fullName,
       ruleParams: ruleObj.params,
-      value: val,
-      moment: moment
+      value: val
     });
   }
 
