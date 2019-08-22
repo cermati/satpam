@@ -43,7 +43,7 @@ describe('Time After validator', () => {
     };
 
     const getTestObject = () => {
-      const futureTime = moment('2019-06-03 15:22:02');
+      const futureTime = moment('2019-06-03 15:22:02').utcOffset(0);
 
       return {
         vacationTime: futureTime
@@ -60,7 +60,7 @@ describe('Time After validator', () => {
 
     it('should fail when input has the same time', () => {
       const result = validator.validate(rules, {
-        vacationTime: moment('2019-06-03 15:22:01')
+        vacationTime: moment('2019-06-03 15:22:01').utcOffset(0)
       });
       const err = result.messages;
 
@@ -146,7 +146,7 @@ describe('Time After validator', () => {
 
     const getTestObject = () => {
       return {
-        vacationTime: moment('2019-06-03 15:12:02')
+        vacationTime: moment('2019-06-03 15:12:02').utcOffset(0)
       };
     };
 
@@ -160,7 +160,7 @@ describe('Time After validator', () => {
 
     it('should fail when input has the same time', () => {
       const result = validator.validate(rules, {
-        vacationTime: moment('2019-06-03 15:12:01')
+        vacationTime: moment('2019-06-03 15:12:01').utcOffset(0)
       });
       const err = result.messages;
 
@@ -178,7 +178,7 @@ describe('Time After validator', () => {
 
     const getTestObject = () => {
       return {
-        vacationTime: moment('2019-06-03 15:22:12')
+        vacationTime: moment('2019-06-03 15:22:12').utcOffset(0)
       };
     };
 
@@ -192,7 +192,7 @@ describe('Time After validator', () => {
 
     it('should fail when input has the same time', () => {
       const result = validator.validate(rules, {
-        vacationTime: moment('2019-06-03 15:22:11')
+        vacationTime: moment('2019-06-03 15:22:11').utcOffset(0)
       });
       const err = result.messages;
 
@@ -210,7 +210,7 @@ describe('Time After validator', () => {
 
     const getTestObject = () => {
       return {
-        pastVacationTime: moment('2019-06-03 20:22:02')
+        pastVacationTime: moment('2019-06-03 20:22:02').utcOffset(0)
       };
     };
 
@@ -224,7 +224,7 @@ describe('Time After validator', () => {
 
     it('should fail when input has the same time', () => {
       const result = validator.validate(rules, {
-        pastVacationTime: moment('2019-06-03 20:22:01')
+        pastVacationTime: moment('2019-06-03 20:22:01').utcOffset(0)
       });
       const err = result.messages;
 
@@ -242,7 +242,7 @@ describe('Time After validator', () => {
 
     const getTestObject = () => {
       return {
-        pastVacationTime: moment('2015-06-03 15:22:02')
+        pastVacationTime: moment('2015-06-03 15:22:02').utcOffset(0)
       };
     };
 
@@ -256,7 +256,7 @@ describe('Time After validator', () => {
 
     it('should fail when input has the same time', () => {
       const result = validator.validate(rules, {
-        pastVacationTime: moment('2015-06-03 15:22:01')
+        pastVacationTime: moment('2015-06-03 15:22:01').utcOffset(0)
       });
       const err = result.messages;
 
