@@ -79,6 +79,8 @@ const validatorTwo = satpam.create();
 - `dateFormat:<format, e.g. DD-MM-YYYY>`
 - `dateAfter:<the date input format, e.g. DD-MM-YYYY>:<date after e.g. 'now' or 20-1-2015>:<offset>:<unit of time e.g. 'days'>`
 - `dateBefore:<the date input format, e.g. DD-MM-YYYY>:<date after e.g. 'now' or 20-1-2015>:<offset>:<unit of time e.g. 'days'>`
+- `timeAfter:<time after i.e. now or time in unix form>:<offset>:<unit of time e.g. 'minutes'>`
+- `timeAfterOrEqual:<time after or equal i.e. now or time in unix form>:<offset>:<unit of time e.g. 'minutes'>`
 - `url`
 - `string`
 - `plainObject` Check if the given value is a plani object (passing string, array, or anything will return to false)

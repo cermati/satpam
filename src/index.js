@@ -21,6 +21,8 @@ import dateAfter from './validators/date-after';
 import dateAfterOrEqual from './validators/date-after-or-equal';
 import dateBefore from './validators/date-before';
 import dateBeforeOrEqual from './validators/date-before-or-equal';
+import timeAfter from './validators/time-after';
+import timeAfterOrEqual from './validators/time-after-or-equal';
 import dateFormat from './validators/date-format';
 import email from './validators/email';
 import emptyString from './validators/empty-string';
@@ -67,6 +69,8 @@ import containsLowerCase from './validators/contains-lower-case';
 import containsUpperCase from './validators/contains-upper-case';
 import plainObject from './validators/plain-object';
 
+import moment from 'moment';
+
 let validation = {
   'beginWith:$1': beginWith.validate,
   'between:$1:$2': between.validate,
@@ -74,6 +78,8 @@ let validation = {
   'dateAfterOrEqual:$1:$2:$3:$4': dateAfterOrEqual.validate,
   'dateBefore:$1:$2:$3:$4': dateBefore.validate,
   'dateBeforeOrEqual:$1:$2:$3:$4': dateBeforeOrEqual.validate,
+  'timeAfter:$1:$2:$3': timeAfter.validate,
+  'timeAfterOrEqual:$1:$2:$3': timeAfterOrEqual.validate,
   'dateFormat:$1': dateFormat.validate,
   'equal:$1': equal.validate,
   'equal-to-field:$1': equalToField.validate,
@@ -134,6 +140,8 @@ let validationMessages = {
   'dateAfterOrEqual:$1:$2:$3:$4': dateAfterOrEqual.message,
   'dateBefore:$1:$2:$3:$4': dateBefore.message,
   'dateBeforeOrEqual:$1:$2:$3:$4': dateBeforeOrEqual.message,
+  'timeAfter:$1:$2:$3': timeAfter.message,
+  'timeAfterOrEqual:$1:$2:$3': timeAfterOrEqual.message,
   'dateFormat:$1': dateFormat.message,
   'equal:$1': equal.message,
   'equal-to-field:$1': equalToField.message,
@@ -417,7 +425,8 @@ class Validator {
       propertyName: propertyName,
       ruleName: ruleObj.fullName,
       ruleParams: ruleObj.params,
-      value: val
+      value: val,
+      moment: moment
     });
   }
 
