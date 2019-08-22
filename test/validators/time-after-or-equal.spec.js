@@ -9,7 +9,7 @@ describe('Time After Or Equal validator', () => {
     };
 
     const getTestObject = () => {
-      const futureTime = moment().add(1, 'second');
+      const futureTime = moment().add(1, 'second').utcOffset(0);
 
       return {
         vacationTime: futureTime
@@ -26,7 +26,7 @@ describe('Time After Or Equal validator', () => {
 
     it('should fail when input has slightly older time', () => {
       const result = validator.validate(rules, {
-        vacationTime: moment().subtract(1, 'second')
+        vacationTime: moment().subtract(1, 'second').utcOffset(0)
       });
       const err = result.messages;
 
@@ -75,7 +75,7 @@ describe('Time After Or Equal validator', () => {
     };
 
     const getTestObject = () => {
-      const time = moment().subtract(30, 'minute').add(1, 'second');
+      const time = moment().subtract(30, 'minute').add(1, 'second').utcOffset(0);
 
       return {
         vacationTime: time
@@ -92,7 +92,7 @@ describe('Time After Or Equal validator', () => {
 
     it('should fail when input has slightly older time', () => {
       const result = validator.validate(rules, {
-        vacationTime: moment().subtract(30, 'minute').subtract(1, 'second')
+        vacationTime: moment().subtract(30, 'minute').subtract(1, 'second').utcOffset(0)
       });
       const err = result.messages;
 
@@ -109,7 +109,7 @@ describe('Time After Or Equal validator', () => {
     };
 
     const getTestObject = () => {
-      const time = moment().add(31, 'seconds');
+      const time = moment().add(31, 'seconds').utcOffset(0);
 
       return {
         vacationTime: time
@@ -126,7 +126,7 @@ describe('Time After Or Equal validator', () => {
 
     it('should fail when input has slightly older time', () => {
       const result = validator.validate(rules, {
-        vacationTime: moment().add(29, 'seconds')
+        vacationTime: moment().add(29, 'seconds').utcOffset(0)
       });
       const err = result.messages;
 

@@ -16,20 +16,20 @@ const validate = (val, ruleObj) => {
 
   messages = ['<%= propertyName %> must be greater than or equal to']
 
-  const timeInput = moment(val);
+  const timeInput = moment(val).locale('id').utcOffset(0);
   let offset = Number(ruleObj.params[1]);
   const unit = ruleObj.params[2];
 
   let time;
 
   if (ruleObj.params[0].toLowerCase() === NOW) {
-    time = moment();
+    time = moment().locale('id').utcOffset(0);
 
     messages.push(' now');
   } else {
-    time = moment.unix(ruleObj.params[0]);
+    time = moment.unix(ruleObj.params[0]).locale('id').utcOffset(0);
 
-    messages.push(' <%= moment.unix(ruleParams[0]).format(\'YYYY-MM-DD HH:mm:ss\') %>');
+    messages.push(' <%= moment.unix(ruleParams[0]).locale(\'id\').utcOffset(7).format(\'YYYY-MM-DD HH:mm:ss\') %>');
   }
 
   if (offset) {
