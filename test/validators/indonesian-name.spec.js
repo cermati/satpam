@@ -28,7 +28,7 @@ describe('Indonesian name validator', () => {
 
   context('name with valid special characters', () => {
     it('should success', () => {
-      const result = validator.validate(rules, {name: 'Bog-ged K.'});
+      const result = validator.validate(rules, {name: 'Bog\'ged,-K.'});
       const err = result.messages;
 
       expect(result.success).to.equal(true);
