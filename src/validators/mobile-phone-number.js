@@ -24,6 +24,7 @@ const prefixMap = {
   '0823': true, // Kartu As
   '0831': true, // Axis AXIS Telekom Indonesia
   '0832': true, // Axis AXIS Telekom Indonesia
+  '0833': true, // Axis AXIS Telekom Indonesia
   '0838': true, // Axis AXIS Telekom Indonesia
   '0851': true, // Nomor untuk Kartu AS (pengganti Flexi)
   '0852': true, // Kartu As Telkomsel
@@ -37,7 +38,10 @@ const prefixMap = {
   '0878': true, // XL Prabayar XL Axiata
   '0881': true, // smartfren Smartfren Telecom
   '0882': true, // smartfren Smartfren Telecom
+  '0883': true, // smartfren Smartfren Telecom
+  '0884': true, // smartfren Smartfren Telecom
   '0885': true, // Smartfren Smartfren Telecom
+  '0886': true, // smartfren Smartfren Telecom
   '0887': true, // smartfren Smartfren Telecom
   '0888': true, // smartfren Smartfren Telecom
   '0889': true, // smartfren Smartfren Telecom
