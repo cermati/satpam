@@ -1,13 +1,13 @@
 import {expect} from 'chai';
 import validator from '../../lib';
 
-describe('IP address or Host validator', () => {
+describe('Hostname validator', () => {
   const rules = {
     ipaddr: ['hostname']
   };
 
   it('should success on valid Host', () => {
-    const result = validator.validate(rules, {ipaddr: 'https://stg-k-api.indodana.com/chermes/public/v1/stub/merchant/always-accept-purchase-transaction'});
+    const result = validator.validate(rules, {ipaddr: 'https://cermati.com/create/transaction'});
     const err = result.messages;
 
     expect(result.success).to.equal(true);
@@ -15,7 +15,7 @@ describe('IP address or Host validator', () => {
   });
 
   it('should success on valid Host only', () => {
-    const result = validator.validate(rules, {ipaddr: 'https://stg-k-api.indodana.com'});
+    const result = validator.validate(rules, {ipaddr: 'https://google.com'});
     const err = result.messages;
 
     expect(result.success).to.equal(true);
