@@ -85,6 +85,3 @@ const validate = val => {
 const message = '<%= propertyName %> is not a valid IP address.';
 
 export default {validate, message};
-
-module.exports.validateIp = validate;
-
