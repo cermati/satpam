@@ -6,7 +6,6 @@ describe('IP address or Host validator', () => {
     ipaddr: ['hostname']
   };
 
-
   it('should success on valid Host', () => {
     const result = validator.validate(rules, {ipaddr: 'https://stg-k-api.indodana.com/chermes/public/v1/stub/merchant/always-accept-purchase-transaction'});
     const err = result.messages;
