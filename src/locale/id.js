@@ -55,5 +55,5 @@ module.exports = {
   'url': 'Format link tidak valid.',
   'uuid:$1': 'Input harus berupa UUID.',
   'validZipCode': 'Kode Pos tidak valid.',
-  'hostname': 'Harus merupakan nama host yang valid'
+  'hostname': 'Nama host tidak valid'
 };
