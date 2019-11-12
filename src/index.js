@@ -68,6 +68,7 @@ import containsDigit from './validators/contains-digit';
 import containsLowerCase from './validators/contains-lower-case';
 import containsUpperCase from './validators/contains-upper-case';
 import plainObject from './validators/plain-object';
+import hostname from './validators/hostname';
 
 let validation = {
   'beginWith:$1': beginWith.validate,
@@ -114,6 +115,7 @@ let validation = {
   email: email.validate,
   emptyString: emptyString.validate,
   fqdn: fqdn.validate,
+  hostname: hostname.validate,
   image: image.validate,
   imei: imei.validate,
   integer: integer.validate,
@@ -176,6 +178,7 @@ let validationMessages = {
   email: email.message,
   emptyString: emptyString.message,
   fqdn: fqdn.message,
+  hostname: hostname.message,
   image: image.message,
   imei: imei.message,
   integer: integer.message,
@@ -333,7 +336,7 @@ class Validator {
             success: false,
             ruleName: ruleObj.fullName,
             message: validator.getValidationMessage(ruleObj, propertyName, val, inputObj)
-          }
+          };
         }
 
         return {
