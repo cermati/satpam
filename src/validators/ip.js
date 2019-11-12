@@ -56,11 +56,11 @@ function isIPv6(val) {
   for (var i = 0; i < blocks.length; ++i) {
     // test for a :: which can not be at the string start/end
     // since those cases have been handled above
-    if (blocks[i] === '' && i > 0 && i < blocks.length -1) {
+    if (blocks[i] === '' && i > 0 && i < blocks.length - 1) {
       if (foundOmissionBlock)
         return false; // multiple :: in address
       foundOmissionBlock = true;
-    } else if (foundIPv4TransitionBlock && i == blocks.length - 1) {
+    } else if (foundIPv4TransitionBlock && i === blocks.length - 1) {
       // it has been checked before that the last
       // block is a valid IPv4 address
     } else if (!ipv6Block.test(blocks[i])) {
@@ -85,4 +85,6 @@ const validate = val => {
 const message = '<%= propertyName %> is not a valid IP address.';
 
 export default {validate, message};
+
+module.exports.validateIp = validate;
 

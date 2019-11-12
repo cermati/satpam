@@ -68,6 +68,7 @@ import containsDigit from './validators/contains-digit';
 import containsLowerCase from './validators/contains-lower-case';
 import containsUpperCase from './validators/contains-upper-case';
 import plainObject from './validators/plain-object';
+import ipOrHost from './validators/ip-or-host';
 
 let validation = {
   'beginWith:$1': beginWith.validate,
@@ -101,6 +102,7 @@ let validation = {
   'requiredIf:$1:$2': requiredIf.validate,
   'taxId:$1': taxId.validate,
   'multipleOf:$1': multipleOf.validate,
+  'ip-or-host': ipOrHost.validate,
   alpha: alpha.validate,
   alphanumeric: alphanumeric.validate,
   array: array.validate,
@@ -163,6 +165,7 @@ let validationMessages = {
   'requiredIf:$1:$2': requiredIf.message,
   'taxId:$1': taxId.message,
   'multipleOf:$1': multipleOf.message,
+  'ip-or-host': ipOrHost.message,
   alpha: alpha.message,
   alphanumeric: alphanumeric.message,
   array: array.message,
@@ -333,7 +336,7 @@ class Validator {
             success: false,
             ruleName: ruleObj.fullName,
             message: validator.getValidationMessage(ruleObj, propertyName, val, inputObj)
-          }
+          };
         }
 
         return {
