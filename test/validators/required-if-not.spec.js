@@ -1,34 +1,43 @@
 import noes from 'noes';
 import { expect } from 'chai';
 import validator from '../../lib';
-import requiredIf from '../../lib/validators/required-if';
 
 describe('Required if not validator', () => {
   context('with validator wrapper', () => {
     context('when given normal parameters', () => {
       const simpleRules = {
-        address: ['requiredIfNot:hasHome:Yes']
+        company: ['requiredIfNot:job:Household Wife']
       };
 
-      it('should success if hasHome is No and address is defined', () => {
+      it('should success if job is Lawyer and company is defined', () => {
         const result = validator.validate(simpleRules, {
-          hasHome: 'No',
-          address: 'somewhere over the rainbow'
+          job: 'Laywer',
+          company: 'somewhere over the rainbow'
         });
         const err = result.messages;
 
         expect(result.success).to.equal(true);
-        expect(err).to.not.have.property('address');
+        expect(err).to.not.have.property('company');
       });
 
-      it('should success if hasHome is not defined and address is defined', () => {
+      it('should success if job is Household Wife and company is not defined', () => {
         const result = validator.validate(simpleRules, {
-          address: 'somewhere over the rainbow'
+          job: 'Household Wife'
         });
         const err = result.messages;
 
         expect(result.success).to.equal(true);
-        expect(err).to.not.have.property('address');
+        expect(err).to.not.have.property('company');
+      });
+
+      it('should success if job is not defined and company is defined', () => {
+        const result = validator.validate(simpleRules, {
+          company: 'somewhere over the rainbow'
+        });
+        const err = result.messages;
+
+        expect(result.success).to.equal(true);
+        expect(err).to.not.have.property('company');
       });
 
       it('should fail if input is empty', () => {
@@ -36,27 +45,27 @@ describe('Required if not validator', () => {
         const err = result.messages;
 
         expect(result.success).to.equal(false);
-        expect(err).to.have.property('address');
-        expect(err.address['requiredIfNot:$1:$2']).to.equal('Address field is required.');
+        expect(err).to.have.property('company');
+        expect(err.company['requiredIfNot:$1:$2']).to.equal('Company field is required.');
       });
 
-      it('should fail if hasHome is No and address is not defined', () => {
+      it('should fail if job is Lawyer and company is not defined', () => {
         const result = validator.validate(simpleRules, {
-          hasHome: 'No'
+          job: 'Lawyer'
         });
         const err = result.messages;
 
         expect(result.success).to.equal(false);
-        expect(err).to.have.property('address');
-        expect(err.address['requiredIfNot:$1:$2']).to.equal('Address field is required.');
+        expect(err).to.have.property('company');
+        expect(err.company['requiredIfNot:$1:$2']).to.equal('Company field is required.');
       });
     });
 
     context('when given `Or` structure as parameter', () => {
       context('and it\'s an `Or` instance', () => {
         const or = new noes.Or({
-          hasHome: 'yes',
-          hasApartment: 'yo'
+          job: 'Household Wife',
+          partnerJob: 'Household Husband'
         });
 
         testWithOr(or);
@@ -66,8 +75,8 @@ describe('Required if not validator', () => {
         const or = {
           type: 'or',
           mappings: {
-            hasHome: 'yes',
-            hasApartment: 'yo'
+            job: 'Household Wife',
+            partnerJob: 'Household Husband'
           }
         };
 
@@ -78,8 +87,8 @@ describe('Required if not validator', () => {
     context('when given `And` structure as parameter', () => {
       context('and it\'s an `And` instance', () => {
         const and = new noes.And({
-          hasHome: 'yes',
-          hasApartment: 'yo'
+          job: 'Household Wife',
+          partnerJob: 'Household Husband'
         });
 
         testWithAnd(and);
@@ -89,8 +98,8 @@ describe('Required if not validator', () => {
         const and = {
           type: 'and',
           mappings: {
-            hasHome: 'yes',
-            hasApartment: 'yo'
+            job: 'Household Wife',
+            partnerJob: 'Household Husband'
           }
         };
 
@@ -102,70 +111,70 @@ describe('Required if not validator', () => {
 
 function testWithAnd(and) {
   const rules = {
-    address: [{
+    company: [{
       fullName: 'requiredIfNot:$1:$2',
       params: [and]
     }]
   };
 
   context('with satisfied parameter', () => {
-    it('should success if address is not defined', () => {
+    it('should success if company is not defined', () => {
       const result = validator.validate(rules, {
-        hasHome: 'yes',
-        hasApartment: 'yo'
+        job: 'Household Wife',
+        partnerJob: 'Household Husband'
       });
       const err = result.messages;
 
       expect(result.success).to.equal(true);
-      expect(err).to.not.have.property('address');
+      expect(err).to.not.have.property('company');
     });
 
-    it('should success if address is defined', () => {
+    it('should success if company is defined', () => {
       const result = validator.validate(rules, {
-        hasHome: 'yes',
-        hasApartment: 'yo',
-        address: 'wut'
+        job: 'Household Wife',
+        partnerJob: 'Household Husband',
+        company: 'wut'
       });
       const err = result.messages;
 
       expect(result.success).to.equal(true);
-      expect(err).to.not.have.property('address');
+      expect(err).to.not.have.property('company');
     });
   });
 
   context('with unsatisfied parameter', () => {
-    it('should fail if address is not defined', () => {
+    it('should fail if company is not defined', () => {
       const result = validator.validate(rules, {
-        hasHome: 'yes',
-        hasApartment: 'yoo'
+        job: 'Household Wife',
+        partnerJob: 'Lawyer'
       });
       const err = result.messages;
 
       expect(result.success).to.equal(false);
-      expect(err.address).to.have.property('requiredIfNot:$1:$2')
-        .that.equals('Address field is required.');
+      expect(err.company).to.have.property('requiredIfNot:$1:$2')
+        .that.equals('Company field is required.');
     });
 
-    it('should success if address is defined', () => {
+    it('should success if company is defined', () => {
       const result = validator.validate(rules, {
-        hasHome: 'yes',
-        hasApartment: 'yoo',
-        address: 'wut'
+        job: 'Household Wife',
+        partnerJob: 'Lawyer',
+        company: 'wut'
       });
       const err = result.messages;
 
       expect(result.success).to.equal(true);
-      expect(err).to.not.have.property('address');
+      expect(err).to.not.have.property('company');
     });
 
-    it('should success if address is defined', () => {
+    it('should success if company is defined', () => {
       const result = validator.validate(rules, {
-        address: 'wut'
+        company: 'wut'
       });
       const err = result.messages;
 
       expect(result.success).to.equal(true);
-      expect(err).to.not.have.property('address');
+      expect(err).to.not.have.property('company');
     });
 
     it('should fail if input is empty', () => {
@@ -173,74 +182,74 @@ function testWithAnd(and) {
       const err = result.messages;
 
       expect(result.success).to.equal(false);
-      expect(err.address).to.have.property('requiredIfNot:$1:$2')
-        .that.equals('Address field is required.');
+      expect(err.company).to.have.property('requiredIfNot:$1:$2')
+        .that.equals('Company field is required.');
     });
   });
 }
 
 function testWithOr(or) {
   const rules = {
-    address: [{
+    company: [{
       fullName: 'requiredIfNot:$1:$2',
       params: [or]
     }]
   };
 
   context('with satisfied parameter', () => {
-    it('should success if address is defined', () => {
+    it('should success if company is defined', () => {
       const result = validator.validate(rules, {
-        hasHome: 'yes',
-        address: 'wut'
+        job: 'Household Wife',
+        company: 'wut'
       });
       const err = result.messages;
 
       expect(result.success).to.equal(true);
-      expect(err).to.not.have.property('address');
+      expect(err).to.not.have.property('company');
     });
 
-    it('should success if address is not defined', () => {
+    it('should success if company is not defined', () => {
       const result = validator.validate(rules, {
-        hasHome: 'yes'
+        job: 'Household Wife'
       });
       const err = result.messages;
 
       expect(result.success).to.equal(true);
-      expect(err).to.not.have.property('address');
+      expect(err).to.not.have.property('company');
     });
   });
 
   context('with unsatisfied parameter', () => {
-    it('should fail if address is not defined', () => {
+    it('should fail if company is not defined', () => {
       const result = validator.validate(rules, {
-        hasHome: 'yess'
+        job: 'Lawyer'
       });
       const err = result.messages;
 
       expect(result.success).to.equal(false);
-      expect(err.address).to.have.property('requiredIfNot:$1:$2')
-        .that.equals('Address field is required.');
+      expect(err.company).to.have.property('requiredIfNot:$1:$2')
+        .that.equals('Company field is required.');
     });
 
-    it('should success if address is defined', () => {
+    it('should success if company is defined', () => {
       const result = validator.validate(rules, {
-        hasHome: 'yess',
-        address: 'wut'
+        job: 'Lawyer',
+        company: 'wut'
       });
       const err = result.messages;
 
       expect(result.success).to.equal(true);
-      expect(err).to.not.have.property('address');
+      expect(err).to.not.have.property('company');
     });
 
-    it('should success if address is defined', () => {
+    it('should success if company is defined', () => {
       const result = validator.validate(rules, {
-        address: 'wut'
+        company: 'wut'
       });
       const err = result.messages;
 
       expect(result.success).to.equal(true);
-      expect(err).to.not.have.property('address');
+      expect(err).to.not.have.property('company');
     });
 
     it('should fail if input is empty', () => {
@@ -248,8 +257,8 @@ function testWithOr(or) {
       const err = result.messages;
 
       expect(result.success).to.equal(false);
-      expect(err.address).to.have.property('requiredIfNot:$1:$2')
-        .that.equals('Address field is required.');
+      expect(err.company).to.have.property('requiredIfNot:$1:$2')
+        .that.equals('Company field is required.');
     });
   });
 }

@@ -1,7 +1,6 @@
 import noes from 'noes';
 import { expect } from 'chai';
 import validator from '../../lib';
-import requiredIf from '../../lib/validators/required-if';
 
 describe('Required if validator', () => {
   context('with validator wrapper', () => {
