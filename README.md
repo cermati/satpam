@@ -117,7 +117,16 @@ const validatorTwo = satpam.create();
   For more complex example please see
   - [`requiredIf` examples](https://github.com/cermati/satpam/blob/master/test/validators/required-if.spec.js#L147)
   - [`noes` examples](https://github.com/sendyhalim/noes)
+- `requiredIfNot:<fieldName>:<value>`
+  ```js
+  var input = {message: 'hi!'};
+  // `subject` is required if message does not equal `hi!`
+  satpam.validate({subject: 'requiredIfNot:message:hi!'});
+  ```
 
+  For more complex example please see
+  - [`requiredIfNot` examples](https://github.com/cermati/satpam/blob/master/test/validators/required-if-not.spec.js#L103)
+  - [`noes` examples](https://github.com/sendyhalim/noes)
 - `minimumAge:<age>:<dateFormat>`
 - `taxId:$1` Currently only support indonesian tax id e.g. `taxId:id`
 

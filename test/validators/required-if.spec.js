@@ -1,7 +1,6 @@
 import noes from 'noes';
 import { expect } from 'chai';
 import validator from '../../lib';
-import requiredIf from '../../lib/validators/required-if';
 
 describe('Required if validator', () => {
   context('with validator wrapper', () => {
@@ -18,7 +17,7 @@ describe('Required if validator', () => {
         const err = result.messages;
 
         expect(result.success).to.equal(true);
-        expect(err).to.not.have.property('name');
+        expect(err).to.not.have.property('address');
       });
 
       it('should success if hasHome is undefined', () => {
@@ -26,7 +25,7 @@ describe('Required if validator', () => {
         const err = result.messages;
 
         expect(result.success).to.equal(true);
-        expect(err).to.not.have.property('name');
+        expect(err).to.not.have.property('address');
       });
 
       it('should fail', () => {
