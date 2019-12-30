@@ -48,6 +48,7 @@ module.exports = {
   'regex:$1:$2': 'Input tidak valid.',
   'required': 'Input ini wajib diisi.',
   'requiredIf:$1:$2': 'Input ini wajib diisi.',
+  'requiredIfNot:$1:$2': 'Input ini wajib diisi.',
   'samePassword': 'Confirm Password tidak sama dengan Password.',
   'string': 'Input harus berupa string.',
   'plainObject': 'Input harus berupa object.',
