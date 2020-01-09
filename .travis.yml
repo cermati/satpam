@@ -1,8 +1,8 @@
 language: node_js
 node_js:
   - "node"
-  - "0.10.44"
-  - "0.12"
-  - "4.6.0"
+  - "12.14.1"
+  - "8.5.0"
+  - "8.10.0"
 script:
   - "npm test"
