@@ -1,6 +1,6 @@
 {
   "name": "satpam",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "Simple and Effective Object Validator",
   "main": "lib/index.js",
   "scripts": {
@@ -28,8 +28,7 @@
     "moment": "~2.23.0",
     "noes": "~1.1.1",
     "ramda": "~0.25.0",
-    "read-chunk": "~1.0.1",
-    "sprintf-js": "~1.0.3"
+    "read-chunk": "~1.0.1"
   },
   "devDependencies": {
     "@babel/cli": "~7.8.4",
