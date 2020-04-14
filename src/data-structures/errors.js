@@ -1,5 +1,3 @@
-import {sprintf} from 'sprintf-js';
-
 /**
  * A class that represents an invalid validation rule pareameter
  *
@@ -8,8 +6,8 @@ import {sprintf} from 'sprintf-js';
  * @param message - The error message.
  */
 function InvalidValidationRuleParameter(ruleParameter, reason) {
-  var defaultMessage = sprintf('%s is not a valid rule parameter.', ruleParameter);
-  this.message = reason ? sprintf('%s. %s', defaultMessage, reason) : defaultMessage;
+  var defaultMessage = `${ruleParameter} %s is not a valid rule parameter.`;
+  this.message = reason ? `${defaultMessage}. ${reason}` : defaultMessage;
   this.name = 'InvalidValidationRuleParameter';
 
   Error.captureStackTrace(this, InvalidValidationRuleParameter);
