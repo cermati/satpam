@@ -6,8 +6,8 @@
  * @param message - The error message.
  */
 function InvalidValidationRuleParameter(ruleParameter, reason) {
-  var defaultMessage = `${ruleParameter} %s is not a valid rule parameter.`;
-  this.message = reason ? `${defaultMessage}. ${reason}` : defaultMessage;
+  var defaultMessage = ruleParameter + ' is not a valid rule parameter.';
+  this.message = reason ? defaultMessage + '. ' + reason : defaultMessage;
   this.name = 'InvalidValidationRuleParameter';
 
   Error.captureStackTrace(this, InvalidValidationRuleParameter);
