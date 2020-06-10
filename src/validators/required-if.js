@@ -13,7 +13,8 @@ const validate = (val, ruleObj, propertyName, inputObj) => {
     return required.validate(val);
   }
 
-  if (!isNil(inputObj[targetProperty]) &&
+  if (!isNil(inputObj) &&
+      !isNil(inputObj[targetProperty]) &&
       !isNil(params[1]) &&
       inputObj[targetProperty] === params[1]) {
     return required.validate(val);

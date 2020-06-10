@@ -28,6 +28,22 @@ describe('Required if validator', () => {
         expect(err).to.not.have.property('address');
       });
 
+      it('should success if the input object is undefined', () => {
+        const result = validator.validate(simpleRules, undefined);
+        const err = result.messages;
+
+        expect(result.success).to.equal(true);
+        expect(err).to.not.have.property('address');
+      });
+
+      it('should success if the input object is null', () => {
+        const result = validator.validate(simpleRules, null);
+        const err = result.messages;
+
+        expect(result.success).to.equal(true);
+        expect(err).to.not.have.property('address');
+      });
+
       it('should fail', () => {
         const input = {hasHome: 'Yes'};
         const result = validator.validate(simpleRules, input);
@@ -140,6 +156,22 @@ function testWithAnd(and) {
       expect(result.success).to.equal(true);
       expect(err).to.not.have.property('address');
     });
+
+    it('should success with undefined input', () => {
+      const result = validator.validate(rules, undefined);
+      const err = result.messages;
+
+      expect(result.success).to.equal(true);
+      expect(err).to.not.have.property('address');
+    });
+
+    it('should success with null input', () => {
+      const result = validator.validate(rules, null);
+      const err = result.messages;
+
+      expect(result.success).to.equal(true);
+      expect(err).to.not.have.property('address');
+    });
   });
 }
 
@@ -188,6 +220,22 @@ function testWithOr(or) {
 
     it('should success with empty input', () => {
       const result = validator.validate(rules, {});
+      const err = result.messages;
+
+      expect(result.success).to.equal(true);
+      expect(err).to.not.have.property('address');
+    });
+
+    it('should success with undefined input', () => {
+      const result = validator.validate(rules, undefined);
+      const err = result.messages;
+
+      expect(result.success).to.equal(true);
+      expect(err).to.not.have.property('address');
+    });
+
+    it('should success with null input', () => {
+      const result = validator.validate(rules, null);
       const err = result.messages;
 
       expect(result.success).to.equal(true);
