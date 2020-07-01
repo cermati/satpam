@@ -439,7 +439,8 @@ class Validator {
    * @param propertyName
    * @param val
    * @param inputObj
-   * @param messageFormatter
+   * @param [options]
+   * @param [options.messageFormatter]
    * @returns {String}
    */
   getValidationMessage(ruleObj, propertyName, val, inputObj, options) {
