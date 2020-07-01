@@ -345,6 +345,12 @@ describe('Validator.validate()', () => {
   });
 
   context('when `options.validationMessageParamsFormatter` is passed', () => {
+    const validationMessageParamsFormatterByRuleFullName = {
+      'minValue:$1': ([ minParam ]) => {
+        return ['IDR ' + minParam];
+      }
+    };
+
     context('and propertyName is not formatted', () => {
       const rules = {
         name: ['required'],
@@ -352,12 +358,6 @@ describe('Validator.validate()', () => {
       };
 
       it('should return formatted validation message', () => {
-        const validationMessageParamsFormatterByRuleFullName = {
-          'minValue:$1': ([ minParam ]) => {
-            return [Number(minParam).toLocaleString('id')];
-          }
-        };
-
         const options = {
           validationMessageParamsFormatter: ({ propertyName, propertyValue, inputObj, violatedRule }) => {
             const ruleParamsFormatter = validationMessageParamsFormatterByRuleFullName[violatedRule.fullName] || _.identity;
@@ -375,7 +375,7 @@ describe('Validator.validate()', () => {
         const err = result.messages;
 
         expect(result.success).to.be.false;
-        expect(err.salary['minValue:$1']).to.deep.equal('Salary must be greater than or equal to 3.900.888.');
+        expect(err.salary['minValue:$1']).to.deep.equal('Salary must be greater than or equal to IDR 3900888.');
       });
     });
 
@@ -386,15 +386,9 @@ describe('Validator.validate()', () => {
       };
 
       it('should return formatted validation message', () => {
-        const validationMessageparamsFormatterByRuleFullName = {
-          'minValue:$1': ([ minParam ]) => {
-            return ['IDR ' + minParam];
-          }
-        };
-
         const options = {
           validationMessageParamsFormatter: ({ propertyName, propertyValue, inputObj, violatedRule }) => {
-            const ruleParamsFormatter = validationMessageparamsFormatterByRuleFullName[violatedRule.fullName] || _.identity;
+            const ruleParamsFormatter = validationMessageParamsFormatterByRuleFullName[violatedRule.fullName] || _.identity;
 
             return {
               propertyName: 'Pendapatan',
