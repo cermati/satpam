@@ -352,7 +352,7 @@ describe('Validator.validate()', () => {
       };
 
       it('should return formatted validation message', () => {
-        const validationMessageparamsFormatterByRuleFullName = {
+        const validationMessageParamsFormatterByRuleFullName = {
           'minValue:$1': ([ minParam ]) => {
             return [Number(minParam).toLocaleString('id')];
           }
@@ -360,7 +360,7 @@ describe('Validator.validate()', () => {
 
         const options = {
           validationMessageParamsFormatter: ({ propertyName, propertyValue, inputObj, violatedRule }) => {
-            const ruleParamsFormatter = validationMessageparamsFormatterByRuleFullName[violatedRule.fullName] || _.identity;
+            const ruleParamsFormatter = validationMessageParamsFormatterByRuleFullName[violatedRule.fullName] || _.identity;
 
             return {
               ruleParams: ruleParamsFormatter(violatedRule.params)
