@@ -13,9 +13,9 @@ describe('Validator.getValidationMessage()', () => {
       });
 
       it('should return correct validation message', () => {
-        const ruleObj = {
+        const ruleObj = validator._createRuleObject({
           fullName: 'required'
-        };
+        });
 
         const message = validator.getValidationMessage(ruleObj, 'name', 'wut');
         expect(message).to.equal('bulbazaurz');
@@ -37,9 +37,9 @@ describe('Validator.getValidationMessage()', () => {
       });
 
       it('should return correct validation message', () => {
-        const ruleObj = {
+        const ruleObj = validator._createRuleObject({
           fullName: 'required'
-        };
+        });
 
         const message = validator.getValidationMessage(ruleObj, 'name', 'wut');
 
@@ -67,7 +67,7 @@ describe('Validator.getValidationMessage()', () => {
     });
 
     it('should return correct validation message', () => {
-      const ruleObj = {fullName: ['required']};
+      const ruleObj = validator._createRuleObject({fullName: ['required']});
       const result = satpam.validate(ruleObj, {});
 
       expect(result.messages.fullName.required).to.equal('huuu!');
@@ -75,7 +75,7 @@ describe('Validator.getValidationMessage()', () => {
 
     it('should affect the newly created validator instance', () => {
       const newValidator = satpam.create();
-      const ruleObj = {fullName: 'required'};
+      const ruleObj = validator._createRuleObject({fullName: 'required'});
 
       const message = newValidator.getValidationMessage(ruleObj, 'fullName', 'wut');
       expect(message).to.equal('huuu!');

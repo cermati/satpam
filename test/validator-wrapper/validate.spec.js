@@ -343,5 +343,76 @@ describe('Validator.validate()', () => {
       expect(err).to.not.have.property('nested.office.emailOptional');
     });
   });
+
+  context('when `options.validationMessageParamsFormatter` is passed', () => {
+    context('and propertyName is not formatted', () => {
+      const rules = {
+        name: ['required'],
+        salary: ['required', 'minValue:3900888'],
+      };
+
+      it('should return formatted validation message', () => {
+        const validationMessageparamsFormatterByRuleFullName = {
+          'minValue:$1': ([ minParam ]) => {
+            return [Number(minParam).toLocaleString('id')];
+          }
+        };
+
+        const options = {
+          validationMessageParamsFormatter: ({ propertyName, propertyValue, inputObj, violatedRule }) => {
+            const ruleParamsFormatter = validationMessageparamsFormatterByRuleFullName[violatedRule.fullName] || _.identity;
+
+            return {
+              ruleParams: ruleParamsFormatter(violatedRule.params)
+            };
+          }
+        };
+
+        const result = satpam.validate(rules, {
+          name: 'sendy',
+          salary: 3900887
+        }, options);
+        const err = result.messages;
+
+        expect(result.success).to.be.false;
+        expect(err.salary['minValue:$1']).to.deep.equal('Salary must be greater than or equal to 3.900.888.');
+      });
+    });
+
+    context('and propertyName is formatted', () => {
+      const rules = {
+        name: ['required'],
+        salary: ['required', 'minValue:3900888'],
+      };
+
+      it('should return formatted validation message', () => {
+        const validationMessageparamsFormatterByRuleFullName = {
+          'minValue:$1': ([ minParam ]) => {
+            return [Number(minParam).toLocaleString('id')];
+          }
+        };
+
+        const options = {
+          validationMessageParamsFormatter: ({ propertyName, propertyValue, inputObj, violatedRule }) => {
+            const ruleParamsFormatter = validationMessageparamsFormatterByRuleFullName[violatedRule.fullName] || _.identity;
+
+            return {
+              propertyName: 'Pendapatan',
+              ruleParams: ruleParamsFormatter(violatedRule.params)
+            };
+          }
+        };
+
+        const result = satpam.validate(rules, {
+          name: 'sendy',
+          salary: 3900887
+        }, options);
+        const err = result.messages;
+
+        expect(result.success).to.be.false;
+        expect(err.salary['minValue:$1']).to.deep.equal('Pendapatan must be greater than or equal to 3.900.888.');
+      });
+    });
+  });
 });
 

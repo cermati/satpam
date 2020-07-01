@@ -6,6 +6,7 @@ import get from 'lodash/get';
 import isArray from 'lodash/isArray';
 import template from 'lodash/template';
 import startCase from 'lodash/startCase';
+import isNil from 'lodash/isNil';
 
 import noes from 'noes';
 
@@ -243,6 +244,16 @@ class Validator {
   }
 
   /**
+   * Default validation message formatter
+   */
+  defaultValidationMessageParamsFormatter({ propertyName, violatedRule }) {
+    return {
+      ruleParams: violatedRule.params,
+      propertyName: startCase(propertyName)
+    };
+  }
+
+  /**
    * Create a rule object based on the given rule.
    * @param rule {Object|String}
    * @returns {{name: String, fullName: String, params: Array<String>, shouldValidate: Function|ConjunctionObject}}
@@ -300,7 +311,11 @@ class Validator {
    * @param rootInputObj - The root input object to be validated started from the top "tree" of input object.
    * @returns {{result: Boolean, messages: Object}}
    */
-  _validate(ruleMapping, inputObj, rootInputObj) {
+  _validate(ruleMapping, inputObj, rootInputObj, options) {
+    options = R.mergeDeepLeft(options, {
+      validationMessageParamsFormatter: this.defaultValidationMessageParamsFormatter
+    });
+
     const validator = this;
     let result = true;
     let messageObj = new ValidationMessage();
@@ -338,7 +353,13 @@ class Validator {
           return {
             success: false,
             ruleName: ruleObj.fullName,
-            message: validator.getValidationMessage(ruleObj, propertyName, val, inputObj)
+            message: validator.getValidationMessage( // TODO: Refactor to use RoRo (BREAKING CHANGE)
+              ruleObj,
+              propertyName,
+              val,
+              inputObj,
+              { validationMessageParamsFormatter: options.validationMessageParamsFormatter }
+            )
           };
         }
 
@@ -354,7 +375,8 @@ class Validator {
         const nestedResult = this._validate(
           ruleArray,
           get(inputObj, propertyName),
-          rootInputObj
+          rootInputObj,
+          options
         );
         result = nestedResult.success && result;
 
@@ -408,27 +430,48 @@ class Validator {
    * @param inputObj - Input object to be validated
    * @returns {{result: Boolean, messages: Object}}
    */
-  validate(ruleMapping, inputObj) {
-    return this._validate(ruleMapping, inputObj, inputObj);
+  validate(ruleMapping, inputObj, options) {
+    return this._validate(ruleMapping, inputObj, inputObj, options);
   }
 
   /**
    * @param ruleObj
    * @param propertyName
    * @param val
+   * @param inputObj
+   * @param messageFormatter
    * @returns {String}
    */
-  getValidationMessage(ruleObj, propertyName, val, inputObj) {
+  getValidationMessage(ruleObj, propertyName, val, inputObj, options) {
+    options = R.mergeDeepLeft(options, {
+      validationMessageParamsFormatter: this.defaultValidationMessageParamsFormatter
+    });
+
     const message = this.validation.messages[ruleObj.fullName];
     const messageTemplate = R.is(Function, message) ? message(ruleObj, propertyName, val) : message;
     const compiled = template(messageTemplate);
-    propertyName = startCase(propertyName);
+
+    const formatted = options.validationMessageParamsFormatter({
+      propertyName,
+      propertyValue: val,
+      inputObj: inputObj,
+      violatedRule: ruleObj
+    });
+
+    const formattedRuleParams = formatted.ruleParams;
+
+    // Some additional checking
+    if (get(formattedRuleParams, 'length') !== ruleObj.params.length) {
+      throw new Error(
+        'Formatted rule params length does not match original params length, are you missing something? Formatted rule params:' + JSON.stringify(formattedRuleParams)
+      );
+    }
 
     return compiled({
       inputObj: inputObj,
-      propertyName: propertyName,
+      propertyName: isNil(formatted.propertyName) ? startCase(propertyName) : formatted.propertyName,
       ruleName: ruleObj.fullName,
-      ruleParams: ruleObj.params,
+      ruleParams: formattedRuleParams,
       value: val
     });
   }
@@ -507,9 +550,10 @@ exports.create = () => new Validator();
  * @param inputObj - Input object to be validated
  * @returns {{result: Boolean, messages: Object}}
  */
-exports.validate = (ruleMapping, inputObj) => {
+exports.validate = (ruleMapping, inputObj, options) => {
   const validator = new Validator();
-  return validator.validate(ruleMapping, inputObj);
+
+  return validator.validate(ruleMapping, inputObj, options);
 };
 
 /**
