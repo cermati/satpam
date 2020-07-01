@@ -388,7 +388,7 @@ describe('Validator.validate()', () => {
       it('should return formatted validation message', () => {
         const validationMessageparamsFormatterByRuleFullName = {
           'minValue:$1': ([ minParam ]) => {
-            return [Number(minParam).toLocaleString('en')];
+            return ['IDR ' + minParam];
           }
         };
 
@@ -410,7 +410,7 @@ describe('Validator.validate()', () => {
         const err = result.messages;
 
         expect(result.success).to.be.false;
-        expect(err.salary['minValue:$1']).to.deep.equal('Pendapatan must be greater than or equal to 3,900,888.');
+        expect(err.salary['minValue:$1']).to.deep.equal('Pendapatan must be greater than or equal to IDR 3900888.');
       });
     });
   });
