@@ -229,6 +229,17 @@ const cloneDeep = obj => {
 };
 
 /**
+ * Default validation message formatter
+ */
+const defaultValidationMessageParamsFormatter = ({ propertyName, violatedRule }) => {
+  return {
+    ruleParams: violatedRule.params,
+    propertyName: startCase(propertyName)
+  };
+};
+
+
+/**
  * Create a new validator. When it's created, it will have a deep cloned global
  * validation rules and global validation messages. Any changes made to the
  * instance's rules or messages will not affect the global validation rules
@@ -240,16 +251,6 @@ class Validator {
     this.validation = {
       rules: R.clone(validation),
       messages: cloneDeep(validationMessages)
-    };
-  }
-
-  /**
-   * Default validation message formatter
-   */
-  defaultValidationMessageParamsFormatter({ propertyName, violatedRule }) {
-    return {
-      ruleParams: violatedRule.params,
-      propertyName: startCase(propertyName)
     };
   }
 
@@ -312,10 +313,6 @@ class Validator {
    * @returns {{result: Boolean, messages: Object}}
    */
   _validate(ruleMapping, inputObj, rootInputObj, options) {
-    options = R.mergeDeepLeft(options, {
-      validationMessageParamsFormatter: this.defaultValidationMessageParamsFormatter
-    });
-
     const validator = this;
     let result = true;
     let messageObj = new ValidationMessage();
@@ -358,7 +355,7 @@ class Validator {
               propertyName,
               val,
               inputObj,
-              { validationMessageParamsFormatter: options.validationMessageParamsFormatter }
+              options
             )
           };
         }
@@ -445,11 +442,22 @@ class Validator {
    */
   getValidationMessage(ruleObj, propertyName, val, inputObj, options) {
     options = R.mergeDeepLeft(options, {
-      validationMessageParamsFormatter: this.defaultValidationMessageParamsFormatter
+      validationMessageParamsFormatter: defaultValidationMessageParamsFormatter,
+      validationMessagePackProvider: () => this.validation.messages
     });
 
-    const message = this.validation.messages[ruleObj.fullName];
+    const validationMessagePack = options.validationMessagePackProvider({
+      inputObj,
+      violatedRule: ruleObj
+    });
+
+    const ruleFullName = ruleObj.fullName;
+
+    // Not all message pack provider, if passed, would be guaranted to cover
+    // all of the validation messages. So we're still providing default validation message.
+    const message = validationMessagePack[ruleFullName] || this.validation.messages[ruleFullName];
     const messageTemplate = R.is(Function, message) ? message(ruleObj, propertyName, val) : message;
+
     const compiled = template(messageTemplate);
 
     const formatted = options.validationMessageParamsFormatter({
@@ -471,7 +479,7 @@ class Validator {
     return compiled({
       inputObj: inputObj,
       propertyName: isNil(formatted.propertyName) ? startCase(propertyName) : formatted.propertyName,
-      ruleName: ruleObj.fullName,
+      ruleName: ruleFullName,
       ruleParams: formattedRuleParams,
       value: val
     });
