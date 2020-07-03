@@ -410,12 +410,28 @@ describe('Validator.validate()', () => {
   });
 
   context('when `options.validationMessagePackProvider` is passed', () => {
-    const validationMessagePackProvider = ({ inputToBeValidated, validationRules }) => {
+    const validationMessagePackProvider = ({ inputObj, violatedRule }) => {
       return {
-        'required': 'Hey man, this <% propertyName %> is required!',
+        'required': 'Hey man, this "<%= propertyName %>" field is required!',
         'memberOf:$1': '<%= propertyName %> just want one of <%= ruleParams[0] %>.'
       };
     };
+
+    const validationMessageParamsFormatter = ({ propertyName, propertyValue, inputObj, violatedRule }) => {
+      let ruleParams = violatedRule.params;
+
+      // Test some dark magikkk
+      if (violatedRule.fullName === 'memberOf:$1') {
+        ruleParams = [
+          ruleParams[0].join('-')
+        ];
+      }
+
+      return {
+        propertyName: _.toLower(propertyName),
+        ruleParams
+      };
+    }
 
     const rules = {
       name: ['required'],
@@ -433,20 +449,22 @@ describe('Validator.validate()', () => {
 
     it('should return override the provided messages', () => {
       const options = {
-        validationMessagePackProvider
+        validationMessagePackProvider,
+        validationMessageParamsFormatter
       };
 
       const result = satpam.validate(rules, {
         name: '',
-        salary: 3900887,
+        salary: 3900880,
         education: 's1'
       }, options);
+
       const err = result.messages;
 
       expect(result.success).to.be.false;
-      expect(err.name['required']).to.deep.equal('Hey man, this name is required!');
-      expect(err.salary['minValue:$1']).to.deep.equal('Salary must be greater than or equal to IDR 3900888.');
-      expect(err.education['memberOf:$1']).to.deep.equal('Education just want one of S1,S2,S3.');
+      expect(err.name['required']).to.deep.equal('Hey man, this "name" field is required!');
+      expect(err.salary['minValue:$1']).to.deep.equal('salary must be greater than or equal to 3900888.');
+      expect(err.education['memberOf:$1']).to.deep.equal('education just want one of S1-S2-S3.');
     });
   });
 });
