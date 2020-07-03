@@ -408,5 +408,46 @@ describe('Validator.validate()', () => {
       });
     });
   });
+
+  context('when `options.validationMessagePackProvider` is passed', () => {
+    const validationMessagePackProvider = ({ inputToBeValidated, validationRules }) => {
+      return {
+        'required': 'Hey man, this <% propertyName %> is required!',
+        'memberOf:$1': '<%= propertyName %> just want one of <%= ruleParams[0] %>.'
+      };
+    };
+
+    const rules = {
+      name: ['required'],
+      salary: ['required', 'minValue:3900888'],
+      education: [
+        'required',
+        {
+          fullName: 'memberOf:$1',
+          params: [
+            ['S1', 'S2', 'S3']
+          ]
+        }
+      ],
+    };
+
+    it('should return override the provided messages', () => {
+      const options = {
+        validationMessagePackProvider
+      };
+
+      const result = satpam.validate(rules, {
+        name: '',
+        salary: 3900887,
+        education: 's1'
+      }, options);
+      const err = result.messages;
+
+      expect(result.success).to.be.false;
+      expect(err.name['required']).to.deep.equal('Hey man, this name is required!');
+      expect(err.salary['minValue:$1']).to.deep.equal('Salary must be greater than or equal to IDR 3900888.');
+      expect(err.education['memberOf:$1']).to.deep.equal('Education just want one of S1,S2,S3.');
+    });
+  });
 });
 
