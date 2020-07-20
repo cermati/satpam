@@ -410,11 +410,19 @@ describe('Validator.validate()', () => {
   });
 
   context('when `options.validationMessagePackProvider` is passed', () => {
-    const validationMessagePackProvider = ({ inputObj, violatedRule }) => {
-      return {
-        'required': 'Hey man, this "<%= propertyName %>" field is required!',
-        'memberOf:$1': '<%= propertyName %> just want one of <%= ruleParams[0] %>.'
-      };
+    const messagePack = {
+      'required': 'Hey man, this "<%= propertyName %>" field is required!',
+      'memberOf:$1': '<%= propertyName %> just want one of <%= ruleParams[0] %>.'
+    };
+
+    const validationMessagePackProvider = ({ propertyName, inputObj, violatedRule }) => {
+      if (propertyName === 'name') {
+        return _.assign({}, messagePack, {
+          'required': 'Customized required rule for name, *evil laughs'
+        });
+      }
+
+      return messagePack;
     };
 
     const validationMessageParamsFormatter = ({ propertyName, propertyValue, inputObj, violatedRule }) => {
@@ -462,7 +470,7 @@ describe('Validator.validate()', () => {
       const err = result.messages;
 
       expect(result.success).to.be.false;
-      expect(err.name['required']).to.deep.equal('Hey man, this "name" field is required!');
+      expect(err.name['required']).to.deep.equal('Customized required rule for name, *evil laughs');
       expect(err.salary['minValue:$1']).to.deep.equal('salary must be greater than or equal to 3900888.');
       expect(err.education['memberOf:$1']).to.deep.equal('education just want one of S1-S2-S3.');
     });
