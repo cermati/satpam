@@ -447,6 +447,7 @@ class Validator {
     });
 
     const validationMessagePack = options.validationMessagePackProvider({
+      propertyName,
       inputObj,
       violatedRule: ruleObj
     });
