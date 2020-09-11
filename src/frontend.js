@@ -45,6 +45,7 @@ import minimumAge from './validators/minimum-age';
 import mobilePhoneNumber from './validators/mobile-phone-number';
 import mongoId from './validators/mongo-id';
 import nonBlank from './validators/non-blank';
+import notDisposableEmail from './validators/not-disposable-email';
 import notEqual from './validators/not-equal';
 import notEqualToField from './validators/not-equal-to-field';
 import notMemberOf from './validators/not-member-of';
@@ -150,6 +151,7 @@ let validationMessages = {
   integer: integer.message,
   mobilePhoneNumber: mobilePhoneNumber.message,
   mongoId: mongoId.message,
+  notDisposableEmail: notDisposableEmail.validate,
   nonBlank: nonBlank.message,
   numeric: numeric.message,
   phoneNumber: phoneNumber.message,

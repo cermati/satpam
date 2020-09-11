@@ -66,6 +66,7 @@ const validatorTwo = satpam.create();
 - `numeric`
 - `integer`
 - `email`
+- `notDisposableEmail` (well suited with email validation)
 - `image`
 - `alpha`
 - `alphanumeric`
