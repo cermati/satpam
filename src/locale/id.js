@@ -39,6 +39,7 @@ module.exports = {
   'mongoId': '<%= propertyName %> tidak valid.',
   'multipleOf:$1': '<%= propertyName %> harus merupakan kelipatan <%= ruleParams[0] %>.',
   'nonBlank': 'Input ini wajib diisi.',
+  'notDisposableEmail': 'Domain tidak valid.',
   'not-equal:$1': 'Input tidak boleh sama dengan <%= ruleParams[0] %>.',
   'not-equal-to-field:$1': 'Input tidak boleh sama dengan <%= inputObj[ruleParams[0]] %>.',
   'not-memberOf:$1': 'Input tidak boleh bagian dari <%= ruleParams[0] %>.',
