@@ -31,6 +31,7 @@ import equalToField from './validators/equal-to-field';
 import fqdn from './validators/fqdn';
 import indonesiaIdCardNumberBirthDate from './validators/indonesia-id-card-number-birth-date';
 import indonesiaIdCardNumberGender from './validators/indonesia-id-card-number-gender';
+import indonesiaIdCardNumberProvince from './validators/indonesia-id-card-number-province';
 import indonesianName from './validators/indonesian-name';
 import ip from './validators/ip';
 import imei from './validators/imei';
