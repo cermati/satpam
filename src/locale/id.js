@@ -28,6 +28,7 @@ module.exports = {
   'indonesiaIdCardNumberProvince:$1': 'Digit Nomor KTP tidak sesuai dengan provinsi.',
   'indonesiaIdCardNumberValidProvince': 'Kode provinsi pada Nomor KTP tidak benar.',
   'indonesianName': 'Nama tidak valid.',
+  'integer': 'Input harus berupa angka.',
   'length:$1': 'Jumlah karakter harus <%= ruleParams[0] %>.',
   'maxLength:$1': 'Jumlah karakter tidak boleh lebih dari <%= ruleParams[0] %>.',
   'maxValue:$1': 'Input tidak boleh lebih dari <%= ruleParams[0] %>.',
