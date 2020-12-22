@@ -22,6 +22,8 @@ import dateAfter from './validators/date-after';
 import dateAfterOrEqual from './validators/date-after-or-equal';
 import dateBefore from './validators/date-before';
 import dateBeforeOrEqual from './validators/date-before-or-equal';
+import dateTimeAfter from './validators/date-time-after';
+import dateTimeAfterOrEqual from './validators/date-time-after-or-equal';
 import timeAfter from './validators/time-after';
 import timeAfterOrEqual from './validators/time-after-or-equal';
 import dateFormat from './validators/date-format';
@@ -80,6 +82,8 @@ let validation = {
   'dateAfterOrEqual:$1:$2:$3:$4': dateAfterOrEqual.validate,
   'dateBefore:$1:$2:$3:$4': dateBefore.validate,
   'dateBeforeOrEqual:$1:$2:$3:$4': dateBeforeOrEqual.validate,
+  'dateTimeAfter:$1:$2:$3:$4': dateTimeAfter.validate,
+  'dateTimeAfterOrEqual:$1:$2:$3:$4': dateTimeAfterOrEqual.validate,
   'timeAfter:$1:$2:$3': timeAfter.validate,
   'timeAfterOrEqual:$1:$2:$3': timeAfterOrEqual.validate,
   'dateFormat:$1': dateFormat.validate,
@@ -145,6 +149,8 @@ let validationMessages = {
   'dateAfterOrEqual:$1:$2:$3:$4': dateAfterOrEqual.message,
   'dateBefore:$1:$2:$3:$4': dateBefore.message,
   'dateBeforeOrEqual:$1:$2:$3:$4': dateBeforeOrEqual.message,
+  'dateTimeAfter:$1:$2:$3:$4': dateTimeAfter.message,
+  'dateTimeAfterOrEqual:$1:$2:$3:$4': dateTimeAfterOrEqual.message,
   'timeAfter:$1:$2:$3': timeAfter.message,
   'timeAfterOrEqual:$1:$2:$3': timeAfterOrEqual.message,
   'dateFormat:$1': dateFormat.message,
