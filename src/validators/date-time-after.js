@@ -18,7 +18,7 @@ const validate = (val, ruleObj) => {
   const dateTimeInputFormat = ruleObj.params[0];
   const dateTimeInput = moment(val, dateTimeInputFormat);
   let offset = Number(ruleObj.params[2]);
-  const unit = ruleObj.params[3] || 'days';
+  const unit = ruleObj.params[3] || 'seconds';
 
   if (ruleObj.params[1].toLowerCase() === NOW) {
     dateTime = moment();
