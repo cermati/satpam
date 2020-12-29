@@ -16,6 +16,8 @@ module.exports = {
   'dateBefore:$1:$2:$3:$4': 'Tanggal tidak valid.',
   'dateBeforeOrEqual:$1:$2:$3:$4': 'Tanggal tidak valid.',
   'dateFormat:$1': 'Format tanggal tidak valid.',
+  'dateTimeAfter:$1:$2:$3:$4': 'Tanggal/Waktu tidak valid.',
+  'dateTimeAfterOrEqual:$1:$2:$3:$4': 'Tanggal/Waktu tidak valid.',
   'email': 'Format email tidak valid.',
   'emptyString': 'Input harus kosong',
   'equal:$1': 'Input harus sama dengan <%= ruleParams[0] %>.',
