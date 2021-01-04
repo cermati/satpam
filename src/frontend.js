@@ -24,6 +24,8 @@ import dateAfterOrEqual from './validators/date-after-or-equal';
 import dateBefore from './validators/date-before';
 import dateBeforeOrEqual from './validators/date-before-or-equal';
 import dateFormat from './validators/date-format';
+import dateTimeAfter from './validators/date-time-after';
+import dateTimeAfterOrEqual from './validators/date-time-after-or-equal';
 import email from './validators/email';
 import emptyString from './validators/empty-string';
 import equal from './validators/equal';
@@ -70,6 +72,8 @@ let validation = {
   'dateBefore:$1:$2:$3:$4': dateBefore.validate,
   'dateBeforeOrEqual:$1:$2:$3:$4': dateBeforeOrEqual.validate,
   'dateFormat:$1': dateFormat.validate,
+  'dateTimeAfter:$1:$2:$3:$4': dateTimeAfter.validate,
+  'dateTimeAfterOrEqual:$1:$2:$3:$4': dateTimeAfterOrEqual.validate,
   'equal:$1': equal.validate,
   'equal-to-field:$1': equalToField.validate,
   'indonesiaIdCardNumberBirthDate:$1:$2': indonesiaIdCardNumberBirthDate.validate,
@@ -122,6 +126,8 @@ let validationMessages = {
   'dateBefore:$1:$2:$3:$4': dateBefore.message,
   'dateBeforeOrEqual:$1:$2:$3:$4': dateBeforeOrEqual.message,
   'dateFormat:$1': dateFormat.message,
+  'dateTimeAfter:$1:$2:$3:$4': dateTimeAfter.message,
+  'dateTimeAfterOrEqual:$1:$2:$3:$4': dateTimeAfterOrEqual.message,
   'equal:$1': equal.message,
   'equal-to-field:$1': equalToField.message,
   'indonesiaIdCardNumberBirthDate:$1:$2': indonesiaIdCardNumberBirthDate.message,
