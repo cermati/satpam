@@ -7,8 +7,14 @@ const validate = (val, ruleObj) => {
     return true;
   }
 
-  const pathToFile = R.is(Object, val) ? val.path : val;
-  const buffer = readChunk.sync(pathToFile, 0, 12);
+  let buffer;
+
+  if (R.is(Buffer, val)) {
+    buffer = val.slice(0, 12);
+  } else {
+    const pathToFile = R.is(Object, val) ? val.path : val;
+    buffer = readChunk.sync(pathToFile, 0, 12);
+  }
 
   return R.path(['ext'], fileType(buffer)) === ruleObj.params[0];
 };

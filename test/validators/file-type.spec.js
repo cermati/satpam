@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import fs from 'fs';
 import validator from '../../lib';
 
 describe('FileType Validator', () => {
@@ -35,6 +36,15 @@ describe('FileType Validator', () => {
   it('should success on pdf type (object input)', () => {
     const result = validator.validate(rules, {
       pdfInput: {path: 'test/fixtures/sample.pdf'}
+    });
+
+    expect(result.success).to.equal(true);
+  });
+
+  it('should success on buffer type', () => {
+    const buffer = fs.readFileSync('test/fixtures/sample.pdf');
+    const result = validator.validate(rules, {
+      pdfInput: buffer
     });
 
     expect(result.success).to.equal(true);
