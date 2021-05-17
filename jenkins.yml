@@ -1,0 +1,15 @@
+script_filepath: jenkins.sh
+
+slack_channel: '#ops'
+
+docker:
+  image_name: drydock/u16nodall
+  image_tag: v7.2.4
+
+  run_arguments:
+    - '-u root'
+    - '-e HOME=/root'
+
+credentials:
+  - id: npm-token-cermati-read-only
+    env: NPM_AUTH_TOKEN
