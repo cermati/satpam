@@ -52,6 +52,7 @@ import nonBlank from './validators/non-blank';
 import notDisposableEmail from './validators/not-disposable-email';
 import notEqual from './validators/not-equal';
 import notEqualToField from './validators/not-equal-to-field';
+import notEqualEmailDomain from './validators/not-equal-email-domain';
 import notMemberOf from './validators/not-member-of';
 import numeric from './validators/numeric';
 import pattern from './validators/pattern';
@@ -90,6 +91,7 @@ let validation = {
   'minimumAge:$1:$2': minimumAge.validate,
   'not-equal:$1': notEqual.validate,
   'not-equal-to-field:$1': notEqualToField.validate,
+  'not-equal-email-domain:$1': notEqualEmailDomain.validate,
   'not-memberOf:$1': notMemberOf.validate,
   'pattern:$1:$2': pattern.validate,
   'requiredIf:$1:$2': requiredIf.validate,
@@ -144,6 +146,7 @@ let validationMessages = {
   'minimumAge:$1:$2': minimumAge.message,
   'not-equal:$1': notEqual.message,
   'not-equal-to-field:$1': notEqualToField.message,
+  'not-equal-email-domain:$1': notEqualEmailDomain.message,
   'not-memberOf:$1': notMemberOf.message,
   'pattern:$1:$2': pattern.message,
   'requiredIf:$1:$2': requiredIf.message,

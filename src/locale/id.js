@@ -45,6 +45,7 @@ module.exports = {
   'notDisposableEmail': 'Domain tidak valid.',
   'not-equal:$1': 'Input tidak boleh sama dengan <%= ruleParams[0] %>.',
   'not-equal-to-field:$1': 'Input tidak boleh sama dengan <%= inputObj[ruleParams[0]] %>.',
+  'not-equal-email-domain:$1': 'Domain <%= propertyName %> tidak valid.',
   'not-memberOf:$1': 'Input tidak boleh bagian dari <%= ruleParams[0] %>.',
   'numeric': 'Input harus berupa angka.',
   'pattern:$1:$2': 'Input tidak valid.',

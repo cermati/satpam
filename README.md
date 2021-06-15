@@ -105,6 +105,10 @@ const validatorTwo = satpam.create();
   [examples](https://github.com/cermati/satpam/blob/master/test/validators/equal-to-field.spec.js#L5)
 
 - `notEqual:$1`
+- `not-equal-email-domain:$1`
+
+  `$1` is the prohibited domains separated by comma (',')
+  [examples](https://github.com/cermati/satpam/blob/master/test/validators/not-equal-email-domain.spec.js)
 - `not-equal-to-field:$1`
 
   Use object notation for defining this rule

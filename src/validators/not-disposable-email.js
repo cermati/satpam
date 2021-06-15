@@ -32,7 +32,6 @@ const validate = val => {
   }
 
   var lowerDomain = domain.toLowerCase();
-  console.log(lowerDomain);
 
   return !DISPOSABLE_EMAIL_DOMAIN_SET.has(lowerDomain);
 };
