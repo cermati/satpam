@@ -1,4 +1,4 @@
-const regexp = /^[a-zA-Z][a-zA-Z\.\-\'\,\s]*$/;
+const regexp = /^[a-zA-Z][a-zA-Z\.\-\'\,/\s]*$/;
 
 /**
  * Check the validity of supplied name
