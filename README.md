@@ -86,7 +86,7 @@ const validatorTwo = satpam.create();
 - `timeAfterOrEqual:<time after or equal i.e. now or time in unix form>:<offset>:<unit of time e.g. 'minutes'>`
 - `url`
 - `string`
-- `plainObject` Check if the given value is a plani object (passing string, array, or anything will return to false)
+- `plainObject` Check if the given value is a plain object (passing string, array, or anything will return to false)
 - `nonBlank`
 - `mongoId` Check if the given string is a valid mongodb object id
 - `phoneNumber` (Currently only supports Indonesia phone number)
@@ -98,6 +98,7 @@ const validatorTwo = satpam.create();
 - `maxValue:<max value>`
 - `minValue:<min value>`
 - `memberOf:$1`
+- `some-memberOf:$1` Check if the given value has at least one of items in the list
 - `equal:$1`
 - `equal-to-field:$1`
 
