@@ -61,6 +61,7 @@ import regex from './validators/regex';
 import required from './validators/required';
 import requiredIf from './validators/required-if';
 import requiredIfNot from './validators/required-if-not';
+import someMemberOf from './validators/some-member-of';
 import string from './validators/string';
 import taxId from './validators/tax-id';
 import url from './validators/url';
@@ -96,6 +97,7 @@ let validation = {
   'pattern:$1:$2': pattern.validate,
   'requiredIf:$1:$2': requiredIf.validate,
   'requiredIfNot:$1:$2': requiredIfNot.validate,
+  'some-memberOf:$1': someMemberOf.validate,
   'taxId:$1': taxId.validate,
   alpha: alpha.validate,
   alphanumeric: alphanumeric.validate,
@@ -151,6 +153,7 @@ let validationMessages = {
   'pattern:$1:$2': pattern.message,
   'requiredIf:$1:$2': requiredIf.message,
   'requiredIfNot:$1:$2': requiredIfNot.message,
+  'some-memberOf:$1': someMemberOf.message,
   'taxId:$1': taxId.message,
   alpha: alpha.message,
   alphanumeric: alphanumeric.message,
