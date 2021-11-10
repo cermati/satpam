@@ -24,8 +24,12 @@ import dateBefore from './validators/date-before';
 import dateBeforeOrEqual from './validators/date-before-or-equal';
 import dateTimeAfter from './validators/date-time-after';
 import dateTimeAfterOrEqual from './validators/date-time-after-or-equal';
+import dateTimeBefore from './validators/date-time-before';
+import dateTimeBeforeOrEqual from './validators/date-time-before-or-equal';
 import timeAfter from './validators/time-after';
 import timeAfterOrEqual from './validators/time-after-or-equal';
+import timeBefore from './validators/time-before';
+import timeBeforeOrEqual from './validators/time-before-or-equal';
 import dateFormat from './validators/date-format';
 import email from './validators/email';
 import emptyString from './validators/empty-string';
@@ -86,8 +90,12 @@ let validation = {
   'dateBeforeOrEqual:$1:$2:$3:$4': dateBeforeOrEqual.validate,
   'dateTimeAfter:$1:$2:$3:$4': dateTimeAfter.validate,
   'dateTimeAfterOrEqual:$1:$2:$3:$4': dateTimeAfterOrEqual.validate,
+  'dateTimeBefore:$1:$2:$3:$4': dateTimeBefore.validate,
+  'dateTimeBeforeOrEqual:$1:$2:$3:$4': dateTimeBeforeOrEqual.validate,
   'timeAfter:$1:$2:$3': timeAfter.validate,
   'timeAfterOrEqual:$1:$2:$3': timeAfterOrEqual.validate,
+  'timeBefore:$1:$2:$3': timeBefore.validate,
+  'timeBeforeOrEqual:$1:$2:$3': timeBeforeOrEqual.validate,
   'dateFormat:$1': dateFormat.validate,
   'equal:$1': equal.validate,
   'equal-to-field:$1': equalToField.validate,
@@ -155,8 +163,12 @@ let validationMessages = {
   'dateBeforeOrEqual:$1:$2:$3:$4': dateBeforeOrEqual.message,
   'dateTimeAfter:$1:$2:$3:$4': dateTimeAfter.message,
   'dateTimeAfterOrEqual:$1:$2:$3:$4': dateTimeAfterOrEqual.message,
+  'dateTimeBefore:$1:$2:$3:$4': dateTimeBefore.message,
+  'dateTimeBeforeOrEqual:$1:$2:$3:$4': dateTimeBeforeOrEqual.message,
   'timeAfter:$1:$2:$3': timeAfter.message,
   'timeAfterOrEqual:$1:$2:$3': timeAfterOrEqual.message,
+  'timeBefore:$1:$2:$3': timeBefore.message,
+  'timeBeforeOrEqual:$1:$2:$3': timeBeforeOrEqual.message,
   'dateFormat:$1': dateFormat.message,
   'equal:$1': equal.message,
   'equal-to-field:$1': equalToField.message,

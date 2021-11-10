@@ -82,8 +82,12 @@ const validatorTwo = satpam.create();
 - `dateBefore:<the date input format, e.g. DD-MM-YYYY>:<date after e.g. 'now' or 20-1-2015>:<offset>:<unit of time e.g. 'days'>`
 - `dateTimeAfter:<the date input format, e.g. YYYY-MM-DDTHH:mm:ss.SSS[Z]>:<date time after e.g. 'now' or 20-1-2015T18:30:00.000+07>:<offset>:<unit of time e.g. 'hours'>`
 - `dateTimeAfterOrEqual:<the date input format, e.g. YYYY-MM-DDTHH:mm:ss.SSS[Z]>:<date time after or equal e.g. 'now' or 20-1-2015T18:30:00.000+07>:<offset>:<unit of time e.g. 'hours'>`
-- `timeAfter:<time after i.e. now or time in unix form>:<offset>:<unit of time e.g. 'minutes'>`
-- `timeAfterOrEqual:<time after or equal i.e. now or time in unix form>:<offset>:<unit of time e.g. 'minutes'>`
+- `dateTimeBefore:<the date input format, e.g. YYYY-MM-DDTHH:mm:ss.SSS[Z]>:<date time before e.g. 'now' or 20-1-2015T18:30:00.000+07>:<offset>:<unit of time e.g. 'hours'>`
+- `dateTimeBeforeOrEqual:<the date input format, e.g. YYYY-MM-DDTHH:mm:ss.SSS[Z]>:<date time before or equal e.g. 'now' or 20-1-2015T18:30:00.000+07>:<offset>:<unit of time e.g. 'hours'>`
+- `timeAfter:<time after i.e. 'now' or time in unix form>:<offset>:<unit of time e.g. 'minutes'>`
+- `timeAfterOrEqual:<time after or equal i.e. 'now' or time in unix form>:<offset>:<unit of time e.g. 'minutes'>`
+- `timeBefore:<time before i.e. 'now' or time in unix form>:<offset>:<unit of time e.g. 'minutes'>`
+- `timeBeforeOrEqual:<time before or equal i.e. 'now' or time in unix form>:<offset>:<unit of time e.g. 'minutes'>`
 - `url`
 - `string`
 - `plainObject` Check if the given value is a plain object (passing string, array, or anything will return to false)
