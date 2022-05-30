@@ -24,9 +24,11 @@ const validate = val => {
 
   var lowerDomain = domain.toLowerCase();
   // Google mail ignore dot in email user, so foo.bar will be same as foobar
+  // except if the dot (.) occurs at the end of email
   // Read: http://webapps.stackexchange.com/questions/14668/why-does-google-not-consider-dot-in-usernames-of-gmail-addresses
   if (lowerDomain === 'gmail.com' || lowerDomain === 'googlemail.com') {
-    user = user.replace(/\./g, '').toLowerCase();
+    // remove all dot character before the domain except the last dot before '@'
+    user = user.replace(/\.(?!$)/g, '').toLowerCase();
   }
   if (!domain || !fqdn.validate(domain)) {
     return false;
