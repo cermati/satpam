@@ -187,4 +187,30 @@ describe('email validator', () => {
       expect(err).to.not.have.property('email');
     });
   });
+
+  context('given the email has dot in in last character and it is a gmail account', () => {
+    const input = {
+      email: '1234567890.@gmail.com'
+    };
+    const result = validator.validate(rules, input);
+    const err = result.messages;
+
+    it('should success', () => {
+      expect(result.success).to.equal(false);
+      expect(err).to.have.property('email');
+    });
+  });
+
+  context('given the email has dot in in last character and it is not a gmail account', () => {
+    const input = {
+      email: '1234567890.@domain.com'
+    };
+    const result = validator.validate(rules, input);
+    const err = result.messages;
+
+    it('should success', () => {
+      expect(result.success).to.equal(false);
+      expect(err).to.have.property('email');
+    });
+  });
 });
