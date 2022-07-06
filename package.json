@@ -25,7 +25,7 @@
     "file-type": "~3.8.0",
     "image-type": "~4.1.0",
     "lodash": "~4.17.21",
-    "moment": "~2.23.0",
+    "moment": "~2.29.4",
     "noes": "~1.1.1",
     "ramda": "~0.25.0",
     "read-chunk": "~1.0.1"
