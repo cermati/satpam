@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/cermati/satpam",
   "dependencies": {
-    "file-type": "~3.8.0",
+    "file-type": "~16.5.4",
     "image-type": "~4.1.0",
     "lodash": "~4.17.21",
     "moment": "~2.23.0",
