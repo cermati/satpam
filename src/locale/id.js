@@ -7,6 +7,7 @@ module.exports = {
   'boolean': 'Input harus boolean.',
   'containsAlphabet': 'Input harus mengandung setidaknya 1 huruf.',
   'containsDigit': 'Input harus mengandung setidaknya 1 angka.',
+  'containsSymbol': 'Input harus mengandung setidaknya 1 simbol.',
   'containsLowerCase': 'Input harus mengandung setidaknya 1 huruf kecil.',
   'containsUpperCase': 'Input harus mengandung setidaknya 1 huruf besar.',
   'creditCard': 'Nomor kartu kredit tidak valid.',
