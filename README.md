@@ -89,6 +89,7 @@ const validatorTwo = satpam.create();
 - `timeBefore:<time before i.e. 'now' or time in unix form>:<offset>:<unit of time e.g. 'minutes'>`
 - `timeBeforeOrEqual:<time before or equal i.e. 'now' or time in unix form>:<offset>:<unit of time e.g. 'minutes'>`
 - `url`
+- `urlProtocol:$1`
 - `string`
 - `plainObject` Check if the given value is a plain object (passing string, array, or anything will return to false)
 - `nonBlank`
