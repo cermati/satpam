@@ -81,6 +81,7 @@ import containsLowerCase from './validators/contains-lower-case';
 import containsUpperCase from './validators/contains-upper-case';
 import plainObject from './validators/plain-object';
 import hostname from './validators/hostname';
+import urlProtocol from './validators/url-protocol';
 
 let validation = {
   'beginWith:$1': beginWith.validate,
@@ -153,6 +154,7 @@ let validation = {
   required: required.validate,
   string: string.validate,
   url: url.validate,
+  'urlProtocol:$1': urlProtocol.validate,
   'uuid:$1': uuid.validate
 };
 
@@ -227,6 +229,7 @@ let validationMessages = {
   required: required.message,
   string: string.message,
   url: url.message,
+  'urlProtocol:$1': urlProtocol.message,
   'uuid:$1': uuid.message
 };
 
