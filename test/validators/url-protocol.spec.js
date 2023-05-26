@@ -20,7 +20,7 @@ describe('url protocol validator', () => {
 
     expect(result.success).to.equal(false);
     expect(err).to.have.property('url');
-    expect(err.url['urlProtocol:$1']).to.equal('Url does not have a valid url protocol.');
+    expect(err.url['urlProtocol:$1']).to.equal('Url does not have a valid url protocol. It must be \'https\'.');
   });
 
   it('should fail on empty protocol', () => {
@@ -29,6 +29,6 @@ describe('url protocol validator', () => {
 
     expect(result.success).to.equal(false);
     expect(err).to.have.property('url');
-    expect(err.url['urlProtocol:$1']).to.equal('Url does not have a valid url protocol.');
+    expect(err.url['urlProtocol:$1']).to.equal('Url does not have a valid url protocol. It must be \'https\'.');
   });
 });

@@ -20,6 +20,6 @@ const validate = (val, ruleObj) => {
   return protocol === validProtocol;
 };
 
-const message = '<%= propertyName %> does not have a valid url protocol.';
+const message = '<%= propertyName %> does not have a valid url protocol. It must be \'<%= ruleParams[0] %>\'.';
 
 export default {validate, message};
