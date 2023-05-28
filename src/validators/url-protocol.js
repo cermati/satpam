@@ -1,6 +1,10 @@
 import _ from 'lodash';
 
 const validate = (val, ruleObj) => {
+  if (!val) {
+    return true;
+  }
+
   const validProtocol = _.chain(ruleObj)
     .get('params')
     .first()
