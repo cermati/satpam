@@ -287,7 +287,7 @@ class Validator {
           return {
             success: false,
             ruleName: ruleObj.fullName,
-            message: validator.getValidationMessage(ruleObj, propertyName, val)
+            message: validator.getValidationMessage(ruleObj, inputObj, propertyName, val)
           }
         }
 
@@ -363,17 +363,19 @@ class Validator {
 
   /**
    * @param ruleObj
+   * @param inputObj
    * @param propertyName
    * @param val
    * @returns {String}
    */
-  getValidationMessage(ruleObj, propertyName, val) {
+  getValidationMessage(ruleObj, inputObj, propertyName, val) {
     const message = this.validation.messages[ruleObj.fullName];
     const messageTemplate = is(Function, message) ? message(ruleObj, propertyName, val) : message;
     const compiled = template(messageTemplate);
     propertyName = startCase(propertyName);
 
     return compiled({
+      inputObj: inputObj,
       propertyName: propertyName,
       ruleName: ruleObj.fullName,
       ruleParams: ruleObj.params,
