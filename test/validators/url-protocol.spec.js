@@ -14,6 +14,12 @@ describe('url protocol validator', () => {
     expect(err).to.not.have.property('url');
   });
 
+  it('should success on undefined value', () => {
+    const result = validator.validate(rules, {foo: 'bar'});
+
+    expect(result.success).to.equal(true);
+  });
+
   it('should fail on invalid protocol', () => {
     const result = validator.validate(rules, {url: 'http://wikipedia.org'});
     const err = result.messages;
