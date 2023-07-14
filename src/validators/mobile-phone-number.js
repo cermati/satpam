@@ -13,7 +13,6 @@ const prefixMap = {
   '0811': true, // KartuHALO Telkomsel
   '0812': true, // SimPATI, KartuHALO Telkomsel
   '0813': true, // SimPATI, KartuHALO Telkomsel
-  '0814': true, // Indosat 3,5G Broadband Indosat (IndosatM2)
   '0815': true, // Mentari lama, Matrix Indosat
   '0816': true, // Mentari, Matrix Indosat
   '0817': true, // XL Prabayar, XL Pascabayar XL Axiata
