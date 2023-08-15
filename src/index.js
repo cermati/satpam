@@ -16,6 +16,11 @@ import array from './validators/array';
 import beginWith from './validators/begin-with';
 import between from './validators/between';
 import boolean from './validators/boolean';
+import containsAlphabet from './validators/contains-alphabet';
+import containsDigit from './validators/contains-digit';
+import containsLowerCase from './validators/contains-lower-case';
+import containsSymbol from './validators/contains-symbol';
+import containsUpperCase from './validators/contains-upper-case';
 import creditCard from './validators/credit-card';
 import date from './validators/date';
 import dateAfter from './validators/date-after';
@@ -26,10 +31,6 @@ import dateTimeAfter from './validators/date-time-after';
 import dateTimeAfterOrEqual from './validators/date-time-after-or-equal';
 import dateTimeBefore from './validators/date-time-before';
 import dateTimeBeforeOrEqual from './validators/date-time-before-or-equal';
-import timeAfter from './validators/time-after';
-import timeAfterOrEqual from './validators/time-after-or-equal';
-import timeBefore from './validators/time-before';
-import timeBeforeOrEqual from './validators/time-before-or-equal';
 import dateFormat from './validators/date-format';
 import email from './validators/email';
 import emptyString from './validators/empty-string';
@@ -37,6 +38,7 @@ import equal from './validators/equal';
 import equalToField from './validators/equal-to-field';
 import fileType from './validators/file-type';
 import fqdn from './validators/fqdn';
+import hostname from './validators/hostname';
 import image from './validators/image';
 import imei from './validators/imei';
 import indonesiaIdCardNumberBirthDate from './validators/indonesia-id-card-number-birth-date';
@@ -45,6 +47,7 @@ import indonesiaIdCardNumberProvince from './validators/indonesia-id-card-number
 import indonesiaIdCardNumberValidProvince from './validators/indonesia-id-card-number-valid-province';
 import indonesianName from './validators/indonesian-name';
 import integer from './validators/integer';
+import internationalPhoneNumber from './validators/international-phone-number';
 import ip from './validators/ip';
 import length from './validators/length';
 import maxLength from './validators/max-length';
@@ -55,6 +58,7 @@ import minValue from './validators/min-value';
 import minimumAge from './validators/minimum-age';
 import mobilePhoneNumber from './validators/mobile-phone-number';
 import mongoId from './validators/mongo-id';
+import multipleOf from './validators/multiple-of';
 import nonBlank from './validators/non-blank';
 import notDisposableEmail from './validators/not-disposable-email';
 import notEqual from './validators/not-equal';
@@ -62,8 +66,9 @@ import notEqualToField from './validators/not-equal-to-field';
 import notEqualEmailDomain from './validators/not-equal-email-domain';
 import notMemberOf from './validators/not-member-of';
 import numeric from './validators/numeric';
-import phoneNumber from './validators/phone-number';
 import pattern from './validators/pattern';
+import phoneNumber from './validators/phone-number';
+import plainObject from './validators/plain-object';
 import regex from './validators/regex';
 import required from './validators/required';
 import requiredIf from './validators/required-if';
@@ -71,17 +76,13 @@ import requiredIfNot from './validators/required-if-not';
 import someMemberOf from './validators/some-member-of';
 import string from './validators/string';
 import taxId from './validators/tax-id';
+import timeAfter from './validators/time-after';
+import timeAfterOrEqual from './validators/time-after-or-equal';
+import timeBefore from './validators/time-before';
+import timeBeforeOrEqual from './validators/time-before-or-equal';
 import url from './validators/url';
-import uuid from './validators/uuid';
-import multipleOf from './validators/multiple-of';
-import containsAlphabet from './validators/contains-alphabet';
-import containsDigit from './validators/contains-digit';
-import containsSymbol from './validators/contains-symbol';
-import containsLowerCase from './validators/contains-lower-case';
-import containsUpperCase from './validators/contains-upper-case';
-import plainObject from './validators/plain-object';
-import hostname from './validators/hostname';
 import urlProtocol from './validators/url-protocol';
+import uuid from './validators/uuid';
 
 let validation = {
   'beginWith:$1': beginWith.validate,
@@ -90,15 +91,11 @@ let validation = {
   'dateAfterOrEqual:$1:$2:$3:$4': dateAfterOrEqual.validate,
   'dateBefore:$1:$2:$3:$4': dateBefore.validate,
   'dateBeforeOrEqual:$1:$2:$3:$4': dateBeforeOrEqual.validate,
+  'dateFormat:$1': dateFormat.validate,
   'dateTimeAfter:$1:$2:$3:$4': dateTimeAfter.validate,
   'dateTimeAfterOrEqual:$1:$2:$3:$4': dateTimeAfterOrEqual.validate,
   'dateTimeBefore:$1:$2:$3:$4': dateTimeBefore.validate,
   'dateTimeBeforeOrEqual:$1:$2:$3:$4': dateTimeBeforeOrEqual.validate,
-  'timeAfter:$1:$2:$3': timeAfter.validate,
-  'timeAfterOrEqual:$1:$2:$3': timeAfterOrEqual.validate,
-  'timeBefore:$1:$2:$3': timeBefore.validate,
-  'timeBeforeOrEqual:$1:$2:$3': timeBeforeOrEqual.validate,
-  'dateFormat:$1': dateFormat.validate,
   'equal:$1': equal.validate,
   'equal-to-field:$1': equalToField.validate,
   'fileType:$1': fileType.validate,
@@ -114,24 +111,30 @@ let validation = {
   'minLength:$1': minLength.validate,
   'minValue:$1': minValue.validate,
   'minimumAge:$1:$2': minimumAge.validate,
+  'multipleOf:$1': multipleOf.validate,
   'not-equal:$1': notEqual.validate,
-  'not-equal-to-field:$1': notEqualToField.validate,
   'not-equal-email-domain:$1': notEqualEmailDomain.validate,
+  'not-equal-to-field:$1': notEqualToField.validate,
   'not-memberOf:$1': notMemberOf.validate,
   'pattern:$1:$2': pattern.validate,
   'requiredIf:$1:$2': requiredIf.validate,
   'requiredIfNot:$1:$2': requiredIfNot.validate,
   'some-memberOf:$1': someMemberOf.validate,
   'taxId:$1': taxId.validate,
-  'multipleOf:$1': multipleOf.validate,
+  'timeAfter:$1:$2:$3': timeAfter.validate,
+  'timeAfterOrEqual:$1:$2:$3': timeAfterOrEqual.validate,
+  'timeBefore:$1:$2:$3': timeBefore.validate,
+  'timeBeforeOrEqual:$1:$2:$3': timeBeforeOrEqual.validate,
+  'urlProtocol:$1': urlProtocol.validate,
+  'uuid:$1': uuid.validate,
   alpha: alpha.validate,
   alphanumeric: alphanumeric.validate,
   array: array.validate,
   boolean: boolean.validate,
   containsAlphabet: containsAlphabet.validate,
   containsDigit: containsDigit.validate,
-  containsSymbol: containsSymbol.validate,
   containsLowerCase: containsLowerCase.validate,
+  containsSymbol: containsSymbol.validate,
   containsUpperCase: containsUpperCase.validate,
   creditCard: creditCard.validate,
   date: date.validate,
@@ -142,20 +145,19 @@ let validation = {
   image: image.validate,
   imei: imei.validate,
   integer: integer.validate,
+  internationalPhoneNumber: internationalPhoneNumber.validate,
   ip: ip.validate,
   mobilePhoneNumber: mobilePhoneNumber.validate,
   mongoId: mongoId.validate,
   nonBlank: nonBlank.validate,
   notDisposableEmail: notDisposableEmail.validate,
   numeric: numeric.validate,
-  plainObject: plainObject.validate,
   phoneNumber: phoneNumber.validate,
+  plainObject: plainObject.validate,
   regex: regex.validate,
   required: required.validate,
   string: string.validate,
   url: url.validate,
-  'urlProtocol:$1': urlProtocol.validate,
-  'uuid:$1': uuid.validate
 };
 
 let validationMessages = {
@@ -217,6 +219,7 @@ let validationMessages = {
   image: image.message,
   imei: imei.message,
   integer: integer.message,
+  internationalPhoneNumber: internationalPhoneNumber.message,
   ip: ip.message,
   mobilePhoneNumber: mobilePhoneNumber.message,
   mongoId: mongoId.message,
