@@ -236,7 +236,7 @@ const threeNumPrefixMap = {
  * This rule only checks whether the given string prefix is a valid country code (or national prefix).
  * Unlike the mobilePhoneNumber rule, this rule does not check if a telephone service operator
  * with the given phone number prefix actually exists or not.
- * @param {string} [val]
+ * @param {string|number} [val]
  * @returns {boolean}
  */
 const validate = val => {
@@ -244,8 +244,10 @@ const validate = val => {
     return true;
   }
 
+  const valStr = String(val);
+
   // If does not pass the regex, return false
-  const passInternationalPhoneNumberRegExp = internationalPhoneNumberRegExp.test(val);
+  const passInternationalPhoneNumberRegExp = internationalPhoneNumberRegExp.test(valStr);
 
   if (!passInternationalPhoneNumberRegExp) {
     return false;
@@ -253,7 +255,7 @@ const validate = val => {
 
   // If pass, continue to validate the prefix
   // Strip the plus sign prefix
-  const valWithoutPlusPrefix = val.replace(/^\+/, '');
+  const valWithoutPlusPrefix = valStr.replace(/^\+/, '');
 
   // Match the first n numbers to be in the list
   const oneNumPrefix = valWithoutPlusPrefix.slice(0, 1);
