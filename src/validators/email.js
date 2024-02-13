@@ -1,3 +1,5 @@
+import isString from 'lodash/isString';
+
 /**
  * Validate email
  * This is a modified version of github.com/chriso/validator.js `isEmail`
@@ -12,6 +14,10 @@ import fqdn from './fqdn';
 const validate = val => {
   if (!val) {
     return true;
+  }
+
+  if (!isString(val)) {
+    return false;
   }
 
   if (/\s/.test(val)) {
