@@ -45,6 +45,58 @@ describe('email validator', () => {
     });
   });
 
+  context('given invalid value (number)', () => {
+    const input = {
+      email: 123
+    };
+    const result = validator.validate(rules, input);
+    const err = result.messages;
+
+    it('should fail', () => {
+      expect(result.success).to.equal(false);
+      expect(err).to.have.property('email');
+    });
+  });
+
+  context('given invalid value (boolean)', () => {
+    const input = {
+      email: true
+    };
+    const result = validator.validate(rules, input);
+    const err = result.messages;
+
+    it('should fail', () => {
+      expect(result.success).to.equal(false);
+      expect(err).to.have.property('email');
+    });
+  });
+
+  context('given invalid value (object)', () => {
+    const input = {
+      email: {}
+    };
+    const result = validator.validate(rules, input);
+    const err = result.messages;
+
+    it('should fail', () => {
+      expect(result.success).to.equal(false);
+      expect(err).to.have.property('email');
+    });
+  });
+
+  context('given invalid value (array)', () => {
+    const input = {
+      email: []
+    };
+    const result = validator.validate(rules, input);
+    const err = result.messages;
+
+    it('should fail', () => {
+      expect(result.success).to.equal(false);
+      expect(err).to.have.property('email');
+    });
+  });
+
   context('given invalid value (garbage)', () => {
     const input = {
       email: '#@%^%#$@#$@#.com'

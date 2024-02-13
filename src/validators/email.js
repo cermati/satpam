@@ -1,3 +1,5 @@
+import isEmpty from 'lodash/isEmpty';
+import isNil from 'lodash/isNil';
 import isString from 'lodash/isString';
 
 /**
@@ -12,15 +14,9 @@ const emailUserUtf8Regex = /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\
 import fqdn from './fqdn';
 
 const validate = val => {
-  if (!val) {
+  if (isNil(val) || (isString(val) && isEmpty(val))) {
     return true;
-  }
-
-  if (!isString(val)) {
-    return false;
-  }
-
-  if (/\s/.test(val)) {
+  } else if (!isString(val) || /\s/.test(val)) {
     return false;
   }
 
