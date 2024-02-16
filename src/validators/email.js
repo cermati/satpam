@@ -1,3 +1,7 @@
+import isEmpty from 'lodash/isEmpty';
+import isNil from 'lodash/isNil';
+import isString from 'lodash/isString';
+
 /**
  * Validate email
  * This is a modified version of github.com/chriso/validator.js `isEmail`
@@ -10,11 +14,9 @@ const emailUserUtf8Regex = /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\
 import fqdn from './fqdn';
 
 const validate = val => {
-  if (!val) {
+  if (isNil(val) || (isString(val) && isEmpty(val))) {
     return true;
-  }
-
-  if (/\s/.test(val)) {
+  } else if (!isString(val) || /\s/.test(val)) {
     return false;
   }
 
