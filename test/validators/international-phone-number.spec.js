@@ -16,7 +16,7 @@ describe('international phone number validator', () => {
     });
   });
 
-  context('with international phone number starts with 60', () => {
+  context('with valid international phone number starts with 60', () => {
     it('should success', () => {
       const result = validator.validate(rule, { phone: '60112345678' });
       const err = result.messages;
@@ -26,7 +26,7 @@ describe('international phone number validator', () => {
     });
   });
 
-  context('with international phone number starts with +65', () => {
+  context('with valid international phone number starts with +65', () => {
     it('should success', () => {
       const result = validator.validate(rule, { phone: '+658123456' });
       const err = result.messages;
@@ -36,7 +36,7 @@ describe('international phone number validator', () => {
     });
   });
 
-  context('with international phone number starts with 680', () => {
+  context('with valid international phone number starts with 680', () => {
     it('should success', () => {
       const result = validator.validate(rule, { phone: '68012345678' });
       const err = result.messages;
@@ -79,6 +79,26 @@ describe('international phone number validator', () => {
   context('with invalid international phone number starts with +671', () => {
     it('should fail', () => {
       const result = validator.validate(rule, { phone: '+671658123456' });
+      const err = result.messages;
+
+      expect(result.success).to.equal(false);
+      expect(err).to.have.property('phone');
+    });
+  });
+
+  context('with valid international phone number with type number starts with 60', () => {
+    it('should success', () => {
+      const result = validator.validate(rule, { phone: 60112345678 });
+      const err = result.messages;
+
+      expect(result.success).to.equal(true);
+      expect(err).to.not.have.property('phone');
+    });
+  });
+
+  context('with invalid international phone number with type number starts with 990', () => {
+    it('should fail', () => {
+      const result = validator.validate(rule, { phone: 990658123456 });
       const err = result.messages;
 
       expect(result.success).to.equal(false);
