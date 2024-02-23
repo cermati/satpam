@@ -69,7 +69,7 @@ For front end usage, you can use the dedicated front end lib.
 import satpam from 'satpam/lib/frontend';
 ```
 Additionally, it's better to create your own validator instance with only the needed rules.
-This will help reduce build size especially if your front end application is intended for end useres.
+This will help reduce build size especially if your front end application is intended for end users.
 ```js
 import Validator from 'satpam/lib/frontend/validator';
 import minLength from 'satpam/lib/validators/min-length';
