@@ -46,9 +46,6 @@ class Validator {
   constructor(options = {}) {
     const { rules, messages } = options;
 
-    console.log('=== RULES', rules)
-    console.log('=== RULES', messages)
-
     this.validation = {
       rules: clone(rules),
       messages: clone(messages)

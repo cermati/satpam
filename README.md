@@ -87,7 +87,7 @@ const customValidator = new Validator({
 });
 
 const result = customValidator.validate(
-  { token: ['minLength:11', 'maxLengthL16'] },
+  { token: ['minLength:11', 'maxLength:16'] },
   { token: '12345' },
 );
 ```
