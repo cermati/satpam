@@ -3,6 +3,8 @@ import moment from 'moment';
 
 import _ from 'lodash';
 
+const fullName = 'timeAfter:$1:$2:$3';
+
 const NOW = 'NOW';
 let messages;
 
@@ -52,4 +54,4 @@ const validate = (val, ruleObj) => {
   return timeInput.isAfter(time);
 };
 
-export default {validate, message};
+export default { fullName, validate, message };

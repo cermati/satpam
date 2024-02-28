@@ -2,6 +2,8 @@ import noes from 'noes';
 import isNil from 'ramda/src/isNil';
 import required from './required';
 
+const fullName = 'requiredIfNot:$1:$2';
+
 const validate = (val, ruleObj, propertyName, inputObj) => {
   const params = ruleObj.params;
   const targetProperty = noes.Conjunction.shouldCreateConjunction(params[0]) ?
@@ -23,4 +25,4 @@ const validate = (val, ruleObj, propertyName, inputObj) => {
 
 const message = required.message;
 
-export default {validate, message};
+export default { fullName, validate, message };

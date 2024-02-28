@@ -1,3 +1,5 @@
+const fullName = 'indonesiaIdCardNumberProvince:$1';
+
 const provinceCodeMapping = {
   'ACEH': 11,
   'SUMATERA UTARA': 12,
@@ -54,4 +56,4 @@ const validate = (value, ruleObj, propertyName, inputObj)  => {
 
 const message = '<%= propertyName %> province code does not match province input.';
 
-export default {validate, message};
+export default { fullName, validate, message };

@@ -11,6 +11,8 @@
 const DISPOSABLE_EMAIL_LIST = require('../data/disposable-email-list');
 const DISPOSABLE_EMAIL_DOMAIN_SET = new Set(DISPOSABLE_EMAIL_LIST);
 
+const fullName = 'notDisposableEmail';
+
 const validate = val => {
   if (!val) {
     return true;
@@ -38,4 +40,4 @@ const validate = val => {
 
 const message = '<%= propertyName %> domain not valid.';
 
-export default {validate, message};
+export default { fullName, validate, message };

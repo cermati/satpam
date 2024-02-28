@@ -1,6 +1,8 @@
 import always from 'ramda/src/always';
 import moment from 'moment';
 
+const fullName = 'dateTimeAfterOrEqual:$1:$2:$3:$4';
+
 const NOW = 'now';
 const defaultMessage = '<%= propertyName %> must be greater than or equal to <%= ruleParams[1] %>.';
 
@@ -45,4 +47,4 @@ const validate = (val, ruleObj) => {
   return dateTimeInput.isSameOrAfter(dateTime, unit);
 };
 
-export default {validate, message};
+export default { fullName, validate, message };

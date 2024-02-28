@@ -10,6 +10,7 @@ import get from 'lodash/get';
 import isArray from 'lodash/isArray';
 import template from 'lodash/template';
 import startCase from 'lodash/startCase';
+import reduce from 'lodash/reduce';
 
 class ValidationMessage {
   constructor() { }
@@ -25,30 +26,60 @@ class Validator {
   /**
    * Create a validator.
    *
-   * @param {Object} options.rules
-   * @param {Object} options.messages
+   * @param {Array<Object>} [options.validators=[]] - Instantiate with full name, validate, and message from specified validators
+   * @param {Object} [options.rules={}] - Custom validate by rule full name
+   * @param {Object} [options.messages={}] - Custom messages by rule full name
    *
    * @example
    * import alphanumeric from 'satpam/lib/validators/alphanumeric';
+   * import minLength from 'satpam/lib/validators/minLength';
    * import required from 'satpam/lib/validators/required';
    *
    * const customValidator = Validator({
+   *   validators: [alphanumeric],
    *   rules: {
    *     'minLength:$1': minLength.validate,
    *     required: required.validate
    *   },
    *   messages: {
+   *     alphanumeric: 'Must be alphanumeric'
    *     'minLength:$1': 'Must be at least <%= ruleParams[0] %> character(s).',
    *     required: required.message
    *   }
    * });
    */
   constructor(options = {}) {
-    const { rules, messages } = options;
+    const {
+      validators = [],
+      rules = {},
+      messages = {}
+    } = options;
 
     this.validation = {
-      rules: clone(rules),
-      messages: clone(messages)
+      rules: Object.assign(
+        reduce(
+          validators,
+          (result, validator) => {
+            result[validator.fullName] = validator.validate;
+
+            return result;
+          },
+          {}
+        ),
+        clone(rules)
+      ),
+      messages: Object.assign(
+        reduce(
+          validators,
+          (result, validator) => {
+            result[validator.fullName] = validator.message;
+
+            return result;
+          },
+          {}
+        ),
+        clone(messages)
+      ),
     };
   }
 

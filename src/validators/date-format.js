@@ -1,5 +1,7 @@
 import moment from 'moment';
 
+const fullName = 'dateFormat:$1';
+
 const validate = (val, ruleObj) => {
   if (!val) {
     return true;
@@ -10,4 +12,4 @@ const validate = (val, ruleObj) => {
 
 const message = '<%= propertyName %> must be in format <%= ruleParams[0] %>.';
 
-export default {validate, message};
+export default { fullName, validate, message };

@@ -2,6 +2,8 @@ import always from 'ramda/src/always';
 import moment from 'moment';
 import _ from 'lodash';
 
+const fullName = 'timeBeforeOrEqual:$1:$2:$3';
+
 const NOW = 'NOW';
 let messages;
 
@@ -51,4 +53,4 @@ const validate = (val, ruleObj) => {
   return timeInput.isSameOrBefore(time);
 };
 
-export default {validate, message};
+export default { fullName, validate, message };

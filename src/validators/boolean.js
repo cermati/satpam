@@ -1,3 +1,5 @@
+const fullName = 'boolean';
+
 const validate = val => {
   const type = typeof(val);
 
@@ -6,4 +8,4 @@ const validate = val => {
 
 const message = '<%= propertyName %> must be a boolean.';
 
-export default {validate, message};
+export default { fullName, validate, message };

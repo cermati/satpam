@@ -1,3 +1,5 @@
+const fullName = 'alpha';
+
 const alphaRegex = /^[A-Z ]+$/i;
 
 const validate = val => {
@@ -10,4 +12,4 @@ const validate = val => {
 
 const message = '<%= propertyName %> may only contain letters.';
 
-export default {validate, message};
+export default { fullName, validate, message };

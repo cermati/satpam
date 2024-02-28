@@ -76,19 +76,12 @@ import minLength from 'satpam/lib/validators/min-length';
 import maxLength from 'satpam/lib/validators/max-length';
 
 const customValidator = new Validator({
-  rules: {
-    'minLength:$1': minLength.validate,
-    'maxLength:$1': maxLength.validate
-  },
-  messages: {
-    'minLength:$1': 'Must be at least <%= ruleParams[0] %> character(s).',
-    'maxLength:$1': maxLength.message
-  },
+  validators: [minLength, maxLength]
 });
 
 const result = customValidator.validate(
   { token: ['minLength:11', 'maxLength:16'] },
-  { token: '12345' },
+  { token: '12345' }
 );
 ```
 

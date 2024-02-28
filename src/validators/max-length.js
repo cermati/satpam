@@ -1,6 +1,8 @@
 import is from 'ramda/src/is';
 import isNil from 'ramda/src/isNil';
 
+const fullName = 'maxLength:$1';
+
 const validate = (val, ruleObj) => {
   if (isNil(val)) {
     return true;
@@ -13,4 +15,4 @@ const validate = (val, ruleObj) => {
 
 const message = '<%= propertyName %> must contain at most <%= ruleParams[0] %> character(s).';
 
-export default {validate, message};
+export default { fullName, validate, message };

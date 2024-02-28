@@ -1,5 +1,7 @@
 import isNil from 'lodash/isNil';
 
+const fullName = 'regex';
+
 const validate = val => {
   if (isNil(val)) {
     return true;
@@ -15,4 +17,4 @@ const validate = val => {
 
 const message = '<%= propertyName %> is not a valid regex string.';
 
-export default {validate, message};
+export default { fullName, validate, message };

@@ -1,6 +1,8 @@
 import is from 'ramda/src/is';
 import isNil from 'ramda/src/isNil';
 
+const fullName = 'between:$1:$2';
+
 /**
  * Check if the given value is between minimum value and maximum value
  *
@@ -26,4 +28,4 @@ const validate = (val, ruleObj) => {
 
 const message = '<%= propertyName %> must be greater than <%= ruleParams[0] %> and less than <%= ruleParams[1] %>.';
 
-export default {validate, message};
+export default { fullName, validate, message };

@@ -1,5 +1,7 @@
 import R from 'ramda';
 
+const fullName = 'containsUpperCase';
+
 const validate = val => {
   if (R.isNil(val)) {
     return true;
@@ -14,4 +16,4 @@ const validate = val => {
 
 const message = '<%= propertyName %> must contain at least 1 upper case character.';
 
-export default {validate, message};
+export default { fullName, validate, message };

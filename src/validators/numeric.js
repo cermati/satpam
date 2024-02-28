@@ -1,3 +1,5 @@
+const fullName = 'numeric';
+
 const validate = val => {
   if (val) {
     return !isNaN(Number(val));
@@ -8,4 +10,4 @@ const validate = val => {
 
 const message = '<%= propertyName %> must be a number.';
 
-export default {validate, message};
+export default { fullName, validate, message };
