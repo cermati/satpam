@@ -28,11 +28,11 @@ import dateAfter from './validators/date-after';
 import dateAfterOrEqual from './validators/date-after-or-equal';
 import dateBefore from './validators/date-before';
 import dateBeforeOrEqual from './validators/date-before-or-equal';
+import dateFormat from './validators/date-format';
 import dateTimeAfter from './validators/date-time-after';
 import dateTimeAfterOrEqual from './validators/date-time-after-or-equal';
 import dateTimeBefore from './validators/date-time-before';
 import dateTimeBeforeOrEqual from './validators/date-time-before-or-equal';
-import dateFormat from './validators/date-format';
 import email from './validators/email';
 import emptyString from './validators/empty-string';
 import equal from './validators/equal';
@@ -103,16 +103,11 @@ let validators = [
   dateAfterOrEqual,
   dateBefore,
   dateBeforeOrEqual,
-  dateFormat,
   dateTimeAfter,
   dateTimeAfterOrEqual,
   dateTimeBefore,
   dateTimeBeforeOrEqual,
   dateFormat,
-  dateTimeAfter,
-  dateTimeAfterOrEqual,
-  dateTimeBefore,
-  dateTimeBeforeOrEqual,
   email,
   emptyString,
   equal,
@@ -143,8 +138,8 @@ let validators = [
   nonBlank,
   notDisposableEmail,
   notEqual,
-  notEqualEmailDomain,
   notEqualToField,
+  notEqualEmailDomain,
   notMemberOf,
   numeric,
   pattern,
@@ -163,8 +158,8 @@ let validators = [
   timeBeforeOrEqual,
   url,
   urlProtocol,
-  uuid,
-]
+  uuid
+];
 
 /**
  * Validation by validator full name
