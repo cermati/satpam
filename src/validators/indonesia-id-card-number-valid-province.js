@@ -1,3 +1,5 @@
+const fullName = 'indonesiaIdCardNumberValidProvince';
+
 const provinceCodeMapping = {
   11: true, // 'ACEH'
   12: true, // 'SUMATERA UTARA'
@@ -48,4 +50,4 @@ const validate = (value)  => {
 
 const message = '<%= propertyName %> province code is not valid.';
 
-export default {validate, message};
+export default { fullName, validate, message };

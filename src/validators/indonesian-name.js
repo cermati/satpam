@@ -1,3 +1,5 @@
+const fullName = 'indonesianName';
+
 const regexp = /^[a-zA-Z][a-zA-Z\.\-\'\,/\s]*$/;
 
 /**
@@ -20,4 +22,4 @@ const validate = name => {
 
 const message = '<%= propertyName %> is not a valid name.';
 
-export default {validate, message};
+export default { fullName, validate, message };

@@ -1,3 +1,5 @@
+const fullName = 'imei';
+
 /**
  * Validate IMEI number.
  * The core logic is copied from https://github.com/madeinstefano/imei-validator/blob/gh-pages/imei.js
@@ -30,4 +32,4 @@ const validate = value => {
 
 const message = '<%= propertyName %> is not a valid IMEI.';
 
-export default {validate, message};
+export default { fullName, validate, message };

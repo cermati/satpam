@@ -1,5 +1,7 @@
 import moment from 'moment';
 
+const fullName = 'indonesiaIdCardNumberBirthDate:$1:$2';
+
 const validate = (value, ruleObj, propertyName, inputObj)  => {
     // Do not validate if input value is falsy.
   if (!value) {
@@ -32,4 +34,4 @@ const validate = (value, ruleObj, propertyName, inputObj)  => {
 
 const message = '<%= propertyName %> birth date number sequence does not match the given birth date.';
 
-export default {validate, message};
+export default { fullName, validate, message };

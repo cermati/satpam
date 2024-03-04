@@ -9,6 +9,8 @@
 import ip from './ip';
 import fqdn from './fqdn';
 
+const fullName = 'url';
+
 const validate = val => {
   if (!val) {
     return true;
@@ -72,4 +74,4 @@ const validate = val => {
 
 const message = '<%= propertyName %> is not a valid url.';
 
-export default {validate, message};
+export default { fullName, validate, message };

@@ -1,3 +1,5 @@
+const fullName = 'indonesiaIdCardNumberGender:$1:$2:$3';
+
 const validate = (value, ruleObj, propertyName, inputObj)  => {
     // Do not validate if input value is falsy.
   if (!value) {
@@ -21,4 +23,4 @@ const validate = (value, ruleObj, propertyName, inputObj)  => {
 
 const message = '<%= propertyName %> gender code does not match gender input.';
 
-export default {validate, message};
+export default { fullName, validate, message};

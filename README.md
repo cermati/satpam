@@ -61,6 +61,30 @@ const validatorOne = satpam.create();
 const validatorTwo = satpam.create();
 ```
 
+
+
+## Front End Usage
+For front end usage, you can use the dedicated front end lib.
+```js
+import satpam from 'satpam/lib/frontend';
+```
+Additionally, it's better to create your own validator instance with only the needed rules.
+This will help reduce build size especially if your front end application is intended for end users.
+```js
+import Validator from 'satpam/lib/frontend/validator';
+import minLength from 'satpam/lib/validators/min-length';
+import maxLength from 'satpam/lib/validators/max-length';
+
+const customValidator = new Validator({
+  validators: [minLength, maxLength]
+});
+
+const result = customValidator.validate(
+  { token: ['minLength:11', 'maxLength:16'] },
+  { token: '12345' }
+);
+```
+
 ## Available Rules
 - `required`
 - `numeric`

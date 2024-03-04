@@ -2,6 +2,8 @@ import is from 'ramda/src/is';
 import trim from 'ramda/src/trim';
 import required from './required';
 
+const fullName = 'nonBlank';
+
 const validate = val => {
   const trimmedValue = is(String, val) ? trim(val) : val;
 
@@ -10,4 +12,4 @@ const validate = val => {
 
 const message = '<%= propertyName %> field must not be completely consists of white spaces.';
 
-export default {validate, message};
+export default { fullName, validate, message };

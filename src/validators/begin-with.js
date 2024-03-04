@@ -7,6 +7,8 @@ import indexOf from 'ramda/src/indexOf';
 import is from 'ramda/src/is';
 import isNil from 'ramda/src/isNil';
 
+const fullName = 'beginWith:$1';
+
 const validate = (val, ruleObj) => {
   if (isNil(val)) {
     return false;
@@ -28,4 +30,4 @@ const validate = (val, ruleObj) => {
 
 const message = '<%= propertyName %> must begin with one of <%= ruleParams[0] %>.';
 
-export default {validate, message};
+export default { fullName, validate, message };

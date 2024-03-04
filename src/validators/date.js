@@ -1,5 +1,7 @@
 import moment from 'moment';
 
+const fullName = 'date';
+
 const validate = val => {
   if (val) {
     return moment(val).isValid();
@@ -10,4 +12,4 @@ const validate = val => {
 
 const message = '<%= propertyName %> is not a valid date.';
 
-export default {validate, message};
+export default { fullName, validate, message };

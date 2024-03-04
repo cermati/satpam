@@ -1,3 +1,5 @@
+const fullName = 'phoneNumber';
+
 const phoneNumberRegex = /^(0|62|\+62)[0-9]{6,15}$/;
 
 const validate = value => {
@@ -10,4 +12,4 @@ const validate = value => {
 
 const message = '<%= propertyName %> field is not a valid phone number.';
 
-export default {validate, message};
+export default { fullName, validate, message };

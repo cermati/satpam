@@ -1,3 +1,5 @@
+const fullName = 'ip';
+
 /**
  * Validate IPv4
  * This is a modified version of github.com/chriso/validator.js `isIP` (version === 4)
@@ -84,4 +86,4 @@ const validate = val => {
 
 const message = '<%= propertyName %> is not a valid IP address.';
 
-export default {validate, message};
+export default { fullName, validate, message };

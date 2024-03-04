@@ -1,5 +1,7 @@
 import _ from 'lodash';
 
+const fullName = 'not-equal-email-domain:$1';
+
 /**
  * Validate email's domain to not equal to the listed domains
  * in ruleObj.params[0]. Separate the domains using comma (,).
@@ -42,4 +44,4 @@ const validate = (val, ruleObj) => {
 
 const message = '<%= propertyName %>\'s domain is not valid.';
 
-export default {validate, message};
+export default { fullName, validate, message };

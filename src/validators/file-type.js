@@ -2,6 +2,8 @@ import readChunk from 'read-chunk';
 import fileType from 'file-type';
 import R from 'ramda';
 
+const fullName = 'fileType:$1';
+
 const validate = (val, ruleObj) => {
   if (!val) {
     return true;
@@ -21,5 +23,5 @@ const validate = (val, ruleObj) => {
 
 const message = '<%= propertyName %> must be a(n) <%= ruleParams[0] %>.';
 
-export default {validate, message};
+export default { fullName, validate, message };
 

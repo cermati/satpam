@@ -1,5 +1,7 @@
 import isNil from 'ramda/src/isNil';
 
+const fullName = 'plainObject';
+
 const validate = val => {
   if (isNil(val)) {
     return true;
@@ -10,4 +12,4 @@ const validate = val => {
 
 const message = '<%= propertyName %> is not a plain object.';
 
-export default {validate, message};
+export default { fullName, validate, message };

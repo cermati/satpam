@@ -1,5 +1,7 @@
 import any from 'ramda/src/any';
 
+const fullName = 'taxId:$1';
+
 const hasNonDigit = any(isNaN);
 const STRATEGY = {
   id: 'id' // Indonesia
@@ -61,4 +63,4 @@ const validate = (val, ruleObj) => {
 
 const message = '<%= propertyName %> is not a valid tax identification number.';
 
-export default {validate, message};
+export default { fullName, validate, message };

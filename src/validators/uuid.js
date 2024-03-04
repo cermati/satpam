@@ -1,5 +1,7 @@
 import R from 'ramda';
 
+const fullName = 'uuid:$1';
+
 // A regex to check whether the given string is a valid uuid
 // https://github.com/chriso/validator.js/blob/master/src/lib/isUUID.js
 const uuid = {
@@ -22,4 +24,4 @@ const validate = (val, ruleObj) => {
 
 const message = '<%= propertyName %> field is not a valid UUID.';
 
-export default {validate, message};
+export default { fullName, validate, message };

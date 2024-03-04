@@ -1,3 +1,5 @@
+const fullName = 'creditCard';
+
 /**
  * Validate credit card number.
  * This is a modified version of github.com/chriso/validator.js `isCreditCard`,
@@ -43,4 +45,4 @@ const validate = val => {
 
 const message = '<%= propertyName %> is not a valid credit card number.';
 
-export default {validate, message};
+export default { fullName, validate, message };

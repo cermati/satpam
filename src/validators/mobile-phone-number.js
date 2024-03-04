@@ -1,6 +1,8 @@
 import replace from 'lodash/replace';
 import toString from 'lodash/toString';
 
+const fullName = 'mobilePhoneNumber';
+
 const mobilePhoneNumberRegex = /^(08|628|\+628)[0-9]{8,12}$/;
 
 /**
@@ -68,4 +70,4 @@ const validate = value => {
 
 const message = '<%= propertyName %> field is not a valid mobile phone number.';
 
-export default {validate, message};
+export default { fullName, validate, message };

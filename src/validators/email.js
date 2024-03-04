@@ -2,6 +2,8 @@ import isEmpty from 'lodash/isEmpty';
 import isNil from 'lodash/isNil';
 import isString from 'lodash/isString';
 
+const fullName = 'email';
+
 /**
  * Validate email
  * This is a modified version of github.com/chriso/validator.js `isEmail`
@@ -41,4 +43,4 @@ const validate = val => {
 
 const message = '<%= propertyName %> must be email.';
 
-export default {validate, message};
+export default { fullName, validate, message };

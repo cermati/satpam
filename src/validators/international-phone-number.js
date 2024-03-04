@@ -1,3 +1,5 @@
+const fullName = 'internationalPhoneNumber';
+
 // Maximum international mobile phone number length including country code is 15 digits. Source: https://en.wikipedia.org/wiki/E.164
 const internationalPhoneNumberRegExp = /^\+?[0-9]{2,15}$/;
 
@@ -284,4 +286,4 @@ const validate = val => {
 
 const message = '<%= propertyName %> field is not a valid international phone number.';
 
-export default {validate, message};
+export default { fullName, validate, message };

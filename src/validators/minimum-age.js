@@ -1,7 +1,9 @@
 import is from 'ramda/src/is';
 import moment from 'moment';
 
-import {InvalidValidationRuleParameter} from '../data-structures/errors';
+import { InvalidValidationRuleParameter } from '../data-structures/errors';
+
+const fullName = 'minimumAge:$1:$2';
 
 const message = 'Minimum age is <%= ruleParams[0] %> years old.';
 
@@ -33,4 +35,4 @@ const validate = (dateString, ruleObj) => {
   return age > (minimumAge - 1);
 };
 
-export default {validate, message};
+export default { fullName, validate, message };

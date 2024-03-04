@@ -1,5 +1,7 @@
 import _ from 'lodash';
 
+const fullName = 'some-memberOf:$1';
+
 const validate = (val, ruleObj) => {
   if (_.isUndefined(val)) {
     return false;
@@ -14,4 +16,4 @@ const validate = (val, ruleObj) => {
 
 const message = '<%= propertyName %> must be one of <%= ruleParams[0] %>.';
 
-export default {validate, message};
+export default { fullName, validate, message };

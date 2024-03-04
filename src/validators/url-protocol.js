@@ -1,5 +1,7 @@
 import _ from 'lodash';
 
+const fullName = 'urlProtocol:$1';
+
 const validate = (val, ruleObj) => {
   if (!val) {
     return true;
@@ -26,4 +28,4 @@ const validate = (val, ruleObj) => {
 
 const message = '<%= propertyName %> does not have a valid url protocol. It must be \'<%= ruleParams[0] %>\'.';
 
-export default {validate, message};
+export default { fullName, validate, message };
