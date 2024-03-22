@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _ from '../utils/lodash-wrapper';
 
 const fullName = 'urlProtocol:$1';
 
