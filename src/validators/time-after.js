@@ -1,7 +1,6 @@
 import always from 'ramda/src/always';
 import moment from 'moment';
-
-import _ from 'lodash';
+import join from 'lodash/join';
 
 const fullName = 'timeAfter:$1:$2:$3';
 
@@ -49,7 +48,7 @@ const validate = (val, ruleObj) => {
   }
 
   messages.push('.');
-  message.toString = always(_.join(messages, ''));
+  message.toString = always(join(messages, ''));
 
   return timeInput.isAfter(time);
 };

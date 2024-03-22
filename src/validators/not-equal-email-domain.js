@@ -1,4 +1,7 @@
-import _ from 'lodash';
+import trim from 'lodash/trim';
+import includes from 'lodash/includes';
+
+import _ from '../utils/lodash-wrapper';
 
 const fullName = 'not-equal-email-domain:$1';
 
@@ -35,11 +38,11 @@ const validate = (val, ruleObj) => {
   const prohibitedDomains = _.chain(ruleObj.params[0])
     .toLower()
     .split(',')
-    .map(domain => _.trim(domain))
+    .map(domain => trim(domain))
     .compact()
     .value();
 
-  return !_.includes(prohibitedDomains, lowerDomain);
+  return !includes(prohibitedDomains, lowerDomain);
 };
 
 const message = '<%= propertyName %>\'s domain is not valid.';
