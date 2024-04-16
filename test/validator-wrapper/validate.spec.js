@@ -1,5 +1,7 @@
 import { expect } from 'chai';
-import _ from 'lodash';
+import assign from 'lodash/assign';
+import identity from 'lodash/identity';
+import toLower from 'lodash/toLower';
 import satpam from '../../lib';
 
 describe('Validator.validate()', () => {
@@ -360,7 +362,7 @@ describe('Validator.validate()', () => {
       it('should return formatted validation message', () => {
         const options = {
           validationMessageParamsFormatter: ({ propertyName, propertyValue, inputObj, violatedRule }) => {
-            const ruleParamsFormatter = validationMessageParamsFormatterByRuleFullName[violatedRule.fullName] || _.identity;
+            const ruleParamsFormatter = validationMessageParamsFormatterByRuleFullName[violatedRule.fullName] || identity;
 
             return {
               ruleParams: ruleParamsFormatter(violatedRule.params)
@@ -388,7 +390,7 @@ describe('Validator.validate()', () => {
       it('should return formatted validation message', () => {
         const options = {
           validationMessageParamsFormatter: ({ propertyName, propertyValue, inputObj, violatedRule }) => {
-            const ruleParamsFormatter = validationMessageParamsFormatterByRuleFullName[violatedRule.fullName] || _.identity;
+            const ruleParamsFormatter = validationMessageParamsFormatterByRuleFullName[violatedRule.fullName] || identity;
 
             return {
               propertyName: 'Pendapatan',
@@ -417,7 +419,7 @@ describe('Validator.validate()', () => {
 
     const validationMessagePackProvider = ({ propertyName, inputObj, violatedRule }) => {
       if (propertyName === 'name') {
-        return _.assign({}, messagePack, {
+        return assign({}, messagePack, {
           'required': 'Customized required rule for name, *evil laughs'
         });
       }
@@ -436,7 +438,7 @@ describe('Validator.validate()', () => {
       }
 
       return {
-        propertyName: _.toLower(propertyName),
+        propertyName: toLower(propertyName),
         ruleParams
       };
     }
