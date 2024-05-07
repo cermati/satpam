@@ -26,7 +26,7 @@ describe('Time Before validator', () => {
 
     it('should fail when input has the same time or slightly more recent time', () => {
       const result = validator.validate(rules, {
-        vacationTime: dayjs()
+        vacationTime: dayjs().add(1, 'seconds')
       });
       const err = result.messages;
 
