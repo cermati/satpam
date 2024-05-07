@@ -1,5 +1,8 @@
 import always from 'ramda/src/always';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+
+dayjs.extend(customParseFormat);
 
 const fullName = 'dateAfter:$1:$2:$3:$4';
 
@@ -18,14 +21,14 @@ const validate = (val, ruleObj) => {
 
   let date;
   const dateInputFormat = ruleObj.params[0];
-  const dateInput = moment(val, dateInputFormat);
+  const dateInput = dayjs(val, dateInputFormat);
   let offset = Number(ruleObj.params[2]);
   const unit = ruleObj.params[3] || 'days';
 
   if (ruleObj.params[1].toLowerCase() === NOW) {
-    date = moment();
+    date = dayjs();
   } else {
-    date = moment(ruleObj.params[1], dateInputFormat);
+    date = dayjs(ruleObj.params[1], dateInputFormat);
   }
 
   // Always start with a defaultMessage

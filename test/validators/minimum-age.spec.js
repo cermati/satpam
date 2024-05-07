@@ -1,4 +1,4 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 import {expect} from 'chai';
 import validator from '../../lib';
 
@@ -8,7 +8,7 @@ describe ('MinimumAge validator', () => {
   };
 
   context('given valid age', () => {
-    const birthDate = moment()
+    const birthDate = dayjs()
             .subtract(21, 'years')
             .format('DD/MM/YYYY');
 
@@ -26,7 +26,7 @@ describe ('MinimumAge validator', () => {
   });
 
   context('given invalid age', () => {
-    const birthDate = moment()
+    const birthDate = dayjs()
       .subtract(21, 'years')
       .add(2, 'day')
       .format('DD/MM/YYYY');

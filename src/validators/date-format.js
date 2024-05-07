@@ -1,4 +1,7 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+
+dayjs.extend(customParseFormat);
 
 const fullName = 'dateFormat:$1';
 
@@ -7,7 +10,7 @@ const validate = (val, ruleObj) => {
     return true;
   }
 
-  return moment(val, ruleObj.params[0], true).isValid();
+  return dayjs(val, ruleObj.params[0], true).isValid();
 };
 
 const message = '<%= propertyName %> must be in format <%= ruleParams[0] %>.';

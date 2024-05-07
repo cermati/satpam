@@ -1,4 +1,7 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+
+dayjs.extend(customParseFormat);
 
 const fullName = 'indonesiaIdCardNumberBirthDate:$1:$2';
 
@@ -27,7 +30,7 @@ const validate = (value, ruleObj, propertyName, inputObj)  => {
   const monthAndYearFromIdCard = String(value).substr(8, 4);
   const birthDateInputKey = ruleObj.params[0];
   const birthDateInputFormat = ruleObj.params[1];
-  const birthDateValue = moment(inputObj[birthDateInputKey], birthDateInputFormat).format('DDMMYY');
+  const birthDateValue = dayjs(inputObj[birthDateInputKey], birthDateInputFormat).format('DDMMYY');
 
   return birthDateValue === `${birthDateFromIdCard}${monthAndYearFromIdCard}`;
 };

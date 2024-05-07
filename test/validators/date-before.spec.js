@@ -1,6 +1,9 @@
 import { expect } from 'chai';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 import validator from '../../lib';
+
+dayjs.extend(customParseFormat);
 
 describe('Date Before validator', () => {
   context('given a dateBefore rule with parameter `now`', () => {
@@ -9,7 +12,7 @@ describe('Date Before validator', () => {
     };
 
     const getTestObject = () => {
-      const pastDate = moment().subtract(1, 'day').format('DD/MM/YYYY');
+      const pastDate = dayjs().subtract(1, 'day').format('DD/MM/YYYY');
 
       return {
         pastVacationDate: pastDate
@@ -26,7 +29,7 @@ describe('Date Before validator', () => {
 
     it('should fail when input has the same date', () => {
       const result = validator.validate(simpleRules, {
-        pastVacationDate: moment().format('DD/MM/YYYY')
+        pastVacationDate: dayjs().format('DD/MM/YYYY')
       });
       const err = result.messages;
 
@@ -43,7 +46,7 @@ describe('Date Before validator', () => {
     };
 
     const getTestObject = () => {
-      const pastDate = moment('12-2013', 'MM-YYYY');
+      const pastDate = dayjs('12-2013', 'MM-YYYY');
 
       return {
         pastVacationDate: pastDate
@@ -60,7 +63,7 @@ describe('Date Before validator', () => {
 
     it('should fail when input has the same month', () => {
       const result = validator.validate(simpleRules, {
-        pastVacationDate: moment('01-2014', 'MM-YYYY')
+        pastVacationDate: dayjs('01-2014', 'MM-YYYY')
       });
       const err = result.messages;
 
@@ -77,7 +80,7 @@ describe('Date Before validator', () => {
     };
 
     const getTestObject = () => {
-      const pastDate = moment().subtract(366, 'days').format('DD/MM/YYYY');
+      const pastDate = dayjs().subtract(366, 'days').format('DD/MM/YYYY');
 
       return {
         pastVacationDate: pastDate
@@ -94,7 +97,7 @@ describe('Date Before validator', () => {
 
     it('should fail when input has the same date', () => {
       const result = validator.validate(simpleRules, {
-        pastVacationDate: moment().subtract(365, 'days').format('DD/MM/YYYY')
+        pastVacationDate: dayjs().subtract(365, 'days').format('DD/MM/YYYY')
       });
       const err = result.messages;
 
@@ -111,7 +114,7 @@ describe('Date Before validator', () => {
     };
 
     const getTestObject = () => {
-      const pastDate = moment().add(39, 'days').format('DD/MM/YYYY');
+      const pastDate = dayjs().add(39, 'days').format('DD/MM/YYYY');
 
       return {
         pastVacationDate: pastDate
@@ -128,7 +131,7 @@ describe('Date Before validator', () => {
 
     it('should fail when input has the same date', () => {
       const result = validator.validate(simpleRules, {
-        pastVacationDate: moment().add(40, 'days').format('DD/MM/YYYY')
+        pastVacationDate: dayjs().add(40, 'days').format('DD/MM/YYYY')
       });
       const err = result.messages;
 
