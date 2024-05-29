@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed features
 
 - BREAKING: Migrate date utilities from previously using moment to now using dayjs to optimize bundle size
-  - Previously, parsing an incomplete input date using moment will fill the missing value. dayjs doesn't have this behavior. Considering adding `date-format` validation if your input is not guaranteed to have a valid format.
+  - Previously, parsing an incomplete input date using moment will fill the missing value. dayjs doesn't have this behavior when extending custom parse format (which we do extend). Considering adding `date-format` validation if your input is not guaranteed to have a valid format.
     ```js
     const dateWithoutSeconds = '2024-05-07T13:00';
     const dateFormatExpectingSeconds = 'YYYY-MM-DDTHH:mm:ss';
