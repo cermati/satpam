@@ -1,7 +1,10 @@
 import is from 'ramda/src/is';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 
 import { InvalidValidationRuleParameter } from '../data-structures/errors';
+
+dayjs.extend(customParseFormat);
 
 const fullName = 'minimumAge:$1:$2';
 
@@ -28,8 +31,8 @@ const validate = (dateString, ruleObj) => {
   }
 
   const dateInputFormat = ruleObj.params[1];
-  const today = moment();
-  const birthDate = moment(dateString, dateInputFormat);
+  const today = dayjs();
+  const birthDate = dayjs(dateString, dateInputFormat);
   const age = today.diff(birthDate, 'years');
 
   return age > (minimumAge - 1);

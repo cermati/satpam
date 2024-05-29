@@ -1,6 +1,9 @@
 import { expect } from 'chai';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 import validator from '../../lib';
+
+dayjs.extend(customParseFormat);
 
 describe('Date Time Before Or Equal validator', () => {
   context('given a dateTimeBeforeOrEqual rule with parameter `now`', () => {
@@ -9,7 +12,7 @@ describe('Date Time Before Or Equal validator', () => {
     };
 
     const getTestObject = () => {
-      const passDate = moment().subtract(1, 'minutes').format('YYYYMMDDHHmm');
+      const passDate = dayjs().subtract(1, 'minutes').format('YYYYMMDDHHmm');
 
       return {
         vacationDate: passDate
@@ -26,7 +29,7 @@ describe('Date Time Before Or Equal validator', () => {
 
     it('should success when input has the same timestamp', () => {
       const result = validator.validate(rules, {
-        vacationDate: moment().format('YYYYMMDDHHmm')
+        vacationDate: dayjs().format('YYYYMMDDHHmm')
       });
       const err = result.messages;
 
@@ -35,7 +38,7 @@ describe('Date Time Before Or Equal validator', () => {
 
     it('should fail when input after timestamp', () => {
       const result = validator.validate(rules, {
-        vacationDate: moment().add(1, 'minutes').format('YYYYMMDDHHmm')
+        vacationDate: dayjs().add(1, 'minutes').format('YYYYMMDDHHmm')
       });
       const err = result.messages;
 
@@ -55,7 +58,7 @@ describe('Date Time Before Or Equal validator', () => {
     };
 
     const getTestObject = () => {
-      const passDate = moment('2015-05-12T10:45:00.550+07', 'YYYY-MM-DDTHH:mm:ss.SSS[Z]');
+      const passDate = dayjs('2015-05-12T10:45:00.550+07', 'YYYY-MM-DDTHH:mm:ss.SSS[Z]');
 
       return {
         vacationDate: passDate
@@ -72,7 +75,7 @@ describe('Date Time Before Or Equal validator', () => {
 
     it('should fail when input is 5 milliseconds later', () => {
       const result = validator.validate(rules, {
-        vacationDate: moment('2015-05-12T10:45:00.560+07', 'YYYY-MM-DDTHH:mm:ss.SSS[Z]')
+        vacationDate: dayjs('2015-05-12T10:45:00.560+07', 'YYYY-MM-DDTHH:mm:ss.SSS[Z]')
       });
       const err = result.messages;
 
@@ -92,7 +95,7 @@ describe('Date Time Before Or Equal validator', () => {
     };
 
     const getTestObject = () => {
-      const date = moment().subtract(6, 'seconds').format('YYYY-MM-DDTHH:mm:ss');
+      const date = dayjs().subtract(6, 'seconds').format('YYYY-MM-DDTHH:mm:ss');
 
       return {
         vacationDate: date
@@ -109,7 +112,7 @@ describe('Date Time Before Or Equal validator', () => {
 
     it('should fail when input is 4 seconds ago', () => {
       const result = validator.validate(rules, {
-        vacationDate: moment().subtract(4, 'seconds').format('YYYY-MM-DDTHH:mm:ss')
+        vacationDate: dayjs().subtract(4, 'seconds').format('YYYY-MM-DDTHH:mm:ss')
       });
       const err = result.messages;
 
@@ -129,7 +132,7 @@ describe('Date Time Before Or Equal validator', () => {
     };
 
     const getTestObject = () => {
-      const date = moment().add(9, 'minutes').format('YYYY-MM-DDTHH:mm');
+      const date = dayjs().add(9, 'minutes').format('YYYY-MM-DDTHH:mm:ss');
 
       return {
         vacationDate: date
@@ -146,7 +149,7 @@ describe('Date Time Before Or Equal validator', () => {
 
     it('should fail when input 11 minutes after now', () => {
       const result = validator.validate(rules, {
-        vacationDate: moment().add(11, 'minutes').format('YYYY-MM-DDTHH:mm')
+        vacationDate: dayjs().add(11, 'minutes').format('YYYY-MM-DDTHH:mm:ss')
       });
       const err = result.messages;
 

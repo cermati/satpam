@@ -1,6 +1,9 @@
 import { expect } from 'chai';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 import validator from '../../lib';
+
+dayjs.extend(customParseFormat);
 
 describe('Date After Or Equal validator', () => {
   context('given a dateAfterOrEqual rule with parameter `now`', () => {
@@ -9,7 +12,7 @@ describe('Date After Or Equal validator', () => {
     };
 
     const getTestObject = () => {
-      const futureDate = moment().add(1, 'day').format('DD/MM/YYYY');
+      const futureDate = dayjs().add(1, 'day').format('DD/MM/YYYY');
 
       return {
         vacationDate: futureDate
@@ -26,7 +29,7 @@ describe('Date After Or Equal validator', () => {
 
     it('should not fail when input has the same date', () => {
       const result = validator.validate(rules, {
-        vacationDate: moment().format('DD/MM/YYYY')
+        vacationDate: dayjs().format('DD/MM/YYYY')
       });
       const err = result.messages;
 
@@ -41,7 +44,7 @@ describe('Date After Or Equal validator', () => {
     };
 
     const getTestObject = () => {
-      const futureDate = moment('02-2014', 'MM-YYYY');
+      const futureDate = dayjs('02-2014', 'MM-YYYY');
 
       return {
         vacationDate: futureDate
@@ -58,7 +61,7 @@ describe('Date After Or Equal validator', () => {
 
     it('should not fail when input has the same month', () => {
       const result = validator.validate(rules, {
-        vacationDate: moment('01-2014', 'MM-YYYY')
+        vacationDate: dayjs('01-2014', 'MM-YYYY')
       });
       const err = result.messages;
 
@@ -73,7 +76,7 @@ describe('Date After Or Equal validator', () => {
     };
 
     const getTestObject = () => {
-      const date = moment().subtract(364, 'days').format('DD/MM/YYYY');
+      const date = dayjs().subtract(364, 'days').format('DD/MM/YYYY');
 
       return {
         vacationDate: date
@@ -90,7 +93,7 @@ describe('Date After Or Equal validator', () => {
 
     it('should not fail when input has the same date', () => {
       const result = validator.validate(rules, {
-        vacationDate: moment().subtract(365, 'days').format('DD/MM/YYYY')
+        vacationDate: dayjs().subtract(365, 'days').format('DD/MM/YYYY')
       });
       const err = result.messages;
 
@@ -105,7 +108,7 @@ describe('Date After Or Equal validator', () => {
     };
 
     const getTestObject = () => {
-      const date = moment().add(41, 'days').format('DD/MM/YYYY');
+      const date = dayjs().add(41, 'days').format('DD/MM/YYYY');
 
       return {
         vacationDate: date
@@ -122,7 +125,7 @@ describe('Date After Or Equal validator', () => {
 
     it('should not fail when input has the same date', () => {
       const result = validator.validate(rules, {
-        vacationDate: moment().add(40, 'days').format('DD/MM/YYYY')
+        vacationDate: dayjs().add(40, 'days').format('DD/MM/YYYY')
       });
       const err = result.messages;
 

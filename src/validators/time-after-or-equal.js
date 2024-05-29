@@ -1,6 +1,12 @@
 import always from 'ramda/src/always';
-import moment from 'moment';
 import join from 'lodash/join';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+import 'dayjs/locale/id';
+
+dayjs.extend(isSameOrAfter);
+dayjs.extend(utc);
 
 const fullName = 'timeAfterOrEqual:$1:$2:$3';
 
@@ -18,20 +24,20 @@ const validate = (val, ruleObj) => {
 
   messages = ['<%= propertyName %> must be greater than or equal to']
 
-  const timeInput = moment(val);
+  const timeInput = dayjs(val);
   let offset = Number(ruleObj.params[1]);
   const unit = ruleObj.params[2];
 
   let time;
 
   if (ruleObj.params[0].toUpperCase() === NOW) {
-    time = moment();
+    time = dayjs();
 
     messages.push(' now');
   } else {
-    time = moment.unix(ruleObj.params[0]);
+    time = dayjs.unix(ruleObj.params[0]);
 
-    messages.push(` ${moment.unix(ruleObj.params[0]).locale('id').utcOffset(7).format('YYYY-MM-DD HH:mm:ssZ')}`);
+    messages.push(` ${dayjs.unix(ruleObj.params[0]).locale('id').utcOffset(7).format('YYYY-MM-DD HH:mm:ssZ')}`);
   }
 
   if (offset) {

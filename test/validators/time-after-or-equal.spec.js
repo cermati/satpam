@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import validator from '../../lib';
 
 describe('Time After Or Equal validator', () => {
@@ -9,7 +9,7 @@ describe('Time After Or Equal validator', () => {
     };
 
     const getTestObject = () => {
-      const futureTime = moment().add(1, 'seconds');
+      const futureTime = dayjs().add(1, 'seconds');
 
       return {
         vacationTime: futureTime
@@ -26,7 +26,7 @@ describe('Time After Or Equal validator', () => {
 
     it('should fail when input has slightly older time', () => {
       const result = validator.validate(rules, {
-        vacationTime: moment().subtract(1, 'seconds')
+        vacationTime: dayjs().subtract(1, 'seconds')
       });
       const err = result.messages;
 
@@ -43,7 +43,7 @@ describe('Time After Or Equal validator', () => {
     };
 
     const getTestObject = () => {
-      const futureTime = moment('2019-06-03T08:22:02Z');
+      const futureTime = dayjs('2019-06-03T08:22:02Z');
 
       return {
         vacationTime: futureTime
@@ -60,7 +60,7 @@ describe('Time After Or Equal validator', () => {
 
     it('should not fail when input has the same time', () => {
       const result = validator.validate(rules, {
-        vacationTime: moment('2019-06-03T08:22:01Z')
+        vacationTime: dayjs('2019-06-03T08:22:01Z')
       });
       const err = result.messages;
 
@@ -75,7 +75,7 @@ describe('Time After Or Equal validator', () => {
     };
 
     const getTestObject = () => {
-      const time = moment().subtract(30, 'minutes').add(1, 'seconds');
+      const time = dayjs().subtract(30, 'minutes').add(1, 'seconds');
 
       return {
         vacationTime: time
@@ -92,7 +92,7 @@ describe('Time After Or Equal validator', () => {
 
     it('should fail when input has slightly older time', () => {
       const result = validator.validate(rules, {
-        vacationTime: moment().subtract(30, 'minutes').subtract(1, 'seconds')
+        vacationTime: dayjs().subtract(30, 'minutes').subtract(1, 'seconds')
       });
       const err = result.messages;
 
@@ -109,7 +109,7 @@ describe('Time After Or Equal validator', () => {
     };
 
     const getTestObject = () => {
-      const time = moment().add(31, 'seconds');
+      const time = dayjs().add(31, 'seconds');
 
       return {
         vacationTime: time
@@ -126,7 +126,7 @@ describe('Time After Or Equal validator', () => {
 
     it('should fail when input has slightly older time', () => {
       const result = validator.validate(rules, {
-        vacationTime: moment().add(29, 'seconds')
+        vacationTime: dayjs().add(29, 'seconds')
       });
       const err = result.messages;
 
@@ -144,7 +144,7 @@ describe('Time After Or Equal validator', () => {
 
     const getTestObject = () => {
       return {
-        vacationTime: moment('2019-06-03T08:12:02Z')
+        vacationTime: dayjs('2019-06-03T08:12:02Z')
       };
     };
 
@@ -158,7 +158,7 @@ describe('Time After Or Equal validator', () => {
 
     it('should not fail when input has the same time', () => {
       const result = validator.validate(rules, {
-        vacationTime: moment('2019-06-03T08:12:01Z')
+        vacationTime: dayjs('2019-06-03T08:12:01Z')
       });
       const err = result.messages;
 
@@ -174,7 +174,7 @@ describe('Time After Or Equal validator', () => {
 
     const getTestObject = () => {
       return {
-        vacationTime: moment('2019-06-03T08:22:12Z')
+        vacationTime: dayjs('2019-06-03T08:22:12Z')
       };
     };
 
@@ -188,7 +188,7 @@ describe('Time After Or Equal validator', () => {
 
     it('should not fail when input has the same time', () => {
       const result = validator.validate(rules, {
-        vacationTime: moment('2019-06-03T08:22:11Z')
+        vacationTime: dayjs('2019-06-03T08:22:11Z')
       });
       const err = result.messages;
 
@@ -204,7 +204,7 @@ describe('Time After Or Equal validator', () => {
 
     const getTestObject = () => {
       return {
-        pastVacationTime: moment('2019-06-03T13:22:02Z')
+        pastVacationTime: dayjs('2019-06-03T13:22:02Z')
       };
     };
 
@@ -218,7 +218,7 @@ describe('Time After Or Equal validator', () => {
 
     it('should not fail when input has the same time', () => {
       const result = validator.validate(rules, {
-        pastVacationTime: moment('2019-06-03T13:22:01Z')
+        pastVacationTime: dayjs('2019-06-03T13:22:01Z')
       });
       const err = result.messages;
 
@@ -234,7 +234,7 @@ describe('Time After Or Equal validator', () => {
 
     const getTestObject = () => {
       return {
-        pastVacationTime: moment('2015-06-03T08:22:02Z')
+        pastVacationTime: dayjs('2015-06-03T08:22:02Z')
       };
     };
 
@@ -248,7 +248,7 @@ describe('Time After Or Equal validator', () => {
 
     it('should not fail when input has the same time', () => {
       const result = validator.validate(rules, {
-        pastVacationTime: moment('2015-06-03T08:22:01Z')
+        pastVacationTime: dayjs('2015-06-03T08:22:01Z')
       });
       const err = result.messages;
 

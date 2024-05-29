@@ -1,10 +1,10 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 const fullName = 'date';
 
 const validate = val => {
   if (val) {
-    return moment(val).isValid();
+    return dayjs(val).isValid();
   }
 
   return true;
