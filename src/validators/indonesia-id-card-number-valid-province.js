@@ -34,7 +34,10 @@ const provinceCodeMapping = {
   81: true, // 'MALUKU'
   82: true, // 'MALUKU UTARA'
   91: true, // 'PAPUA'
-  92: true // 'PAPUA BARAT'
+  92: true, // 'PAPUA BARAT'
+  93: true, // 'PAPUA SELATAN'
+  94: true, // 'PAPUA TENGAH'
+  95: true, // 'PAPUA PEGUNUNGAN'
 };
 
 const validate = (value)  => {
