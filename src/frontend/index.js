@@ -35,6 +35,7 @@ import minValue from '../validators/min-value';
 import minimumAge from '../validators/minimum-age';
 import mobilePhoneNumber from '../validators/mobile-phone-number';
 import mongoId from '../validators/mongo-id';
+import mustInclude from '../validators/must-include';
 import nonBlank from '../validators/non-blank';
 import notDisposableEmail from '../validators/not-disposable-email';
 import notEqual from '../validators/not-equal';
@@ -94,6 +95,7 @@ let validators = [
   minimumAge,
   mobilePhoneNumber,
   mongoId,
+  mustInclude,
   nonBlank,
   notDisposableEmail,
   notEqual,

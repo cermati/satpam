@@ -199,6 +199,9 @@ const result = customValidator.validate(
 - `indonesianName`
 
   [examples](https://github.com/cermati/satpam/blob/master/test/validators/indonesian-name.spec.js#L6)
+- `mustInclude` Check if the given value has all of the items in the list
+
+  [examples](https://github.com/cermati/satpam/blob/master/test/validators/must-include.spec.js#L8)
 
 
 ## Complete Examples
