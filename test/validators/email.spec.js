@@ -265,4 +265,17 @@ describe('email validator', () => {
       expect(err).to.have.property('email');
     });
   });
+
+  context('given invalid domain value (has non ascii character)', () => {
+    const input = {
+      email: '1234567890@rocķetmail.com'
+    };
+    const result = validator.validate(rules, input);
+    const err = result.messages;
+
+    it('should success', () => {
+      expect(result.success).to.equal(false);
+      expect(err).to.have.property('email');
+    });
+  });
 });
