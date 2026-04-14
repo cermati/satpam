@@ -198,11 +198,13 @@ const result = customValidator.validate(
   [examples](https://github.com/cermati/satpam/blob/master/test/validators/indonesia-id-card-number-valid-province.spec.js#L6)
 - `indonesianName`
 
-  [examples](https://github.com/cermati/satpam/blob/master/test/validators/must-include.spec.js#L6)
+  [examples](https://github.com/cermati/satpam/blob/master/test/validators/indonesian-name.spec.js#L6)
 - `mustInclude` Check if the given value has all of the items in the list
 
-  [examples](https://github.com/cermati/satpam/blob/master/test/validators/must-have-all-prefixes.spec.js#L6)
-- `mustInclude` Check if the given value has all of the items' prefix in the list
+  [examples](https://github.com/cermati/satpam/blob/master/test/validators/must-include.spec.js#L4)
+- `mustHaveAllPrefixes` Check if the given value has all of the items' prefix in the list
+
+  [examples](https://github.com/cermati/satpam/blob/master/test/validators/must-have-all-prefixes.spec.js#L4)
 
 ## Complete Examples
 To see complete example usage, please see the [unit tests](https://github.com/cermati/satpam/blob/master/test/validators)
