@@ -56,6 +56,7 @@ import url from '../validators/url';
 
 import Validator from './validator';
 import reduce from 'lodash/reduce';
+import mustHaveAllPrefixes from '../validators/must-have-all-prefixes';
 
 let validators = [
   alpha,
@@ -95,6 +96,7 @@ let validators = [
   minimumAge,
   mobilePhoneNumber,
   mongoId,
+  mustHaveAllPrefixes,
   mustInclude,
   nonBlank,
   notDisposableEmail,
