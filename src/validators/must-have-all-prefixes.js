@@ -1,21 +1,26 @@
 import is from 'ramda/src/is';
 import isNil from 'ramda/src/isNil';
-import all from 'ramda/src/all';
 import isEmpty from 'ramda/src/isEmpty';
+import all from 'ramda/src/all';
+import any from 'ramda/src/any';
+import startsWith from 'ramda/src/startsWith';
 
-const fullName = 'mustInclude:$1';
+const fullName = 'mustHaveAllPrefixes:$1';
 
 const validate = (val, ruleObj) => {
   if (isEmpty(val) || isNil(val) || val.length < ruleObj.length) {
-    return true;
+    return false;
   }
 
   const valArray = is(Array, val) ? val : [val];
   const list = ruleObj.params[0];
 
-  return all(item => valArray.includes(item), list);
+return all(
+    prefix => any(startsWith(prefix), valArray), 
+    list
+  );
 };
 
-const message = '<%= propertyName %> must include all of <%= ruleParams[0] %>.';
+const message = '<%= propertyName %> must have all prefixes of <%= ruleParams[0] %>.';
 
 export default { fullName, validate, message };

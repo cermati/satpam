@@ -85,6 +85,7 @@ import timeBeforeOrEqual from './validators/time-before-or-equal';
 import url from './validators/url';
 import urlProtocol from './validators/url-protocol';
 import uuid from './validators/uuid';
+import mustHaveAllPrefixes from './validators/must-have-all-prefixes';
 
 let validators = [
   alpha,
@@ -136,6 +137,7 @@ let validators = [
   mobilePhoneNumber,
   mongoId,
   multipleOf,
+  mustHaveAllPrefixes,
   mustInclude,
   nonBlank,
   notDisposableEmail,
