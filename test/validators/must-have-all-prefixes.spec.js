@@ -37,7 +37,7 @@ describe('mustHaveAllPrefixes validator', () => {
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('item');
-      expect(err.item['mustHaveAllPrefixes:$1']).to.equal('Item must include all prefixes of iphone,macbook.');
+      expect(err.item['mustHaveAllPrefixes:$1']).to.equal('Item must have all prefixes of iphone,macbook.');
     });
   });
 
@@ -53,7 +53,7 @@ describe('mustHaveAllPrefixes validator', () => {
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('item');
-      expect(err.item['mustHaveAllPrefixes:$1']).to.equal('Item must include all prefixes of iphone,macbook.');
+      expect(err.item['mustHaveAllPrefixes:$1']).to.equal('Item must have all prefixes of iphone,macbook.');
     });
   });
 
@@ -66,7 +66,7 @@ describe('mustHaveAllPrefixes validator', () => {
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('item');
-      expect(err.item['mustHaveAllPrefixes:$1']).to.equal('Item must include all prefixes of iphone,macbook.');
+      expect(err.item['mustHaveAllPrefixes:$1']).to.equal('Item must have all prefixes of iphone,macbook.');
     })
   })
 
@@ -79,7 +79,7 @@ describe('mustHaveAllPrefixes validator', () => {
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('item');
-      expect(err.item['mustHaveAllPrefixes:$1']).to.equal('Item must include all prefixes of iphone,macbook.');
+      expect(err.item['mustHaveAllPrefixes:$1']).to.equal('Item must have all prefixes of iphone,macbook.');
     })
   })
 });

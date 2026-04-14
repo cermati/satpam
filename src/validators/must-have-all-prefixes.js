@@ -21,6 +21,6 @@ return all(
   );
 };
 
-const message = '<%= propertyName %> must include all prefixes of <%= ruleParams[0] %>.';
+const message = '<%= propertyName %> must have all prefixes of <%= ruleParams[0] %>.';
 
 export default { fullName, validate, message };
