@@ -58,6 +58,10 @@ import Validator from './validator';
 import reduce from 'lodash/reduce';
 import mustHaveAllPrefixes from '../validators/must-have-all-prefixes';
 
+import duration from '../validators/duration';
+import minDuration from '../validators/min-duration';
+import maxDuration from '../validators/max-duration';
+
 let validators = [
   alpha,
   alphanumeric,
@@ -74,6 +78,7 @@ let validators = [
   dateFormat,
   dateTimeAfter,
   dateTimeAfterOrEqual,
+  duration,
   email,
   emptyString,
   equal,
@@ -88,9 +93,11 @@ let validators = [
   imei,
   integer,
   length,
+  maxDuration,
   maxLength,
   maxValue,
   memberOf,
+  minDuration,
   minLength,
   minValue,
   minimumAge,
