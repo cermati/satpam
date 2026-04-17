@@ -1,7 +1,3 @@
-import {Duration} from 'luxon';
-
-const fullName = 'duration';
-
 /**
  * ISO 8601 duration format
  *
@@ -28,6 +24,10 @@ const fullName = 'duration';
  * * PT0.1S represents a duration of 100 milliseconds.
  * * P3Y6M4DT12H30M5S represents a duration of 3 years, 6 months, 4 days, 12 hours, 30 minutes, and 5 seconds.
  */
+import {Duration} from 'luxon';
+
+const fullName = 'iso8601Duration';
+
 const validate = val => {
   if (!val) {
     return true;

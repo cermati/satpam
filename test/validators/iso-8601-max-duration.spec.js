@@ -1,12 +1,12 @@
 import { expect } from 'chai';
 import validator from '../../lib';
 
-describe('MinDuration validator', () => {
+describe('iso8601MaxDuration validator', () => {
   const rules = {
-    schedule: ['minDuration:PT1H']
+    schedule: ['iso8601MaxDuration:PT1H']
   };
 
-  it('should success with duration equal to minimum', () => {
+  it('should success with duration equal to maximum', () => {
     const result = validator.validate(rules, { schedule: 'PT1H' });
     const err = result.messages;
 
@@ -14,21 +14,21 @@ describe('MinDuration validator', () => {
     expect(err).to.not.have.property('schedule');
   });
 
-  it('should success with duration greater than minimum', () => {
-    const result = validator.validate(rules, { schedule: 'PT2H' });
+  it('should success with duration less than maximum', () => {
+    const result = validator.validate(rules, { schedule: 'PT30M' });
     const err = result.messages;
 
     expect(result.success).to.equal(true);
     expect(err).to.not.have.property('schedule');
   });
 
-  it('should fail with duration less than minimum', () => {
-    const result = validator.validate(rules, { schedule: 'PT30M' });
+  it('should fail with duration greater than maximum', () => {
+    const result = validator.validate(rules, { schedule: 'PT3H' });
     const err = result.messages;
 
     expect(result.success).to.equal(false);
     expect(err).to.have.property('schedule');
-    expect(err.schedule['minDuration:$1']).to.include('Schedule must be at least PT1H.');
+    expect(err.schedule['iso8601MaxDuration:$1']).to.include('Schedule must be at most PT1H.');
   });
 
   it('should success with empty value (optional field)', () => {
@@ -55,9 +55,9 @@ describe('MinDuration validator', () => {
     expect(err).to.have.property('schedule');
   });
 
-  it('should fail with invalid minimum param', () => {
+  it('should fail with invalid maximum param', () => {
     const invalidParamRules = {
-      schedule: ['minDuration:invalid-param']
+      schedule: ['iso8601MaxDuration:invalid-param']
     };
     const result = validator.validate(invalidParamRules, { schedule: 'PT1H' });
     const err = result.messages;
@@ -66,11 +66,11 @@ describe('MinDuration validator', () => {
     expect(err).to.have.property('schedule');
   });
 
-  it('should success with larger unit exceeding minimum', () => {
+  it('should fail with larger unit exceeding maximum', () => {
     const result = validator.validate(rules, { schedule: 'P1D' });
     const err = result.messages;
 
-    expect(result.success).to.equal(true);
-    expect(err).to.not.have.property('schedule');
+    expect(result.success).to.equal(false);
+    expect(err).to.have.property('schedule');
   });
 });
