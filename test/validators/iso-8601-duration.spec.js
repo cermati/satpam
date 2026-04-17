@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import validator from '../../lib';
 
-describe('Duration validator', () => {
+describe('iso8601Duration validator', () => {
   const rules = {
-    schedule: ['duration']
+    schedule: ['iso8601Duration']
   };
 
   it('should success with valid ISO 8601 duration', () => {
@@ -37,7 +37,7 @@ describe('Duration validator', () => {
 
     expect(result.success).to.equal(false);
     expect(err).to.have.property('schedule');
-    expect(err.schedule.duration).to.include('Schedule must be a valid ISO 8601 duration.');
+    expect(err.schedule['iso8601Duration']).to.include('Schedule must be a valid ISO 8601 duration.');
   });
 
   it('should fail with a plain number string', () => {
@@ -46,7 +46,7 @@ describe('Duration validator', () => {
 
     expect(result.success).to.equal(false);
     expect(err).to.have.property('schedule');
-    expect(err.schedule.duration).to.include('Schedule must be a valid ISO 8601 duration.');
+    expect(err.schedule['iso8601Duration']).to.include('Schedule must be a valid ISO 8601 duration.');
   });
 
   it('should success with duration in weeks format', () => {

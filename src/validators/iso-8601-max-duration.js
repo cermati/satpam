@@ -1,6 +1,6 @@
 import { Duration } from 'luxon';
 
-const fullName = 'minDuration:$1';
+const fullName = 'iso8601MaxDuration:$1';
 
 const validate = (val, ruleObj) => {
   if (!val) {
@@ -14,9 +14,9 @@ const validate = (val, ruleObj) => {
     return false;
   }
 
-  return duration.toMillis() >= max.toMillis();
+  return duration.toMillis() <= max.toMillis();
 };
 
-const message = '<%= propertyName %> must be at least <%= ruleParams[0] %>.';
+const message = '<%= propertyName %> must be at most <%= ruleParams[0] %>.';
 
 export default { fullName, validate, message };
