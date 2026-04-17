@@ -86,6 +86,9 @@ import url from './validators/url';
 import urlProtocol from './validators/url-protocol';
 import uuid from './validators/uuid';
 import mustHaveAllPrefixes from './validators/must-have-all-prefixes';
+import duration from './validators/duration';
+import minDuration from './validators/min-duration';
+import maxDuration from './validators/max-duration';
 
 let validators = [
   alpha,
@@ -110,6 +113,7 @@ let validators = [
   dateTimeBefore,
   dateTimeBeforeOrEqual,
   dateFormat,
+  duration,
   email,
   emptyString,
   equal,
@@ -128,9 +132,11 @@ let validators = [
   internationalPhoneNumber,
   ip,
   length,
+  maxDuration,
   maxLength,
   maxValue,
   memberOf,
+  minDuration,
   minLength,
   minValue,
   minimumAge,
