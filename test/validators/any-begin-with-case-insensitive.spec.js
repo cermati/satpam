@@ -1,10 +1,10 @@
 import { expect } from 'chai';
 import validator from '../../lib';
 
-describe('any-beginWith validator', () => {
+describe('anyBeginWithCaseInsensitive validator', () => {
   const objectRules = {
     items: [
-      {name: 'any-beginWith', params: [['Apple iPhone 14', 'Charger']]}
+      {name: 'anyBeginWithCaseInsensitive', params: [['Apple iPhone 14', 'Charger']]}
     ]
   };
 
@@ -78,7 +78,11 @@ describe('any-beginWith validator', () => {
       '',
       [],
       null,
-      undefined
+      undefined,
+      {},
+      [{}],
+      [null],
+      [undefined],
     ];
 
     rejectedInputs.forEach(rejectedInput => {
@@ -87,12 +91,13 @@ describe('any-beginWith validator', () => {
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('items');
-      expect(err.items['any-beginWith:$1']).to.equal('Any of Items must begin with any of Apple iPhone 14,Charger.');
+      expect(err.items['anyBeginWithCaseInsensitive:$1']).to.equal('At least one of Items must begin with any of Apple iPhone 14,Charger.');
     });
   });
 
   it('should fail for none of the item start with prefix in rules', () => {
     const rejectedInputs = [
+      '123',
       'iphone 14',
       ['iphone 14', 'case'],
     ];
@@ -103,7 +108,7 @@ describe('any-beginWith validator', () => {
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('items');
-      expect(err.items['any-beginWith:$1']).to.equal('Any of Items must begin with any of Apple iPhone 14,Charger.');
+      expect(err.items['anyBeginWithCaseInsensitive:$1']).to.equal('At least one of Items must begin with any of Apple iPhone 14,Charger.');
     });
   });
 
@@ -120,7 +125,7 @@ describe('any-beginWith validator', () => {
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('items');
-      expect(err.items['any-beginWith:$1']).to.equal('Any of Items must begin with any of Apple iPhone 14,Charger.');
+      expect(err.items['anyBeginWithCaseInsensitive:$1']).to.equal('At least one of Items must begin with any of Apple iPhone 14,Charger.');
     });
   });
 });
