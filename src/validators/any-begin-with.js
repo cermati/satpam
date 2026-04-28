@@ -14,7 +14,7 @@ const validate = (val, ruleObj) => {
     const itemAsString = item.toString();
 
     for (const prefix of prefixList) {
-      if (startsWith(toLower(itemAsString), prefix)) {
+      if (startsWith(toLower(itemAsString).trim(), prefix)) {
         return true;
       }
     }

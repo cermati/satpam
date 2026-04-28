@@ -56,6 +56,23 @@ describe('any-beginWith validator', () => {
     });
   });
 
+  it('should success for items with trailing whitespaces', () => {
+    const acceptedInputs = [
+      '     charger     ',
+      '     APPLE IPHONE 14      ',
+      ['    apple iphone 14 128gb   ', '  charger'],
+      ['APPLE    IPHONE 14 128GB', 'CHARGER', 'CASE']
+    ];
+
+    acceptedInputs.forEach(acceptedInput => {
+      const result = validator.validate(objectRules, {items: acceptedInput});
+      const err = result.messages;
+
+      expect(result.success).to.equal(true);
+      expect(err).to.not.have.property('items');
+    });
+  });
+
   it('should fail for empty input', () => {
     const rejectedInputs = [
       '',
