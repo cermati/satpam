@@ -7,8 +7,8 @@ const validate = (val, ruleObj) => {
     return false;
   }
 
-  const sanitizeValue = (val) => {
-    return String(val).toLowerCase().trim();
+  const sanitizeValue = (input) => {
+    return String(input).toLowerCase().trim();
   }
 
   const valArray = Array.isArray(val) ? val : [val];
