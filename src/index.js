@@ -13,6 +13,7 @@ import noes from 'noes';
 
 import alpha from './validators/alpha';
 import alphanumeric from './validators/alphanumeric';
+import anyBeginWithCaseInsensitive from './validators/any-begin-with-case-insensitive';
 import array from './validators/array';
 import beginWith from './validators/begin-with';
 import between from './validators/between';
@@ -93,6 +94,7 @@ import iso8601MaxDuration from './validators/iso-8601-max-duration';
 let validators = [
   alpha,
   alphanumeric,
+  anyBeginWithCaseInsensitive,
   array,
   beginWith,
   between,
