@@ -205,6 +205,9 @@ const result = customValidator.validate(
 - `mustHaveAllPrefixes` Check if the given value has all of the items' prefix in the list
 
   [examples](https://github.com/cermati/satpam/blob/master/test/validators/must-have-all-prefixes.spec.js#L4)
+- `anyBeginWithCaseInsensitive` Check if at least one of the given value(s) starts with any prefix in the list. The validation is case-insensitive and ignores any trailing whitespaces
+
+  [examples](https://github.com/cermati/satpam/blob/master/test/validators/any-begin-with-case-insensitive.spec.js#L4)
 
 ## Complete Examples
 To see complete example usage, please see the [unit tests](https://github.com/cermati/satpam/blob/master/test/validators)
