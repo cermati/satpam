@@ -1,10 +1,10 @@
 import { expect } from 'chai';
 import validator from '../../lib';
 
-describe('anyBeginWithCaseInsensitive validator', () => {
+describe('anyBeginWith validator', () => {
   const objectRules = {
     items: [
-      {name: 'anyBeginWithCaseInsensitive', params: [['Apple iPhone 14', 'Charger']]}
+      {name: 'anyBeginWith', params: [['Apple iPhone 14', 'Charger']]}
     ]
   };
 
@@ -16,7 +16,7 @@ describe('anyBeginWithCaseInsensitive validator', () => {
     ];
 
     acceptedInputs.forEach(acceptedInput => {
-      const result = validator.validate(objectRules, {items: acceptedInput});
+      const result = validator.validate(objectRules, { items: acceptedInput });
       const err = result.messages;
 
       expect(result.success).to.equal(true);
@@ -31,7 +31,7 @@ describe('anyBeginWithCaseInsensitive validator', () => {
     ];
 
     acceptedInputs.forEach(acceptedInput => {
-      const result = validator.validate(objectRules, {items: acceptedInput});
+      const result = validator.validate(objectRules, { items: acceptedInput });
       const err = result.messages;
 
       expect(result.success).to.equal(true);
@@ -39,37 +39,39 @@ describe('anyBeginWithCaseInsensitive validator', () => {
     });
   });
 
-  it('should success for lowercase and uppercase items', () => {
-    const acceptedInputs = [
+  it('should fail for lowercase and uppercase items', () => {
+    const rejectedInputs = [
       'charger',
       'APPLE IPHONE 14',
       ['apple iphone 14 128gb', 'charger'],
       ['APPLE IPHONE 14 128GB', 'CHARGER', 'CASE']
     ];
 
-    acceptedInputs.forEach(acceptedInput => {
-      const result = validator.validate(objectRules, {items: acceptedInput});
+    rejectedInputs.forEach(rejectedInput => {
+      const result = validator.validate(objectRules, { items: rejectedInput });
       const err = result.messages;
 
-      expect(result.success).to.equal(true);
-      expect(err).to.not.have.property('items');
+      expect(result.success).to.equal(false);
+      expect(err).to.have.property('items');
+      expect(err.items['anyBeginWith:$1']).to.equal('At least one of Items must begin with any of Apple iPhone 14,Charger.');
     });
   });
 
-  it('should success for items with trailing whitespaces', () => {
-    const acceptedInputs = [
+  it('should fail for items with trailing whitespaces', () => {
+    const rejectedInputs = [
       '     charger     ',
       '     APPLE IPHONE 14      ',
       ['    apple iphone 14 128gb   ', '  charger'],
       ['APPLE    IPHONE 14 128GB', 'CHARGER', 'CASE']
     ];
 
-    acceptedInputs.forEach(acceptedInput => {
-      const result = validator.validate(objectRules, {items: acceptedInput});
+    rejectedInputs.forEach(rejectedInput => {
+      const result = validator.validate(objectRules, { items: rejectedInput });
       const err = result.messages;
 
-      expect(result.success).to.equal(true);
-      expect(err).to.not.have.property('items');
+      expect(result.success).to.equal(false);
+      expect(err).to.have.property('items');
+      expect(err.items['anyBeginWith:$1']).to.equal('At least one of Items must begin with any of Apple iPhone 14,Charger.');
     });
   });
 
@@ -86,12 +88,12 @@ describe('anyBeginWithCaseInsensitive validator', () => {
     ];
 
     rejectedInputs.forEach(rejectedInput => {
-      const result = validator.validate(objectRules, {items: rejectedInput});
+      const result = validator.validate(objectRules, { items: rejectedInput });
       const err = result.messages;
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('items');
-      expect(err.items['anyBeginWithCaseInsensitive:$1']).to.equal('At least one of Items must begin with any of Apple iPhone 14,Charger while ignoring whitespaces and case.');
+      expect(err.items['anyBeginWith:$1']).to.equal('At least one of Items must begin with any of Apple iPhone 14,Charger.');
     });
   });
 
@@ -103,12 +105,12 @@ describe('anyBeginWithCaseInsensitive validator', () => {
     ];
 
     rejectedInputs.forEach(rejectedInput => {
-      const result = validator.validate(objectRules, {items: rejectedInput});
+      const result = validator.validate(objectRules, { items: rejectedInput });
       const err = result.messages;
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('items');
-      expect(err.items['anyBeginWithCaseInsensitive:$1']).to.equal('At least one of Items must begin with any of Apple iPhone 14,Charger while ignoring whitespaces and case.');
+      expect(err.items['anyBeginWith:$1']).to.equal('At least one of Items must begin with any of Apple iPhone 14,Charger.');
     });
   });
 
@@ -120,12 +122,12 @@ describe('anyBeginWithCaseInsensitive validator', () => {
     ];
 
     rejectedInputs.forEach(rejectedInput => {
-      const result = validator.validate(objectRules, {items: rejectedInput});
+      const result = validator.validate(objectRules, { items: rejectedInput });
       const err = result.messages;
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('items');
-      expect(err.items['anyBeginWithCaseInsensitive:$1']).to.equal('At least one of Items must begin with any of Apple iPhone 14,Charger while ignoring whitespaces and case.');
+      expect(err.items['anyBeginWith:$1']).to.equal('At least one of Items must begin with any of Apple iPhone 14,Charger.');
     });
   });
 });
