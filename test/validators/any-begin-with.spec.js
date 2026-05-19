@@ -39,6 +39,21 @@ describe('anyBeginWith validator', () => {
     });
   });
 
+  it('should success for items with trailing whitespaces', () => {
+    const acceptedInputs = [
+      'Charger     ',
+      ['Charger     ', 'Apple iPhone 14   '],
+    ];
+    
+    acceptedInputs.forEach(acceptedInput => {
+      const result = validator.validate(objectRules, { items: acceptedInput });
+      const err = result.messages;
+
+      expect(result.success).to.equal(true);
+      expect(err).to.not.have.property('items');
+    });
+  });
+
   it('should fail for lowercase and uppercase items', () => {
     const rejectedInputs = [
       'charger',
@@ -57,12 +72,25 @@ describe('anyBeginWith validator', () => {
     });
   });
 
-  it('should fail for items with trailing whitespaces', () => {
+  it('should fail for items with leading whitespaces', () => {
     const rejectedInputs = [
-      '     charger     ',
-      '     APPLE IPHONE 14      ',
-      ['    apple iphone 14 128gb   ', '  charger'],
-      ['APPLE    IPHONE 14 128GB', 'CHARGER', 'CASE']
+      '     Charger',
+      ['    Charger', '  Apple iPhone 14'],
+    ];
+
+    rejectedInputs.forEach(rejectedInput => {
+      const result = validator.validate(objectRules, { items: rejectedInput });
+      const err = result.messages;
+
+      expect(result.success).to.equal(false);
+      expect(err).to.have.property('items');
+      expect(err.items['anyBeginWith:$1']).to.equal('At least one of Items must begin with any of Apple iPhone 14,Charger.');
+    });
+  });
+
+  it('should fail for items with in-between whitespaces', () => {
+    const rejectedInputs = [
+      ['Apple    iPhone 14    128GB']
     ];
 
     rejectedInputs.forEach(rejectedInput => {
