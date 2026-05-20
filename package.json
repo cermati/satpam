@@ -1,6 +1,6 @@
 {
   "name": "satpam",
-  "version": "4.20.0",
+  "version": "4.21.0",
   "description": "Simple and Effective Object Validator",
   "main": "lib/index.js",
   "scripts": {
@@ -21,10 +21,15 @@
     "url": "https://github.com/cermati/satpam/issues"
   },
   "homepage": "https://github.com/cermati/satpam",
+  "overrides": {
+    "serialize-javascript": "7.0.5",
+    "semver": "7.7.4",
+    "minimatch": "3.1.4"
+  },
   "dependencies": {
     "file-type": "~3.8.0",
     "image-type": "~4.1.0",
-    "lodash": "~4.17.21",
+    "lodash": "~4.18.1",
     "luxon": "~3.7.2",
     "moment": "~2.29.4",
     "noes": "~1.1.1",
@@ -32,13 +37,16 @@
     "read-chunk": "~1.0.1"
   },
   "devDependencies": {
-    "@babel/cli": "~7.14.8",
-    "@babel/core": "~7.14.8",
-    "@babel/preset-env": "~7.14.8",
-    "@babel/register": "~7.14.5",
-    "babel-eslint": "~6.0.2",
+    "@babel/cli": "~7.28.6",
+    "@babel/core": "~7.28.6",
+    "@babel/preset-env": "~7.28.6",
+    "@babel/register": "~7.28.6",
+    "@babel/traverse": "~7.28.6",
+    "@eslint/js": "~10.0.1",
+    "babel-eslint": "10.1.0",
     "chai": "~2.3.0",
-    "eslint": "~7.31.0",
-    "mocha": "~9.2.2"
+    "eslint": "~10.3.0",
+    "globals": "~17.6.0",
+    "mocha": "~11.7.5"
   }
 }
