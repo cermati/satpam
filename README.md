@@ -208,6 +208,9 @@ const result = customValidator.validate(
 - `anyBeginWithCaseInsensitive` Check if at least one of the given value(s) starts with any prefix in the list. The validation is case-insensitive and ignores any trailing whitespaces
 
   [examples](https://github.com/cermati/satpam/blob/master/test/validators/any-begin-with-case-insensitive.spec.js#L4)
+- `anyBeginWith` Check if at least one of the given value(s) starts with any prefix in the list, while respecting whitespaces and case
+
+  [examples](https://github.com/cermati/satpam/blob/master/test/validators/any-begin-with.spec.js#L4)
 
 ## Complete Examples
 To see complete example usage, please see the [unit tests](https://github.com/cermati/satpam/blob/master/test/validators)

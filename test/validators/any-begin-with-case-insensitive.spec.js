@@ -91,7 +91,7 @@ describe('anyBeginWithCaseInsensitive validator', () => {
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('items');
-      expect(err.items['anyBeginWithCaseInsensitive:$1']).to.equal('At least one of Items must begin with any of Apple iPhone 14,Charger.');
+      expect(err.items['anyBeginWithCaseInsensitive:$1']).to.equal('At least one of Items must begin with any of Apple iPhone 14,Charger while ignoring whitespaces and case.');
     });
   });
 
@@ -108,7 +108,7 @@ describe('anyBeginWithCaseInsensitive validator', () => {
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('items');
-      expect(err.items['anyBeginWithCaseInsensitive:$1']).to.equal('At least one of Items must begin with any of Apple iPhone 14,Charger.');
+      expect(err.items['anyBeginWithCaseInsensitive:$1']).to.equal('At least one of Items must begin with any of Apple iPhone 14,Charger while ignoring whitespaces and case.');
     });
   });
 
@@ -125,7 +125,7 @@ describe('anyBeginWithCaseInsensitive validator', () => {
 
       expect(result.success).to.equal(false);
       expect(err).to.have.property('items');
-      expect(err.items['anyBeginWithCaseInsensitive:$1']).to.equal('At least one of Items must begin with any of Apple iPhone 14,Charger.');
+      expect(err.items['anyBeginWithCaseInsensitive:$1']).to.equal('At least one of Items must begin with any of Apple iPhone 14,Charger while ignoring whitespaces and case.');
     });
   });
 });
