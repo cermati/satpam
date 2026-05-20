@@ -21,6 +21,11 @@
     "url": "https://github.com/cermati/satpam/issues"
   },
   "homepage": "https://github.com/cermati/satpam",
+  "overrides": {
+    "serialize-javascript": "7.0.5",
+    "semver": "7.8.0",
+    "minimatch": "3.1.4"
+  },
   "dependencies": {
     "file-type": "~3.8.0",
     "image-type": "~4.1.0",
@@ -32,14 +37,16 @@
     "read-chunk": "~1.0.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.28.6",
-    "@babel/core": "^7.28.6",
-    "@babel/preset-env": "^7.28.6",
-    "@babel/register": "^7.28.6",
-    "@babel/traverse": "^7.28.6",
-    "babel-eslint": "~6.0.2",
+    "@babel/cli": "~7.28.6",
+    "@babel/core": "~7.28.6",
+    "@babel/preset-env": "~7.28.6",
+    "@babel/register": "~7.28.6",
+    "@babel/traverse": "~7.28.6",
+    "@eslint/js": "~10.0.1",
+    "babel-eslint": "10.1.0",
     "chai": "~2.3.0",
-    "eslint": "~7.31.0",
+    "eslint": "~10.3.0",
+    "globals": "~17.6.0",
     "mocha": "~11.7.5"
   }
 }
