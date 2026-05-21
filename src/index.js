@@ -91,6 +91,8 @@ import mustHaveAllPrefixes from './validators/must-have-all-prefixes';
 import iso8601Duration from './validators/iso-8601-duration';
 import iso8601MinDuration from './validators/iso-8601-min-duration';
 import iso8601MaxDuration from './validators/iso-8601-max-duration';
+import maxArraySize from './validators/max-array-size';
+import minArraySize from './validators/min-array-size';
 
 let validators = [
   alpha,
@@ -138,6 +140,8 @@ let validators = [
   iso8601MinDuration,
   iso8601MaxDuration,
   length,
+  maxArraySize,
+  minArraySize
   maxLength,
   maxValue,
   memberOf,
