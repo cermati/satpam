@@ -141,7 +141,7 @@ let validators = [
   iso8601MaxDuration,
   length,
   maxArraySize,
-  minArraySize
+  minArraySize,
   maxLength,
   maxValue,
   memberOf,
