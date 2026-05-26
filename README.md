@@ -124,6 +124,26 @@ const result = customValidator.validate(
 - `fileType:<extension>` Please check [file-type](https://github.com/sindresorhus/file-type)
 - `maxLength:<length>`
 - `minLength:<length>`
+- `maxArraySize:<count>` Check if the given array has at most `<count>` items
+- `minArraySize:<count>` Check if the given array has at least `<count>` items
+  ```js
+  const rules = {
+    documents: ['maxArraySize:2', 'minArraySize:1']
+  };
+
+  satpam.validate(rules, {
+    documents: ['identity-card.jpg']
+  }); // {success: true}
+
+  satpam.validate(rules, {
+    documents: [
+      'identity-card.jpg',
+      'selfie.jpg',
+      'tax-card.jpg'
+    ]
+  }); // {success: false}
+  ```
+
 - `maxValue:<max value>`
 - `minValue:<min value>`
 - `memberOf:$1`
