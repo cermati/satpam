@@ -38,6 +38,7 @@ const provinceCodeMapping = {
   93: true, // 'PAPUA SELATAN'
   94: true, // 'PAPUA TENGAH'
   95: true, // 'PAPUA PEGUNUNGAN'
+  96: true, // 'PAPUA BARAT DAYA'
 };
 
 const validate = (value)  => {
