@@ -1,22 +1,19 @@
 import is from 'ramda/src/is';
 import isNil from 'ramda/src/isNil';
-import trim from 'ramda/src/trim';
 
 const fullName = 'maxArraySize:$1';
-
-const isEmptyString = item => is(String, item) && trim(item) === '';
 
 const validate = (val, ruleObj) => {
   if (isNil(val)) {
     return true;
   }
-  if (!is(Array, val) || val.some(isEmptyString)) {
+  if (!is(Array, val)) {
     return false;
   }
-
+  
   return val.length <= Number(ruleObj.params[0]);
 };
 
-const message = '<%= propertyName %> must have at most <%= ruleParams[0] %> item(s) and must not contain empty strings.';
+const message = '<%= propertyName %> must have at most <%= ruleParams[0] %> item(s).';
 
 export default { fullName, validate, message };

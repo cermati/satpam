@@ -44,7 +44,7 @@ describe('MaxArraySize validator', () => {
 
     expect(result.success).to.equal(false);
     expect(err).to.have.property('phoneNumbers');
-    expect(err.phoneNumbers['maxArraySize:$1']).to.equal('Phone Numbers must have at most 3 item(s) and must not contain empty strings.');
+    expect(err.phoneNumbers['maxArraySize:$1']).to.equal('Phone Numbers must have at most 3 item(s).');
   });
 
   it('should fail when value is not an array', () => {
@@ -53,32 +53,6 @@ describe('MaxArraySize validator', () => {
 
     expect(result.success).to.equal(false);
     expect(err).to.have.property('phoneNumbers');
-    expect(err.phoneNumbers['maxArraySize:$1']).to.equal('Phone Numbers must have at most 3 item(s) and must not contain empty strings.');
-  });
-
-  it('should fail when array contains an empty string', () => {
-    const result = validator.validate(rules, { phoneNumbers: ['+6281234567890', ''] });
-    const err = result.messages;
-
-    expect(result.success).to.equal(false);
-    expect(err).to.have.property('phoneNumbers');
-    expect(err.phoneNumbers['maxArraySize:$1']).to.equal('Phone Numbers must have at most 3 item(s) and must not contain empty strings.');
-  });
-
-  it('should fail when array contains a whitespace-only string', () => {
-    const result = validator.validate(rules, { phoneNumbers: ['+6281234567890', '   '] });
-    const err = result.messages;
-
-    expect(result.success).to.equal(false);
-    expect(err).to.have.property('phoneNumbers');
-    expect(err.phoneNumbers['maxArraySize:$1']).to.equal('Phone Numbers must have at most 3 item(s) and must not contain empty strings.');
-  });
-
-  it('should success when array contains non-string items', () => {
-    const result = validator.validate(rules, { phoneNumbers: [1, 2] });
-    const err = result.messages;
-
-    expect(result.success).to.equal(true);
-    expect(err).to.not.have.property('phoneNumbers');
+    expect(err.phoneNumbers['maxArraySize:$1']).to.equal('Phone Numbers must have at most 3 item(s).');
   });
 });
