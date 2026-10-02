@@ -10,7 +10,7 @@ const validate = (val, ruleObj) => {
   if (!is(Array, val)) {
     return false;
   }
-  
+
   return val.length >= Number(ruleObj.params[0]);
 };
 
