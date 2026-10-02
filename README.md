@@ -144,6 +144,17 @@ const result = customValidator.validate(
   }); // {success: false}
   ```
 
+- `notEmptyStringItems` Check if the given array does not contain empty or whitespace-only string items
+  ```js
+  const rules = {
+    documents: ['minArraySize:1', 'notEmptyStringItems']
+  };
+
+  satpam.validate(rules, {
+    documents: ['identity-card.jpg', '  ']
+  }); // {success: false}
+  ```
+
 - `maxValue:<max value>`
 - `minValue:<min value>`
 - `memberOf:$1`

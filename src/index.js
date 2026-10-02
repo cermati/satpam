@@ -93,6 +93,7 @@ import iso8601MinDuration from './validators/iso-8601-min-duration';
 import iso8601MaxDuration from './validators/iso-8601-max-duration';
 import maxArraySize from './validators/max-array-size';
 import minArraySize from './validators/min-array-size';
+import notEmptyStringItems from './validators/not-empty-string-items';
 
 let validators = [
   alpha,
@@ -142,6 +143,7 @@ let validators = [
   length,
   maxArraySize,
   minArraySize,
+  notEmptyStringItems,
   maxLength,
   maxValue,
   memberOf,

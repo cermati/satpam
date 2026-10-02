@@ -66,6 +66,7 @@ import iso8601MaxDuration from '../validators/iso-8601-max-duration';
 
 import maxArraySize from '../validators/max-array-size';
 import minArraySize from '../validators/min-array-size';
+import notEmptyStringItems from '../validators/not-empty-string-items';
 
 let validators = [
   alpha,
@@ -116,6 +117,7 @@ let validators = [
   mustInclude,
   nonBlank,
   notDisposableEmail,
+  notEmptyStringItems,
   notEqual,
   notEqualToField,
   notEqualEmailDomain,
