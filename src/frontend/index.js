@@ -39,6 +39,7 @@ import mobilePhoneNumber from '../validators/mobile-phone-number';
 import mongoId from '../validators/mongo-id';
 import mustInclude from '../validators/must-include';
 import nonBlank from '../validators/non-blank';
+import nonBlankItems from '../validators/non-blank-items';
 import notDisposableEmail from '../validators/not-disposable-email';
 import notEqual from '../validators/not-equal';
 import notEqualToField from '../validators/not-equal-to-field';
@@ -66,7 +67,6 @@ import iso8601MaxDuration from '../validators/iso-8601-max-duration';
 
 import maxArraySize from '../validators/max-array-size';
 import minArraySize from '../validators/min-array-size';
-import notEmptyStringItems from '../validators/not-empty-string-items';
 
 let validators = [
   alpha,
@@ -116,8 +116,8 @@ let validators = [
   mustHaveAllPrefixes,
   mustInclude,
   nonBlank,
+  nonBlankItems,
   notDisposableEmail,
-  notEmptyStringItems,
   notEqual,
   notEqualToField,
   notEqualEmailDomain,

@@ -2,9 +2,9 @@ import is from 'ramda/src/is';
 import isNil from 'ramda/src/isNil';
 import trim from 'ramda/src/trim';
 
-const fullName = 'notEmptyStringItems';
+const fullName = 'nonBlankItems';
 
-const isEmptyString = item => is(String, item) && trim(item) === '';
+const isBlankString = item => is(String, item) && trim(item) === '';
 
 const validate = val => {
   if (isNil(val)) {
@@ -14,9 +14,9 @@ const validate = val => {
     return false;
   }
 
-  return !val.some(isEmptyString);
+  return !val.some(isBlankString);
 };
 
-const message = '<%= propertyName %> must not contain empty string item(s).';
+const message = '<%= propertyName %> must not contain blank item(s).';
 
 export default { fullName, validate, message };
