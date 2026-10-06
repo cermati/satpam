@@ -144,6 +144,21 @@ const result = customValidator.validate(
   }); // {success: false}
   ```
 
+- `nonBlankItems` Check if the given array does not contain empty or whitespace-only string items
+
+  Non-array values will fail this rule, but with the blank item message.
+  Add the `array` rule if you want a clear type error.
+  Only string items are checked. Non-string items, including `null` and `undefined`, are ignored.
+  ```js
+  const rules = {
+    documents: ['array', 'minArraySize:1', 'nonBlankItems']
+  };
+
+  satpam.validate(rules, {
+    documents: ['identity-card.jpg', '  ']
+  }); // {success: false}
+  ```
+
 - `maxValue:<max value>`
 - `minValue:<min value>`
 - `memberOf:$1`
