@@ -145,9 +145,12 @@ const result = customValidator.validate(
   ```
 
 - `notEmptyStringItems` Check if the given array does not contain empty or whitespace-only string items
+
+  Non-array values will fail this rule, but with the empty string message.
+  Add the `array` rule if want a clear type error.
   ```js
   const rules = {
-    documents: ['minArraySize:1', 'notEmptyStringItems']
+    documents: ['array', 'minArraySize:1', 'notEmptyStringItems']
   };
 
   satpam.validate(rules, {

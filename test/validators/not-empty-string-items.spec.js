@@ -77,4 +77,15 @@ describe('NotEmptyStringItems validator', () => {
     expect(err.phoneNumbers).to.not.have.property('maxArraySize:$1');
     expect(err.phoneNumbers.notEmptyStringItems).to.equal('Phone Numbers must not contain empty string item(s).');
   });
+
+  it('should show array error when combined with array rule and value is not an array', () => {
+    const combinedRules = {
+      phoneNumbers: ['array', 'notEmptyStringItems']
+    };
+    const result = validator.validate(combinedRules, { phoneNumbers: '+6281234567890' });
+    const err = result.messages;
+
+    expect(result.success).to.equal(false);
+    expect(err.phoneNumbers.array).to.equal('Phone Numbers is not an array.');
+  });
 });
