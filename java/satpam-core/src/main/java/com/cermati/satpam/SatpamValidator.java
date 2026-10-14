@@ -9,6 +9,7 @@ import com.cermati.satpam.locale.Locales;
 import com.cermati.satpam.rules.BuiltInRules;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.time.Clock;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -318,10 +319,13 @@ public final class SatpamValidator {
     private MessageParamsFormatter messageParamsFormatter = DEFAULT_PARAMS_FORMATTER;
     private MessagePackProvider messagePackProvider;
     private ObjectMapper objectMapper = new ObjectMapper();
+    /** Built-in rules still registered under their own fullName, so {@link #clock} can rebind them. */
+    private final Map<String, ValidatorRule> builtIns = new LinkedHashMap<>();
 
     private Builder() {
       for (ValidatorRule rule : BuiltInRules.all()) {
         addRule(rule);
+        builtIns.put(rule.fullName(), rule);
       }
     }
 
@@ -377,6 +381,27 @@ public final class SatpamValidator {
     /** Default for JS {@code options.validationMessagePackProvider}. */
     public Builder messagePackProvider(MessagePackProvider messagePackProvider) {
       this.messagePackProvider = messagePackProvider;
+      return this;
+    }
+
+    /**
+     * Clock for the date and time rules: its instant is "now" ({@code Date.now()} in JS) and its
+     * zone is the local time zone (the process {@code TZ} in Node). Defaults to
+     * {@link Clock#systemDefaultZone()}. Rules or messages replaced with {@link #addRule} or
+     * {@link #message} keep the replacement.
+     */
+    public Builder clock(Clock clock) {
+      for (ValidatorRule rule : BuiltInRules.clockRules(clock)) {
+        ValidatorRule previous = builtIns.get(rule.fullName());
+        if (previous == null || rules.get(rule.fullName()) != previous) {
+          continue;
+        }
+        rules.put(rule.fullName(), rule);
+        if (messages.get(rule.fullName()) == previous.message()) {
+          messages.put(rule.fullName(), rule.message());
+        }
+        builtIns.put(rule.fullName(), rule);
+      }
       return this;
     }
 

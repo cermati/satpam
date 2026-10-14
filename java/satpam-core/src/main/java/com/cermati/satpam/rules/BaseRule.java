@@ -9,8 +9,12 @@ public abstract class BaseRule implements ValidatorRule {
   private final Message message;
 
   protected BaseRule(String fullName, String messageTemplate) {
+    this(fullName, Message.of(messageTemplate));
+  }
+
+  protected BaseRule(String fullName, Message message) {
     this.fullName = fullName;
-    this.message = Message.of(messageTemplate);
+    this.message = message;
   }
 
   @Override

@@ -2,6 +2,8 @@ package com.cermati.satpam.rules;
 
 import com.cermati.satpam.ValidatorRule;
 
+import java.time.Clock;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -11,7 +13,7 @@ import java.util.List;
  * Rules not ported yet are listed in {@code satpam-core/src/test/resources/pending-rules.txt}.
  */
 public final class BuiltInRules {
-  private static final List<ValidatorRule> RULES = Collections.unmodifiableList(Arrays.asList(
+  private static final List<ValidatorRule> CLOCK_INDEPENDENT_RULES = Collections.unmodifiableList(Arrays.asList(
     new Alpha(),
     new Alphanumeric(),
     new AnyBeginWith(),
@@ -79,10 +81,41 @@ public final class BuiltInRules {
     new Uuid()
   ));
 
+  private static final List<ValidatorRule> RULES = combine(Clock.systemDefaultZone());
+
   private BuiltInRules() {
   }
 
+  /** All built-in rules, the date and time rules using the system clock and default time zone. */
   public static List<ValidatorRule> all() {
     return RULES;
+  }
+
+  /** The date and time rules, using {@code clock} for "now" and the local time zone. */
+  public static List<ValidatorRule> clockRules(Clock clock) {
+    return Collections.unmodifiableList(Arrays.asList(
+      new DateRule(clock),
+      new DateAfter(clock),
+      new DateAfterOrEqual(clock),
+      new DateBefore(clock),
+      new DateBeforeOrEqual(clock),
+      new DateFormat(clock),
+      new DateTimeAfter(clock),
+      new DateTimeAfterOrEqual(clock),
+      new DateTimeBefore(clock),
+      new DateTimeBeforeOrEqual(clock),
+      new IndonesiaIdCardNumberBirthDate(clock),
+      new MinimumAge(clock),
+      new TimeAfter(clock),
+      new TimeAfterOrEqual(clock),
+      new TimeBefore(clock),
+      new TimeBeforeOrEqual(clock)
+    ));
+  }
+
+  private static List<ValidatorRule> combine(Clock clock) {
+    List<ValidatorRule> rules = new ArrayList<>(CLOCK_INDEPENDENT_RULES);
+    rules.addAll(clockRules(clock));
+    return Collections.unmodifiableList(rules);
   }
 }

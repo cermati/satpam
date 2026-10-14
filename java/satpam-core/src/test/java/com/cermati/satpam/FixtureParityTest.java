@@ -11,6 +11,9 @@ import org.junit.jupiter.api.TestFactory;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.Clock;
+import java.time.Instant;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -61,8 +64,14 @@ class FixtureParityTest {
     return containers;
   }
 
+  /** Same defaults as java/scripts/fixture-runner.js. */
+  static final String DEFAULT_NOW = "2024-03-15T03:30:45.123Z";
+  static final String DEFAULT_TIME_ZONE = "Asia/Jakarta";
+
   static SatpamValidator createValidator(JsonNode options) {
-    SatpamValidator.Builder builder = SatpamValidator.builder();
+    SatpamValidator.Builder builder = SatpamValidator.builder()
+      .clock(Clock.fixed(Instant.parse(options.path("now").asText(DEFAULT_NOW)),
+        ZoneId.of(options.path("timeZone").asText(DEFAULT_TIME_ZONE))));
     if (options.has("locale")) {
       builder.locale(options.get("locale").asText());
     }

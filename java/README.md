@@ -4,7 +4,7 @@ Java port of [satpam](../README.md). It accepts the same rule JSON and gives the
 
 - Artifact: `com.cermati:satpam-java:<npm version>` on Nexus (`cermati-maven-releases` / `cermati-maven-snapshots`)
 - Java 11 bytecode, so it runs on both the Java 11 and Java 21 services. The only dependency is Jackson databind.
-- Status: **phase 2**, which covers the engine and 65 of the 83 rules. The rules not ported yet (date/time, file and `indonesiaIdCardNumberBirthDate`) are listed in [`pending-rules.txt`](satpam-core/src/test/resources/pending-rules.txt).
+- Status: **phase 3**, which covers the engine and 81 of the 83 rules. Only the file rules (`fileType`, `image`) are not ported yet; see [`pending-rules.txt`](satpam-core/src/test/resources/pending-rules.txt).
 
 ## Usage
 
@@ -42,6 +42,7 @@ SatpamValidator satpam = SatpamValidator.builder()
     .message("must-be-ironman", "<%= propertyName %> is not ironman") // setValidationMessage(...)
     .messageParamsFormatter(...)                                    // options.validationMessageParamsFormatter
     .messagePackProvider(...)                                       // options.validationMessagePackProvider
+    .clock(Clock.system(ZoneId.of("Asia/Jakarta")))                 // Date.now() + process TZ, for date/time rules
     .build();
 
 satpam.validate(rules, input);
@@ -58,6 +59,9 @@ satpam.validate(rules, input, ValidateOptions.builder().messageParamsFormatter(.
 | `{ name, shouldValidate: fn }` | `Map.of("name", "required", "shouldValidate", (ShouldValidate) (rule, root) -> ...)` |
 | `{ shouldValidate: { type, mappings } }` (noes) | same JSON |
 | `undefined` (missing property) | missing key, or `Undefined.INSTANCE` |
+| `Date.now()` and `TZ` seen by moment | `.clock(Clock)`: its instant is "now", its zone is local time (default `Clock.systemDefaultZone()`) |
+
+Date and time rules (`date`, `dateFormat`, `dateAfter`…, `dateTime*`, `time*`, `minimumAge`, `indonesiaIdCardNumberBirthDate`) depend on the local time zone exactly as in JS. For example, `dateAfter:YYYY-MM-DD:now::` compares calendar days in local time. Give Java services the same zone as the JS service whose rules they share, normally `Asia/Jakarta`.
 
 The Java port deliberately has no global setters. In JS, `satpam.addCustomValidation` changes behaviour for every later caller in the process. In a multi-threaded JVM shared by many libraries, that kind of global state is easy to misuse.
 
@@ -69,12 +73,16 @@ Where JS satpam throws (unknown rule, bad regex flags, `null` where JS reads a p
 
 ## JS/Java parity
 
-`../test-fixtures/*.json` holds about 3,750 cases with the result **recorded from JS satpam**. Both implementations run them:
+`../test-fixtures/*.json` holds about 4,900 cases with the result **recorded from JS satpam**. Both implementations run them:
 
 - JS: `test/fixtures-parity.spec.js` (part of `npm test`)
 - Java: `FixtureParityTest` (part of `./gradlew test`)
 
 `RuleCoverageTest` fails if a JS rule is neither ported nor listed in `pending-rules.txt`, or if a ported rule has no fixture.
+
+Fixture cases run with "now" fixed at `2024-03-15T03:30:45.123Z` in `Asia/Jakarta`. A group can override this with `"options": {"now": "...", "timeZone": "..."}`. The JS runner fakes `Date.now()` and sets `process.env.TZ`, and Java passes the same `Clock` to the builder.
+
+The date internals have their own recorded cases. `java/scripts/record-date-cases.js` writes `satpam-core/src/test/resources/date-cases.json`: about 67,000 results of `new Date(string)`, `moment(input[, format[, strict]])`, `add`, `startOf`/`endOf`, comparisons, `diff` and `format` in three time zones. `DateParityTest` replays them. Re-record it when you upgrade Node or moment.
 
 When you add or change a rule:
 
@@ -100,11 +108,12 @@ The version lives in `java/build.gradle`. Keep it the same as `package.json`.
 
 - **Regex.** `pattern:` and `regex` sources are translated from JS syntax to `java.util.regex` (`$`, `.`, `\s`, `[^]`, `[` inside a class, a lone `{`, `\v`, identity escapes and so on; see `JsRegex`). A few JS features have no Java equivalent: unbounded lookbehind, group names containing `$` or `_`, and non-Unicode-mode case folding of characters such as `ſ` and `K`. These compile differently or fail in Java.
 - **`startCase`.** Property names containing emoji are split differently from lodash.
+- **Dates.** moment 2.29.4 is ported for the `en` locale. `moment(string)` falls back to `new Date(string)` for strings that are neither ISO 8601 nor RFC 2822, and that fallback is a port of V8 13.6 (Node 24). Older Node versions parse some odd legacy strings differently. The era format tokens (`N…`, `yo`) are not supported and throw. Time zone rules come from the JDK's tzdata rather than Node's ICU, so the two can disagree when their tzdata versions differ.
 - **`urlProtocol` and internationalized hosts.** JS uses Node's `new URL()`. Java reimplements the WHATWG URL checks that decide whether a URL parses, but converts non-ASCII hosts with `java.net.IDN` (IDNA2003) instead of UTS #46, so a few internationalized hosts (and labels longer than 63 characters) are accepted or rejected differently.
 
 ## Roadmap
 
 1. ✅ Engine, noes, `id` locale, and string, number, array, membership and conditional rules.
 2. ✅ Format and Indonesia rules: email, notDisposableEmail, not-equal-email-domain, url, urlProtocol, fqdn, hostname, ip, uuid, mongoId, creditCard, imei, phone numbers, taxId, indonesianName, indonesiaIdCardNumber{Province,ValidProvince,Gender}, ISO 8601 durations.
-3. Date and time rules, through a moment-compatible format and parser, plus `indonesiaIdCardNumberBirthDate` (it parses the birth date with moment).
+3. ✅ Date and time rules (`internal/date`: moment 2.29 and the V8 `Date` parser), plus `indonesiaIdCardNumberBirthDate`.
 4. File rules: fileType and image (magic bytes).

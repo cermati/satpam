@@ -4,6 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.time.Clock;
+import java.time.Instant;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -291,5 +294,40 @@ class SatpamValidatorTest {
     } finally {
       pool.shutdown();
     }
+  }
+
+  @Test
+  void clockSetsNowAndTimeZoneForDateRules() {
+    Map<String, Object> rules = Collections.singletonMap("d", Collections.singletonList("dateAfter:YYYY-MM-DD:now::"));
+    Map<String, Object> input = Collections.singletonMap("d", "2024-03-16");
+
+    // 2024-03-15T20:00Z is already the 16th in Jakarta (UTC+7) but still the 15th in UTC
+    Instant instant = Instant.parse("2024-03-15T20:00:00Z");
+    SatpamValidator jakarta = SatpamValidator.builder().clock(Clock.fixed(instant, ZoneId.of("Asia/Jakarta"))).build();
+    SatpamValidator utc = SatpamValidator.builder().clock(Clock.fixed(instant, ZoneId.of("UTC"))).build();
+
+    assertFalse(jakarta.validate(rules, input).isSuccess());
+    assertTrue(utc.validate(rules, input).isSuccess());
+  }
+
+  @Test
+  void clockKeepsRulesAndMessagesReplacedBeforeIt() {
+    SatpamValidator validator = SatpamValidator.builder()
+      .addRule("date", (value, rule, prop, input) -> "custom".equals(value))
+      .message("dateFormat:$1", "custom message")
+      .clock(Clock.fixed(Instant.parse("2024-03-15T00:00:00Z"), ZoneId.of("UTC")))
+      .build();
+
+    Map<String, Object> rules = new LinkedHashMap<>();
+    rules.put("a", Collections.singletonList("date"));
+    rules.put("b", Collections.singletonList("dateFormat:YYYY"));
+    Map<String, Object> input = new LinkedHashMap<>();
+    input.put("a", "2024-03-15");
+    input.put("b", "x");
+
+    ValidationResult result = validator.validate(rules, input);
+    // The built-in date rule accepts 2024-03-15, the custom one does not
+    assertTrue(result.getMessages().containsKey("a"));
+    assertEquals("custom message", ((Map<?, ?>) result.getMessages().get("b")).get("dateFormat:$1"));
   }
 }
