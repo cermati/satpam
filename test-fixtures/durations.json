@@ -1,0 +1,4032 @@
+{
+  "description": "ISO 8601 duration rules (luxon Duration.fromISO, casual conversion)",
+  "groups": [
+    {
+      "name": "iso8601Duration",
+      "rules": {
+        "x": [
+          "iso8601Duration"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "P1Y"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P1M"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P1W"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P1D"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT1H"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT1M"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT1S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT0.5S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT0,5S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT1.5S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P1Y2M3W4DT5H6M7.8S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "-P1D"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P-1D"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "-P-1D"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "-PT1S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT-0S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "-PT0S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT-1.5S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT1.-5S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P1.5Y"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P1.5D"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT1.5H"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT1.5M"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P0D"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "-P0D"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P1DT"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "1D"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "p1d"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT1H30M"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT36H"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P1.Y"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P1,5D"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P12345678901234567890Y"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P123456789012345678901Y"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT0.123456789S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT0.0001S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT1.99999S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P1Y1Y"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT1S1M"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P1M1Y"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PDT1H"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P1W1D"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P1D "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P 1D"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "P1D"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "P1D",
+              "x"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601Duration": "X must be a valid ISO 8601 duration."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "iso8601MaxDuration:PT1H",
+      "rules": {
+        "x": [
+          "iso8601MaxDuration:PT1H"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "P1Y"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P1M"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P1W"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P1D"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT1H"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT1M"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT1S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT0.5S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT0,5S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT1.5S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P1Y2M3W4DT5H6M7.8S"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "-P1D"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P-1D"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "-P-1D"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "-PT1S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT-0S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "-PT0S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT-1.5S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT1.-5S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P1.5Y"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P1.5D"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT1.5H"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT1.5M"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P0D"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "-P0D"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P1DT"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1D"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "p1d"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT1H30M"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT36H"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P1.Y"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P1,5D"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P12345678901234567890Y"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P123456789012345678901Y"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT0.123456789S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT0.0001S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT1.99999S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P1Y1Y"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT1S1M"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P1M1Y"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PDT1H"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P1W1D"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P1D "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P 1D"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "iso8601MinDuration:P1D",
+      "rules": {
+        "x": [
+          "iso8601MinDuration:P1D"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "P1Y"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P1M"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P1W"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P1D"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT1H"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT1M"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT1S"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT0.5S"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT0,5S"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT1.5S"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P1Y2M3W4DT5H6M7.8S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "-P1D"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P-1D"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "-P-1D"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "-PT1S"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT-0S"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "-PT0S"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT-1.5S"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT1.-5S"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P1.5Y"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P1.5D"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "PT1.5H"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT1.5M"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P0D"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "-P0D"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P1DT"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "1D"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "p1d"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT1H30M"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT36H"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P1.Y"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P1,5D"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P12345678901234567890Y"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P123456789012345678901Y"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT0.123456789S"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT0.0001S"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT1.99999S"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P1Y1Y"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT1S1M"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P1M1Y"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PT"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "PDT1H"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P1W1D"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "P1D "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "P 1D"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P1D."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "iso8601 max/min PT1H vs PT1H",
+      "rules": {
+        "x": [
+          {
+            "name": "iso8601MaxDuration",
+            "fullName": "iso8601MaxDuration:$1",
+            "params": [
+              "PT1H"
+            ]
+          },
+          {
+            "name": "iso8601MinDuration",
+            "fullName": "iso8601MinDuration:$1",
+            "params": [
+              "PT1H"
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "PT1H"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "iso8601 max/min PT59M vs PT1H",
+      "rules": {
+        "x": [
+          {
+            "name": "iso8601MaxDuration",
+            "fullName": "iso8601MaxDuration:$1",
+            "params": [
+              "PT1H"
+            ]
+          },
+          {
+            "name": "iso8601MinDuration",
+            "fullName": "iso8601MinDuration:$1",
+            "params": [
+              "PT1H"
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "PT59M"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least PT1H."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "iso8601 max/min PT61M vs PT1H",
+      "rules": {
+        "x": [
+          {
+            "name": "iso8601MaxDuration",
+            "fullName": "iso8601MaxDuration:$1",
+            "params": [
+              "PT1H"
+            ]
+          },
+          {
+            "name": "iso8601MinDuration",
+            "fullName": "iso8601MinDuration:$1",
+            "params": [
+              "PT1H"
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "PT61M"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1H."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "iso8601 max/min P1D vs PT24H",
+      "rules": {
+        "x": [
+          {
+            "name": "iso8601MaxDuration",
+            "fullName": "iso8601MaxDuration:$1",
+            "params": [
+              "PT24H"
+            ]
+          },
+          {
+            "name": "iso8601MinDuration",
+            "fullName": "iso8601MinDuration:$1",
+            "params": [
+              "PT24H"
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "P1D"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "iso8601 max/min P1D vs PT23H59M59.999S",
+      "rules": {
+        "x": [
+          {
+            "name": "iso8601MaxDuration",
+            "fullName": "iso8601MaxDuration:$1",
+            "params": [
+              "PT23H59M59.999S"
+            ]
+          },
+          {
+            "name": "iso8601MinDuration",
+            "fullName": "iso8601MinDuration:$1",
+            "params": [
+              "PT23H59M59.999S"
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "P1D"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT23H59M59.999S."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "iso8601 max/min P1M vs P30D",
+      "rules": {
+        "x": [
+          {
+            "name": "iso8601MaxDuration",
+            "fullName": "iso8601MaxDuration:$1",
+            "params": [
+              "P30D"
+            ]
+          },
+          {
+            "name": "iso8601MinDuration",
+            "fullName": "iso8601MinDuration:$1",
+            "params": [
+              "P30D"
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "P1M"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "iso8601 max/min P1M vs P31D",
+      "rules": {
+        "x": [
+          {
+            "name": "iso8601MaxDuration",
+            "fullName": "iso8601MaxDuration:$1",
+            "params": [
+              "P31D"
+            ]
+          },
+          {
+            "name": "iso8601MinDuration",
+            "fullName": "iso8601MinDuration:$1",
+            "params": [
+              "P31D"
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "P1M"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least P31D."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "iso8601 max/min P1Y vs P365D",
+      "rules": {
+        "x": [
+          {
+            "name": "iso8601MaxDuration",
+            "fullName": "iso8601MaxDuration:$1",
+            "params": [
+              "P365D"
+            ]
+          },
+          {
+            "name": "iso8601MinDuration",
+            "fullName": "iso8601MinDuration:$1",
+            "params": [
+              "P365D"
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "P1Y"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "iso8601 max/min P1Y vs P12M",
+      "rules": {
+        "x": [
+          {
+            "name": "iso8601MaxDuration",
+            "fullName": "iso8601MaxDuration:$1",
+            "params": [
+              "P12M"
+            ]
+          },
+          {
+            "name": "iso8601MinDuration",
+            "fullName": "iso8601MinDuration:$1",
+            "params": [
+              "P12M"
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "P1Y"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most P12M."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "iso8601 max/min P1Y vs P52W",
+      "rules": {
+        "x": [
+          {
+            "name": "iso8601MaxDuration",
+            "fullName": "iso8601MaxDuration:$1",
+            "params": [
+              "P52W"
+            ]
+          },
+          {
+            "name": "iso8601MinDuration",
+            "fullName": "iso8601MinDuration:$1",
+            "params": [
+              "P52W"
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "P1Y"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most P52W."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "iso8601 max/min -P1D vs PT0S",
+      "rules": {
+        "x": [
+          {
+            "name": "iso8601MaxDuration",
+            "fullName": "iso8601MaxDuration:$1",
+            "params": [
+              "PT0S"
+            ]
+          },
+          {
+            "name": "iso8601MinDuration",
+            "fullName": "iso8601MinDuration:$1",
+            "params": [
+              "PT0S"
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "-P1D"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least PT0S."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "iso8601 max/min PT0S vs -P1D",
+      "rules": {
+        "x": [
+          {
+            "name": "iso8601MaxDuration",
+            "fullName": "iso8601MaxDuration:$1",
+            "params": [
+              "-P1D"
+            ]
+          },
+          {
+            "name": "iso8601MinDuration",
+            "fullName": "iso8601MinDuration:$1",
+            "params": [
+              "-P1D"
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "PT0S"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most -P1D."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "iso8601 max/min P1W vs P7D",
+      "rules": {
+        "x": [
+          {
+            "name": "iso8601MaxDuration",
+            "fullName": "iso8601MaxDuration:$1",
+            "params": [
+              "P7D"
+            ]
+          },
+          {
+            "name": "iso8601MinDuration",
+            "fullName": "iso8601MinDuration:$1",
+            "params": [
+              "P7D"
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "P1W"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "iso8601 max/min PT0.1S vs PT0.01S",
+      "rules": {
+        "x": [
+          {
+            "name": "iso8601MaxDuration",
+            "fullName": "iso8601MaxDuration:$1",
+            "params": [
+              "PT0.01S"
+            ]
+          },
+          {
+            "name": "iso8601MinDuration",
+            "fullName": "iso8601MinDuration:$1",
+            "params": [
+              "PT0.01S"
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "PT0.1S"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT0.01S."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "iso8601 max/min PT1S vs x",
+      "rules": {
+        "x": [
+          {
+            "name": "iso8601MaxDuration",
+            "fullName": "iso8601MaxDuration:$1",
+            "params": [
+              "x"
+            ]
+          },
+          {
+            "name": "iso8601MinDuration",
+            "fullName": "iso8601MinDuration:$1",
+            "params": [
+              "x"
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "PT1S"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most x.",
+                "iso8601MinDuration:$1": "X must be at least x."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "iso8601 max/min x vs PT1S",
+      "rules": {
+        "x": [
+          {
+            "name": "iso8601MaxDuration",
+            "fullName": "iso8601MaxDuration:$1",
+            "params": [
+              "PT1S"
+            ]
+          },
+          {
+            "name": "iso8601MinDuration",
+            "fullName": "iso8601MinDuration:$1",
+            "params": [
+              "PT1S"
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "x"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most PT1S.",
+                "iso8601MinDuration:$1": "X must be at least PT1S."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "iso8601 max/min P1D vs None",
+      "rules": {
+        "x": [
+          {
+            "name": "iso8601MaxDuration",
+            "fullName": "iso8601MaxDuration:$1",
+            "params": [
+              null
+            ]
+          },
+          {
+            "name": "iso8601MinDuration",
+            "fullName": "iso8601MinDuration:$1",
+            "params": [
+              null
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "P1D"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most .",
+                "iso8601MinDuration:$1": "X must be at least ."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "iso8601 max/min P1D vs ",
+      "rules": {
+        "x": [
+          {
+            "name": "iso8601MaxDuration",
+            "fullName": "iso8601MaxDuration:$1",
+            "params": [
+              ""
+            ]
+          },
+          {
+            "name": "iso8601MinDuration",
+            "fullName": "iso8601MinDuration:$1",
+            "params": [
+              ""
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "P1D"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MaxDuration:$1": "X must be at most .",
+                "iso8601MinDuration:$1": "X must be at least ."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "iso8601 max/min PT1.5S vs PT1,5S",
+      "rules": {
+        "x": [
+          {
+            "name": "iso8601MaxDuration",
+            "fullName": "iso8601MaxDuration:$1",
+            "params": [
+              "PT1,5S"
+            ]
+          },
+          {
+            "name": "iso8601MinDuration",
+            "fullName": "iso8601MinDuration:$1",
+            "params": [
+              "PT1,5S"
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "PT1.5S"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "iso8601MaxDuration no param",
+      "rules": {
+        "x": [
+          "iso8601MaxDuration"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "PT1S"
+          },
+          "expectedError": "iso8601MaxDuration is not a valid satpam validation rule. Rule object: {\"name\":\"iso8601MaxDuration\",\"params\":[],\"fullName\":\"iso8601MaxDuration\"}"
+        }
+      ]
+    },
+    {
+      "name": "iso8601MinDuration invalid param",
+      "rules": {
+        "x": [
+          "iso8601MinDuration:1D"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "PT1S"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "iso8601MinDuration:$1": "X must be at least 1D."
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5654 @@
+{
+  "description": "Indonesia rules: phone numbers, tax id, names, id card number",
+  "groups": [
+    {
+      "name": "phoneNumber",
+      "rules": {
+        "x": [
+          "phoneNumber"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "08123456789"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0812345"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "081234567890123"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0812345678901234"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "628123456789"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "+628123456789"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "+62812345"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "+6281234567890123456"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "62812"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "62"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+62"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "081-234-567"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+08123456789"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "8123456789"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "6212345678"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "021555555"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " 08123456789"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "08123456789\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 8123456789
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 628123456789
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "08123456789"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "phoneNumber": "X field is not a valid phone number."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "mobilePhoneNumber",
+      "rules": {
+        "x": [
+          "mobilePhoneNumber"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "08123456789"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "081234567890"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0812345678901"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "08123456789012"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "081234567"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0811111111"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0814123456789"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0820123456"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "08201234567"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0899123456789"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "628123456789"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "+628123456789"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "+62812345678"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "8123456789"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "812345678901"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0838123456789"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "+6289912345678"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "62899123456789"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0811 23456789"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "08a123456789"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "628123456789\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+62 8123456789"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 8123456789
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 628123456789
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "08123456789"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              8123456789
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "08123456789",
+              "x"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null,
+              "8"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "mobilePhoneNumber": "X field is not a valid mobile phone number."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "internationalPhoneNumber",
+      "rules": {
+        "x": [
+          "internationalPhoneNumber"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "+6281234567890"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "6281234567890"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "+12025550123"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "12025550123"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "+7123456789"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "+442071234567"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "+2121234567"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "+2141234567"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+80012345678"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "+999123456"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "999123456"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+12"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "12"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "+1234567890123456"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1234567890123456"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "123456789012345"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "+ 12345"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "++12345"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+62-812"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+0062812"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "00"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+211"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "2112"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 6281234567890
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 1000000000000000
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "+6281234567890"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "internationalPhoneNumber": "X field is not a valid international phone number."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "taxId:id",
+      "rules": {
+        "x": [
+          "taxId:id"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "013000666091000"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "02.418.346.4-073.000"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "024183464073000"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "024183464073001"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "012345678901234"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "123456789012345"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "01300066609100"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0130006660910000"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "01300066 091000"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0130006 6091000"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " 13000666091000"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "01300066a091000"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0a3000666091000"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "999999999999999"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "000000000000000"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "00000000x000000"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0130006660 1000"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "01300\t666091000"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 13000666091000
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "013000666091000"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "taxId:$1": "X is not a valid tax identification number."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "taxId unknown strategy",
+      "rules": {
+        "x": [
+          "taxId:us"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "013000666091000"
+          },
+          "expectedError": "Could not found tax id validation strategy for the given strategy: %s"
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "taxId no strategy",
+      "rules": {
+        "x": [
+          "taxId"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": null
+          },
+          "expectedError": "taxId is not a valid satpam validation rule. Rule object: {\"name\":\"taxId\",\"params\":[],\"fullName\":\"taxId\"}"
+        },
+        {
+          "input": {
+            "x": "013000666091000"
+          },
+          "expectedError": "taxId is not a valid satpam validation rule. Rule object: {\"name\":\"taxId\",\"params\":[],\"fullName\":\"taxId\"}"
+        }
+      ]
+    },
+    {
+      "name": "indonesianName",
+      "rules": {
+        "x": [
+          "indonesianName"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "Budi"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Budi Santoso"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Budi S."
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Siti-Nurhaliza"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "O'Neil"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Dr. Budi, S.Kom"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a/b"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Budi\tSantoso"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Budi\nSantoso"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "1Budi"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Budi1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ".Budi"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " Budi"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Budi!"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Bůdi"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "B"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "b"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Budi Santoso"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Budi "
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesianName": "X is not a valid name."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "indonesiaIdCardNumberValidProvince",
+      "rules": {
+        "x": [
+          "indonesiaIdCardNumberValidProvince"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "3171234567890001"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "9671234567890001"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "9771234567890001"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1071234567890001"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "11"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0011"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1."
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " 1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "3e1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "3x"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1e1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 3171234567890001
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 31
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "96"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "31"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              3,
+              1
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "indonesiaIdCardNumberValidProvince": "X province code is not valid."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "indonesiaIdCardNumberProvince",
+      "rules": {
+        "nik": [
+          "indonesiaIdCardNumberProvince:province"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "nik": "3171234567890001",
+            "province": "DKI JAKARTA"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "nik": "3171234567890001",
+            "province": "dki jakarta"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "nik": "3271234567890001",
+            "province": "DKI JAKARTA"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "nik": {
+                "indonesiaIdCardNumberProvince:$1": "Nik province code does not match province input."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "nik": "3271234567890001",
+            "province": "Jawa Barat"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "nik": "9171234567890001",
+            "province": "papua"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "nik": "9671234567890001",
+            "province": "PAPUA BARAT DAYA"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "nik": {
+                "indonesiaIdCardNumberProvince:$1": "Nik province code does not match province input."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "nik": "3171234567890001"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "nik": {
+                "indonesiaIdCardNumberProvince:$1": "Nik province code does not match province input."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "nik": "3171234567890001",
+            "province": ""
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "nik": {
+                "indonesiaIdCardNumberProvince:$1": "Nik province code does not match province input."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "nik": "3171234567890001",
+            "province": null
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "nik": {
+                "indonesiaIdCardNumberProvince:$1": "Nik province code does not match province input."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "nik": "3171234567890001",
+            "province": "Atlantis"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "nik": {
+                "indonesiaIdCardNumberProvince:$1": "Nik province code does not match province input."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "nik": 3171234567890001,
+            "province": "DKI JAKARTA"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "nik": "",
+            "province": "DKI JAKARTA"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "nik": null,
+            "province": "x"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "nik": "31",
+            "province": "DKI JAKARTA"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "nik": "3",
+            "province": "DKI JAKARTA"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "nik": {
+                "indonesiaIdCardNumberProvince:$1": "Nik province code does not match province input."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "nik": " 3171",
+            "province": "DKI JAKARTA"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "nik": {
+                "indonesiaIdCardNumberProvince:$1": "Nik province code does not match province input."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "nik": "3171234567890001",
+            "province": " DKI JAKARTA"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "nik": {
+                "indonesiaIdCardNumberProvince:$1": "Nik province code does not match province input."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "nik": [
+              "31"
+            ],
+            "province": "DKI JAKARTA"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "nik": "3171234567890001",
+            "province": 31
+          },
+          "expectedError": "provinceInputValue.toUpperCase is not a function"
+        },
+        {
+          "input": {
+            "nik": "3171234567890001",
+            "province": [
+              "DKI JAKARTA"
+            ]
+          },
+          "expectedError": "provinceInputValue.toUpperCase is not a function"
+        },
+        {
+          "input": {
+            "nik": "3171234567890001",
+            "province": true
+          },
+          "expectedError": "provinceInputValue.toUpperCase is not a function"
+        },
+        {
+          "input": {
+            "nik": "3171234567890001",
+            "province": {
+              "a": 1
+            }
+          },
+          "expectedError": "provinceInputValue.toUpperCase is not a function"
+        }
+      ]
+    },
+    {
+      "name": "indonesiaIdCardNumberProvince missing key param",
+      "rules": {
+        "nik": [
+          "indonesiaIdCardNumberProvince"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "nik": "3171234567890001",
+            "undefined": "DKI JAKARTA"
+          },
+          "expectedError": "indonesiaIdCardNumberProvince is not a valid satpam validation rule. Rule object: {\"name\":\"indonesiaIdCardNumberProvince\",\"params\":[],\"fullName\":\"indonesiaIdCardNumberProvince\"}"
+        },
+        {
+          "input": {
+            "nik": "3171234567890001"
+          },
+          "expectedError": "indonesiaIdCardNumberProvince is not a valid satpam validation rule. Rule object: {\"name\":\"indonesiaIdCardNumberProvince\",\"params\":[],\"fullName\":\"indonesiaIdCardNumberProvince\"}"
+        }
+      ]
+    },
+    {
+      "name": "indonesiaIdCardNumberGender",
+      "rules": {
+        "nik": [
+          "indonesiaIdCardNumberGender:gender:F:M"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "nik": "3171234101900001",
+            "gender": "M"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "nik": {
+                "indonesiaIdCardNumberGender:$1:$2:$3": "Nik gender code does not match gender input."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "nik": "3171234101900001",
+            "gender": "F"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "nik": "3171235101900001",
+            "gender": "F"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "nik": "3171235101900001",
+            "gender": "M"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "nik": {
+                "indonesiaIdCardNumberGender:$1:$2:$3": "Nik gender code does not match gender input."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "nik": "3171234001900001",
+            "gender": "M"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "nik": "3171234101900001"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "nik": {
+                "indonesiaIdCardNumberGender:$1:$2:$3": "Nik gender code does not match gender input."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "nik": "317123",
+            "gender": "M"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "nik": "3171234",
+            "gender": "M"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "nik": "31712341",
+            "gender": "M"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "nik": {
+                "indonesiaIdCardNumberGender:$1:$2:$3": "Nik gender code does not match gender input."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "nik": "31712351",
+            "gender": "F"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "nik": "317123xx01900001",
+            "gender": "M"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "nik": "317123 5",
+            "gender": "M"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "nik": 3171235101900001,
+            "gender": "F"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "nik": "",
+            "gender": "F"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "nik": null,
+            "gender": "F"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "nik": "3171235101900001",
+            "gender": "f"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "nik": {
+                "indonesiaIdCardNumberGender:$1:$2:$3": "Nik gender code does not match gender input."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "nik": [
+              "3171235101900001"
+            ],
+            "gender": "F"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "indonesiaIdCardNumberGender object params",
+      "rules": {
+        "nik": [
+          {
+            "name": "indonesiaIdCardNumberGender",
+            "fullName": "indonesiaIdCardNumberGender:$1:$2:$3",
+            "params": [
+              "gender",
+              2,
+              1
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "nik": "3171235101900001",
+            "gender": 2
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "nik": "3171235101900001",
+            "gender": "2"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "nik": {
+                "indonesiaIdCardNumberGender:$1:$2:$3": "Nik gender code does not match gender input."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "nik": "3171234101900001",
+            "gender": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "nik": {
+                "indonesiaIdCardNumberGender:$1:$2:$3": "Nik gender code does not match gender input."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "nik": "3171234101900001",
+            "gender": 2
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "indonesiaIdCardNumberGender missing params",
+      "rules": {
+        "nik": [
+          "indonesiaIdCardNumberGender"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "nik": "3171234101900001"
+          },
+          "expectedError": "indonesiaIdCardNumberGender is not a valid satpam validation rule. Rule object: {\"name\":\"indonesiaIdCardNumberGender\",\"params\":[],\"fullName\":\"indonesiaIdCardNumberGender\"}"
+        },
+        {
+          "input": {
+            "nik": "3171234101900001",
+            "undefined": "x"
+          },
+          "expectedError": "indonesiaIdCardNumberGender is not a valid satpam validation rule. Rule object: {\"name\":\"indonesiaIdCardNumberGender\",\"params\":[],\"fullName\":\"indonesiaIdCardNumberGender\"}"
+        }
+      ]
+    },
+    {
+      "name": "id locale",
+      "rules": {
+        "email": [
+          "email"
+        ],
+        "url": [
+          "url"
+        ],
+        "npwp": [
+          "taxId:id"
+        ],
+        "nik": [
+          "indonesiaIdCardNumberValidProvince"
+        ],
+        "mail": [
+          "not-equal-email-domain:gmail.com"
+        ],
+        "phone": [
+          "mobilePhoneNumber"
+        ]
+      },
+      "options": {
+        "locale": "id"
+      },
+      "cases": [
+        {
+          "input": {
+            "email": "x",
+            "url": "x y",
+            "npwp": "1",
+            "nik": "00",
+            "mail": "a@gmail.com",
+            "phone": "1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "email": {
+                "email": "Format email tidak valid."
+              },
+              "url": {
+                "url": "Format link tidak valid."
+              },
+              "npwp": {
+                "taxId:$1": "Nomor NPWP tidak valid."
+              },
+              "nik": {
+                "indonesiaIdCardNumberValidProvince": "Kode provinsi pada Nomor KTP tidak benar."
+              },
+              "mail": {
+                "not-equal-email-domain:$1": "Domain Mail tidak valid."
+              },
+              "phone": {
+                "mobilePhoneNumber": "Nomor handphone tidak valid."
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

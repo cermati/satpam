@@ -504,4 +504,85 @@ public final class JsValues {
   public static List<Object> asArray(Object value) {
     return value instanceof List ? asList(value) : Collections.singletonList(value);
   }
+  /** JS {@code /\s/.test(s)}: whether {@code s} contains a JS whitespace or line terminator. */
+  public static boolean hasWhitespace(String s) {
+    for (int i = 0; i < s.length(); i++) {
+      if (WHITESPACE_CHARS.indexOf(s.charAt(i)) >= 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /** JS {@code s.split(separator)} with a string separator: keeps empty parts, {@code ""} splits into code units. */
+  public static List<String> split(String s, String separator) {
+    List<String> parts = new ArrayList<>();
+    if (separator.isEmpty()) {
+      for (int i = 0; i < s.length(); i++) {
+        parts.add(String.valueOf(s.charAt(i)));
+      }
+      return parts;
+    }
+    int start = 0;
+    int index;
+    while ((index = s.indexOf(separator, start)) >= 0) {
+      parts.add(s.substring(start, index));
+      start = index + separator.length();
+    }
+    parts.add(s.substring(start));
+    return parts;
+  }
+
+  /**
+   * {@code value.method(...)} where only strings have {@code method}: returns the string, or throws
+   * the TypeError JS would throw for any other value.
+   */
+  public static String requireString(Object value, String method) {
+    if (value instanceof String) {
+      return (String) value;
+    }
+    if (isNil(value)) {
+      throw new IllegalArgumentException(
+        "TypeError: Cannot read properties of " + toJsString(value) + " (reading '" + method + "')");
+    }
+    throw new IllegalArgumentException("TypeError: value." + method + " is not a function");
+  }
+
+  /** JS {@code s.substr(start, length)} for a non-negative start. */
+  public static String substr(String s, int start, int length) {
+    int from = Math.min(start, s.length());
+    return s.substring(from, Math.min(from + length, s.length()));
+  }
+
+  /**
+   * lodash {@code toString}: {@code ""} for {@code null}/{@code undefined}, {@code "-0"} for -0, and
+   * arrays are joined recursively with nested {@code null} as {@code "null"}.
+   */
+  public static String lodashToString(Object value) {
+    return isNil(value) ? "" : lodashBaseToString(value);
+  }
+
+  private static String lodashBaseToString(Object value) {
+    if (value instanceof List) {
+      StringBuilder sb = new StringBuilder();
+      List<Object> list = asList(value);
+      for (int i = 0; i < list.size(); i++) {
+        if (i > 0) {
+          sb.append(',');
+        }
+        Object item = list.get(i);
+        // arrayMap(value, baseToString) + '': mapped null/undefined are strings, nested arrays join
+        sb.append(item instanceof List ? lodashBaseToString(item) : toJsString(item instanceof Double ? lodashNumber((Double) item) : item));
+      }
+      return sb.toString();
+    }
+    if (value instanceof Double) {
+      return lodashNumber((Double) value);
+    }
+    return toJsString(value);
+  }
+
+  private static String lodashNumber(double d) {
+    return d == 0 && 1 / d < 0 ? "-0" : numberToString(d);
+  }
 }

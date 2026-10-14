@@ -4,7 +4,7 @@ Java port of [satpam](../README.md). It accepts the same rule JSON and gives the
 
 - Artifact: `com.cermati:satpam-java:<npm version>` on Nexus (`cermati-maven-releases` / `cermati-maven-snapshots`)
 - Java 11 bytecode, so it runs on both the Java 11 and Java 21 services. The only dependency is Jackson databind.
-- Status: **phase 1**, which covers the engine and 42 of the 83 rules. The rules not ported yet are listed in [`pending-rules.txt`](satpam-core/src/test/resources/pending-rules.txt).
+- Status: **phase 2**, which covers the engine and 65 of the 83 rules. The rules not ported yet (date/time, file and `indonesiaIdCardNumberBirthDate`) are listed in [`pending-rules.txt`](satpam-core/src/test/resources/pending-rules.txt).
 
 ## Usage
 
@@ -69,7 +69,7 @@ Where JS satpam throws (unknown rule, bad regex flags, `null` where JS reads a p
 
 ## JS/Java parity
 
-`../test-fixtures/*.json` holds about 2,000 cases with the result **recorded from JS satpam**. Both implementations run them:
+`../test-fixtures/*.json` holds about 3,750 cases with the result **recorded from JS satpam**. Both implementations run them:
 
 - JS: `test/fixtures-parity.spec.js` (part of `npm test`)
 - Java: `FixtureParityTest` (part of `./gradlew test`)
@@ -81,6 +81,7 @@ When you add or change a rule:
 1. Change the JS rule in `src/validators/` and the Java rule in `satpam-core/src/main/java/com/cermati/satpam/rules/`, and register it in `BuiltInRules`.
 2. Add cases to a fixture file. The `"probe": "x"` shorthand runs about 45 standard JS edge-case values through the rule, and `"inputs": [...]` adds specific inputs.
 3. `npm run compile && node java/scripts/record-fixtures.js` records the expected results from JS.
+   If you changed `src/data/` (e.g. the disposable email list), also run `node java/scripts/export-data.js`, which copies it into the Java resources.
 4. `npm test` and `cd java && ./gradlew test`.
 
 ## Build and publish
@@ -99,10 +100,11 @@ The version lives in `java/build.gradle`. Keep it the same as `package.json`.
 
 - **Regex.** `pattern:` and `regex` sources are translated from JS syntax to `java.util.regex` (`$`, `.`, `\s`, `[^]`, `[` inside a class, a lone `{`, `\v`, identity escapes and so on; see `JsRegex`). A few JS features have no Java equivalent: unbounded lookbehind, group names containing `$` or `_`, and non-Unicode-mode case folding of characters such as `ſ` and `K`. These compile differently or fail in Java.
 - **`startCase`.** Property names containing emoji are split differently from lodash.
+- **`urlProtocol` and internationalized hosts.** JS uses Node's `new URL()`. Java reimplements the WHATWG URL checks that decide whether a URL parses, but converts non-ASCII hosts with `java.net.IDN` (IDNA2003) instead of UTS #46, so a few internationalized hosts (and labels longer than 63 characters) are accepted or rejected differently.
 
 ## Roadmap
 
 1. ✅ Engine, noes, `id` locale, and string, number, array, membership and conditional rules.
-2. Format and Indonesia rules: email, notDisposableEmail, url, fqdn, hostname, ip, uuid, mongoId, creditCard, imei, phone numbers, taxId, indonesianName, indonesiaIdCardNumber*, ISO-8601 durations.
-3. Date and time rules, through a moment-compatible format and parser.
+2. ✅ Format and Indonesia rules: email, notDisposableEmail, not-equal-email-domain, url, urlProtocol, fqdn, hostname, ip, uuid, mongoId, creditCard, imei, phone numbers, taxId, indonesianName, indonesiaIdCardNumber{Province,ValidProvince,Gender}, ISO 8601 durations.
+3. Date and time rules, through a moment-compatible format and parser, plus `indonesiaIdCardNumberBirthDate` (it parses the birth date with moment).
 4. File rules: fileType and image (magic bytes).
