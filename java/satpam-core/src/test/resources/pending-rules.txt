@@ -1,4 +1,2 @@
-# JS rules not ported to Java yet, one fullName per line (see the phases in java/README.md).
-# RuleCoverageTest fails if a JS rule is neither ported nor listed here.
-fileType:$1
-image
+# JS rules not ported to Java yet, one fullName per line. All rules are ported; a new JS rule goes
+# here until it has a Java port. RuleCoverageTest fails if a JS rule is neither ported nor listed here.

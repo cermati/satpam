@@ -330,4 +330,28 @@ class SatpamValidatorTest {
     assertTrue(result.getMessages().containsKey("a"));
     assertEquals("custom message", ((Map<?, ?>) result.getMessages().get("b")).get("dateFormat:$1"));
   }
+
+  @Test
+  void fileRulesAcceptBytesPathsAndFiles() throws Exception {
+    java.nio.file.Path png = java.nio.file.Files.createTempFile("satpam", ".bin");
+    java.nio.file.Files.write(png, new byte[] {(byte) 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A, 0, 0, 0, 0x0D});
+    try {
+      Map<String, Object> rules = new LinkedHashMap<>();
+      rules.put("a", Arrays.asList("fileType:png", "image"));
+      rules.put("b", Arrays.asList("fileType:png", "image"));
+      rules.put("c", Arrays.asList("fileType:png", "image"));
+      rules.put("d", Arrays.asList("fileType:pdf", "image"));
+      Map<String, Object> input = new LinkedHashMap<>();
+      input.put("a", java.nio.file.Files.readAllBytes(png));
+      input.put("b", png);
+      input.put("c", png.toFile());
+      input.put("d", "%PDF-1.4".getBytes(java.nio.charset.StandardCharsets.US_ASCII));
+
+      ValidationResult result = Satpam.validate(rules, input);
+      assertEquals(Collections.singleton("d"), result.getMessages().keySet());
+      assertEquals(Collections.singleton("image"), ((Map<?, ?>) result.getMessages().get("d")).keySet());
+    } finally {
+      java.nio.file.Files.delete(png);
+    }
+  }
 }

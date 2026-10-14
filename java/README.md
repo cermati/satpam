@@ -4,7 +4,7 @@ Java port of [satpam](../README.md). It accepts the same rule JSON and gives the
 
 - Artifact: `com.cermati:satpam-java:<npm version>` on Nexus (`cermati-maven-releases` / `cermati-maven-snapshots`)
 - Java 11 bytecode, so it runs on both the Java 11 and Java 21 services. The only dependency is Jackson databind.
-- Status: **phase 3**, which covers the engine and 81 of the 83 rules. Only the file rules (`fileType`, `image`) are not ported yet; see [`pending-rules.txt`](satpam-core/src/test/resources/pending-rules.txt).
+- Status: **all 83 rules are ported** (phases 1-4). [`pending-rules.txt`](satpam-core/src/test/resources/pending-rules.txt) is where a new JS rule goes until it has a Java port.
 
 ## Usage
 
@@ -69,6 +69,8 @@ The Java port deliberately has no global setters. In JS, `satpam.addCustomValida
 
 Validators see values the way JS does. Numbers are `Double`, objects are `Map<String, Object>`, arrays are `List<Object>`, and a missing property is `Undefined.INSTANCE`, which is different from `null` (the `boolean` rule accepts a missing value but rejects `null`). POJOs and `BigDecimal`s are converted through Jackson. Coercion follows JS: `Number("0x1F")`, `String([1, 2])`, truthiness, `===`, ramda `equals`, lodash `get` paths such as `office.emails[0]`.
 
+The file rules `fileType:<ext>` and `image` take a `byte[]` (a JS `Buffer`), a path (`String`, `java.nio.file.Path` or `java.io.File`), or an object with a `path`. They look only at the first 12 bytes, using the same magic numbers as JS: file-type 3.8.0 for `fileType`, and image-type 4.1.0 (file-type 10.11.0) for `image`. As in JS, a **string value is read from disk as a path**, so apply these rules to uploaded bytes or to server-side paths, never to strings from a request.
+
 Where JS satpam throws (unknown rule, bad regex flags, `null` where JS reads a property), Java throws `SatpamException`. The message text is not guaranteed to match JS.
 
 ## JS/Java parity
@@ -83,6 +85,8 @@ Where JS satpam throws (unknown rule, bad regex flags, `null` where JS reads a p
 Fixture cases run with "now" fixed at `2024-03-15T03:30:45.123Z` in `Asia/Jakarta`. A group can override this with `"options": {"now": "...", "timeZone": "..."}`. The JS runner fakes `Date.now()` and sets `process.env.TZ`, and Java passes the same `Clock` to the builder.
 
 The date internals have their own recorded cases. `java/scripts/record-date-cases.js` writes `satpam-core/src/test/resources/date-cases.json`: about 67,000 results of `new Date(string)`, `moment(input[, format[, strict]])`, `add`, `startOf`/`endOf`, comparisons, `diff` and `format` in three time zones. `DateParityTest` replays them. Re-record it when you upgrade Node or moment.
+
+File-rule fixtures use the placeholders `{"$bytes": "<hex>"}`, `{"$file": "<name>"}` and `{"$fileObject": "<name>"}`, which refer to the samples in `test-fixtures/files/`.
 
 When you add or change a rule:
 
@@ -116,4 +120,5 @@ The version lives in `java/build.gradle`. Keep it the same as `package.json`.
 1. ✅ Engine, noes, `id` locale, and string, number, array, membership and conditional rules.
 2. ✅ Format and Indonesia rules: email, notDisposableEmail, not-equal-email-domain, url, urlProtocol, fqdn, hostname, ip, uuid, mongoId, creditCard, imei, phone numbers, taxId, indonesianName, indonesiaIdCardNumber{Province,ValidProvince,Gender}, ISO 8601 durations.
 3. ✅ Date and time rules (`internal/date`: moment 2.29 and the V8 `Date` parser), plus `indonesiaIdCardNumberBirthDate`.
-4. File rules: fileType and image (magic bytes).
+4. ✅ File rules: `fileType` and `image` (magic bytes, `internal/FileTypes`).
+5. Adoption in midas (a separate change): replace the hand-written `indodana-common` validator and its `collateral/` copy with this library.

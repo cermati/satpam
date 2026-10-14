@@ -50,6 +50,13 @@ public final class Normalizer {
       || value instanceof byte[]) {
       return value;
     }
+    // File paths for the file rules, which JS takes as path strings
+    if (value instanceof java.nio.file.Path) {
+      return value.toString();
+    }
+    if (value instanceof java.io.File) {
+      return ((java.io.File) value).getPath();
+    }
     if (value instanceof Optional) {
       Optional<?> optional = (Optional<?>) value;
       return optional.isPresent() ? normalize(optional.get()) : null;

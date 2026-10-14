@@ -17,6 +17,11 @@
  * A case whose validation throws has `"expectedError": "<JS error message>"` instead of `expected`.
  * A case without an `input` key validates `undefined`.
  *
+ * Inputs can use placeholders for values JSON cannot hold (file rules):
+ *   {"$bytes": "89504e47"}       a Buffer (byte[] in Java)
+ *   {"$file": "png.bin"}         the absolute path of test-fixtures/files/png.bin
+ *   {"$fileObject": "png.bin"}   {path: <that absolute path>}
+ *
  * Every case runs with Date.now() fixed to `now` and process.env.TZ set to `timeZone` (defaults
  * below), which the Java side mirrors with SatpamValidator.Builder#clock.
  */
@@ -25,6 +30,7 @@ const path = require('path');
 const satpam = require('../../lib');
 
 const FIXTURES_DIR = path.resolve(__dirname, '../../test-fixtures');
+const FILES_DIR = path.join(FIXTURES_DIR, 'files');
 const DEFAULT_NOW = '2024-03-15T03:30:45.123Z';
 const DEFAULT_TIME_ZONE = 'Asia/Jakarta';
 
@@ -70,11 +76,31 @@ const withClock = (options = {}, fn) => {
   }
 };
 
+const resolveInput = value => {
+  if (Array.isArray(value)) {
+    return value.map(resolveInput);
+  }
+  if (value === null || typeof value !== 'object') {
+    return value;
+  }
+  const keys = Object.keys(value);
+  if (keys.length === 1 && keys[0] === '$bytes') {
+    return Buffer.from(value.$bytes, 'hex');
+  }
+  if (keys.length === 1 && keys[0] === '$file') {
+    return path.join(FILES_DIR, value.$file);
+  }
+  if (keys.length === 1 && keys[0] === '$fileObject') {
+    return { path: path.join(FILES_DIR, value.$fileObject) };
+  }
+  return keys.reduce((acc, key) => Object.assign(acc, { [key]: resolveInput(value[key]) }), {});
+};
+
 const runCase = (group, testCase) => withClock(group.options, () => {
   const validator = createValidator(group.options);
 
   try {
-    const result = validator.validate(group.rules, testCase.input);
+    const result = validator.validate(group.rules, resolveInput(testCase.input));
 
     // Drop the ValidationMessage prototype so results compare as plain JSON
     return { expected: JSON.parse(JSON.stringify(result)) };

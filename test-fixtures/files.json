@@ -1,0 +1,6140 @@
+{
+  "description": "File rules: fileType (file-type 3.8.0) and image (image-type 4.1.0 / file-type 10.11.0) on the first 12 bytes of a Buffer or file. Inputs use the $file/$fileObject/$bytes placeholders of fixture-runner.js.",
+  "groups": [
+    {
+      "name": "fileType:png",
+      "rules": {
+        "x": [
+          "fileType:png"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": {
+              "$file": "image.png"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.jpg"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.gif"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.webp"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.bmp"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.tif"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.cr2"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.psd"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.ico"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.cur"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.flif"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.bpg"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.heic"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.jxr"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "doc.pdf"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "archive.zip"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "archive.gz"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "video.mp4"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "video.mpg"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "mpg-0b.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "asf.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "riff-qcp.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "ogg.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "jp2-head.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "text.txt"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "xml.xml"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "empty.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "one-byte.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "two-bytes.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "three-bytes-000001.bin"
+            }
+          },
+          "expectedError": "Cannot read properties of undefined (reading 'toString')"
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "short-png.bin"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "image.png"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "doc.pdf"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "text.txt"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "89504e470d0a1a0a0000000d494844520000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "ffd8ffe000104a4649460001010000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "255044462d312e340a0000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "000001ba440004000000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "68656c6c6f20776f726c642c206e6f742061206b6e6f776e20747970650a"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "89504e47"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "424d"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": ""
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "ff"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) png."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "000001"
+            }
+          },
+          "expectedError": "Cannot read properties of undefined (reading 'toString')"
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "missing.bin"
+            }
+          },
+          "expectedError": "ENOENT: no such file or directory, open '/home/febrianyuwono/repository/cermati/satpam/test-fixtures/files/missing.bin'"
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "dir"
+            }
+          },
+          "expectedError": "EISDIR: illegal operation on a directory, read"
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "missing.bin"
+            }
+          },
+          "expectedError": "ENOENT: no such file or directory, open '/home/febrianyuwono/repository/cermati/satpam/test-fixtures/files/missing.bin'"
+        },
+        {
+          "input": {
+            "x": {
+              "path": 5
+            }
+          },
+          "expectedError": "The \"path\" argument must be of type string or an instance of Buffer or URL. Received type number (5)"
+        },
+        {
+          "input": {
+            "x": {
+              "path": null
+            }
+          },
+          "expectedError": "The \"path\" argument must be of type string or an instance of Buffer or URL. Received null"
+        },
+        {
+          "input": {
+            "x": {
+              "nopath": 1
+            }
+          },
+          "expectedError": "The \"path\" argument must be of type string or an instance of Buffer or URL. Received undefined"
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expectedError": "The \"path\" argument must be of type string or an instance of Buffer or URL. Received undefined"
+        },
+        {
+          "input": {
+            "x": 123
+          },
+          "expectedError": "The \"path\" argument must be of type string or an instance of Buffer or URL. Received type number (123)"
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expectedError": "The \"path\" argument must be of type string or an instance of Buffer or URL. Received type boolean (true)"
+        },
+        {
+          "input": {
+            "x": "relative/missing/path.png"
+          },
+          "expectedError": "ENOENT: no such file or directory, open 'relative/missing/path.png'"
+        }
+      ]
+    },
+    {
+      "name": "fileType:jpg",
+      "rules": {
+        "x": [
+          "fileType:jpg"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": {
+              "$file": "image.png"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.jpg"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.gif"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.webp"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.bmp"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.tif"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.cr2"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.psd"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.ico"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.cur"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.flif"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.bpg"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.heic"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.jxr"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "doc.pdf"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "archive.zip"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "archive.gz"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "video.mp4"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "video.mpg"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "mpg-0b.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "asf.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "riff-qcp.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "ogg.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "jp2-head.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "text.txt"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "xml.xml"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "empty.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "one-byte.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "two-bytes.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "three-bytes-000001.bin"
+            }
+          },
+          "expectedError": "Cannot read properties of undefined (reading 'toString')"
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "short-png.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "image.png"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "doc.pdf"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "text.txt"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "89504e470d0a1a0a0000000d494844520000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "ffd8ffe000104a4649460001010000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "255044462d312e340a0000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "000001ba440004000000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "68656c6c6f20776f726c642c206e6f742061206b6e6f776e20747970650a"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "89504e47"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "424d"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": ""
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "ff"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) jpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "000001"
+            }
+          },
+          "expectedError": "Cannot read properties of undefined (reading 'toString')"
+        }
+      ]
+    },
+    {
+      "name": "fileType:pdf",
+      "rules": {
+        "x": [
+          "fileType:pdf"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": {
+              "$file": "image.png"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.jpg"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.gif"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.webp"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.bmp"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.tif"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.cr2"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.psd"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.ico"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.cur"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.flif"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.bpg"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.heic"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.jxr"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "doc.pdf"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "archive.zip"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "archive.gz"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "video.mp4"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "video.mpg"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "mpg-0b.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "asf.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "riff-qcp.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "ogg.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "jp2-head.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "text.txt"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "xml.xml"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "empty.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "one-byte.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "two-bytes.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "three-bytes-000001.bin"
+            }
+          },
+          "expectedError": "Cannot read properties of undefined (reading 'toString')"
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "short-png.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "image.png"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "doc.pdf"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "text.txt"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "89504e470d0a1a0a0000000d494844520000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "ffd8ffe000104a4649460001010000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "255044462d312e340a0000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "000001ba440004000000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "68656c6c6f20776f726c642c206e6f742061206b6e6f776e20747970650a"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "89504e47"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "424d"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": ""
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "ff"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) pdf."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "000001"
+            }
+          },
+          "expectedError": "Cannot read properties of undefined (reading 'toString')"
+        }
+      ]
+    },
+    {
+      "name": "fileType:gif",
+      "rules": {
+        "x": [
+          "fileType:gif"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": {
+              "$file": "image.png"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.jpg"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.gif"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.webp"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.bmp"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.tif"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.cr2"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.psd"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.ico"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.cur"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.flif"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.bpg"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.heic"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.jxr"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "doc.pdf"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "archive.zip"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "archive.gz"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "video.mp4"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "video.mpg"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "mpg-0b.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "asf.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "riff-qcp.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "ogg.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "jp2-head.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "text.txt"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "xml.xml"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "empty.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "one-byte.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "two-bytes.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "three-bytes-000001.bin"
+            }
+          },
+          "expectedError": "Cannot read properties of undefined (reading 'toString')"
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "short-png.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "image.png"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "doc.pdf"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "text.txt"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "89504e470d0a1a0a0000000d494844520000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "ffd8ffe000104a4649460001010000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "255044462d312e340a0000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "000001ba440004000000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "68656c6c6f20776f726c642c206e6f742061206b6e6f776e20747970650a"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "89504e47"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "424d"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": ""
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "ff"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) gif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "000001"
+            }
+          },
+          "expectedError": "Cannot read properties of undefined (reading 'toString')"
+        }
+      ]
+    },
+    {
+      "name": "fileType:zip",
+      "rules": {
+        "x": [
+          "fileType:zip"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": {
+              "$file": "image.png"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.jpg"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.gif"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.webp"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.bmp"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.tif"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.cr2"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.psd"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.ico"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.cur"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.flif"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.bpg"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.heic"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.jxr"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "doc.pdf"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "archive.zip"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "archive.gz"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "video.mp4"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "video.mpg"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "mpg-0b.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "asf.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "riff-qcp.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "ogg.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "jp2-head.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "text.txt"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "xml.xml"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "empty.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "one-byte.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "two-bytes.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "three-bytes-000001.bin"
+            }
+          },
+          "expectedError": "Cannot read properties of undefined (reading 'toString')"
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "short-png.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "image.png"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "doc.pdf"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "text.txt"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "89504e470d0a1a0a0000000d494844520000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "ffd8ffe000104a4649460001010000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "255044462d312e340a0000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "000001ba440004000000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "68656c6c6f20776f726c642c206e6f742061206b6e6f776e20747970650a"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "89504e47"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "424d"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": ""
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "ff"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) zip."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "000001"
+            }
+          },
+          "expectedError": "Cannot read properties of undefined (reading 'toString')"
+        }
+      ]
+    },
+    {
+      "name": "fileType:mpg",
+      "rules": {
+        "x": [
+          "fileType:mpg"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": {
+              "$file": "image.png"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.jpg"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.gif"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.webp"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.bmp"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.tif"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.cr2"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.psd"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.ico"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.cur"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.flif"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.bpg"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.heic"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.jxr"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "doc.pdf"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "archive.zip"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "archive.gz"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "video.mp4"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "video.mpg"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "mpg-0b.bin"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "asf.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "riff-qcp.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "ogg.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "jp2-head.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "text.txt"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "xml.xml"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "empty.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "one-byte.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "two-bytes.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "three-bytes-000001.bin"
+            }
+          },
+          "expectedError": "Cannot read properties of undefined (reading 'toString')"
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "short-png.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "image.png"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "doc.pdf"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "text.txt"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "89504e470d0a1a0a0000000d494844520000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "ffd8ffe000104a4649460001010000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "255044462d312e340a0000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "000001ba440004000000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "68656c6c6f20776f726c642c206e6f742061206b6e6f776e20747970650a"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "89504e47"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "424d"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": ""
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "ff"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) mpg."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "000001"
+            }
+          },
+          "expectedError": "Cannot read properties of undefined (reading 'toString')"
+        }
+      ]
+    },
+    {
+      "name": "fileType:tif",
+      "rules": {
+        "x": [
+          "fileType:tif"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": {
+              "$file": "image.png"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.jpg"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.gif"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.webp"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.bmp"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.tif"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.cr2"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.psd"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.ico"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.cur"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.flif"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.bpg"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.heic"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.jxr"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "doc.pdf"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "archive.zip"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "archive.gz"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "video.mp4"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "video.mpg"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "mpg-0b.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "asf.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "riff-qcp.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "ogg.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "jp2-head.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "text.txt"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "xml.xml"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "empty.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "one-byte.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "two-bytes.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "three-bytes-000001.bin"
+            }
+          },
+          "expectedError": "Cannot read properties of undefined (reading 'toString')"
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "short-png.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "image.png"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "doc.pdf"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "text.txt"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "89504e470d0a1a0a0000000d494844520000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "ffd8ffe000104a4649460001010000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "255044462d312e340a0000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "000001ba440004000000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "68656c6c6f20776f726c642c206e6f742061206b6e6f776e20747970650a"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "89504e47"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "424d"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": ""
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "ff"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) tif."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "000001"
+            }
+          },
+          "expectedError": "Cannot read properties of undefined (reading 'toString')"
+        }
+      ]
+    },
+    {
+      "name": "fileType:cr2",
+      "rules": {
+        "x": [
+          "fileType:cr2"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": {
+              "$file": "image.png"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.jpg"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.gif"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.webp"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.bmp"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.tif"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.cr2"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.psd"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.ico"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.cur"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.flif"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.bpg"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.heic"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.jxr"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "doc.pdf"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "archive.zip"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "archive.gz"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "video.mp4"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "video.mpg"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "mpg-0b.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "asf.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "riff-qcp.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "ogg.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "jp2-head.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "text.txt"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "xml.xml"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "empty.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "one-byte.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "two-bytes.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "three-bytes-000001.bin"
+            }
+          },
+          "expectedError": "Cannot read properties of undefined (reading 'toString')"
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "short-png.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "image.png"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "doc.pdf"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "text.txt"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "89504e470d0a1a0a0000000d494844520000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "ffd8ffe000104a4649460001010000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "255044462d312e340a0000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "000001ba440004000000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "68656c6c6f20776f726c642c206e6f742061206b6e6f776e20747970650a"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "89504e47"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "424d"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": ""
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "ff"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) cr2."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "000001"
+            }
+          },
+          "expectedError": "Cannot read properties of undefined (reading 'toString')"
+        }
+      ]
+    },
+    {
+      "name": "fileType falsy values",
+      "rules": {
+        "x": [
+          "fileType:png"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "fileType no param",
+      "rules": {
+        "x": [
+          {
+            "name": "fileType",
+            "fullName": "fileType:$1",
+            "params": []
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": {
+              "$file": "text.txt"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.png"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "fileType:$1": "X must be a(n) ."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "image",
+      "rules": {
+        "x": [
+          "image"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": {
+              "$file": "image.png"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.jpg"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.gif"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.webp"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.bmp"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.tif"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.cr2"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.psd"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.ico"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.cur"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.flif"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.bpg"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.heic"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "image.jxr"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "doc.pdf"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "image": "X must be an image."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "archive.zip"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "image": "X must be an image."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "archive.gz"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "image": "X must be an image."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "video.mp4"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "image": "X must be an image."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "video.mpg"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "image": "X must be an image."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "mpg-0b.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "image": "X must be an image."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "asf.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "image": "X must be an image."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "riff-qcp.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "image": "X must be an image."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "ogg.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "image": "X must be an image."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "jp2-head.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "image": "X must be an image."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "text.txt"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "image": "X must be an image."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "xml.xml"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "image": "X must be an image."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "empty.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "image": "X must be an image."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "one-byte.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "image": "X must be an image."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "two-bytes.bin"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "three-bytes-000001.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "image": "X must be an image."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "short-png.bin"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "image": "X must be an image."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "image.png"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "doc.pdf"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "image": "X must be an image."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "text.txt"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "image": "X must be an image."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "89504e470d0a1a0a0000000d494844520000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "ffd8ffe000104a4649460001010000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "255044462d312e340a0000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "image": "X must be an image."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "000001ba440004000000000000000000000000000000000000000000"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "image": "X must be an image."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "68656c6c6f20776f726c642c206e6f742061206b6e6f776e20747970650a"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "image": "X must be an image."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "89504e47"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "image": "X must be an image."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "424d"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": ""
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "image": "X must be an image."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "ff"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "image": "X must be an image."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$bytes": "000001"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "image": "X must be an image."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "missing.bin"
+            }
+          },
+          "expectedError": "ENOENT: no such file or directory, open '/home/febrianyuwono/repository/cermati/satpam/test-fixtures/files/missing.bin'"
+        },
+        {
+          "input": {
+            "x": {
+              "$file": "dir"
+            }
+          },
+          "expectedError": "EISDIR: illegal operation on a directory, read"
+        },
+        {
+          "input": {
+            "x": {
+              "$fileObject": "missing.bin"
+            }
+          },
+          "expectedError": "ENOENT: no such file or directory, open '/home/febrianyuwono/repository/cermati/satpam/test-fixtures/files/missing.bin'"
+        },
+        {
+          "input": {
+            "x": {
+              "path": 5
+            }
+          },
+          "expectedError": "The \"path\" argument must be of type string or an instance of Buffer or URL. Received type number (5)"
+        },
+        {
+          "input": {
+            "x": {
+              "path": null
+            }
+          },
+          "expectedError": "The \"path\" argument must be of type string or an instance of Buffer or URL. Received null"
+        },
+        {
+          "input": {
+            "x": {
+              "nopath": 1
+            }
+          },
+          "expectedError": "The \"path\" argument must be of type string or an instance of Buffer or URL. Received undefined"
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expectedError": "The \"path\" argument must be of type string or an instance of Buffer or URL. Received undefined"
+        },
+        {
+          "input": {
+            "x": 123
+          },
+          "expectedError": "The \"path\" argument must be of type string or an instance of Buffer or URL. Received type number (123)"
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expectedError": "The \"path\" argument must be of type string or an instance of Buffer or URL. Received type boolean (true)"
+        },
+        {
+          "input": {
+            "x": "relative/missing/path.png"
+          },
+          "expectedError": "ENOENT: no such file or directory, open 'relative/missing/path.png'"
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "pdf or image",
+      "rules": {
+        "document": [
+          "required",
+          [
+            "fileType:pdf",
+            "image"
+          ]
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "document": {
+              "$file": "doc.pdf"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "document": {
+              "$file": "image.jpg"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "document": {
+              "$file": "text.txt"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "document": {
+                "fileType:$1": "Document must be a(n) pdf.",
+                "image": "Document must be an image."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "id locale",
+      "rules": {
+        "a": [
+          "fileType:pdf"
+        ],
+        "b": [
+          "image"
+        ]
+      },
+      "options": {
+        "locale": "id"
+      },
+      "cases": [
+        {
+          "input": {
+            "a": {
+              "$file": "text.txt"
+            },
+            "b": {
+              "$file": "text.txt"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "a": {
+                "fileType:$1": "A must be a(n) pdf."
+              },
+              "b": {
+                "image": "File harus berupa gambar."
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

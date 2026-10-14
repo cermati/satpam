@@ -173,6 +173,10 @@ public final class JsValues {
     if (value instanceof Map) {
       return "[object Object]";
     }
+    if (value instanceof byte[]) {
+      // Buffer.prototype.toString(): UTF-8
+      return new String((byte[]) value, java.nio.charset.StandardCharsets.UTF_8);
+    }
     return value.toString();
   }
 

@@ -15,6 +15,8 @@ import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -83,8 +85,38 @@ class FixtureParityTest {
     return builder.build();
   }
 
+  /** Resolves the {@code $bytes}, {@code $file} and {@code $fileObject} placeholders of fixture-runner.js. */
+  static Object resolveInput(JsonNode node) {
+    if (node.isArray()) {
+      List<Object> list = new ArrayList<>();
+      node.forEach(item -> list.add(resolveInput(item)));
+      return list;
+    }
+    if (!node.isObject()) {
+      return node;
+    }
+    if (node.size() == 1 && node.has("$bytes")) {
+      String hex = node.get("$bytes").asText();
+      byte[] bytes = new byte[hex.length() / 2];
+      for (int i = 0; i < bytes.length; i++) {
+        bytes[i] = (byte) Integer.parseInt(hex.substring(2 * i, 2 * i + 2), 16);
+      }
+      return bytes;
+    }
+    Path files = fixturesDir().resolve("files");
+    if (node.size() == 1 && node.has("$file")) {
+      return files.resolve(node.get("$file").asText()).toAbsolutePath().toString();
+    }
+    if (node.size() == 1 && node.has("$fileObject")) {
+      return Collections.singletonMap("path", files.resolve(node.get("$fileObject").asText()).toAbsolutePath().toString());
+    }
+    Map<String, Object> map = new LinkedHashMap<>();
+    node.fields().forEachRemaining(field -> map.put(field.getKey(), resolveInput(field.getValue())));
+    return map;
+  }
+
   private static void runCase(SatpamValidator validator, JsonNode rules, JsonNode testCase) {
-    JsonNode input = testCase.has("input") ? testCase.get("input") : MissingNode.getInstance();
+    Object input = testCase.has("input") ? resolveInput(testCase.get("input")) : MissingNode.getInstance();
     if (testCase.has("expectedError")) {
       assertThrows(SatpamException.class, () -> validator.validate(rules, input),
         "JS throws: " + testCase.get("expectedError").asText());
