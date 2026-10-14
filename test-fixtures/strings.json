@@ -1,0 +1,7509 @@
+{
+  "description": "Presence and string rules",
+  "groups": [
+    {
+      "name": "required",
+      "rules": {
+        "x": [
+          "required"
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "required": "X field is required."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "required": "X field is required."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "required": "X field is required."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "string",
+      "rules": {
+        "x": [
+          "string"
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "string": "X is not a string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "string": "X is not a string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "string": "X is not a string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "string": "X is not a string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "string": "X is not a string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "string": "X is not a string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "string": "X is not a string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "string": "X is not a string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "string": "X is not a string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "string": "X is not a string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "string": "X is not a string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "string": "X is not a string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "string": "X is not a string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "string": "X is not a string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "string": "X is not a string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "string": "X is not a string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "string": "X is not a string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "string": "X is not a string."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "length",
+      "rules": {
+        "x": [
+          "length:3"
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of 3 character(s)."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "length non-numeric param",
+      "rules": {
+        "x": [
+          "length:abc"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of abc character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "length:$1": "X must have length of abc character(s)."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "minLength",
+      "rules": {
+        "x": [
+          "minLength:3"
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "minLength:$1": "X must contain at least 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "minLength:$1": "X must contain at least 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "minLength:$1": "X must contain at least 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "minLength:$1": "X must contain at least 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "minLength:$1": "X must contain at least 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "minLength:$1": "X must contain at least 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "minLength:$1": "X must contain at least 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "minLength:$1": "X must contain at least 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "minLength:$1": "X must contain at least 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "minLength:$1": "X must contain at least 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "minLength:$1": "X must contain at least 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "minLength:$1": "X must contain at least 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "minLength:$1": "X must contain at least 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "minLength:$1": "X must contain at least 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "minLength:$1": "X must contain at least 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "maxLength",
+      "rules": {
+        "x": [
+          "maxLength:3"
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "maxLength:$1": "X must contain at most 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "maxLength:$1": "X must contain at most 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "maxLength:$1": "X must contain at most 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "maxLength:$1": "X must contain at most 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "maxLength:$1": "X must contain at most 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "maxLength:$1": "X must contain at most 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "maxLength:$1": "X must contain at most 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "maxLength:$1": "X must contain at most 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "maxLength:$1": "X must contain at most 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "maxLength:$1": "X must contain at most 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "maxLength:$1": "X must contain at most 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "maxLength:$1": "X must contain at most 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "maxLength:$1": "X must contain at most 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "maxLength:$1": "X must contain at most 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "maxLength:$1": "X must contain at most 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "maxLength:$1": "X must contain at most 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "maxLength:$1": "X must contain at most 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "maxLength:$1": "X must contain at most 3 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "maxLength:$1": "X must contain at most 3 character(s)."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "nonBlank",
+      "rules": {
+        "x": [
+          "nonBlank"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": " 　﻿"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "nonBlank": "X field must not be completely consists of white spaces."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "  a"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {},
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "nonBlank": "X field must not be completely consists of white spaces."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "nonBlank": "X field must not be completely consists of white spaces."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "nonBlank": "X field must not be completely consists of white spaces."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "nonBlank": "X field must not be completely consists of white spaces."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "nonBlank": "X field must not be completely consists of white spaces."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "emptyString",
+      "rules": {
+        "x": [
+          "emptyString"
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "emptyString": "X field must be an empty string."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "alpha",
+      "rules": {
+        "x": [
+          "alpha"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "Hello World"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "abc\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alpha": "X may only contain letters."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "alphanumeric",
+      "rules": {
+        "x": [
+          "alphanumeric"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "abc123\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alphanumeric": "X may only contain letters and numbers."
+              }
+            }
+          }
+        },
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alphanumeric": "X may only contain letters and numbers."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alphanumeric": "X may only contain letters and numbers."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alphanumeric": "X may only contain letters and numbers."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alphanumeric": "X may only contain letters and numbers."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alphanumeric": "X may only contain letters and numbers."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alphanumeric": "X may only contain letters and numbers."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alphanumeric": "X may only contain letters and numbers."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alphanumeric": "X may only contain letters and numbers."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alphanumeric": "X may only contain letters and numbers."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alphanumeric": "X may only contain letters and numbers."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alphanumeric": "X may only contain letters and numbers."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alphanumeric": "X may only contain letters and numbers."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alphanumeric": "X may only contain letters and numbers."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alphanumeric": "X may only contain letters and numbers."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alphanumeric": "X may only contain letters and numbers."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alphanumeric": "X may only contain letters and numbers."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alphanumeric": "X may only contain letters and numbers."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alphanumeric": "X may only contain letters and numbers."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alphanumeric": "X may only contain letters and numbers."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alphanumeric": "X may only contain letters and numbers."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alphanumeric": "X may only contain letters and numbers."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alphanumeric": "X may only contain letters and numbers."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "alphanumeric": "X may only contain letters and numbers."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "containsAlphabet",
+      "rules": {
+        "x": [
+          "containsAlphabet"
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsAlphabet": "X must contain at least 1 alphabet."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "containsDigit",
+      "rules": {
+        "x": [
+          "containsDigit"
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsDigit": "X must contain at least 1 digit."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "containsLowerCase",
+      "rules": {
+        "x": [
+          "containsLowerCase"
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsLowerCase": "X must contain at least 1 lower case character."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "containsUpperCase",
+      "rules": {
+        "x": [
+          "containsUpperCase"
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsUpperCase": "X must contain at least 1 upper case character."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "containsSymbol",
+      "rules": {
+        "x": [
+          "containsSymbol"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "a[b"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a]b"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a\\b"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a&b"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a{b"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a}b"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a/b"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a'b"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a\"b"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a~b"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a`b"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a|b"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "ab"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "containsSymbol": "X must contain at least 1 symbol."
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

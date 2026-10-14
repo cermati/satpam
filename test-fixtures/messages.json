@@ -1,0 +1,599 @@
+{
+  "description": "Message rendering: startCase property names, template forms, overrides and locale",
+  "groups": [
+    {
+      "name": "startCase property names",
+      "rules": {
+        "123": [
+          "required"
+        ],
+        "fullName": [
+          "required"
+        ],
+        "full_name": [
+          "required"
+        ],
+        "full-name": [
+          "required"
+        ],
+        "FULL_NAME": [
+          "required"
+        ],
+        "ktpNumber2": [
+          "required"
+        ],
+        "HTMLParser": [
+          "required"
+        ],
+        "x": [
+          "required"
+        ],
+        "a1b2": [
+          "required"
+        ],
+        "__private": [
+          "required"
+        ],
+        "already Spaced  words": [
+          "required"
+        ],
+        "ID": [
+          "required"
+        ],
+        "userID": [
+          "required"
+        ],
+        "1stPlace": [
+          "required"
+        ],
+        "café": [
+          "required"
+        ],
+        "Straße": [
+          "required"
+        ],
+        "ÉcoleNormale": [
+          "required"
+        ],
+        "don't": [
+          "required"
+        ],
+        "email2FA": [
+          "required"
+        ],
+        "mixedCASEWord": [
+          "required"
+        ],
+        "x.y": [
+          "required"
+        ],
+        "camelCaseXMLHttp": [
+          "required"
+        ],
+        "über": [
+          "required"
+        ],
+        "naïve_user": [
+          "required"
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": false,
+            "messages": {
+              "123": {
+                "required": "123 field is required."
+              },
+              "fullName": {
+                "required": "Full Name field is required."
+              },
+              "full_name": {
+                "required": "Full Name field is required."
+              },
+              "full-name": {
+                "required": "Full Name field is required."
+              },
+              "FULL_NAME": {
+                "required": "FULL NAME field is required."
+              },
+              "ktpNumber2": {
+                "required": "Ktp Number 2 field is required."
+              },
+              "HTMLParser": {
+                "required": "HTML Parser field is required."
+              },
+              "x": {
+                "required": "X field is required."
+              },
+              "a1b2": {
+                "required": "A 1 B 2 field is required."
+              },
+              "__private": {
+                "required": "Private field is required."
+              },
+              "already Spaced  words": {
+                "required": "Already Spaced Words field is required."
+              },
+              "ID": {
+                "required": "ID field is required."
+              },
+              "userID": {
+                "required": "User ID field is required."
+              },
+              "1stPlace": {
+                "required": "1st Place field is required."
+              },
+              "café": {
+                "required": "Cafe field is required."
+              },
+              "Straße": {
+                "required": "Strasse field is required."
+              },
+              "ÉcoleNormale": {
+                "required": "Ecole Normale field is required."
+              },
+              "don't": {
+                "required": "Dont field is required."
+              },
+              "email2FA": {
+                "required": "Email 2 FA field is required."
+              },
+              "mixedCASEWord": {
+                "required": "Mixed CASE Word field is required."
+              },
+              "x.y": {
+                "required": "X Y field is required."
+              },
+              "camelCaseXMLHttp": {
+                "required": "Camel Case XML Http field is required."
+              },
+              "über": {
+                "required": "Uber field is required."
+              },
+              "naïve_user": {
+                "required": "Naive User field is required."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "array params rendered with commas",
+      "rules": {
+        "x": [
+          {
+            "name": "memberOf",
+            "params": [
+              [
+                "a",
+                "b",
+                null,
+                1.5
+              ]
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "z"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,b,,1.5."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "number params rendered like JS",
+      "rules": {
+        "a": [
+          {
+            "name": "minValue",
+            "params": [
+              10
+            ]
+          }
+        ],
+        "b": [
+          {
+            "name": "minValue",
+            "params": [
+              0.1
+            ]
+          }
+        ],
+        "c": [
+          {
+            "name": "minValue",
+            "params": [
+              1e+21
+            ]
+          }
+        ],
+        "d": [
+          {
+            "name": "minValue",
+            "params": [
+              1.5e-7
+            ]
+          }
+        ],
+        "e": [
+          {
+            "name": "minValue",
+            "params": [
+              123456789012
+            ]
+          }
+        ],
+        "f": [
+          {
+            "name": "minValue",
+            "params": [
+              -0.000001
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "a": -1e+300,
+            "b": -1e+300,
+            "c": -1e+300,
+            "d": -1e+300,
+            "e": -1e+300,
+            "f": -1e+300
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "a": {
+                "minValue:$1": "A must be greater than or equal to 10."
+              },
+              "b": {
+                "minValue:$1": "B must be greater than or equal to 0.1."
+              },
+              "c": {
+                "minValue:$1": "C must be greater than or equal to 1e+21."
+              },
+              "d": {
+                "minValue:$1": "D must be greater than or equal to 1.5e-7."
+              },
+              "e": {
+                "minValue:$1": "E must be greater than or equal to 123456789012."
+              },
+              "f": {
+                "minValue:$1": "F must be greater than or equal to -0.000001."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "inputObj in template",
+      "rules": {
+        "x": [
+          "equal-to-field:y"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "a",
+            "y": "b"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal-to-field:$1": "X must equal to b."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal-to-field:$1": "X must equal to ."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a",
+            "y": null
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal-to-field:$1": "X must equal to ."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a",
+            "y": [
+              "p",
+              "q"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal-to-field:$1": "X must equal to p,q."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "custom template forms",
+      "options": {
+        "messages": {
+          "minLength:$1": "${propertyName} needs ${ruleParams[0]} (rule ${ruleName}, value '<%= value %>')",
+          "maxLength:$1": "<%- value %> is too long for <%= propertyName %>",
+          "minValue:$1": "abs <%= Math.abs(ruleParams[0]) %> floor <%= Math.floor(ruleParams[0]) %> join <%= ruleParams.join(' | ') %> len <%= ruleParams.length %>",
+          "maxValue:$1": "<% ruleParams[0] %>evaluate blocks render nothing",
+          "length:$1": "<%= inputObj.other %> and <%= inputObj['other'] %> and <%= value.length %>"
+        }
+      },
+      "rules": {
+        "a": [
+          "minLength:5"
+        ],
+        "b": [
+          "maxLength:2"
+        ],
+        "c": [
+          {
+            "name": "minValue",
+            "params": [
+              -3.7
+            ]
+          }
+        ],
+        "d": [
+          "maxValue:1"
+        ],
+        "e": [
+          "length:9"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "a": "ab",
+            "b": "<a href='x'>&\"",
+            "c": -10,
+            "d": 5,
+            "e": "abc",
+            "other": "OTHER"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "a": {
+                "minLength:$1": "A needs 5 (rule minLength:$1, value 'ab')"
+              },
+              "b": {
+                "maxLength:$1": "&lt;a href=&#39;x&#39;&gt;&amp;&quot; is too long for B"
+              },
+              "c": {
+                "minValue:$1": "abs 3.7 floor -4 join -3.7 len 1"
+              },
+              "d": {
+                "maxValue:$1": "evaluate blocks render nothing"
+              },
+              "e": {
+                "length:$1": "OTHER and OTHER and 3"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "empty custom message falls back to the default",
+      "options": {
+        "messages": {
+          "required": ""
+        }
+      },
+      "rules": {
+        "x": [
+          "required"
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "required": ""
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "custom message for a rule",
+      "options": {
+        "messages": {
+          "required": "bulbazaurz"
+        }
+      },
+      "rules": {
+        "fullName": [
+          "required"
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": false,
+            "messages": {
+              "fullName": {
+                "required": "bulbazaurz"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "id locale",
+      "options": {
+        "locale": "id"
+      },
+      "rules": {
+        "a": [
+          "required"
+        ],
+        "b": [
+          "minLength:3"
+        ],
+        "c": [
+          "equal-to-field:z"
+        ],
+        "d": [
+          "between:1:2"
+        ],
+        "e": [
+          "multipleOf:5"
+        ],
+        "f": [
+          "containsUpperCase"
+        ],
+        "g": [
+          "string"
+        ],
+        "h": [
+          "nonBlankItems"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "b": "x",
+            "c": "p",
+            "z": "q",
+            "d": 5,
+            "e": 3,
+            "f": "abc",
+            "g": 1,
+            "h": [
+              " "
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "a": {
+                "required": "Input ini wajib diisi."
+              },
+              "b": {
+                "minLength:$1": "Jumlah karakter tidak boleh kurang dari 3."
+              },
+              "c": {
+                "equal-to-field:$1": "Input harus sama dengan q."
+              },
+              "d": {
+                "between:$1:$2": "D must be greater than 1 and less than 2."
+              },
+              "e": {
+                "multipleOf:$1": "E harus merupakan kelipatan 5."
+              },
+              "f": {
+                "containsUpperCase": "Input harus mengandung setidaknya 1 huruf besar."
+              },
+              "g": {
+                "string": "Input harus berupa string."
+              },
+              "h": {
+                "nonBlankItems": "H must not contain blank item(s)."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "locale is case-insensitive",
+      "options": {
+        "locale": "ID"
+      },
+      "rules": {
+        "a": [
+          "required"
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": false,
+            "messages": {
+              "a": {
+                "required": "Input ini wajib diisi."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "message override after locale",
+      "options": {
+        "locale": "id",
+        "messages": {
+          "required": "<%= propertyName %> wajib"
+        }
+      },
+      "rules": {
+        "a": [
+          "required"
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": false,
+            "messages": {
+              "a": {
+                "required": "A wajib"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

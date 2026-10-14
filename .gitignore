@@ -6,3 +6,7 @@ lib/
 # Ignored files
 npm-debug.log
 .DS_Store
+
+# Java port build output
+java/.gradle/
+java/**/build/

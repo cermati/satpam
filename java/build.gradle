@@ -1,0 +1,9 @@
+allprojects {
+  group = 'com.cermati'
+  // Keep in step with the npm package version in ../package.json
+  version = '4.23.0'
+
+  repositories {
+    mavenCentral()
+  }
+}

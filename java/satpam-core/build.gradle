@@ -1,0 +1,66 @@
+plugins {
+  id 'java-library'
+  id 'maven-publish'
+}
+
+java {
+  withSourcesJar()
+  withJavadocJar()
+}
+
+tasks.withType(JavaCompile).configureEach {
+  options.release = 11
+  options.encoding = 'UTF-8'
+}
+
+tasks.withType(Javadoc).configureEach {
+  options.addStringOption('Xdoclint:none', '-quiet')
+}
+
+dependencies {
+  // Compiled against an old-ish Jackson so legacy services are not forced to upgrade;
+  // consumers' newer Jackson wins during dependency resolution.
+  api 'com.fasterxml.jackson.core:jackson-databind:2.12.7.1'
+
+  testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+  testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.10.2'
+}
+
+test {
+  useJUnitPlatform()
+  // Shared JS/Java parity fixtures live at the satpam repo root
+  systemProperty 'satpam.fixturesDir', file("${rootDir}/../test-fixtures").absolutePath
+  testLogging {
+    events 'failed'
+    exceptionFormat 'full'
+  }
+}
+
+publishing {
+  repositories {
+    maven {
+      name 'nexusRelease'
+      url 'https://nexus.cermati.com/repository/cermati-maven-releases'
+    }
+    maven {
+      name 'nexusSnapshot'
+      url 'https://nexus.cermati.com/repository/cermati-maven-snapshots'
+    }
+  }
+
+  publications {
+    main(MavenPublication) {
+      artifactId = 'satpam-java'
+      from components.java
+
+      def releaseVersion = version.toString()
+      def snapshotVersion = version.toString() + '-SNAPSHOT'
+
+      afterEvaluate {
+        def snapshot = gradle.startParameter.taskNames.stream()
+          .anyMatch { taskName -> taskName.toLowerCase().contains('snapshot') }
+        version = snapshot ? snapshotVersion : releaseVersion
+      }
+    }
+  }
+}

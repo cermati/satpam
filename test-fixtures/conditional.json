@@ -1,0 +1,456 @@
+{
+  "description": "requiredIf / requiredIfNot with plain and noes conjunction params",
+  "groups": [
+    {
+      "name": "requiredIf plain",
+      "rules": {
+        "x": [
+          "requiredIf:type:card"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "type": "card"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "requiredIf:$1:$2": "X field is required."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "type": "card",
+            "x": "1"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "type": "cash"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "type": "card",
+            "x": ""
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "requiredIf:$1:$2": "X field is required."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "type": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "requiredIf number value is compared to a string param",
+      "rules": {
+        "x": [
+          "requiredIf:age:17"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "age": 17
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "age": "17"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "requiredIf:$1:$2": "X field is required."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "requiredIf no value param",
+      "rules": {
+        "x": [
+          "requiredIf:type"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "type": "card"
+          },
+          "expectedError": "requiredIf:$1 is not a valid satpam validation rule. Rule object: {\"name\":\"requiredIf\",\"params\":[\"type\"],\"fullName\":\"requiredIf:$1\"}"
+        }
+      ]
+    },
+    {
+      "name": "requiredIf object params",
+      "rules": {
+        "x": [
+          {
+            "name": "requiredIf",
+            "params": [
+              "age",
+              17
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "age": 17
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "requiredIf:$1:$2": "X field is required."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "age": "17"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "age": 17,
+            "x": 0
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "requiredIf conjunction",
+      "rules": {
+        "x": [
+          {
+            "name": "requiredIf",
+            "params": [
+              {
+                "type": "and",
+                "mappings": {
+                  "type": "card",
+                  "amount": {
+                    ">=": 100
+                  }
+                }
+              }
+            ],
+            "fullName": "requiredIf:$1:$2"
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "type": "card",
+            "amount": 100
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "requiredIf:$1:$2": "X field is required."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "type": "card",
+            "amount": "150"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "requiredIf:$1:$2": "X field is required."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "type": "card",
+            "amount": 99
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "type": "cash",
+            "amount": 100
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "type": "card",
+            "amount": 100,
+            "x": "ok"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "requiredIf nested input",
+      "rules": {
+        "office": {
+          "x": [
+            "requiredIf:type:card"
+          ]
+        }
+      },
+      "cases": [
+        {
+          "input": {
+            "office": {
+              "type": "card"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "office": {
+                "x": {
+                  "requiredIf:$1:$2": "X field is required."
+                }
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "type": "card",
+            "office": {}
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "requiredIfNot plain",
+      "rules": {
+        "x": [
+          "requiredIfNot:type:card"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "type": "card"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "type": "cash"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "requiredIfNot:$1:$2": "X field is required."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "type": "cash",
+            "x": "1"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {},
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "requiredIfNot:$1:$2": "X field is required."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "requiredIfNot no value param",
+      "rules": {
+        "x": [
+          "requiredIfNot:type"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "type": "card"
+          },
+          "expectedError": "requiredIfNot:$1 is not a valid satpam validation rule. Rule object: {\"name\":\"requiredIfNot\",\"params\":[\"type\"],\"fullName\":\"requiredIfNot:$1\"}"
+        },
+        {
+          "input": {},
+          "expectedError": "requiredIfNot:$1 is not a valid satpam validation rule. Rule object: {\"name\":\"requiredIfNot\",\"params\":[\"type\"],\"fullName\":\"requiredIfNot:$1\"}"
+        }
+      ]
+    },
+    {
+      "name": "requiredIfNot conjunction",
+      "rules": {
+        "x": [
+          {
+            "name": "requiredIfNot",
+            "params": [
+              {
+                "type": "or",
+                "mappings": {
+                  "type": [
+                    "card",
+                    "debit"
+                  ]
+                }
+              }
+            ],
+            "fullName": "requiredIfNot:$1:$2"
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "type": "card"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "type": "debit"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "type": "cash"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "requiredIfNot:$1:$2": "X field is required."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "type": "cash",
+            "x": 1
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "requiredIfNot undefined nested input throws",
+      "rules": {
+        "office": {
+          "x": [
+            "requiredIfNot:type:card"
+          ]
+        }
+      },
+      "cases": [
+        {
+          "input": {},
+          "expectedError": "Cannot read properties of undefined (reading 'type')"
+        }
+      ]
+    }
+  ]
+}

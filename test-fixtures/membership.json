@@ -1,0 +1,3267 @@
+{
+  "description": "memberOf family and equality rules",
+  "groups": [
+    {
+      "name": "memberOf",
+      "rules": {
+        "x": [
+          {
+            "name": "memberOf",
+            "params": [
+              [
+                "a",
+                "abc",
+                1,
+                "",
+                null
+              ]
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": [
+              "a",
+              1
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "z"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of a,abc,1,,."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "memberOf string param is a substring search",
+      "rules": {
+        "x": [
+          "memberOf:abc"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "b"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "bc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "d"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "memberOf:$1": "X must be one of abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "c"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "memberOf number param",
+      "rules": {
+        "x": [
+          {
+            "name": "memberOf",
+            "params": [
+              5
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "a"
+          },
+          "expectedError": "list.indexOf is not a function"
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "not-memberOf",
+      "rules": {
+        "x": [
+          {
+            "name": "not-memberOf",
+            "params": [
+              [
+                "a",
+                "abc",
+                1
+              ]
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": [
+              "q",
+              "r"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "q",
+              "a"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "not-memberOf:$1": "X must not be one of a,abc,1."
+              }
+            }
+          }
+        },
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "not-memberOf:$1": "X must not be one of a,abc,1."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "not-memberOf:$1": "X must not be one of a,abc,1."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "not-memberOf:$1": "X must not be one of a,abc,1."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "not-memberOf:$1": "X must not be one of a,abc,1."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "not-memberOf:$1": "X must not be one of a,abc,1."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "not-memberOf:$1": "X must not be one of a,abc,1."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "not-memberOf:$1": "X must not be one of a,abc,1."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "not-memberOf:$1": "X must not be one of a,abc,1."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "not-memberOf:$1": "X must not be one of a,abc,1."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "not-memberOf:$1": "X must not be one of a,abc,1."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "not-memberOf:$1": "X must not be one of a,abc,1."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "not-memberOf:$1": "X must not be one of a,abc,1."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "not-memberOf:$1": "X must not be one of a,abc,1."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "not-memberOf:$1": "X must not be one of a,abc,1."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "not-memberOf:$1": "X must not be one of a,abc,1."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "not-memberOf:$1": "X must not be one of a,abc,1."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "not-memberOf:$1": "X must not be one of a,abc,1."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "not-memberOf string param",
+      "rules": {
+        "x": [
+          "not-memberOf:abc"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "b"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "not-memberOf:$1": "X must not be one of abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "z"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "some-memberOf",
+      "rules": {
+        "x": [
+          {
+            "name": "some-memberOf",
+            "params": [
+              [
+                "a",
+                "abc",
+                1,
+                null
+              ]
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": [
+              "q",
+              1
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "q",
+              "r"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {},
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of a,abc,1,."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "some-memberOf string param",
+      "rules": {
+        "x": [
+          "some-memberOf:abc"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "b"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "z"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "z",
+              "c"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "some-memberOf object param",
+      "rules": {
+        "x": [
+          {
+            "name": "some-memberOf",
+            "params": [
+              {
+                "k": "v"
+              }
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "v"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "k"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "some-memberOf:$1": "X must be one of [object Object]."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "equal",
+      "rules": {
+        "x": [
+          "equal:abc"
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to abc."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "equal number string",
+      "rules": {
+        "x": [
+          "equal:1"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to 1."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "equal object param",
+      "rules": {
+        "x": [
+          {
+            "name": "equal",
+            "params": [
+              1
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to 1."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "equal no param",
+      "rules": {
+        "x": [
+          {
+            "name": "equal",
+            "fullName": "equal:$1"
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal:$1": "X must equal to ."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "not-equal",
+      "rules": {
+        "x": [
+          "not-equal:abc"
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "not-equal:$1": "X must not equal to abc."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "equal-to-field",
+      "rules": {
+        "x": [
+          "equal-to-field:y"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "a",
+            "y": "a"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a",
+            "y": "b"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal-to-field:$1": "X must equal to b."
+              }
+            }
+          }
+        },
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 1,
+            "y": 1
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 1,
+            "y": "1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal-to-field:$1": "X must equal to 1."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {},
+            "y": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal-to-field:$1": "X must equal to [object Object]."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal-to-field:$1": "X must equal to ."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a",
+            "y": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal-to-field:$1": "X must equal to a,b."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a",
+            "y": {
+              "k": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "equal-to-field:$1": "X must equal to [object Object]."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "not-equal-to-field",
+      "rules": {
+        "x": [
+          "not-equal-to-field:y"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "a",
+            "y": "a"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "not-equal-to-field:$1": "X must not equal to a."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a",
+            "y": "b"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {},
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "not-equal-to-field:$1": "X must not equal to ."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 2.5,
+            "y": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "equal-to-field undefined input",
+      "rules": {
+        "x": [
+          "equal-to-field:y"
+        ]
+      },
+      "cases": [
+        {
+          "expectedError": "Cannot read properties of undefined (reading 'y')"
+        }
+      ]
+    }
+  ]
+}

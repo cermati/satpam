@@ -1,0 +1,876 @@
+{
+  "description": "Validation engine: rule parsing, nesting, any-of groups, shouldValidate, unknown rules",
+  "groups": [
+    {
+      "name": "simple rules",
+      "rules": {
+        "name": [
+          "required"
+        ],
+        "officeEmail": [
+          "required",
+          "minLength:5"
+        ],
+        "officeEmailOptional": [
+          "minLength:5"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "name": "sendy",
+            "officeEmail": "asd@gg.com"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "name": "",
+            "officeEmail": "asd@gg.com"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "name": {
+                "required": "Name field is required."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "name": "sendy",
+            "officeEmail": "asd@gg.com",
+            "officeEmailOptional": "hehe"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "officeEmailOptional": {
+                "minLength:$1": "Office Email Optional must contain at least 5 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {},
+          "expected": {
+            "success": false,
+            "messages": {
+              "name": {
+                "required": "Name field is required."
+              },
+              "officeEmail": {
+                "required": "Office Email field is required."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "multiple errors on one property",
+      "rules": {
+        "address": [
+          "minLength:10",
+          "required",
+          "numeric"
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": false,
+            "messages": {
+              "address": {
+                "required": "Address field is required."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "address": "abc"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "address": {
+                "minLength:$1": "Address must contain at least 10 character(s).",
+                "numeric": "Address must be a number."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "any-of group",
+      "rules": {
+        "number": [
+          [
+            "numeric",
+            "length:5"
+          ],
+          "required"
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": false,
+            "messages": {
+              "number": {
+                "required": "Number field is required."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "number": "testyo"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "number": {
+                "numeric": "Number must be a number.",
+                "length:$1": "Number must have length of 5 character(s)."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "number": "1234"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "number": "tests"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "number": "12345"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "nested",
+      "rules": {
+        "name": [
+          "required"
+        ],
+        "office": {
+          "email": [
+            "required",
+            "minLength:3"
+          ],
+          "emailOptional": [
+            "minLength:3"
+          ]
+        }
+      },
+      "cases": [
+        {
+          "input": {
+            "name": "sendy",
+            "office": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "office": {
+                "email": {
+                  "required": "Email field is required."
+                }
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "name": "sendy",
+            "office": {
+              "email": "asd@gg.com"
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "name": "sendy"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "office": {
+                "email": {
+                  "required": "Email field is required."
+                }
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "name": "sendy",
+            "office": "flat"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "office": {
+                "email": {
+                  "required": "Email field is required."
+                }
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "name": "sendy",
+            "office": null
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "office": {
+                "email": {
+                  "required": "Email field is required."
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2 level nested",
+      "rules": {
+        "name": [
+          "required"
+        ],
+        "nested": {
+          "office": {
+            "email": [
+              "required"
+            ]
+          }
+        }
+      },
+      "cases": [
+        {
+          "input": {
+            "name": "sendy",
+            "office": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "nested": {
+                "office": {
+                  "email": {
+                    "required": "Email field is required."
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "name": "sendy",
+            "nested": {
+              "office": {
+                "email": "a"
+              }
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "nested array index",
+      "rules": {
+        "items": {
+          "0": [
+            "required"
+          ],
+          "1": {
+            "name": [
+              "required"
+            ]
+          }
+        }
+      },
+      "cases": [
+        {
+          "input": {
+            "items": [
+              "a",
+              {
+                "name": "b"
+              }
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "items": []
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "items": {
+                "0": {
+                  "required": "0 field is required."
+                },
+                "1": {
+                  "name": {
+                    "required": "Name field is required."
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "items": [
+              "",
+              {}
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "items": {
+                "0": {
+                  "required": "0 field is required."
+                },
+                "1": {
+                  "name": {
+                    "required": "Name field is required."
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "dotted path property",
+      "rules": {
+        "office.email": [
+          "required"
+        ],
+        "list[1]": [
+          "required"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "office": {
+              "email": "a"
+            },
+            "list": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "office": {},
+            "list": [
+              1
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "office.email": {
+                "required": "Office Email field is required."
+              },
+              "list[1]": {
+                "required": "List 1 field is required."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "office.email": "flat",
+            "list": []
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "list[1]": {
+                "required": "List 1 field is required."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "non-array non-object mapping values are ignored",
+      "rules": {
+        "name": "required",
+        "age": null,
+        "x": 5
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "integer-like keys are validated first",
+      "rules": {
+        "1": [
+          "required"
+        ],
+        "2": [
+          "required"
+        ],
+        "b": [
+          "required"
+        ],
+        "a": [
+          "required"
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": false,
+            "messages": {
+              "1": {
+                "required": "1 field is required."
+              },
+              "2": {
+                "required": "2 field is required."
+              },
+              "b": {
+                "required": "B field is required."
+              },
+              "a": {
+                "required": "A field is required."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "undefined input",
+      "rules": {
+        "name": [
+          "required"
+        ],
+        "office": {
+          "email": [
+            "required"
+          ]
+        }
+      },
+      "cases": [
+        {
+          "expected": {
+            "success": false,
+            "messages": {
+              "name": {
+                "required": "Name field is required."
+              },
+              "office": {
+                "email": {
+                  "required": "Email field is required."
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "null input",
+      "rules": {
+        "name": [
+          "required"
+        ]
+      },
+      "cases": [
+        {
+          "input": null,
+          "expected": {
+            "success": false,
+            "messages": {
+              "name": {
+                "required": "Name field is required."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "rule string with empty params",
+      "rules": {
+        "x": [
+          "minLength:",
+          "length::"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "a"
+          },
+          "expectedError": "length:$1:$2 is not a valid satpam validation rule. Rule object: {\"name\":\"length\",\"params\":[\"\",\"\"],\"fullName\":\"length:$1:$2\"}"
+        }
+      ]
+    },
+    {
+      "name": "rule string with colon in params",
+      "rules": {
+        "x": [
+          "pattern:^a:b$"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "a:b"
+          },
+          "expectedError": "Invalid flags supplied to RegExp constructor 'b$'"
+        }
+      ]
+    },
+    {
+      "name": "object rule with fullName only",
+      "rules": {
+        "x": [
+          {
+            "fullName": "required"
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "required": "X field is required."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "object rule fullName takes precedence",
+      "rules": {
+        "x": [
+          {
+            "name": "whatever",
+            "fullName": "minLength:$1",
+            "params": [
+              "3"
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "ab"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "minLength:$1": "X must contain at least 3 character(s)."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "object rule params default to []",
+      "rules": {
+        "x": [
+          {
+            "name": "required",
+            "params": null
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "required": "X field is required."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "unknown rule throws",
+      "rules": {
+        "x": [
+          "invalid-rule"
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expectedError": "invalid-rule is not a valid satpam validation rule. Rule object: {\"name\":\"invalid-rule\",\"params\":[],\"fullName\":\"invalid-rule\"}"
+        }
+      ]
+    },
+    {
+      "name": "unknown rule skipped by shouldValidate does not throw",
+      "rules": {
+        "x": [
+          {
+            "name": "invalid-rule",
+            "shouldValidate": {
+              "type": "and",
+              "mappings": {
+                "validate": true
+              }
+            }
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "validate": true
+          },
+          "expectedError": "invalid-rule is not a valid satpam validation rule. Rule object: {\"name\":\"invalid-rule\",\"fullName\":\"invalid-rule\",\"params\":[]}"
+        }
+      ]
+    },
+    {
+      "name": "shouldValidate conjunction uses the root input",
+      "rules": {
+        "office": {
+          "email": [
+            {
+              "name": "required",
+              "shouldValidate": {
+                "type": "and",
+                "mappings": {
+                  "pleaseValidate": true
+                }
+              }
+            },
+            "minLength:3"
+          ]
+        }
+      },
+      "cases": [
+        {
+          "input": {
+            "pleaseValidate": false,
+            "office": {}
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "pleaseValidate": true,
+            "office": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "office": {
+                "email": {
+                  "required": "Email field is required."
+                }
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "office": {
+              "pleaseValidate": true
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "pleaseValidate": true,
+            "office": {
+              "email": "ab"
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "office": {
+                "email": {
+                  "minLength:$1": "Email must contain at least 3 character(s)."
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "shouldValidate non-conjunction object throws",
+      "rules": {
+        "x": [
+          {
+            "name": "required",
+            "shouldValidate": {
+              "foo": 1
+            }
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expectedError": "ruleObj.shouldValidate is not a function"
+        }
+      ]
+    },
+    {
+      "name": "shouldValidate false is ignored",
+      "rules": {
+        "x": [
+          {
+            "name": "required",
+            "shouldValidate": false
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "required": "X field is required."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "any-of with shouldValidate skip passes",
+      "rules": {
+        "x": [
+          [
+            {
+              "name": "minLength",
+              "params": [
+                "5"
+              ],
+              "shouldValidate": {
+                "type": "or",
+                "mappings": {}
+              }
+            },
+            "length:2"
+          ]
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    }
+  ]
+}

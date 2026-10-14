@@ -1,0 +1,1863 @@
+{
+  "description": "pattern and regex rules, including JS vs Java regex syntax differences",
+  "groups": [
+    {
+      "name": "pattern simple",
+      "rules": {
+        "x": [
+          "pattern:^[a-z]+$:"
+        ]
+      },
+      "cases": [
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a-z]+$."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "pattern flags i",
+      "rules": {
+        "x": [
+          "pattern:^abc$:i"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "abcd"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^abc$."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "pattern $ does not match before trailing newline",
+      "rules": {
+        "x": [
+          "pattern:^abc$:"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "abc\n"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^abc$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "pattern multiline",
+      "rules": {
+        "x": [
+          "pattern:^b$:m"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "a\nb\nc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^b$."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "pattern dot excludes line terminators",
+      "rules": {
+        "x": [
+          "pattern:^a.c$:"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a\nc"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^a.c$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a c"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^a.c$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "ac"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "pattern dotAll",
+      "rules": {
+        "x": [
+          "pattern:^a.c$:s"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "a\nc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "pattern \\s includes unicode spaces",
+      "rules": {
+        "x": [
+          "pattern:^a\\sb$:"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "a b"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a b"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a　b"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a﻿b"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "ab"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^a\\sb$."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "pattern \\S",
+      "rules": {
+        "x": [
+          "pattern:^\\S+$:"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a c"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^\\S+$."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "pattern [^] matches anything",
+      "rules": {
+        "x": [
+          "pattern:^a[^]c$:"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "a\nc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "ac"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^a[^]c$."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "pattern [] matches nothing",
+      "rules": {
+        "x": [
+          "pattern:a[]:"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "a"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern a[]."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "pattern literal [ in class",
+      "rules": {
+        "x": [
+          "pattern:^[[a]+$:"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "[a["
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "b"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[[a]+$."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "pattern && in class",
+      "rules": {
+        "x": [
+          "pattern:^[a&&b]+$:"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "a&b"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "ab"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "c"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^[a&&b]+$."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "pattern lone brace",
+      "rules": {
+        "x": [
+          "pattern:^a{b}$:"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "a{b}"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "ab"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^a{b}$."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "pattern quantifier brace",
+      "rules": {
+        "x": [
+          "pattern:^a{2,3}$:"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "aa"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "aaaa"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^a{2,3}$."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^a{2,3}$."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "pattern identity escape",
+      "rules": {
+        "x": [
+          "pattern:^\\a\\e\\-$:"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "ae-"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "\u0007\u001b-"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^\\a\\e\\-$."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "pattern \\v",
+      "rules": {
+        "x": [
+          "pattern:^a\\vb$:"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "a\u000bb"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a\nb"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^a\\vb$."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "pattern [\\b] is backspace",
+      "rules": {
+        "x": [
+          "pattern:^a[\\b]b$:"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "a\bb"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "ab"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^a[\\b]b$."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "pattern unicode escape",
+      "rules": {
+        "x": [
+          "pattern:^\\u{1F600}$:u"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "😀"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^\\u{1F600}$."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "pattern sticky",
+      "rules": {
+        "x": [
+          "pattern:b:y"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "ab"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern b."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "ba"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "pattern global flag",
+      "rules": {
+        "x": [
+          "pattern:b:g"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "ab"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "pattern invalid flags",
+      "rules": {
+        "x": [
+          "pattern:a:zz"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "a"
+          },
+          "expectedError": "Invalid flags supplied to RegExp constructor 'zz'"
+        },
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    },
+    {
+      "name": "pattern invalid source",
+      "rules": {
+        "x": [
+          "pattern:(a:"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "a"
+          },
+          "expectedError": "Invalid regular expression: /(a/: Unterminated group"
+        }
+      ]
+    },
+    {
+      "name": "pattern no param",
+      "rules": {
+        "x": [
+          "pattern"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "a"
+          },
+          "expectedError": "pattern is not a valid satpam validation rule. Rule object: {\"name\":\"pattern\",\"params\":[],\"fullName\":\"pattern\"}"
+        }
+      ]
+    },
+    {
+      "name": "pattern object rule",
+      "rules": {
+        "x": [
+          {
+            "name": "pattern",
+            "params": [
+              "^\\d{3}$",
+              "i"
+            ]
+          }
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "12a"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "pattern:$1:$2": "X does not conform pattern ^\\d{3}$."
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "regex",
+      "rules": {
+        "x": [
+          "regex"
+        ]
+      },
+      "cases": [
+        {
+          "input": {
+            "x": "[a-z]+"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "(a"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "regex": "X is not a valid regex string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a{"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a{1"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "\\"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "regex": "X is not a valid regex string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "*a"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "regex": "X is not a valid regex string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "a**"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "regex": "X is not a valid regex string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": "[[a]"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "(?<name>a)\\k<name>"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {},
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": null
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": ""
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " "
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "  \t\n"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "abc"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "ABC"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "aBc 12"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "a1"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "123"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "007"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "12.5"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "-3"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "+4"
+          },
+          "expected": {
+            "success": false,
+            "messages": {
+              "x": {
+                "regex": "X is not a valid regex string."
+              }
+            }
+          }
+        },
+        {
+          "input": {
+            "x": ".5"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "5."
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "1e3"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0x1F"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "0b101"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Infinity"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "NaN"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": " 42 "
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "true"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "abc@def"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": "Ünïcödé"
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 0
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 1
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": -1
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 12.5
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": -0.5
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 1e+21
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": 123456789
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": true
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": false
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": []
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              ""
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "a",
+              "b"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              1,
+              2
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              "abc",
+              "xyz"
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": [
+              null
+            ]
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {}
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        },
+        {
+          "input": {
+            "x": {
+              "a": 1
+            }
+          },
+          "expected": {
+            "success": true,
+            "messages": {}
+          }
+        }
+      ]
+    }
+  ]
+}

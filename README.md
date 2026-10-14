@@ -85,6 +85,9 @@ const result = customValidator.validate(
 );
 ```
 
+## Java
+A Java port with the same rule format, results and messages lives in [`java/`](java/README.md) (`com.cermati:satpam-java`). Shared fixtures in `test-fixtures/` keep both implementations in sync: a rule change needs a fixture plus both the JS and Java implementation.
+
 ## Available Rules
 - `required`
 - `numeric`
