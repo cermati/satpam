@@ -65,6 +65,52 @@ Date and time rules (`date`, `dateFormat`, `dateAfter`…, `dateTime*`, `time*`,
 
 The Java port deliberately has no global setters. In JS, `satpam.addCustomValidation` changes behaviour for every later caller in the process. In a multi-threaded JVM shared by many libraries, that kind of global state is easy to misuse.
 
+Custom rules can also be registered in bulk: `.addRules(ctx.getBeansOfType(ValidatorRule.class).values())` for Spring, or `.loadRules()` for `ValidatorRule`s listed in `META-INF/services/com.cermati.satpam.ValidatorRule`.
+
+One validator has one locale. A service that answers in several languages builds one validator per locale and picks one per request.
+
+### Annotations
+
+For DTOs whose rules are fixed in code, put the rules on the class instead of writing a `Map`. The annotations take the same rule strings, and `AnnotatedRules` turns them into the same rule mapping, so results and messages are identical.
+
+```java
+public class ApplicantDto {
+  @Rules({"required", "minLength:3"})
+  private String name;                            // "name": ["required", "minLength:3"]
+
+  @Label("Pendapatan")                            // instead of startCase("salary")
+  @Rules(value = {"required", "minValue:3900888"},
+         messages = @Msg(rule = "minValue:$1", text = "<%= propertyName %> minimal IDR <%= ruleParams[0] %>"))
+  private BigDecimal salary;
+
+  @AnyOf({"email", "mobilePhoneNumber"})          // "contact": [["email", "mobilePhoneNumber"]]
+  private String contact;
+
+  @Rules("email")
+  @Rules(value = "required", when = HasOffice.class)  // shouldValidate; HasOffice implements ShouldValidate
+  private String officeEmail;
+
+  @Rules("{\"name\":\"memberOf\",\"params\":[[\"S1\",\"S2\"]]}")  // JSON rule object, for non-string params
+  private String education;
+
+  @Rules("required")
+  private OfficeDto office;                       // annotated type: nested mapping, plus its own rules
+
+  // getters...
+}
+
+satpam.validateBean(dto);                         // validate(satpam.rulesFor(ApplicantDto.class), dto)
+satpam.check(ApplicantDto.class);                 // at startup or in a test: fails on unknown rule names
+```
+
+- Property names are Jackson's (`@JsonProperty`, naming strategies), from the validator's `ObjectMapper`. Annotate a field or a getter of a property Jackson serializes. An annotation Jackson can't see (a private field without a getter, `@JsonIgnore`) throws instead of being skipped.
+- Rule names are looked up when validating, so custom rules from the builder work in `@Rules`. A typo only throws when that rule is reached; `check(Class)` (or `checkRules(mapping)` for stored JSON) finds them all up front.
+- `@Msg` wins over the validator's messages, its locale and its `MessagePackProvider`, for that property only. `@Label` replaces `startCase(propertyName)`; a `MessageParamsFormatter` that returns its own property name still wins and can read `RuleObject#getLabel()`.
+- A property whose type has satpam annotations becomes a nested mapping. Its own rules go under the Java-only `$rules` key: `{"office": {"$rules": ["required"], "email": ["required"]}}`. Lists of beans are not descended into, as in JS, and a class that refers back to itself is descended into only once.
+- The rule mapping is derived once per class and cached on the validator. `AnnotatedRules.of(Class)` returns it for inspection.
+
+`$rules`, `$message` and `$label` are Java-only rule keys, and hand-written or stored mappings can use them too. JS satpam does not know them, so don't put them in rule JSON that JS services also read.
+
 ### Value semantics
 
 Validators see values the way JS does. Numbers are `Double`, objects are `Map<String, Object>`, arrays are `List<Object>`, and a missing property is `Undefined.INSTANCE`, which is different from `null` (the `boolean` rule accepts a missing value but rejects `null`). POJOs and `BigDecimal`s are converted through Jackson. Coercion follows JS: `Number("0x1F")`, `String([1, 2])`, truthiness, `===`, ramda `equals`, lodash `get` paths such as `office.emails[0]`.

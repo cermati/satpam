@@ -28,6 +28,15 @@ public final class Satpam {
     return DEFAULT.validate(ruleMapping, input, options);
   }
 
+  /** Validates a bean against its class's annotations, see {@link SatpamValidator#validateBean(Object)}. */
+  public static ValidationResult validateBean(Object bean) {
+    return DEFAULT.validateBean(bean);
+  }
+
+  public static ValidationResult validateBean(Object bean, ValidateOptions options) {
+    return DEFAULT.validateBean(bean, options);
+  }
+
   /** Same as {@link SatpamValidator#builder()}. */
   public static SatpamValidator.Builder builder() {
     return SatpamValidator.builder();

@@ -12,12 +12,25 @@ public final class RuleObject {
   private final String fullName;
   private final List<Object> params;
   private final ShouldValidate shouldValidate;
+  private final Message message;
+  private final String label;
 
   public RuleObject(String name, String fullName, List<Object> params, ShouldValidate shouldValidate) {
+    this(name, fullName, params, shouldValidate, null, null);
+  }
+
+  /**
+   * @param message rule-level message ({@code $message}), or {@code null}
+   * @param label display name for the property ({@code $label}), or {@code null}
+   */
+  public RuleObject(String name, String fullName, List<Object> params, ShouldValidate shouldValidate,
+                    Message message, String label) {
     this.name = name;
     this.fullName = fullName;
     this.params = Collections.unmodifiableList(params);
     this.shouldValidate = shouldValidate;
+    this.message = message;
+    this.label = label;
   }
 
   public String getName() {
@@ -45,6 +58,22 @@ public final class RuleObject {
 
   public ShouldValidate getShouldValidate() {
     return shouldValidate;
+  }
+
+  /**
+   * Java-only {@code $message} of an object rule: overrides the message pack and the validator's
+   * messages for this rule. {@code null} when not set.
+   */
+  public Message getMessage() {
+    return message;
+  }
+
+  /**
+   * Java-only {@code $label} of an object rule: the property's display name in messages, used
+   * instead of {@code startCase(propertyName)}. {@code null} when not set.
+   */
+  public String getLabel() {
+    return label;
   }
 
   @Override

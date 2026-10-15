@@ -16,6 +16,10 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ServiceLoader;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * A satpam validator: the Java port of the JS {@code Validator} returned by {@code satpam.create()}.
@@ -45,13 +49,21 @@ public final class SatpamValidator {
   private static final ShouldValidate ALWAYS = (rule, root) -> true;
   private static final MessageParamsFormatter DEFAULT_PARAMS_FORMATTER =
     (propertyName, propertyValue, inputObj, violatedRule) ->
-      new MessageParamsFormatter.FormattedParams(violatedRule.getParams(), StartCase.startCase(propertyName));
+      new MessageParamsFormatter.FormattedParams(violatedRule.getParams(), displayName(propertyName, violatedRule));
+
+  /**
+   * Java-only key of a nested rule mapping that holds the rules for the property itself, e.g.
+   * {@code {"office": {"$rules": ["required"], "email": ["email"]}}}.
+   */
+  public static final String OWN_RULES_KEY = "$rules";
 
   private final Map<String, RuleFunction> rules;
   private final Map<String, Message> messages;
   private final MessageParamsFormatter messageParamsFormatter;
   private final MessagePackProvider messagePackProvider;
   private final Normalizer normalizer;
+  private final ObjectMapper objectMapper;
+  private final Map<Class<?>, Map<String, Object>> annotatedRules = new ConcurrentHashMap<>();
 
   private SatpamValidator(Builder builder) {
     this.rules = Collections.unmodifiableMap(new LinkedHashMap<>(builder.rules));
@@ -59,6 +71,7 @@ public final class SatpamValidator {
     this.messageParamsFormatter = builder.messageParamsFormatter;
     this.messagePackProvider = builder.messagePackProvider;
     this.normalizer = new Normalizer(builder.objectMapper);
+    this.objectMapper = builder.objectMapper;
   }
 
   public static Builder builder() {
@@ -103,6 +116,73 @@ public final class SatpamValidator {
     }
   }
 
+  /**
+   * Validates a bean against the rules of its class's annotations ({@link com.cermati.satpam.annotation.Rules},
+   * {@link com.cermati.satpam.annotation.AnyOf}, {@link com.cermati.satpam.annotation.Label}). Same as
+   * {@code validate(rulesFor(bean.getClass()), bean)}.
+   *
+   * @throws SatpamException if {@code bean} is null or its class has no satpam annotations
+   */
+  public ValidationResult validateBean(Object bean) {
+    return validateBean(bean, null);
+  }
+
+  /** Same as {@link #validateBean(Object)} with per-call options. */
+  public ValidationResult validateBean(Object bean, ValidateOptions options) {
+    if (bean == null) {
+      throw new SatpamException("Cannot validate a null bean");
+    }
+    Map<String, Object> ruleMapping = rulesFor(bean.getClass());
+    if (ruleMapping.isEmpty()) {
+      throw new SatpamException(bean.getClass().getName() + " has no satpam annotations");
+    }
+    return validate(ruleMapping, bean, options);
+  }
+
+  /** Rule mapping derived from {@code type}'s annotations (see {@link AnnotatedRules}), cached per class. */
+  public Map<String, Object> rulesFor(Class<?> type) {
+    return annotatedRules.computeIfAbsent(type, t -> AnnotatedRules.of(t, objectMapper));
+  }
+
+  /**
+   * Fails fast on rules this validator doesn't know, which {@link #validate} would only report when
+   * it reaches them. Call it at startup or in a test for each annotated class.
+   *
+   * @throws SatpamException listing the unknown rule fullNames
+   */
+  public void check(Class<?> type) {
+    checkRules(rulesFor(type));
+  }
+
+  /** Same as {@link #check(Class)} for a rule mapping, e.g. rule JSON loaded from storage. */
+  public void checkRules(Object ruleMapping) {
+    Set<String> unknown = new TreeSet<>();
+    collectUnknown(normalizer.normalize(ruleMapping), unknown);
+    if (!unknown.isEmpty()) {
+      throw new SatpamException("Unknown satpam rules: " + unknown);
+    }
+  }
+
+  private void collectUnknown(Object ruleMapping, Set<String> unknown) {
+    if (!(ruleMapping instanceof Map)) {
+      return;
+    }
+    for (Object ruleArray : JsValues.asMap(ruleMapping).values()) {
+      if (!(ruleArray instanceof List)) {
+        collectUnknown(ruleArray, unknown);
+        continue;
+      }
+      for (Object rule : JsValues.asList(ruleArray)) {
+        for (Object single : rule instanceof List ? JsValues.asList(rule) : Collections.singletonList(rule)) {
+          String fullName = createRuleObject(single).getFullName();
+          if (!rules.containsKey(fullName)) {
+            unknown.add(fullName);
+          }
+        }
+      }
+    }
+  }
+
   private ValidationResult validateMapping(Object ruleMapping, Object inputObj, Object rootInputObj,
                                            MessageParamsFormatter formatter, MessagePackProvider packProvider) {
     boolean success = true;
@@ -118,41 +198,65 @@ public final class SatpamValidator {
       Object value = JsValues.lodashGet(inputObj, propertyName);
 
       if (!(ruleArray instanceof List)) {
-        // Nested rule mapping
-        ValidationResult nested = validateMapping(ruleArray, value, rootInputObj, formatter, packProvider);
+        // Nested rule mapping, optionally with the property's own rules under "$rules"
+        Object nestedMapping = ruleArray;
+        if (ruleArray instanceof Map && JsValues.asMap(ruleArray).containsKey(OWN_RULES_KEY)) {
+          Map<String, Object> rest = new LinkedHashMap<>(JsValues.asMap(ruleArray));
+          Object ownRules = rest.remove(OWN_RULES_KEY);
+          success = validateRules(ownRules, value, propertyName, inputObj, rootInputObj, formatter, packProvider, messageObj)
+            && success;
+          nestedMapping = rest;
+        }
+        ValidationResult nested = validateMapping(nestedMapping, value, rootInputObj, formatter, packProvider);
         success = nested.isSuccess() && success;
         if (!nested.isSuccess()) {
-          messageObj.put(propertyName, new LinkedHashMap<>(nested.getMessages()));
+          @SuppressWarnings("unchecked")
+          Map<String, Object> propertyMessages =
+            (Map<String, Object>) messageObj.computeIfAbsent(propertyName, k -> new LinkedHashMap<>());
+          propertyMessages.putAll(nested.getMessages());
         }
         continue;
       }
 
-      for (Object rule : JsValues.asList(ruleArray)) {
-        if (rule instanceof List) {
-          // Any-of group: passes if any sub-rule passes, otherwise reports all of them
-          List<RuleOutcome> outcomes = new ArrayList<>();
-          boolean anyPassed = false;
-          for (Object subRule : JsValues.asList(rule)) {
-            RuleOutcome outcome = validateRule(subRule, value, propertyName, inputObj, rootInputObj, formatter, packProvider);
-            outcomes.add(outcome);
-            anyPassed = anyPassed || outcome.success;
-          }
-          if (!anyPassed) {
-            success = false;
-            for (RuleOutcome outcome : outcomes) {
-              setMessage(messageObj, propertyName, outcome);
-            }
-          }
-        } else {
-          RuleOutcome outcome = validateRule(rule, value, propertyName, inputObj, rootInputObj, formatter, packProvider);
-          if (!outcome.success) {
-            success = false;
+      success = validateRules(ruleArray, value, propertyName, inputObj, rootInputObj, formatter, packProvider, messageObj)
+        && success;
+    }
+    return new ValidationResult(success, messageObj);
+  }
+
+  /** Runs one property's rule array, adding failures to {@code messageObj}. Returns whether all passed. */
+  private boolean validateRules(Object ruleArray, Object value, String propertyName, Object inputObj, Object rootInputObj,
+                                MessageParamsFormatter formatter, MessagePackProvider packProvider,
+                                Map<String, Object> messageObj) {
+    if (!(ruleArray instanceof List)) {
+      throw new SatpamException(OWN_RULES_KEY + " of " + propertyName + " must be an array");
+    }
+    boolean success = true;
+    for (Object rule : JsValues.asList(ruleArray)) {
+      if (rule instanceof List) {
+        // Any-of group: passes if any sub-rule passes, otherwise reports all of them
+        List<RuleOutcome> outcomes = new ArrayList<>();
+        boolean anyPassed = false;
+        for (Object subRule : JsValues.asList(rule)) {
+          RuleOutcome outcome = validateRule(subRule, value, propertyName, inputObj, rootInputObj, formatter, packProvider);
+          outcomes.add(outcome);
+          anyPassed = anyPassed || outcome.success;
+        }
+        if (!anyPassed) {
+          success = false;
+          for (RuleOutcome outcome : outcomes) {
             setMessage(messageObj, propertyName, outcome);
           }
         }
+      } else {
+        RuleOutcome outcome = validateRule(rule, value, propertyName, inputObj, rootInputObj, formatter, packProvider);
+        if (!outcome.success) {
+          success = false;
+          setMessage(messageObj, propertyName, outcome);
+        }
       }
     }
-    return new ValidationResult(success, messageObj);
+    return success;
   }
 
   private static void setMessage(Map<String, Object> messageObj, String propertyName, RuleOutcome outcome) {
@@ -186,6 +290,8 @@ public final class SatpamValidator {
     String fullName = null;
     List<Object> params;
     ShouldValidate shouldValidate = null;
+    Message message = null;
+    String label = null;
 
     if (rule instanceof String) {
       List<String> split = Arrays.asList(((String) rule).split(":", -1));
@@ -214,6 +320,16 @@ public final class SatpamValidator {
       } else if (JsValues.truthy(ruleShouldValidate)) {
         throw new SatpamException("TypeError: ruleObj.shouldValidate is not a function");
       }
+
+      // Java-only keys, absent from JS rule JSON
+      Object ruleMessage = JsValues.lodashGet(rule, "$message");
+      if (ruleMessage instanceof Message) {
+        message = (Message) ruleMessage;
+      } else if (JsValues.truthy(ruleMessage)) {
+        message = Message.of(JsValues.toJsString(ruleMessage));
+      }
+      Object ruleLabel = JsValues.lodashGet(rule, "$label");
+      label = JsValues.truthy(ruleLabel) ? JsValues.toJsString(ruleLabel) : null;
     }
 
     if (fullName == null) {
@@ -224,16 +340,19 @@ public final class SatpamValidator {
       }
       fullName = sb.toString();
     }
-    return new RuleObject(name, fullName, params, shouldValidate == null ? ALWAYS : shouldValidate);
+    return new RuleObject(name, fullName, params, shouldValidate == null ? ALWAYS : shouldValidate, message, label);
   }
 
   /** Port of JS {@code Validator.getValidationMessage}. */
   private String getValidationMessage(RuleObject ruleObj, String propertyName, Object value, Object inputObj,
                                       MessageParamsFormatter formatter, MessagePackProvider packProvider) {
     String ruleFullName = ruleObj.getFullName();
-    // JS `pack[fullName] || messages[fullName]`
-    Map<String, Message> pack = packProvider == null ? messages : packProvider.provide(propertyName, inputObj, ruleObj);
-    Message message = pack == null ? null : pack.get(ruleFullName);
+    // Java-only `$message`, then JS `pack[fullName] || messages[fullName]`
+    Message message = ruleObj.getMessage();
+    if (isFalsy(message)) {
+      Map<String, Message> pack = packProvider == null ? messages : packProvider.provide(propertyName, inputObj, ruleObj);
+      message = pack == null ? null : pack.get(ruleFullName);
+    }
     if (isFalsy(message)) {
       message = messages.get(ruleFullName);
     }
@@ -249,11 +368,16 @@ public final class SatpamValidator {
 
     Map<String, Object> data = new LinkedHashMap<>();
     data.put("inputObj", inputObj);
-    data.put("propertyName", formatted.getPropertyName() == null ? StartCase.startCase(propertyName) : formatted.getPropertyName());
+    data.put("propertyName", formatted.getPropertyName() == null ? displayName(propertyName, ruleObj) : formatted.getPropertyName());
     data.put("ruleName", ruleFullName);
     data.put("ruleParams", normalizer.normalize(formattedParams));
     data.put("value", value);
     return MessageTemplate.render(template, data);
+  }
+
+  /** The rule's {@code $label}, else lodash {@code startCase(propertyName)}. */
+  private static String displayName(String propertyName, RuleObject ruleObj) {
+    return ruleObj.getLabel() != null ? ruleObj.getLabel() : StartCase.startCase(propertyName);
   }
 
   private static boolean isFalsy(Message message) {
@@ -344,6 +468,27 @@ public final class SatpamValidator {
     public Builder addRule(String fullName, RuleFunction rule) {
       rules.put(fullName, rule);
       return this;
+    }
+
+    /** Adds or replaces several rules, e.g. all {@link ValidatorRule} beans of a Spring context. */
+    public Builder addRules(Iterable<? extends ValidatorRule> rules) {
+      for (ValidatorRule rule : rules) {
+        addRule(rule);
+      }
+      return this;
+    }
+
+    /**
+     * Adds the {@link ValidatorRule}s listed in {@code META-INF/services/com.cermati.satpam.ValidatorRule}
+     * files, found through the context class loader.
+     */
+    public Builder loadRules() {
+      return addRules(ServiceLoader.load(ValidatorRule.class));
+    }
+
+    /** Same as {@link #loadRules()} with a given class loader. */
+    public Builder loadRules(ClassLoader classLoader) {
+      return addRules(ServiceLoader.load(ValidatorRule.class, classLoader));
     }
 
     /** Overrides a message template, mirrors JS {@code setValidationMessage(fullName, message)}. */
