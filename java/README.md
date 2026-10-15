@@ -24,6 +24,8 @@ result.isSuccess();
 result.getMessages();             // {phone={numeric=Phone must be a number.}, office={secondaryEmail={...}}}
 ```
 
+For DTOs whose rules live in code, annotate the class and call `Satpam.validateBean(dto)` instead; see [Annotations](#annotations).
+
 Rules can be a `Map`/`List` tree or a Jackson `JsonNode`, so stored rule JSON works directly:
 
 ```java
@@ -71,9 +73,11 @@ One validator has one locale. A service that answers in several languages builds
 
 ### Annotations
 
-For DTOs whose rules are fixed in code, put the rules on the class instead of writing a `Map`. The annotations take the same rule strings, and `AnnotatedRules` turns them into the same rule mapping, so results and messages are identical.
+For DTOs whose rules are fixed in code, put the rules on the class instead of writing a `Map`. The annotations (`com.cermati.satpam.annotation.*`) take the same rule strings, and `AnnotatedRules` turns them into the same rule mapping, so results and messages are identical.
 
 ```java
+import com.cermati.satpam.annotation.*;
+
 public class ApplicantDto {
   @Rules({"required", "minLength:3"})
   private String name;                            // "name": ["required", "minLength:3"]
@@ -99,13 +103,22 @@ public class ApplicantDto {
   // getters...
 }
 
-satpam.validateBean(dto);                         // validate(satpam.rulesFor(ApplicantDto.class), dto)
+// `when` gets the root input as JS-shaped values (Map, Double, ...), not the DTO
+public class HasOffice implements ShouldValidate {   // needs a no-arg constructor; one shared instance
+  @Override
+  public boolean test(RuleObject rule, Object rootInputObj) {
+    return ((Map<?, ?>) rootInputObj).get("office") instanceof Map;
+  }
+}
+
+Satpam.validateBean(dto);                         // built-in rules, English messages
+satpam.validateBean(dto);                         // your validator: validate(satpam.rulesFor(ApplicantDto.class), dto)
 satpam.check(ApplicantDto.class);                 // at startup or in a test: fails on unknown rule names
 ```
 
 - Property names are Jackson's (`@JsonProperty`, naming strategies), from the validator's `ObjectMapper`. Annotate a field or a getter of a property Jackson serializes. An annotation Jackson can't see (a private field without a getter, `@JsonIgnore`) throws instead of being skipped.
 - Rule names are looked up when validating, so custom rules from the builder work in `@Rules`. A typo only throws when that rule is reached; `check(Class)` (or `checkRules(mapping)` for stored JSON) finds them all up front.
-- `@Msg` wins over the validator's messages, its locale and its `MessagePackProvider`, for that property only. `@Label` replaces `startCase(propertyName)`; a `MessageParamsFormatter` that returns its own property name still wins and can read `RuleObject#getLabel()`.
+- `@Msg` wins over the validator's messages, its locale and its `MessagePackProvider`, for that property only. `@Label` replaces `startCase(propertyName)` in messages that show the property name (the `id` locale's `required` message, `Input ini wajib diisi.`, doesn't); a `MessageParamsFormatter` that returns its own property name still wins and can read `RuleObject#getLabel()`.
 - A property whose type has satpam annotations becomes a nested mapping. Its own rules go under the Java-only `$rules` key: `{"office": {"$rules": ["required"], "email": ["required"]}}`. Lists of beans are not descended into, as in JS, and a class that refers back to itself is descended into only once.
 - The rule mapping is derived once per class and cached on the validator. `AnnotatedRules.of(Class)` returns it for inspection.
 
