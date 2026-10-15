@@ -280,6 +280,31 @@ class AnnotatedRulesTest {
   }
 
   @Test
+  void orThrowVariants() {
+    Applicant valid = new Applicant();
+    valid.name = "Budi";
+    valid.salary = new BigDecimal("4000000");
+    valid.office = new Office();
+    valid.office.email = "budi@example.com";
+    Satpam.validateBeanOrThrow(valid);
+
+    Applicant invalid = new Applicant();
+    invalid.office = new Office();
+    SatpamValidationException error = assertThrows(SatpamValidationException.class, () -> Satpam.validateBeanOrThrow(invalid));
+    assertEquals(Satpam.validateBean(invalid).getMessages(), error.getResult().getMessages());
+    assertFalse(error.getResult().isSuccess());
+    assertEquals("Validation failed for [name, salary, office]", error.getMessage());
+
+    Map<String, Object> rules = map("name", Collections.singletonList("required"));
+    Satpam.validateOrThrow(rules, map("name", "Budi"));
+    SatpamValidationException mapError = assertThrows(SatpamValidationException.class, () -> Satpam.validateOrThrow(rules, map()));
+    assertEquals("Name field is required.", message(mapError.getResult(), "name", "required"));
+
+    // A broken rule is still a SatpamException, not a validation failure
+    assertThrows(SatpamException.class, () -> Satpam.validateOrThrow(map("name", Collections.singletonList("nope")), map()));
+  }
+
+  @Test
   void misuseFailsFast() {
     assertThrows(SatpamException.class, () -> AnnotatedRules.of(Hidden.class));
     assertThrows(SatpamException.class, () -> AnnotatedRules.of(Ignored.class));

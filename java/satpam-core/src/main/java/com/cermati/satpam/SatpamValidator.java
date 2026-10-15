@@ -139,6 +139,40 @@ public final class SatpamValidator {
     return validate(ruleMapping, bean, options);
   }
 
+  /**
+   * Same as {@link #validate(Object, Object)}, but throws instead of returning a failed result.
+   *
+   * @throws SatpamValidationException if validation fails; its {@code getResult()} has the messages
+   */
+  public void validateOrThrow(Object ruleMapping, Object input) {
+    validateOrThrow(ruleMapping, input, null);
+  }
+
+  /** Same as {@link #validateOrThrow(Object, Object)} with per-call options. */
+  public void validateOrThrow(Object ruleMapping, Object input, ValidateOptions options) {
+    throwIfFailed(validate(ruleMapping, input, options));
+  }
+
+  /**
+   * Same as {@link #validateBean(Object)}, but throws instead of returning a failed result.
+   *
+   * @throws SatpamValidationException if validation fails; its {@code getResult()} has the messages
+   */
+  public void validateBeanOrThrow(Object bean) {
+    validateBeanOrThrow(bean, null);
+  }
+
+  /** Same as {@link #validateBeanOrThrow(Object)} with per-call options. */
+  public void validateBeanOrThrow(Object bean, ValidateOptions options) {
+    throwIfFailed(validateBean(bean, options));
+  }
+
+  private static void throwIfFailed(ValidationResult result) {
+    if (!result.isSuccess()) {
+      throw new SatpamValidationException(result);
+    }
+  }
+
   /** Rule mapping derived from {@code type}'s annotations (see {@link AnnotatedRules}), cached per class. */
   public Map<String, Object> rulesFor(Class<?> type) {
     return annotatedRules.computeIfAbsent(type, t -> AnnotatedRules.of(t, objectMapper));

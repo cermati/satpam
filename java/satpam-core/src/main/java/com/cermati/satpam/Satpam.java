@@ -37,6 +37,16 @@ public final class Satpam {
     return DEFAULT.validateBean(bean, options);
   }
 
+  /** See {@link SatpamValidator#validateOrThrow(Object, Object)}. */
+  public static void validateOrThrow(Object ruleMapping, Object input) {
+    DEFAULT.validateOrThrow(ruleMapping, input);
+  }
+
+  /** See {@link SatpamValidator#validateBeanOrThrow(Object)}. */
+  public static void validateBeanOrThrow(Object bean) {
+    DEFAULT.validateBeanOrThrow(bean);
+  }
+
   /** Same as {@link SatpamValidator#builder()}. */
   public static SatpamValidator.Builder builder() {
     return SatpamValidator.builder();

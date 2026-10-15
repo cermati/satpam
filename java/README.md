@@ -124,6 +124,20 @@ satpam.check(ApplicantDto.class);                 // at startup or in a test: fa
 
 `$rules`, `$message` and `$label` are Java-only rule keys, and hand-written or stored mappings can use them too. JS satpam does not know them, so don't put them in rule JSON that JS services also read.
 
+### Throwing on failure
+
+`validateOrThrow(rules, input)` and `validateBeanOrThrow(bean)` (also on `Satpam`) return nothing when the input is valid and throw `SatpamValidationException` when it isn't. `getResult()` is the failed `ValidationResult`, so a web layer can answer with it:
+
+```java
+@ExceptionHandler(SatpamValidationException.class)
+@ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+public ValidationResult handle(SatpamValidationException ex) {
+  return ex.getResult();                          // {"success": false, "messages": {...}}
+}
+```
+
+`SatpamValidationException` is not a `SatpamException`. `SatpamException` means the rules themselves are broken (an unknown rule, bad params), which is a bug and shouldn't be answered like bad input. Its message lists only the failing property names, because the messages can contain input values.
+
 ### Value semantics
 
 Validators see values the way JS does. Numbers are `Double`, objects are `Map<String, Object>`, arrays are `List<Object>`, and a missing property is `Undefined.INSTANCE`, which is different from `null` (the `boolean` rule accepts a missing value but rejects `null`). POJOs and `BigDecimal`s are converted through Jackson. Coercion follows JS: `Number("0x1F")`, `String([1, 2])`, truthiness, `===`, ramda `equals`, lodash `get` paths such as `office.emails[0]`.
