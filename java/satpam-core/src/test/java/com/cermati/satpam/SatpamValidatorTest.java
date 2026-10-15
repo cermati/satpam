@@ -262,6 +262,34 @@ class SatpamValidatorTest {
   }
 
   @Test
+  void noesConjunctionWithNilRootInput() {
+    // Mirrors test/validators/required-if.spec.js: noes reads the input with R.prop, which gives
+    // undefined for a null/undefined object instead of throwing
+    for (String type : Arrays.asList("or", "and")) {
+      Map<String, Object> conjunction = map("type", type, "mappings", map("hasHome", "yes", "hasApartment", "yo"));
+      Map<String, Object> requiredIf = map("address", Arrays.asList(
+        map("fullName", "requiredIf:$1:$2", "params", Arrays.asList(conjunction))));
+      Map<String, Object> requiredIfNot = map("address", Arrays.asList(
+        map("fullName", "requiredIfNot:$1:$2", "params", Arrays.asList(conjunction))));
+
+      for (Object input : Arrays.asList(Undefined.INSTANCE, null)) {
+        ValidationResult ifResult = Satpam.validate(requiredIf, input);
+        assertTrue(ifResult.isSuccess(), type + " " + input);
+        assertEquals(Collections.emptyMap(), ifResult.getMessages());
+
+        ValidationResult ifNotResult = Satpam.validate(requiredIfNot, input);
+        assertFalse(ifNotResult.isSuccess(), type + " " + input);
+        assertEquals("Address field is required.", message(ifNotResult, "address", "requiredIfNot:$1:$2"));
+      }
+    }
+
+    Map<String, Object> shouldValidate = map("address", Arrays.asList(
+      map("name", "required", "shouldValidate", map("type", "or", "mappings", map("hasHome", "yes")))));
+    assertTrue(Satpam.validate(shouldValidate, Undefined.INSTANCE).isSuccess());
+    assertTrue(Satpam.validate(shouldValidate, null).isSuccess());
+  }
+
+  @Test
   void storedRuleJsonIsValidatedUnchanged() throws Exception {
     // Shape of a stored pandora/midas joint promotion `validation` value
     String validation = "{\"itemName\": [{\"name\": \"beginWith\", \"params\": [[\"IPHONE\", \"IPAD\"]]}],"

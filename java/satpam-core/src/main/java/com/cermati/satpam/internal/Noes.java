@@ -1,6 +1,7 @@
 package com.cermati.satpam.internal;
 
 import com.cermati.satpam.SatpamException;
+import com.cermati.satpam.Undefined;
 
 import java.util.List;
 import java.util.Map;
@@ -67,8 +68,8 @@ public final class Noes {
   }
 
   private static boolean mappingSatisfied(String key, Object mappingValue, Object inputObj, boolean isAnd) {
-    // R.prop(key, inputObj)
-    Object inputValue = JsValues.getProperty(inputObj, key);
+    // R.prop(key, inputObj): ramda 0.25 reads through R.path, so a nil inputObj gives undefined
+    Object inputValue = JsValues.isNil(inputObj) ? Undefined.INSTANCE : JsValues.getProperty(inputObj, key);
 
     if (shouldCreateConjunction(mappingValue)) {
       return satisfied(mappingValue, inputObj);
