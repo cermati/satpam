@@ -46,6 +46,20 @@ if (result.success === true) {
 }
 ```
 
+## Async Validation
+
+`validateAsync` works like `validate` but awaits each rule, so it supports rules that return a
+promise (such as `allowedFileType`). Sync rules work with it too, so one rule mapping can mix both.
+
+```js
+const result = await satpam.validateAsync({
+  document: ['required', { name: 'allowedFileType', params: [['image/jpeg', 'image/png']] }]
+}, { document: req.file });
+```
+
+Passing an async rule to `validate` throws, because a pending promise would otherwise always
+count as a pass.
+
 
 ## Isolated Satpam Instance
 Satpam `create` method will return an isolated `Satpam` instance based on current state of satpam validation rules and messages. The instance won't be affected when you setting up a custom validation rules or messages.
@@ -122,6 +136,14 @@ const result = customValidator.validate(
 - `mobilePhoneNumber` (Currently only supports Indonesia mobile phone number)
 - `length:<length>`
 - `fileType:<extension>` Please check [file-type](https://github.com/sindresorhus/file-type)
+- `allowedFileType:$1` **Async, use `validateAsync`.** Check that a Buffer (or an object with a
+  `buffer`, like a multer memory-storage file) has content that sniffs to one of the given mime
+  types. The file name and declared `Content-Type` are ignored. Put `null` in the list to accept
+  content that cannot be identified (plain text, CSV — but also HTML, PHP, JS and SVG).
+  Requires Node >= 22.
+- `fileExtension:$1` Check that a file name (or an object with `originalname`) ends in one of the
+  given dot-prefixed extensions, case-insensitively.
+- `json` Check that a string, Buffer, or object with a `buffer` parses as JSON.
 - `maxLength:<length>`
 - `minLength:<length>`
 - `maxArraySize:<count>` Check if the given array has at most `<count>` items

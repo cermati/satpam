@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "file-type": "~3.8.0",
+    "file-type-v22": "npm:file-type@~22.2.0",
     "image-type": "~4.1.0",
     "lodash": "~4.18.1",
     "luxon": "~3.7.2",

@@ -63,5 +63,8 @@ module.exports = {
   'url': 'Format link tidak valid.',
   'uuid:$1': 'Input harus berupa UUID.',
   'validZipCode': 'Kode Pos tidak valid.',
-  'hostname': 'Nama host tidak valid'
+  'hostname': 'Nama host tidak valid',
+  'allowedFileType:$1': 'Tipe file tidak diizinkan.',
+  'fileExtension:$1': 'Ekstensi file harus salah satu dari <%= ruleParams[0] %>.',
+  'json': 'Input harus berupa JSON yang valid.',
 };
