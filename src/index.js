@@ -259,18 +259,31 @@ const defaultValidationMessageParamsFormatter = ({ propertyName, violatedRule })
 
 
 /**
- * Create a new validator. When it's created, it will have a deep cloned global
+ * Create a new validator. By default it will have a deep cloned global
  * validation rules and global validation messages. Any changes made to the
  * instance's rules or messages will not affect the global validation rules
  * and messages.
+ *
+ * With `shareGlobalRules: true` the instance reads the global rules and messages
+ * directly instead of cloning them. Only use it for an instance that never calls
+ * `addCustomValidation` / `setValidationMessage` on itself, otherwise those calls
+ * would mutate the global maps.
+ *
  * @constructor
+ * @param {Object} [options]
+ * @param {Boolean} [options.shareGlobalRules=false]
  */
 class Validator {
-  constructor() {
-    this.validation = {
-      rules: R.clone(validation),
-      messages: cloneDeep(validationMessages)
-    };
+  constructor({ shareGlobalRules = false } = {}) {
+    this.validation = shareGlobalRules
+      ? {
+        rules: validation,
+        messages: validationMessages
+      }
+      : {
+        rules: R.clone(validation),
+        messages: cloneDeep(validationMessages)
+      };
   }
 
   /**
@@ -568,6 +581,18 @@ class Validator {
 exports.create = () => new Validator();
 
 /**
+ * Validator used by the stateless `satpam.validate()`.
+ *
+ * `satpam.validate()` used to create a new Validator per call, deep cloning ~80 global
+ * rules and messages and throwing the copy away right after (~8-10 us per call, 75-95%
+ * of the cost of a typical validation). `validate()` keeps no state on the instance, so
+ * one instance that reads the global maps directly gives the same result. Rules and
+ * messages added later through `satpam.addCustomValidation` / `satpam.setValidationMessage`
+ * / `satpam.setValidationLocale` are still picked up, exactly as the per-call clone did.
+ */
+const sharedValidator = new Validator({ shareGlobalRules: true });
+
+/**
  * @example
  *   const ruleMapping = {name: ['required']};
  *   const inputObj = {name: ''};
@@ -580,9 +605,7 @@ exports.create = () => new Validator();
  * @returns {{result: Boolean, messages: Object}}
  */
 exports.validate = (ruleMapping, inputObj, options) => {
-  const validator = new Validator();
-
-  return validator.validate(ruleMapping, inputObj, options);
+  return sharedValidator.validate(ruleMapping, inputObj, options);
 };
 
 /**
