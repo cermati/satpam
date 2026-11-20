@@ -11,6 +11,7 @@ import reduce from 'lodash/reduce';
 
 import noes from 'noes';
 
+import allowedFileType from './validators/allowed-file-type';
 import alpha from './validators/alpha';
 import alphanumeric from './validators/alphanumeric';
 import anyBeginWith from './validators/any-begin-with';
@@ -39,6 +40,7 @@ import email from './validators/email';
 import emptyString from './validators/empty-string';
 import equal from './validators/equal';
 import equalToField from './validators/equal-to-field';
+import fileExtension from './validators/file-extension';
 import fileType from './validators/file-type';
 import fqdn from './validators/fqdn';
 import hostname from './validators/hostname';
@@ -52,6 +54,7 @@ import indonesianName from './validators/indonesian-name';
 import integer from './validators/integer';
 import internationalPhoneNumber from './validators/international-phone-number';
 import ip from './validators/ip';
+import json from './validators/json';
 import length from './validators/length';
 import maxLength from './validators/max-length';
 import maxValue from './validators/max-value';
@@ -96,6 +99,7 @@ import maxArraySize from './validators/max-array-size';
 import minArraySize from './validators/min-array-size';
 
 let validators = [
+  allowedFileType,
   alpha,
   alphanumeric,
   anyBeginWith,
@@ -124,6 +128,7 @@ let validators = [
   emptyString,
   equal,
   equalToField,
+  fileExtension,
   fileType,
   fqdn,
   hostname,
@@ -140,6 +145,7 @@ let validators = [
   iso8601Duration,
   iso8601MinDuration,
   iso8601MaxDuration,
+  json,
   length,
   maxArraySize,
   minArraySize,
@@ -257,6 +263,17 @@ const defaultValidationMessageParamsFormatter = ({ propertyName, violatedRule })
   };
 };
 
+/**
+ * Whether a rule handed back a promise-like value instead of a plain pass/fail.
+ *
+ * Duck-typed on `then` rather than `instanceof Promise`, because a rule may return a Bluebird
+ * or other non-native promise.
+ *
+ * @param {*} value
+ * @returns {Boolean}
+ */
+const isThenable = value => !isNil(value) && isFunction(value.then);
+
 
 /**
  * Create a new validator. When it's created, it will have a deep cloned global
@@ -318,6 +335,79 @@ class Validator {
     return ruleObj;
   }
 
+    /**
+   * Run a single rule against a value and return what the rule function returned, untouched.
+   *
+   * Split out of `_validate` so the sync and async walks share one definition of "running a rule":
+   * the only thing they differ on is whether they await `outcome` before reading it.
+   *
+   * A rule skipped by `shouldValidate` reports `true`, which is how `_validate` has always
+   * treated it.
+   *
+   * @param {Object} param
+   * @param {Object|String} param.rule
+   * @param {*} param.val
+   * @param {String} param.propertyName
+   * @param {Object} param.inputObj
+   * @param {Object} param.rootInputObj
+   * @returns {{ruleObj: Object, outcome: *}}
+   */
+  _runRule({ rule, val, propertyName, inputObj, rootInputObj }) {
+    const ruleObj = this._createRuleObject(rule);
+    const validate = this.validation.rules[ruleObj.fullName];
+
+    if (!ruleObj.shouldValidate(ruleObj, rootInputObj)) {
+      return { ruleObj, outcome: true };
+    }
+
+    if (!R.is(Function, validate)) {
+      const ruleObjString = JSON.stringify(ruleObj);
+      throw new Error(`${ruleObj.fullName} is not a valid satpam validation rule. Rule object: ${ruleObjString}`);
+    }
+
+    return {
+      ruleObj,
+      outcome: validate(val, ruleObj, propertyName, inputObj)
+    };
+  }
+
+  /**
+   * Turn a rule's settled outcome into the result object `_validate` aggregates.
+   *
+   * Kept separate from `_runRule` because the message must only be built once the outcome is
+   * known, which for an async rule is after it resolves.
+   *
+   * @param {Object} param
+   * @param {Object} param.ruleObj
+   * @param {*} param.outcome - truthy means the rule passed
+   * @param {*} param.val
+   * @param {String} param.propertyName
+   * @param {Object} param.inputObj
+   * @param {Object} [param.options]
+   * @returns {{success: Boolean, ruleName: String, message: String}}
+   */
+  _toRuleResult({ ruleObj, outcome, val, propertyName, inputObj, options }) {
+    if (!outcome) {
+      return {
+        success: false,
+        ruleName: ruleObj.fullName,
+        message: this.getValidationMessage( // TODO: Refactor to use RoRo (BREAKING CHANGE)
+          ruleObj,
+          propertyName,
+          val,
+          inputObj,
+          options
+        )
+      };
+    }
+
+    return {
+      success: true,
+      ruleName: ruleObj.fullName,
+      message: ''
+    };
+  }
+
   /**
    * This function is for validating the `inputObj` based on the given `ruleMapping`.
    * We need this function because `_validate` function will be called recursively
@@ -332,7 +422,6 @@ class Validator {
    * @returns {{result: Boolean, messages: Object}}
    */
   _validate(ruleMapping, inputObj, rootInputObj, options) {
-    const validator = this;
     let result = true;
     let messageObj = new ValidationMessage();
 
@@ -347,43 +436,28 @@ class Validator {
       };
 
       const _validate = rule => {
-        const ruleObj = this._createRuleObject(rule);
-        const validate = validator.validation.rules[ruleObj.fullName];
+        const { ruleObj, outcome } = this._runRule({
+          rule,
+          val,
+          propertyName,
+          inputObj,
+          rootInputObj
+        });
 
-        if (!ruleObj.shouldValidate(ruleObj, rootInputObj)) {
-          return {
-            success: true,
-            ruleName: ruleObj.fullName,
-            message: ''
-          };
+        // A promise is always truthy, so reading it here would pass the rule no matter what it
+        // later resolves to. Fail loudly instead and point the caller at the API that awaits it.
+        if (isThenable(outcome)) {
+          throw new Error(`${ruleObj.fullName} is an async satpam validation rule, use validateAsync instead of validate.`);
         }
 
-        if (!R.is(Function, validate)) {
-          const ruleObjString = JSON.stringify(ruleObj);
-          throw new Error(`${ruleObj.fullName} is not a valid satpam validation rule. Rule object: ${ruleObjString}`);
-        }
-
-        const validationResult = validate(val, ruleObj, propertyName, inputObj);
-
-        if (!validationResult) {
-          return {
-            success: false,
-            ruleName: ruleObj.fullName,
-            message: validator.getValidationMessage( // TODO: Refactor to use RoRo (BREAKING CHANGE)
-              ruleObj,
-              propertyName,
-              val,
-              inputObj,
-              options
-            )
-          };
-        }
-
-        return {
-          success: true,
-          ruleName: ruleObj.fullName,
-          message: ''
-        };
+        return this._toRuleResult({
+          ruleObj,
+          outcome,
+          val,
+          propertyName,
+          inputObj,
+          options
+        });
       };
 
       // Nested rule
@@ -435,6 +509,111 @@ class Validator {
   }
 
   /**
+   * Async counterpart of `_validate`: same walk over the rule mapping, but every rule's outcome is
+   * awaited before it is read, so rules may return a promise.
+   *
+   * Properties are walked one at a time so `messages` gets its keys in the same order `_validate`
+   * produces. The rules of a single property are started together, then their settled results are
+   * read back in rule order, so messages come out identical to `_validate` whichever rule finishes
+   * first.
+   *
+   * A rule that throws or rejects rejects the whole call rather than counting as a failed rule,
+   * matching how a throwing rule escapes `_validate`.
+   *
+   * @param ruleMapping - An mapping of input property to the available rules
+   * @param inputObj - Input object to be validated
+   * @param rootInputObj - The root input object, passed down unchanged through nested mappings
+   * @param [options]
+   * @returns {Promise<{success: Boolean, messages: Object}>}
+   */
+  async _validateAsync (ruleMapping, inputObj, rootInputObj, options) {
+    let result = true;
+    const messageObj = new ValidationMessage();
+
+    for (const propertyName of R.keys(ruleMapping)) {
+      const ruleArray = ruleMapping[propertyName];
+      const val = get(inputObj, propertyName);
+      const setValidationMessage = (ruleName, message) => {
+        messageObj[propertyName] = messageObj[propertyName] || {};
+        messageObj[propertyName][ruleName] = message;
+      };
+
+      const _validate = async rule => {
+        const { ruleObj, outcome } = this._runRule({
+          rule,
+          val,
+          propertyName,
+          inputObj,
+          rootInputObj
+        });
+
+        // Awaiting a plain boolean is a no-op, so sync rules need no special casing here
+        const settledOutcome = await outcome;
+
+        return this._toRuleResult({
+          ruleObj,
+          outcome: settledOutcome,
+          val,
+          propertyName,
+          inputObj,
+          options
+        });
+      };
+
+      if (!isArray(ruleArray)) {
+        // Nested rule
+        const nestedResult = await this._validateAsync(
+          ruleArray,
+          val,
+          rootInputObj,
+          options
+        );
+        result = nestedResult.success && result;
+
+        if (!nestedResult.success) {
+          messageObj[propertyName] = nestedResult.messages;
+        }
+      } else {
+        const settledResults = await Promise.all(ruleArray.map(rule => {
+          // An inner array is an any-of group: it passes if any one of its rules passes
+          if (R.is(Array, rule)) {
+            return Promise.all(rule.map(_validate));
+          }
+
+          return _validate(rule);
+        }));
+
+        ruleArray.forEach((rule, index) => {
+          const settled = settledResults[index];
+
+          if (R.is(Array, rule)) {
+            const overallResult = R.any(R.prop('success'), settled);
+
+            if (!overallResult) {
+              result = false;
+              settled.forEach(resultObj => {
+                setValidationMessage(resultObj.ruleName, resultObj.message);
+              });
+            }
+
+            return;
+          }
+
+          if (!settled.success) {
+            result = false;
+            setValidationMessage(settled.ruleName, settled.message);
+          }
+        });
+      }
+    }
+
+    return {
+      success: result,
+      messages: messageObj
+    };
+  }
+
+  /**
    * @example
    *   const ruleMapping = {name: ['required']};
    *   const inputObj = {name: ''};
@@ -448,6 +627,24 @@ class Validator {
    */
   validate(ruleMapping, inputObj, options) {
     return this._validate(ruleMapping, inputObj, inputObj, options);
+  }
+
+  /**
+   * Like `validate`, but supports rules that return a promise. Sync rules work here too, so a
+   * rule mapping can mix both.
+   *
+   * @example
+   *   const validator = satpam.create();
+   *   const result = await validator.validateAsync(ruleMapping, inputObj);
+   *
+   * @param ruleMapping - An mapping of input property to the available rules
+   *   e.g. {document: ['required', {name: 'allowedFileType', params: [['image/png']]}]}
+   * @param inputObj - Input object to be validated
+   * @param [options]
+   * @returns {Promise<{success: Boolean, messages: Object}>}
+   */
+  validateAsync(ruleMapping, inputObj, options) {
+    return this._validateAsync(ruleMapping, inputObj, inputObj, options);
   }
 
   /**
@@ -583,6 +780,21 @@ exports.validate = (ruleMapping, inputObj, options) => {
   const validator = new Validator();
 
   return validator.validate(ruleMapping, inputObj, options);
+};
+
+/**
+ * @example
+ *   const result = await satpam.validateAsync(ruleMapping, inputObj);
+ *
+ * @param ruleMapping - An mapping of input property to the available rules
+ * @param inputObj - Input object to be validated
+ * @param [options]
+ * @returns {Promise<{success: Boolean, messages: Object}>}
+ */
+exports.validateAsync = (ruleMapping, inputObj, options) => {
+  const validator = new Validator();
+
+  return validator.validateAsync(ruleMapping, inputObj, options);
 };
 
 /**
