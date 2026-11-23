@@ -5,7 +5,7 @@ module.exports = [
   js.configs.recommended,
   {
     languageOptions: {
-      ecmaVersion: 2019,
+      ecmaVersion: 6,
       sourceType: "module",
       globals: {
         ...globals.mocha,
