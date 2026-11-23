@@ -815,9 +815,7 @@ exports.validate = (ruleMapping, inputObj, options) => {
  * @returns {Promise<{success: Boolean, messages: Object}>}
  */
 exports.validateAsync = (ruleMapping, inputObj, options) => {
-  const validator = new Validator();
-
-  return validator.validateAsync(ruleMapping, inputObj, options);
+  return sharedValidator.validateAsync(ruleMapping, inputObj, options);
 };
 
 /**
