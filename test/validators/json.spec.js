@@ -35,4 +35,27 @@ describe('Json Validator', () => {
   it('should leave a missing value to the required rule', () => {
     expect(satpam.validate(rules, {}).success).to.equal(true);
   });
+
+  it('should ignore a leading byte order mark', () => {
+    const bom = Buffer.from([0xef, 0xbb, 0xbf]);
+    const inputs = [
+      '\uFEFF{"a":1}',
+      Buffer.concat([bom, Buffer.from('{"a":1}')]),
+      { buffer: Buffer.concat([bom, Buffer.from('[1,2]')]) }
+    ];
+
+    inputs.forEach(payload => {
+      expect(satpam.validate(rules, { payload }).success).to.equal(true);
+    });
+  });
+
+  it('should still fail when the payload is only a byte order mark', () => {
+    expect(satpam.validate(rules, { payload: '\uFEFF' }).success).to.equal(false);
+  });
+
+  it('should read a Uint8Array', () => {
+    const payload = new Uint8Array(Buffer.from('{"a":1}'));
+
+    expect(satpam.validate(rules, { payload }).success).to.equal(true);
+  });
 });

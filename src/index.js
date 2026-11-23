@@ -335,7 +335,7 @@ class Validator {
     return ruleObj;
   }
 
-    /**
+  /**
    * Run a single rule against a value and return what the rule function returned, untouched.
    *
    * Split out of `_validate` so the sync and async walks share one definition of "running a rule":
@@ -526,7 +526,7 @@ class Validator {
    * @param [options]
    * @returns {Promise<{success: Boolean, messages: Object}>}
    */
-  async _validateAsync (ruleMapping, inputObj, rootInputObj, options) {
+  async _validateAsync(ruleMapping, inputObj, rootInputObj, options) {
     let result = true;
     const messageObj = new ValidationMessage();
 

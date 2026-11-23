@@ -40,4 +40,13 @@ describe('FileExtension Validator', () => {
   it('should leave a missing value to the required rule', () => {
     expect(satpam.validate(rules, {}).success).to.equal(true);
   });
+
+  it('should fail a name that ends in a bare dot', () => {
+    expect(satpam.validate(rules, { document: 'a.csv.' }).success).to.equal(false);
+  });
+
+  it('should only check the last extension', () => {
+    // Documented limitation: the client picks the name, so this rule never stands alone
+    expect(satpam.validate(rules, { document: 'a.php.csv' }).success).to.equal(true);
+  });
 });

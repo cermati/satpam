@@ -115,12 +115,36 @@ describe('Validator.validateAsync()', () => {
       expect(error).to.be.instanceOf(Error);
       expect(error.message).to.equal('boom');
     });
+
+    it('should reject an any-of group when one rule rejects, even if another passes', async () => {
+      let error;
+
+      try {
+        await validator.validateAsync({ name: [['asyncPass', 'asyncReject']] }, { name: 'x' });
+      } catch (err) {
+        error = err;
+      }
+
+      // A rejection means the rule could not run, so a passing sibling does not outvote it
+      expect(error).to.be.instanceOf(Error);
+      expect(error.message).to.equal('boom');
+    });
   });
 
   context('validate() given an async rule', () => {
     it('should throw instead of silently passing', () => {
       expect(() => validator.validate({ name: ['asyncFail'] }, { name: 'x' }))
         .to.throw('asyncFail is an async satpam validation rule, use validateAsync instead of validate.');
+    });
+
+    it('should throw for an async rule inside an any-of group', () => {
+      expect(() => validator.validate({ name: [['required', 'asyncPass']] }, { name: 'x' }))
+        .to.throw('asyncPass is an async satpam validation rule');
+    });
+
+    it('should throw for an async rule inside a nested mapping', () => {
+      expect(() => validator.validate({ profile: { name: ['asyncPass'] } }, { profile: { name: 'x' } }))
+        .to.throw('asyncPass is an async satpam validation rule');
     });
   });
 });

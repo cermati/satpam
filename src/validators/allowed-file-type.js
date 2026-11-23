@@ -4,6 +4,37 @@ import getFileBuffer from '../utils/get-file-buffer';
 
 const fullName = 'allowedFileType:$1';
 
+// Node versions that can `require()` an ES module without a flag, which file-type v22 needs
+const MINIMUM_NODE_VERSION = '^20.19.0 || >=22.12.0';
+
+/**
+ * Load file-type v22's detector on first use.
+ *
+ * Required here rather than imported at the top: file-type v22 is ESM-only, and a top-level
+ * import would make every service that loads satpam need a recent Node, not only the ones that
+ * use this rule.
+ *
+ * On a Node too old to `require()` an ES module, the raw `ERR_REQUIRE_ESM` does not say which
+ * rule caused it or what to upgrade to, so it is rethrown with that spelled out. Any other load
+ * failure is passed through untouched.
+ *
+ * @returns {Function} - file-type's `fileTypeFromBuffer`
+ */
+const loadFileTypeFromBuffer = () => {
+  try {
+    return require('file-type-v22').fileTypeFromBuffer;
+  } catch (error) {
+    if (error.code !== 'ERR_REQUIRE_ESM') {
+      throw error;
+    }
+
+    throw new Error(
+      `allowedFileType needs Node ${MINIMUM_NODE_VERSION} (file-type v22 is ESM-only), running on Node ${process.version}.`,
+      { cause: error }
+    );
+  }
+};
+
 /**
  * Pass when the value's own bytes sniff to one of the allowed mime types. The client-supplied
  * file name and `Content-Type` are never consulted.
@@ -25,15 +56,12 @@ const validate = async (val, ruleObj) => {
 
   const buffer = getFileBuffer(val);
 
-  if (_.isNil(buffer)) {
+  // A missing value is left to `required`, but a file that was sent with no bytes is never a valid file of any type.
+  if (_.isNil(buffer) || buffer.length === 0) {
     return false;
   }
 
-  // Required here rather than imported at the top: file-type v22 is ESM-only and needs Node >= 22,
-  // and a top-level import would impose that on every service that loads satpam, not only the
-  // ones that use this rule.
-  // eslint-disable-next-line global-require
-  const { fileTypeFromBuffer } = require('file-type-v22');
+  const fileTypeFromBuffer = loadFileTypeFromBuffer();
   const detectedMimeType = _.get(await fileTypeFromBuffer(buffer), 'mime', null);
 
   return _.includes(_.castArray(ruleObj.params[0]), detectedMimeType);

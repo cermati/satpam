@@ -102,4 +102,35 @@ describe('AllowedFileType Validator', () => {
     expect(() => satpam.validate(IMAGE_RULES, { document: BUFFER.png }))
       .to.throw('allowedFileType:$1 is an async satpam validation rule');
   });
+
+  it('should fail an empty buffer even when unidentifiable content is allowed', async () => {
+    const inputs = [
+      Buffer.alloc(0),
+      { buffer: Buffer.alloc(0), originalname: 'empty.csv' }
+    ];
+
+    for (const document of inputs) {
+      const result = await satpam.validateAsync(rulesFor([null]), { document });
+
+      expect(result.success).to.equal(false);
+    }
+  });
+
+  it('should read a Uint8Array, directly or on a file object', async () => {
+    // Copies the bytes into a plain Uint8Array, so this is not a Buffer
+    const pdf = new Uint8Array(BUFFER.pdf);
+
+    // A view that starts partway into a larger ArrayBuffer: only its own slice may be read
+    const padded = new Uint8Array(BUFFER.pdf.length + 16);
+    padded.set(BUFFER.pdf, 16);
+    const offsetView = padded.subarray(16);
+
+    expect(Buffer.isBuffer(pdf)).to.equal(false);
+
+    for (const document of [pdf, offsetView, { buffer: pdf }]) {
+      const result = await satpam.validateAsync(rulesFor(['application/pdf']), { document });
+
+      expect(result.success).to.equal(true);
+    }
+  });
 });
