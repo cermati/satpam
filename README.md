@@ -11,12 +11,6 @@ Satpam is a javascript simple and effective object validation library.
 npm install satpam --save
 ```
 
-Satpam runs on any Node version, except for the `allowedFileType` rule, which needs
-Node `^20.19.0 || >=22.12.0` (it loads `file-type` v22, which is ESM-only). On an older Node,
-the first `allowedFileType` check rejects with an error saying so; nothing fails at startup.
-`package.json` declares this range under `engines`, so npm warns on install and Yarn 1 refuses
-unless run with `--ignore-engines`.
-
 
 ## Quick Usage
 ```js
@@ -51,34 +45,6 @@ if (result.success === true) {
   result.messages.phone.number === 'Phone must be numeric.';
 }
 ```
-
-## Async Validation
-
-`validateAsync` works like `validate` but awaits each rule, so it supports rules that return a
-promise (such as `allowedFileType`). Sync rules work with it too, so one rule mapping can mix both.
-
-```js
-const result = await satpam.validateAsync({
-  document: ['required', { name: 'allowedFileType', params: [['image/jpeg', 'image/png']] }]
-}, { document: req.file });
-```
-
-### Behaviour change in 4.24.0
-
-`validate` now throws when a rule returns a promise:
-
-```text
-<rule name> is an async satpam validation rule, use validateAsync instead of validate.
-```
-
-Before 4.24.0, a custom rule added with `addCustomValidation` that returned a promise always
-passed, whatever the promise resolved to, because a promise is truthy. That was a bug, so this
-ships as a minor release, but an app that has such a rule will now get an error after upgrading.
-Switch those call sites to `await satpam.validateAsync(...)`.
-
-A rule that throws or rejects inside `validateAsync` rejects the whole call, including inside an
-any-of group where another rule passed. A rejection means the rule could not run, not that the
-value is invalid.
 
 
 ## Isolated Satpam Instance
@@ -156,31 +122,6 @@ const result = customValidator.validate(
 - `mobilePhoneNumber` (Currently only supports Indonesia mobile phone number)
 - `length:<length>`
 - `fileType:<extension>` Please check [file-type](https://github.com/sindresorhus/file-type)
-- `allowedFileType:$1` **Async, use `validateAsync`.** Check that the file's bytes sniff to one
-  of the given mime types. Accepts a Buffer, a Uint8Array, or an object carrying either under
-  `buffer` (like a multer memory-storage file). The file name and declared `Content-Type` are
-  ignored. Requires Node `^20.19.0 || >=22.12.0`.
-  - Only the file's leading bytes (its "magic bytes") are checked. A file that starts with a
-    valid PNG header and continues with anything else, script code included, still passes as
-    `image/png`. Re-encode or parse the file if you need to know the whole of it is valid.
-  - Put `null` in the list to accept content that cannot be identified. That covers plain text
-    and CSV, but equally HTML, PHP, JS and SVG, which cannot be detected either. Pair `null`
-    with `fileExtension`, and only use it for fields that genuinely take text.
-  - A missing value passes (use `required`), but an empty buffer always fails, even with `null`
-    allowed.
-  ```js
-  satpam.validateAsync({
-    document: ['required', { name: 'allowedFileType', params: [['image/jpeg', 'image/png']] }]
-  }, { document: req.file });
-  ```
-- `fileExtension:$1` Check that a file name (or an object with `originalname`) ends in one of the
-  given dot-prefixed extensions, case-insensitively. Only the last extension is checked and the
-  client chooses the name, so `a.php.csv` passes `.csv`. Use it together with `allowedFileType`,
-  never as the only check.
-- `json` Check that a string, Buffer, Uint8Array, or object carrying one under `buffer` parses
-  as JSON. A leading byte order mark (BOM) is ignored, so if you parse the same bytes yourself
-  afterwards, strip it too. There is no size limit; cap uploads before they are buffered (e.g.
-  multer `limits.fileSize`).
 - `maxLength:<length>`
 - `minLength:<length>`
 - `maxArraySize:<count>` Check if the given array has at most `<count>` items
@@ -422,3 +363,4 @@ satpam.setValidationMessage('minLength:$1', message);
 MIT
 
 ![Hi-Five](https://media.giphy.com/media/JhThbOq62vwn6/giphy.gif)
+
