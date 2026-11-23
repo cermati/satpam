@@ -12,7 +12,7 @@ npm install satpam --save
 ```
 
 Satpam runs on any Node version, except for the `allowedFileType` rule, which needs
-Node `^20.19.0 || >=22.12.0` (it loads `file-type` v22, which is ESM-only). On an older Node,
+Node `>=22.12.0` (it loads `file-type` v22, which is ESM-only). On an older Node,
 the first `allowedFileType` check rejects with an error saying so; nothing fails at startup.
 `package.json` declares this range under `engines`, so npm warns on install and Yarn 1 refuses
 unless run with `--ignore-engines`.
@@ -63,7 +63,7 @@ const result = await satpam.validateAsync({
 }, { document: req.file });
 ```
 
-### Behaviour change in 4.24.0
+### Behaviour change in 4.25.0
 
 `validate` now throws when a rule returns a promise:
 
@@ -71,7 +71,7 @@ const result = await satpam.validateAsync({
 <rule name> is an async satpam validation rule, use validateAsync instead of validate.
 ```
 
-Before 4.24.0, a custom rule added with `addCustomValidation` that returned a promise always
+Before 4.25.0, a custom rule added with `addCustomValidation` that returned a promise always
 passed, whatever the promise resolved to, because a promise is truthy. That was a bug, so this
 ships as a minor release, but an app that has such a rule will now get an error after upgrading.
 Switch those call sites to `await satpam.validateAsync(...)`.
@@ -159,7 +159,7 @@ const result = customValidator.validate(
 - `allowedFileType:$1` **Async, use `validateAsync`.** Check that the file's bytes sniff to one
   of the given mime types. Accepts a Buffer, a Uint8Array, or an object carrying either under
   `buffer` (like a multer memory-storage file). The file name and declared `Content-Type` are
-  ignored. Requires Node `^20.19.0 || >=22.12.0`.
+  ignored. Requires Node `>=22.12.0`.
   - Only the file's leading bytes (its "magic bytes") are checked. A file that starts with a
     valid PNG header and continues with anything else, script code included, still passes as
     `image/png`. Re-encode or parse the file if you need to know the whole of it is valid.
