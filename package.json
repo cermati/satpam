@@ -4,7 +4,7 @@
   "description": "Simple and Effective Object Validator",
   "main": "lib/index.js",
   "engines": {
-    "node": "^20.19.0 || >=22.12.0"
+    "node": ">=22.12.0"
   },
   "scripts": {
     "compile": "rm -rf ./lib && babel -d lib/ src/",

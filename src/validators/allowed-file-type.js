@@ -5,7 +5,7 @@ import getFileBuffer from '../utils/get-file-buffer';
 const fullName = 'allowedFileType:$1';
 
 // Node versions that can `require()` an ES module without a flag, which file-type v22 needs
-const MINIMUM_NODE_VERSION = '^20.19.0 || >=22.12.0';
+const MINIMUM_NODE_VERSION = '>=22.12.0';
 
 /**
  * Load file-type v22's detector on first use.
